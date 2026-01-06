@@ -1,0 +1,562 @@
+body{
+    background-color: #1f1f1f;
+    color: rgb(205, 205, 205);
+    font-size: 1.6rem;
+    font-family: system-ui, Segoe UI, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+nav{
+    background-color: black;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}nav button{
+    background-color: black;
+    color: white;
+    width: 260px;
+    height: 100%; 
+    margin: 0;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+}nav button:hover{ background: #5a5959;}
+nav a{
+    text-decoration: none; 
+    color: white;
+}
+nav ul{
+    background-color:#111111;
+    width: 270px;
+    padding: 15px;
+    margin: 0;
+}
+
+header{
+    text-align: center;
+    margin: 80px;
+    color: rgb(244, 249, 253);
+}header h1{
+    font-size: 10rem;
+    color: #F0C431;
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}header p{margin: 0;}
+
+/* TITULOS */
+h2{
+    color: #F0C431;
+    margin: 200px 0 100px;
+    text-align: center;
+    font-size: 5rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}h3{
+    font-size: 3.7rem;
+    margin: 150px auto 40px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 800;
+}h4{
+    font-size: 2.9rem;
+    margin: 120px auto 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 800;
+}h5{
+    font-size: 2.2rem;
+    margin: 70px 0 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}h6{
+    font-size: 1.9rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 50px 0 0;
+    font-weight:800;
+}
+
+/* TAMAÑOS Y FUENTES DE LETRAS */
+.letra-big{
+    font-size: 2.1rem;
+    font-weight: 900;
+}.letra-segoe{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* COLORES LETRAS */
+.letra-B{color: white;}
+.azul{color: rgb(55, 113, 200);}
+.sky{color: skyblue;}
+.doger{color: rgb(0, 158, 210);}
+.golden{color: rgb(250, 210, 110);}
+.naranja{color: chocolate;}
+.verde{color: rgb(64, 185, 64);}
+.morado{color: rgb(168, 88, 208);}
+.aqua{color: rgb(0, 187, 124);}
+
+/* COLORES FONDOS */
+.fondo-azul{background-color: rgb(55, 113, 200);}
+.fondo-sky{background-color: skyblue;}
+.fondo-doger{background-color: rgb(0, 158, 210);}
+.fondo-golden{background-color: rgb(254, 210, 99);}
+.fondo-naranja{background-color: chocolate;}
+.fondo-verde{background-color: rgb(87, 176, 87);}
+.fondo-morado{background-color: rgb(168, 88, 208);}
+.fondo-aqua{background-color: rgb(0, 187, 124);}
+
+/* MARGENES */
+.margen60{margin-top: 60px;}
+.margen100{margin-top: 100px;}
+.margen150{margin-top: 150px;}
+.margen0{margin-top: 0;}
+
+/* LISTAS */
+ul{
+    list-style: none;
+    margin-bottom: 60px;
+}li{
+    list-style: none;
+    margin-top: 15px;
+}
+
+/* TABLAS */
+table{
+    border-collapse: collapse;
+    margin: 60px auto;
+    width: 80%;
+}
+table tr:nth-child(even) { background: #333131; }
+th,td{
+    box-shadow: 1px 1px 4px rgb(53, 50, 50);
+    padding: 10px;
+    vertical-align: top;
+}th{
+    background-color:#115bb5;
+}caption{
+    background-color: #414343;
+    padding: 10px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* BOTONES */
+.btn-simple{
+    background-color: transparent;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: skyblue 3px solid;
+    border-radius: 5px;
+}.btn-simple2{
+    background-color: transparent;
+    color: white;
+    font-size: 1.2rem;
+    border: rgb(233, 235, 235) 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+.btn-flechas{
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    padding: 0;
+}
+.btn-cambiar-consola{
+    background-color: transparent;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+}.btn-cambiar-consola:hover{
+    border-bottom: rgb(254, 210, 99) solid 4px;
+}
+
+/* CONTENEDORES */
+section{
+    width: 70%;
+    margin: 150px auto;
+}.seccion{
+    width: 92%;
+    margin: 50px auto;
+}section > div{
+    margin: 60px 0 60px;
+}
+
+.bloques-ocultos{
+    background-color: #161515;
+    padding: 20px;
+}
+.bloques-oscuros{
+    background-color: #191818;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+.codigo{
+    background:rgb(46, 49, 52);
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    margin: 40px auto 80px ;
+    font-size: 1.5rem;
+    font-family: monospace;
+}.codigo p{
+    padding: 20px 0 20px;
+    margin: 0;
+}.codigo > p:nth-child(1){
+    background-color:rgb(25, 25, 30);
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}.codigo button{
+    width: 130px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Codigo en consola */
+.codigo-consola{
+    display: flex;
+    width: 100%;
+    margin: 80px auto 0;
+    box-shadow: 3px 3px 7px gray;
+    font-family: monospace;
+    font-size: 1.4rem;
+}.codigo-consola > div{
+    padding: 20px 20px 50px;
+}.codigo-consola > div:nth-child(2){
+    background-color: rgb(14, 14, 46);
+    width: 35%;
+}.codigo-consola > div:nth-child(1){
+    background-color: rgb(18, 18, 27);
+    width: 65%;
+}
+.codigo-consola .bloques{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+}
+.codigo-consola .btn-consola{
+    width: 130px;
+    height: 30px;
+    margin-top: 25px;
+    border-radius:10px;
+    background-color: #F0C431;
+    font-size: 1rem;
+    font-weight: bold;
+}.btn-consola2{
+    background-color: rgb(0, 102, 255);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: white 1px solid;
+    border-radius: 5px;
+    padding: 3px;
+}.codigo-consola .btn-flechas{
+    background-color: transparent;
+    width: auto;
+    border: none;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.codigo-consola input{
+    font-size: 1.6rem;
+    background-color: transparent;
+    border: rgb(220, 194, 194) 1px solid;
+    border-radius: 10px;
+    color: white;
+}
+#input-tree-search{
+    width: 100px;
+}
+
+/* Delegation pattern */
+#elementosDinamicos{
+    display: flex;
+    gap: 20px;
+    justify-content: center; 
+    padding: 10px;
+}#elementosDinamicos div {
+    border: 1px white solid;
+    padding: 5px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.next-example{
+    background-color: transparent;
+    margin-bottom: 30px;
+    margin-left: 40px;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.notas{
+    width: 90%;
+    margin: 50px auto 20px;
+    border: 3px solid #F0C431;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.6rem;
+}
+
+
+#tabla-variables{
+    border-collapse: collapse;
+    margin: 50px auto;
+}#tabla-variables td, #tabla-variables th{
+    border: white solid 1px;
+    padding: 10px;
+}
+
+pre{
+    background-color: rgb(15, 15, 15);
+}
+
+/* Manipulacion de numeros */
+#btn-PropiedadesMath{
+    background-color: transparent;
+    color: white;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size: 1.2rem;
+}
+ul #propiedades-metodos{
+    margin: 50px auto;
+}
+
+.codigo-consola #numero1, .codigo-consola #numero2{
+    width: 70px;
+    border: white solid 1px;
+    border-radius: 10px;
+    color: rgb(87, 176, 87);
+}
+/* Calculadora */
+#controles-calculadora{
+    background-color: rgb(23, 43, 63);
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+}#controles-calculadora button, .btn-calcul{
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    border-radius:10px;
+    border: 1px solid white;
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: white;
+}#teclado{
+    padding: 5px;
+    background-color: #6d6767;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+#teclado div{
+    background-color: rgb(43, 43, 43);
+    width: 31%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2.5rem;
+    border-radius: 8px;
+}
+
+.btn-next-example{
+    background-color: transparent;
+    height: 50px;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-top: 20px;
+    border-color: white;
+    border-radius: 10px;
+}
+
+/* Red Social */
+#red-social{
+    display: flex;
+    background-color: #171616;
+    padding: 15px;
+    gap: 20px;
+}#red-social > div:nth-child(1){
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}#red-social > div:nth-child(2){
+    width: 40%;
+    font-size: 1.2rem;
+}
+
+#red-social #verificarUsuario, #red-social #crearUsuario{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}#red-social #Bienvenida{
+    background-color: #3677c6;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#red-social input{
+    height: 30px;
+    width: 200px;
+    font-size: 1.2rem;
+}
+
+#red-social button{
+    height: 30px;
+    width: 100px;
+    margin-top: 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}#red-social button:nth-child(1){
+    background-color: rgb(3, 162, 0);
+}#red-social button:nth-child(2){
+    background-color: rgb(33, 99, 223);
+}
+
+/* PROYECTO HTTP */
+#content-projects-HTTP{
+    height: 450px;
+    background-color: rgb(11, 61, 105);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #e1dede;
+    font-weight: bold;
+}#content-projects-HTTP .targets{
+    background-color: #032c35;
+    width: 250px;
+    height: 370px;
+    border: 3px gray solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    font-size: 1.6rem;
+}
+.targets input{
+    width: 200px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}.targets textarea{
+    margin-bottom: 30px;
+    border-radius: 5px;
+    width: 200px;
+    height: 80px;
+    font-size: 1rem;
+}.targets .btn-POST-GET, .targets .btn-delete{
+    width: 200px;
+    height: 35px;
+    background-color:#3677c6;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+}
+
+    /* Targetas de la solicitud */
+.targets h2{
+    font-size: 1.5rem;
+    color: #e2dede;
+    margin: 5px 0;
+}.targets p{
+    color: #b2b2b2;
+    font-size: 1.2rem;
+}
+.targets .btn-delete{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(231, 90, 90);
+    margin-top: 20px;
+}
+
+/* PROYECTO DOM: LISTA DE COMPRAS */
+.proyecto-listaDeCompras{
+    background-color: #171616;
+    padding: 40px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}.formulario{
+    background-color: #1b2444;
+    width: 500px;
+    padding: 30px 20px;
+    box-shadow: 0 0 20px rgba(164, 162, 162, 0.5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.4rem;
+}.proyecto-listaDeCompras h6{
+    margin-bottom: 40px;
+    margin-top: 0;
+}.proyecto-listaDeCompras input{
+    height: 40px;
+    width: 280px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    font-weight: bold;
+}.proyecto-listaDeCompras > button{
+    position: relative;
+    bottom: 110px;
+    right: 450px;
+}
+.proyecto-listaDeCompras button{
+    height: 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    border: 1px white solid;
+    border-radius: 10px;
+}.proyecto-listaDeCompras #btn-resetearProyectoListaDeCompras{
+    background-color: red;
+    border: none;
+    margin-left: 70px;
+}
+.proyecto-listaDeCompras li{
+    background-color: rgb(71, 71, 71);
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}.proyecto-listaDeCompras #confirmar-peticion{
+    background-color: rgb(246, 214, 214);
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(39, 39, 39);
+    display: flex; 
+    justify-content: space-between; 
+}.btn-delete-confirm, .btn-delete{
+    font-size: 1.3rem;
+    color: rgb(222, 62, 62);
+}.btn-edit{
+    font-size: 1.3rem;
+    color: rgb(206, 175, 63);
+}
+/* cambiar tema */
+.tema-claro-container{
+    background-color: #c2c2c2;
+    
+}.tema-claro-formulario{  
+    background-color:#2f6db9 ;
+}

@@ -115,7 +115,8 @@ function next(tipo){
 }
 // ..........................................
 
-//SCOPE
+// VARIABLES
+    //SCOPE
 function ejecutarScope(){
     const consola = document.getElementById("consola-scope")
     const consola2 = document.getElementById("consola-scope2")
@@ -140,7 +141,20 @@ function ejecutarScope(){
     `
 }ejecutarScope()
 
-//CLOSURE
+function ejecutarVariablesDeEntorno(){
+    const consola = document.getElementById("consola-variables-entorno")
+
+    let nombre = process.env.NOMBRE || "Sin nombre"
+    console.log(nombre)
+
+    consola.innerHTML = `
+    <p style="margin-top:0">
+        <b class="sky">nombre</b> ${nombre}
+    </p>
+    `
+}
+
+    //CLOSURE
 function closure(){
     const consola = document.getElementById("consola-closure")
 

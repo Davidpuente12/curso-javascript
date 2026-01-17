@@ -159,6 +159,31 @@
             y al no encontrarla se detendria el flujo de trabajo, ocacionando que no se ejecute el codigo posterior. En este caso lo mandamos a imprimir de ultimo para que no detenga el resto del codigo.</li>
         </ul>
 
+        <h3 class="letra-B">Variables de entorno</h3>
+        <p>Las variables de entorno son valores dinámicos que existen fuera del código de una aplicación y que afectan cómo se ejecutan los programas, proporcionan información configurable como rutas de archivos, configuraciones de conexión, o modos de aplicación, permitiendo adaptar el comportamiento de una app sin modificar su código fuente.</p>
+        <p>Es crucial para entornos distintos (desarrollo, producción) y para proteger datos sensibles como contraseñas. Por ejemplo, en nuestro entorno de desarrollo conectamos a una base de datos de prueba, mientras que en producción nos conectamos a una base de datos real, en lugar de utilizar la dirección de la base de datos directamente, utilizaremos una variable que tendrá la dirección de la base de datos.</p>
+        <p>Estas variables se suelen guardar en un archivo llamado .<b class="azul">env</b> y en ella se suelen guardar datos que varían dependiendo del entorno, así como nombres de usuario o contraseñas, que son también sensibles a cambios frecuentes y no queremos que estén acoplados al código fuente.</p>
+    
+        <h4 class="letra-B">Creando variables de entorno</h4>
+        <p>Como hemos dicho, el primer paso es crear un fichero .env en nuestro raíz del proyecto. En su interior crearemos las variables en mayúsculas (separadas por guión bajo si se necesita) seguido de un = con el valor correspondiente.</p>
+        <p>Para leer variables de entorno desde NodeJS, podemos utilizar dos formas diferentes. El método loadEnvFile() de node:process o ejecutar el parámetro --env-file desde la línea de comandos. En ambos casos, le pasamos la ruta del fichero .env que contiene las variables de entorno que queremos leer en nuestra aplicación.</p>
+
+        <h5><code class="azul">process.env</code></h5>
+        <p>es un objeto global que contiene todas las variables de entorno disponibles para el proceso en ejecución. El objeto global no necesitas importarlo; está disponible en cualquier parte de tu aplicación Node.js . Se alimenta de las variables de entorno del sistema operativo en el momento en que se inicia el proceso.</p>
+    
+        <div class="codigo-consola">
+            <div>
+                <b class="azul">let</b> <b class="sky">nombre</b> = 
+                <b class="sky">process</b>.<b class="sky">env</b>.<b class="sky">NOMBRE</b> ||
+                <b class="naranja">"Sin nombre"</b> <br><br>
+
+                <b class="verde">//TERMINAL</b><br>
+                <b class="verde">//definir nuestras variables antes de ejecutar node</b> <br><br>
+                <b>NOMBRE=David</b>
+            </div>
+            <div id="consola-variables-entorno"></div>
+        </div>
+
     </section>
 
     <!-- TIPOS DE DATOS -->

@@ -2643,22 +2643,230 @@ function ejecutarFunciones(tipo){
 }ejecutarFunciones('expresionDeFuncion')
 
 //Callback
-function ejecutarCallback() {
+function ejecutarCallback(tipo) {
     const consola = document.getElementById("consola-callback")
+    const codigo = document.getElementById("codigo-callback")
 
-    function procesarUsuario(callback) {
-        const nombre = "Luis";
-        callback(nombre); 
-    }
-
-    function saludar(nombre) {
-        consola.innerHTML = `
-        <b class="golden">procesarUsuario</b><b class="morado">(<b class="golden">saludar</b>)</b> <br>
-        Hola ${nombre}
+    // callback
+    if(tipo == "callback"){
+        codigo.innerHTML = `
+        <p class="margen0">
+            <b>funcion que se pasa como callback</b><br>
+            <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>  <br>
+            &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="naranja">"hola"</b>  +
+            <b class="sky">nombre</b><b class="morado">)</b><br>
+            <b class="golden">}</b>
+        </p>
+            
+        <p>
+            <b>funcion de orden superior</b><br>
+            <b class="azul">function</b> <b class="golden">procesarUsuario(</b><b class="sky">callback</b><b class="golden">) {</b> <br>
+            &emsp;&emsp;<b class="azul">const</b> <b class="doger">nombre</b> = <b class="naranja">"Luis"</b>  <br>
+            &emsp;&emsp;<b class="golden">callback</b><b class="morado">(</b><b class="doger">nombre</b><b class="morado">)</b>
+            <b class="verde">//aqui se llama el callback</b><br>
+            <b class="golden">}</b>
+        </p>
         `
+
+        function procesarUsuario(callback) {
+            const nombre = "Luis";
+            callback(nombre); 
+        }
+
+        function saludar(nombre) {
+            consola.innerHTML = `
+            <b class="golden">procesarUsuario</b><b class="morado">(<b class="golden">saludar</b>)</b> <br>
+            Hola ${nombre}
+            `
+        }
+        
+        procesarUsuario(saludar)
     }
     
-    procesarUsuario(saludar)
+    // callback hell
+    if(tipo == "CallbackHell"){
+        consola.innerHTML = ""
+
+        function saludar(nombre,callback){
+            consola.innerHTML += `<p>Hola ${nombre}</p>`
+            callback()
+        }
+        function instruccionUno(callback){
+            consola.innerHTML += `<p>Ve a la app store</p>`
+            callback()
+        }
+        function instruccionDos(callback){
+            consola.innerHTML += "<p>Compra unos airpods</p>"
+            callback()
+        }
+        function instruccionTres(callback){
+            consola.innerHTML += "<p>Traelos a mi casa</p>"
+            callback()
+        }
+        function despedir(nombre){
+            consola.innerHTML += `<p>Adios ${nombre}</p>`
+        }
+
+        saludar("David",function(){
+            instruccionUno(function(){
+                instruccionDos(function(){
+                    instruccionTres(function(){
+                        despedir("david")
+                    })
+                })
+            })
+        })
+
+        // codigo
+        codigo.innerHTML = `
+        <div class="margen0">
+            <b class="azul">function</b> <b class="golden">saludar</b>
+            (<b class="sky">nombre</b>,<b class="sky">callback</b>){ 
+            <div class="margenIz">
+                consola.<b class="sky">innerHTML</b> += 'Hola $ {<b class="sky">nombre</b>}' <br>
+                <b class="golden">callback()</b> <br>
+            </div>
+            } <br>
+
+            <b class="azul">function</b> <b class="golden">instruccionUno</b>
+            (<b class="sky">callback</b>){ <br>
+            <div class="margenIz">
+                consola.<b class="sky">innerHTML</b> += 'Ve a la app store' <br>
+                <b class="golden">callback()</b> <br>
+            </div>
+            } <br>
+
+            <b class="azul">function</b> <b class="golden">instruccionDos</b>
+            (<b class="sky">callback</b>){ <br>
+            <div class="margenIz">
+                consola.<b class="sky">innerHTML</b> += "Compra unos airpods" <br>
+                <b class="golden">callback()</b> <br>
+            </div>
+            } <br>
+
+            <b class="azul">function</b> <b class="golden">instruccionTres</b>
+            (<b class="sky">callback</b>){ <br>
+            <div class="margenIz">
+                consola.<b class="sky">innerHTML</b> += "Traelos a mi casa" <br>
+                <b class="golden">callback()</b> <br>
+            </div>
+            } <br>
+
+            <b class="azul">function</b> <b class="golden">despedir</b>
+            (<b class="sky">nombre</b>){ <br>
+            <div class="margenIz">
+                consola.<b class="sky">innerHTML</b> += 'Adios $ {<b class="sky">nombre</b>}' <br>
+            </div>
+            } <br>
+
+            <b class="golden">saludar</b>("David",<b class="azul">function</b>(){ 
+            <div class="margenIz">
+            <b class="golden">instruccionUno</b>(<b class="azul">function</b>(){
+                <div class="margenIz">
+                <b class="golden">instruccionDos</b>(<b class="azul">function</b>(){
+                    <div class="margenIz">
+                    <b class="golden">instruccionTres</b>(<b class="azul">function</b>(){
+                        <div class="margenIz"><b class="golden">despedir</b>("david")</div>
+                    })
+                    </div>
+                })
+                </div>
+            })
+            </div> 
+            
+                        
+            
+            
+            
+            
+            })
+        </div>
+        `
+    }
+
+    //Callback Hell Recursivo
+    if(tipo == "CallbackHellRecursivo"){
+        codigo.innerHTML = `
+        <div>
+            <b class="azul">function</b> <b class="golden">saludar</b>
+            (<b class="sky">nombre</b>,<b class="sky">callback</b>){ 
+            <div class="margenIz">
+                consola.innerHTML = 'Hola $ {<b class="sky">nombre</b>}' <br>
+                <b class="golden">callback</b>(<b class="sky">nombre</b>)
+            </div>
+            } <br>
+
+            <b class="azul">function</b> <b class="golden">hablar</b>(<b class="sky">callback</b>){
+            <div class="margenIz">
+                consola.innerHTML += 'bla bla bla' <br>
+                <b class="golden">callback</b>()
+            </div>
+            } <br> 
+
+            <b class="azul">function</b> <b class="golden">adios</b>(<b class="sky">nombre</b>){
+            <div class="margenIz">
+                consola.innerHTML += 'Adios $ {<b class="sky">nombre</b>}'
+            </div>
+            } <br><br>
+
+            <b class="verde">//Recursividad</b> <br>
+            <b class="azul">function</b> <b class="golden">conversacion</b>
+            (<b class="sky">veces</b>,<b class="sky">nombre</b>){
+            <div class="margenIz">
+                <b class="morado">if</b>(<b class="sky">veces</b> > 0){
+                <div class="margenIz">
+                    <b class="golden">hablar</b>(<b class="azul">function</b>(){
+                    <div class="margenIz">
+                        <b class="golden">conversacion</b>(--<b class="sky">veces</b>,<b class="sky">nombre</b>)
+                    </div>
+                    })
+                </div>
+                }<b class="morado">else</b>{
+                <div class="margenIz">
+                    <b class="golden">adios</b>(<b class="sky">nombre</b>)
+                </div>
+                }
+            </div>
+            } <br><br>
+
+            <b class="verde">//Invocacion</b> <br>
+            <b class="golden">saludar</b>("David",<b class="azul">function</b>
+            (<b class="sky">nombre</b>){
+            <div class="margenIz">
+                <b class="golden">conversacion</b>(3,<b class="sky">nombre</b>)
+            </div>
+            })
+        </div>
+        `
+
+        function saludar(nombre,callback){
+            consola.innerHTML = `<p>Hola ${nombre}</p>`
+            callback(nombre)
+        }
+        function hablar(callback){
+            consola.innerHTML += `<p>bla bla bla</p>`
+            callback()
+        }
+        function adios(nombre){
+            consola.innerHTML += `<p>Adios ${nombre}</p>`
+        }
+        //recursividad
+        function conversacion(veces,nombre){
+            if(veces > 0){
+                hablar(function(){
+                    conversacion(--veces,nombre)
+                })
+            }else{
+                adios(nombre)
+            }
+        }
+
+        saludar("David",function(nombre){
+            conversacion(3,nombre)
+        })
+
+    }
+
 }
 
 //Metodo en objetos

@@ -2411,9 +2411,15 @@
                 <li><b class="letra-B">Callback</b> es la función que se pasa y que será llamada dentro de la función de orden superior, ya sea de forma inmediata (síncrona) o después de que ocurra algo (asíncrona).</li>
             </ul>
 
+            <!-- botones -->
+            <div style="height: 58px; margin: 150px 0 0;">
+                <button onclick="ejecutarCallback('callback')" class="btn-cambiar-consola">Callback</button>
+                <button onclick="ejecutarCallback('CallbackHell')" class="btn-cambiar-consola">Callback Hell</button>
+                <button onclick="ejecutarCallback('CallbackHellRecursivo')" class="btn-cambiar-consola">Callback Hell Refactorizado</button>
+            </div>
             <!-- codigo -->
-            <div class="codigo-consola">
-                <div>
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-callback">
                     <p class="margen0">
                         <b>funcion que se pasa como callback</b><br>
                         <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>  <br>
@@ -2431,14 +2437,10 @@
                         <b class="golden">}</b>
                     </p>
                         
-                    <button onclick="ejecutarCallback()" class="btn-consola"><b>ejecutar</b></button>
+                    <button onclick="ejecutarCallback('callback')" class="btn-consola"><b>ejecutar</b></button>
                 </div>
 
-                <div>
-                    <code>
-                        <b id="consola-callback"></b>
-                    </code>
-                </div>
+                <div id="consola-callback"></div>
             </div>
 
             <p>Aqui tenemos dos funciones declaradas: <span class="golden">procesarUsuario</span> es de orden superior, lo que quiere decir que recibe la funcion <span class="golden">saludar</span> como argumento y la llama dentro de su proceso de ejecucion, pasandole como paramentro la variable <span class="doger">nombre</span></p>

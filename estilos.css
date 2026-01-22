@@ -106,7 +106,8 @@ h2{
 .margen60{margin-top: 60px;}
 .margen100{margin-top: 100px;}
 .margen150{margin-top: 150px;}
-.margen0{margin-top: 0;}
+.margen0{margin: 0;}
+.margenIz{padding-left: 24px;}
 
 /* LISTAS */
 ul{
@@ -300,7 +301,6 @@ section{
     padding: 10px;
     font-size: 1.6rem;
 }
-
 
 #tabla-variables{
     border-collapse: collapse;

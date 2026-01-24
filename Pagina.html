@@ -3020,7 +3020,7 @@
                 <button class="fondo-azul" onclick="mostrarExplicacion('explicacion-async')">Explicacion</button>
             </div>
 
-            <div id="explicacion-async" style="display: block;">
+            <div id="explicacion-async" style="display: none;">
 
                 <!-- botones -->
                 <div style="height: 58px; margin: 100px 0 0;">
@@ -5105,7 +5105,86 @@
         </div>
     </section>
 
-    <h2 style="text-align: center;">Mensajes Emergentes</h2>
+    <!-- MODULOS GLOBALES -->
+    <section>
+        <H2>Objetos Globales</H2>
+        <p>
+            Los módulos globales son componentes integrados en Node.js que permite que 
+            ciertas variables y funciones estén disponibles en toda la aplicación sin 
+            importaciones explícitas. Node.js proporciona un conjunto de objetos globales
+            disponibles en cada módulo.
+        </p>
+
+        <h4 class="letra-B">Objeto <span class="sky">global</span></h4>
+        <p>
+            El objeto global proporciona un ámbito compartido para variables y 
+            funciones, similar al window object en los navegadores
+        </p>
+
+        <p>
+            <code class="sky letra-big">console</code> <br>
+            Imprime mensajes en la consola, salida estándar (stdout) y en la salida de 
+            error (stderr). Proporciona métodos de registro como console.log(), 
+            console.error() y console.warn(). Se utiliza comúnmente para depurar y 
+            supervisar el comportamiento de la aplicación.
+        </p>
+
+        <p>
+            <code class="sky letra-big">SetInterval</code> y
+            <code class="sky letra-big">ClearInterval</code> <br>
+            (establecer intervalo) SetInterval Ejecuta funciones repetidamente en intervalos de tiempo específicos, 
+            y clearInterval detiene la ejecución.
+        </p>
+
+        <p>
+            <code class="sky letra-big">SetTimeout</code> y 
+            <code class="sky letra-big">ClearTimeout</code> <br>
+            (establecer tiempo de espera) SetTimeout ejecuta una función una vez después 
+            de un retraso y ClearTimeout detiene la ejecucion.
+        </p>
+
+        <p>
+            <code class="sky letra-big">process</code> <br>
+            Proporciona información y control sobre el proceso de ejecución de Node.js. 
+            Desde variables de entorno hasta información del sistema, es un recurso 
+            invaluable para la gestión del entorno.
+        </p>
+
+        <!-- codigo -->
+        <div class="codigo-consola">
+            <div>
+                <b class="azul">let</b> <b class="sky">numero</b> = 0 <br>
+                <b class="azul">let</b> <b class="sky">intervalo</b> =
+                <b class="golden">setInterval</b>(<b class="azul">function</b>() {
+                    <div class="margenIz">
+                    <b class="morado">if</b>(<b class="sky">numero</b> === 20){ <br>
+                    &emsp; <b class="golden">clearInterval</b>(<b class="sky">intervalo</b>) <br>
+                    } <br>
+                    consola.innerHTML += ` ${<b class="sky">numero</b>}` <br>
+                    <b class="sky">numero</b> ++
+                    </div>
+                },<b class="verde">400</b>) <br><br>
+
+
+                <b class="golden">setTimeout</b>(<b class="azul">function</b>(){ <br>
+                &emsp; consola.innerHTML = 'Separar' <br>
+                },<b class="verde">4500</b>) <br><br>
+
+                <button 
+                    class="btn-consola"
+                    onclick="ejecutarObjetosGlobales()">
+                    Ejecutar
+                </button>
+            </div>
+
+            <div id="consola-ObjetosGlobales"></div>
+        </div>
+    </section>
+
+
+    <!-- MENSAJES EMERGENTES -->
+    <section>
+        <h2 style="text-align: center;">Mensajes Emergentes</h2>
         <p>Javascript ofrece entre sus funciones nativas la posibilidad de crear mensajes emergentes. Más específicamente, alerta (alert), confirmación (confirm) y mensajes personalizados (Prompt)</p>
         <b class="letra-B">1. Crear un mensaje de alerta con alert()</b>
         <p>La función alert() nos permite desde JavaScript crear un mensaje de alerta sin algo más que un botón para aceptar, de modo que el mensaje desaparecerá cuando el usuario presione aceptar o cierre la ventana. Ejemplo: alert("mensaje de alerta");</p>
@@ -5118,11 +5197,10 @@
 
         <b class="letra-B">3. Crear un mensaje personalizado con Prompt()</b>
         <p>La función prompt() nos permite enviar un mensaje emergente con una caja de texto de modo que el usuario puede ingresar un valor dentro de ella. En caso de presionar «aceptar» el valor de establecerá, en caso de presionar «cancelar» en valor quedará vacío.
-            Ejemplo: prompt("introduce tu edad") si queremos recojer la informacion que el usuario escribio en el "prompt" debemos guardarla en una variable, si queremos asignar un valor por defecto lo escribimos despues de una coma.</p>
-        <div style="text-align: center;"><img src="C:\Users\Windows\Desktop\Apuntes\curso javascript\ejemplo prompt.png"></div>
-        <hr>
+            Ejemplo: prompt("introduce tu edad") si queremos recojer la informacion que el usuario escribio en el "prompt" debemos guardarla en una variable, si queremos asignar un valor por defecto lo escribimos despues de una coma.
+        </p>
 
-        <p><b class="letra-B">signo de igual = o doble ==</b>: el signo de igual es de asignacion, por ejemplo para asiganar un valor a una variable, pero el doble igual se usa para comparar entre dos elemento de una condicional.</p>
+    </section>
 
 
     <script src="codigo.js"></script>

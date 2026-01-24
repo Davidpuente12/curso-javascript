@@ -7748,5 +7748,22 @@ function ejecutarGraphs(tipo){
 }ejecutarGraphs('Enlaces')
 
 
+function ejecutarObjetosGlobales(){
+    const consola = document.getElementById("consola-ObjetosGlobales")
+
+    let numero = 0
+    let intervalo = setInterval(function() {
+        if(numero === 20){
+            clearInterval(intervalo)
+        }
+        consola.innerHTML += ` ${numero}`
+        numero ++
+    },400)
+
+
+    setTimeout(function(){
+        consola.innerHTML += `<p>Separar</p>`
+    },4500)    
+}
 
 

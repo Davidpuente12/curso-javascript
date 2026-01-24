@@ -2866,7 +2866,6 @@ function ejecutarCallback(tipo) {
         })
 
     }
-
 }
 
 //Metodo en objetos
@@ -3049,10 +3048,57 @@ function ejecutarArrowFunction(){
     //PROMESAS 
 function ejecutarPromise(tipo){
     const consola = document.getElementById("consola-promise")
+    const codigo = document.getElementById("codigo-promise")
+    codigo.innerHTML = `
+    <p>
+        <b class="azul">const</b> <b class="doger">obtenerDatos</b> = <b class="azul">new</b>
+        <b class="aqua">Promise</b><b class="golden">(</b><b class="morado">(</b><b class="golden">resolver</b>, <b class="golden">rechazar</b><b class="morado">)</b>
+        <b class="azul">=></b> <b class="morado">{</b><br>
+
+        &emsp;&emsp;<b class="azul">let</b> <b class="sky">operacion</b> <br><br>
+
+        &emsp; &emsp;<b class="golden">setTimeout</b><b class="azul">(</b><b class="golden">()</b> <b class="azul">=></b> <b class="golden">{</b> <br>
+
+        &emsp; &emsp; &emsp;<b class="morado">if(</b><b class="sky">operacion</b><b class="morado">) {</b><br>
+        &emsp; &emsp; &emsp; <b class="golden">resolver(<b class="naranja">"La operacion fue exitosa"</b>)</b><br>
+
+        &emsp; &emsp; &emsp;<b class="morado">} else {</b>   <br>
+        &emsp; &emsp; &emsp; <b class="golden">rechazar(<b class="naranja">"La operacion fallo"</b>)</b><br>
+        &emsp; &emsp; &emsp;<b class="morado">}</b><br>
+        &emsp; &emsp;<b class="golden">}</b>, <b class="verde">1000</b><b class="azul">)</b><br>
+        <b class="morado">}</b><b class="golden">)</b><br><br>
+    </p>
+
+    <p>
+        <b>obtener estado de la promesa:</b><br>
+        <b class="doger">obtenerDatos</b><br>
+
+        &emsp; .<b class="golden">then(</b><b class="azul">function</b> <b class="morado">(<b class="sky">resolver</b>) {</b><br>
+        &emsp; &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b><b class="naranja">'Estado: resuelto; <b class="golden">$ {<b class="sky">resolver</b>}</b>'</b><b class="azul">)</b><br>
+        &emsp; <b class="morado">}</b><b class="golden">)</b><br>
+
+        &emsp; .<b class="golden">catch(</b><b class="azul">function</b> <b class="morado">(<b class="sky">rechazar</b>) {</b><br>
+        &emsp; &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b><b class="naranja">'Estado: rechazado; <b class="golden">$ {<b class="sky">rechazar</b>}</b>'</b><b class="azul">)</b><br>
+        &emsp; <b class="morado">}</b><b class="golden">)</b><br><br>
+    </p>
+
+    <button 
+        onclick="ejecutarPromise(true)" 
+        class="btn-simple2">
+        <b class="sky">operacion</b>=
+        <b class="azul">true</b>
+    </button>
+
+    <button 
+        onclick="ejecutarPromise(false)" 
+        class="btn-simple2">
+        <b class="sky">operacion</b>=
+        <b class="azul">false</b>
+    </button>
+    `
 
     const promesa = new Promise(function(resolver, rechazar) {
-        let operationSuccessFull = true;
-        if(tipo == "false"){operationSuccessFull = false}
+        let operationSuccessFull = tipo;
 
         setTimeout(() =>{
             if (operationSuccessFull) {
@@ -3072,22 +3118,281 @@ function ejecutarPromise(tipo){
             consola.textContent = `Estado: rechazado; ${rechazar}`;
         });
 
-}ejecutarPromise()
+}
+function ejecutarPromise2(tipo){
+    const consola = document.getElementById("consola-promise")
+    const codigo = document.getElementById("codigo-promise")
+    consola.innerHTML = ""
+    codigo.innerHTML = `
+    <p class="margen0">
+        <b class="azul">function</b>
+        <b class="golden">saludar</b>(<b class="sky">nombre</b>){
+        <div class="margenIz">
+            <b class="morado">return</b> <b class="azul">new</b>
+            <b class="aqua">Promise</b>((<b class="golden">resolver</b>,
+            <b class="golden">reject</b>) => {
+            <div class="margenIz">
+                <b class="golden">setTimeout</b>(() => {
+                    <div class="margenIz">
+                        <b class="morado">if</b>(<b class="sky">nombre</b>){ <br>
+                        &emsp; <b class="golden">resolver</b>('Hola $ {<b class="sky">nombre</b>}') <br>
+                        } <b class="morado">else</b> { <br>
+                        &emsp; <b class="golden">reject</b>("no se proporciono un nombre")
+                        }
+                    </div>
+                },1000);
+            </div>
+            });
+        </div>
+        } <br>
 
-    //Asynd and await
-async function fetchData() {
+        <b class="azul">function</b> <b class="golden">hablar</b>(){
+        <div class="margenIz">
+            <b class="morado">return</b> <b class="azul">new</b>
+            <b class="aqua">Promise</b>(<b class="golden">resolver</b> => {
+            <div class="margenIz">
+                <b class="golden">setTimeout</b>(() => { <br>
+                &emsp; <b class="golden">resolver</b>('bla bla bla') <br>
+                },1200)
+            </div>
+            }
+        </div>
+        )} <br>
+
+        <b class="azul">function</b> 
+        <b class="golden">adios</b>(<b class="sky">nombre</b>){
+        <div class="margenIz">
+            <b class="morado">return</b> <b class="azul">new</b>
+            <b class="aqua">Promise</b>(<b class="golden">resolver</b> => {
+            <div class="margenIz">
+                <b class="golden">setTimeout</b>(() => { <br>
+                &emsp; <b class="golden">resolver</b>('Adios $ {<b class="sky">nombre</b>}'); <br>
+                },1300);
+            </div>
+            });
+        </div>
+        } <br><br>
+
+        <b class="verde">// llamado de funcion</b> <br>
+        <b class="golden">saludar</b>("...")
+
+        &emsp; &emsp; &emsp; &emsp; &emsp;
+        <button 
+            onclick="ejecutarPromise2('David')" 
+            class="btn-simple2">
+            <b class="naranja">"David"</b>
+        </button>
+
+        <div class="margenIz">
+            .<b class="golden">then</b>(<b class="sky">respuesta</b> => { <br>
+            &emsp;  consola.innerHTML += <b class="sky">respuesta</b> <br>
+            &emsp;  <b class="morado">return</b> <b class="golden">hablar</b>() <br>
+            }) <br>
+            .<b class="golden">then</b>(<b class="sky">respuesta</b> => { <br>
+            &emsp;  consola.innerHTML += <b class="sky">respuesta</b> <br>
+            &emsp;  <b class="morado">return</b> <b class="golden">adios</b>("David") <br>
+            }) <br>
+            .<b class="golden">then</b>(<b class="sky">respuesta</b> => { <br>
+            &emsp;  consola.innerHTML += <b class="sky">respuesta</b> <br>
+            }) <br>
+            .<b class="golden">catch</b>(error => consola.innerHTML = '$ {error}')
+        </div>
+    </p>
+    `
+
+    function saludar(nombre){
+        return new Promise((resolve,reject) => {
+            setTimeout(() => {
+                if(nombre){
+                    resolve(`<p>Hola ${nombre}</p>`)
+                } else {
+                    reject("no se proporciono un nombre")
+                }
+            },1000);
+        });
+    }
+
+    function hablar(){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(`<p>bla bla bla</p>`)
+            },1200)
+        }
+    )}
+
+    function adios(nombre){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(`<p>Adios ${nombre}</p>`);
+            },1300);
+        });
+    }
+
+    // llamado de funcion
+    saludar(tipo)
+        .then(respuesta => {
+            consola.innerHTML += respuesta 
+            return hablar()
+        })
+        .then(respuesta => {
+            consola.innerHTML += respuesta
+            return adios("David")
+        })
+        .then(respuesta => {
+            consola.innerHTML += respuesta
+        })
+        .catch(error => consola.innerHTML = `${error}`)
+}
+
+//Asynd and await
+function ejecutarAsyncYawait() {
     const consola = document.getElementById("consola-async")
 
-  try {
-    const response = await fetch('https://swapi.dev/api/planets/3/');
-    const data = await response.json();
-    consola.textContent = JSON.stringify(data,true,2)
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}fetchData()
+    async function fetchData(){
+        try {
+            const response = await fetch('https://swapi.dev/api/planets/3/');
+            const data = await response.json();
 
-    //For await...of
+            consola.innerHTML = `
+            <b class="golden">fetchData()</b> <br>
+            ${JSON.stringify(data,true,2)}
+            `
+        } catch (error) {
+            consola.innerHTML = `${'Error:', error}`
+        }
+    }
+    fetchData() 
+}
+function ejecutarAsyncYawait2(nombre){
+    const consola = document.getElementById("consola-async")
+    const codigo = document.getElementById("codigo-async")
+    consola.innerHTML = ''
+    codigo.innerHTML = `
+    <p class="margen0">
+        <b class="azul">function</b> 
+        <b class="golden">saludar</b>(<b class="sky">nombre</b>){
+            <div class="margenIz">
+            <b class="morado">return</b> <b class="azul">new</b>
+            <b class="aqua">Promise</b>((<b class="golden">resolve</b>,
+            <b class="golden">reject</b>) => {
+                <div class="margenIz">
+                <b class="golden">setTimeout</b>(() => { 
+                    <div class="margenIz">
+                    <b class="morado">if</b>(<b class="sky">nombre</b>){ <br>
+                    &emsp; consola.innerHTML = 'Hola $ {<b class="sky">nombre</b>}' <br>
+                    &emsp; <b class="golden">resolve</b>() <br>
+                    } <b class="morado">else</b> 
+                        <b class="golden">reject</b>("no se proporciono un nombre") <br>
+                    </div>
+                },<b class="verde">1000</b>);
+                </div>
+            });
+            </div>
+        } <br>
+
+        <b class="azul">function</b> <b class="golden">hablar</b>(){
+            <div class="margenIz">
+            <b class="morado">return</b> <b class="azul">new</b> 
+            <b class="aqua">Promise</b>(<b class="golden">resolve</b> => {
+                <div class="margenIz">
+                <b class="golden">setTimeout</b>(() => { <br>
+                &emsp; consola.innerHTML = 'bla bla bla' <br>
+                &emsp; <b class="golden">resolve</b>() <br>
+                },<b class="verde">1200</b>)
+                </div>
+            }
+            </div>
+        )} <br>
+
+        <b class="azul">function</b> 
+        <b class="golden">adios</b>(<b class="sky">nombre</b>){
+            <div class="margenIz">
+            <b class="morado">return</b> <b class="azul">new</b> 
+            <b class="aqua">Promise</b>(<b class="golden">resolve</b> => {
+                <div class="margenIz">
+                <b class="golden">setTimeout</b>(() => { <br>
+                &emsp; consola.innerHTML = 'Adios $ {<b class="sky">nombre</b>}' <br>
+                &emsp; <b class="golden">resolve</b>(); <br>
+                },<b class="verde">1300</b>);
+                </div>
+            });
+            </div>
+        } <br><br>
+
+        <b class="azul">async function</b> 
+        <b class="golden">main</b>(<b class="sky">nombre</b>){
+            <div class="margenIz">
+            <b class="morado">try</b>{ <br>
+            &emsp; <b class="morado">await</b> <b class="golden">saludar</b>(<b class="sky">nombre</b>); <br>
+            &emsp; <b class="morado">await</b> <b class="golden">hablar</b>(); <br>
+            &emsp; <b class="morado">await</b> <b class="golden">hablar</b>(); <br>
+            &emsp; <b class="morado">await</b> <b class="golden">hablar</b>(); <br> 
+            &emsp; <b class="morado">await</b> <b class="golden">adios</b>(<b class="sky">nombre</b>); <br>
+            } <br>
+            <b class="morado">catch</b> (<b class="sky">error</b>) {consola.innerHTML = <b class="sky">error</b>}
+            </div>
+        } <br><br>
+
+        consola.innerHTML = 'Primer Proceso' <br>
+        <b class="golden">main</b>(<b class="naranja">"..."</b>) 
+        <button
+            onclick="ejecutarAsyncYawait2('David')"
+            class="btn-simple2">
+            <b class="naranja">"David"</b>
+        </button>
+        <br>
+        consola.innerHTML = 'Segundo Proceso'
+    </p>
+    `
+
+    function saludar(nombre){
+        return new Promise((resolve,reject) => {
+            setTimeout(() => {
+                if(nombre){
+                    consola.innerHTML += `<p>Hola ${nombre}</p>`
+                    resolve()
+                } else {
+                    reject("no se proporciono un nombre")
+                }
+            },1000);
+        });
+    }
+
+    function hablar(){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                consola.innerHTML += `<p>bla bla bla</p>`
+                resolve()
+            },1200)
+        }
+    )}
+
+    function adios(nombre){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                consola.innerHTML += `<p>Adios ${nombre}</p>`
+                resolve();
+            },1300);
+        });
+    }
+
+    async function main(nombre){
+        try{
+            await saludar(nombre);
+            await hablar();
+            await hablar();
+            await hablar();
+            await adios(nombre);
+        }
+        catch (error) {consola.innerHTML += error}
+    }
+
+    consola.innerHTML += `<p>Primer Proceso</p>`
+    main(nombre)
+    consola.innerHTML += `<p>Segundo Proceso</p>`
+}
+
+//For await...of
 async function fetchDatalist() {
     const consola = document.getElementById("consola-for-async")
 
@@ -3107,7 +3412,7 @@ async function fetchDatalist() {
     console.error('Error:', error);
   }
 }
-    //fetch
+//fetch
 let datos
 let actual = 0
 function ejecutarFetch(tipo){

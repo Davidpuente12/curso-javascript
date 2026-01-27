@@ -7766,4 +7766,65 @@ function ejecutarObjetosGlobales(){
     },4500)    
 }
 
+/////////////////////// EXPORTAR MODULOS //////////////////////////
+
+function ejecutarExport(tipo) {
+    const consola = document.getElementById("consola-export")
+    const codigo = document.getElementById("codigo-export")
+
+    codigo.innerHTML = `
+    <p style="margin-top: 0;">
+        <b class="verde">Antes de declarar</b> <br>
+        <b class="morado">export</b> <b class="azul">const</b>
+        <b class="golden">add</b> = (x,y) => { <br>
+        &emsp; return x + y <br>
+        } 
+    </p>
+
+    <p>
+        <b class="verde">Primero declarar y exportar entre llaves</b> <br>
+        <b class="azul">const</b> <b class="golden">add</b> = (x,y) => { <br>
+        &emsp; <b class="morado">return</b> x + y <br>
+        } <br><br>
+
+        <b class="morado">export</b> { <b class="golden">add</b>, <b class="golden">otherFunction</b>, ... }
+    </p>
+
+    <p>
+        <b class="verde">Exportar por defecto</b> <br>
+        <b class="morado">export</b> <b class="morado">default</b>
+        <b class="azul">function</b> <b class="golden">add</b> (x,y){ <br>
+        &emsp; <b class="morado">return</b> x + y; <br>
+        }
+    </p>
+    `
+
+    if(tipo == "import"){
+        codigo.innerHTML = `
+        <p style="margin-top: 0;">
+            <b class="morado">import</b> { <b class="golden">add</b>, <b class="golden">otherFunction</b> } 
+            <b class="morado">from</b> './math_functions.js' <br>
+            <b class="golden">add</b>(2,2)
+        </p>
+
+        <p>
+            <b class="verde">Importar todo</b> <br>
+            <b class="morado">import</b> <b class="azul">*</b> 
+            <b class="morado">as</b> <b class="sky">myMathModule</b> 
+            <b class="morado">from</b> './math_functions.js'; <br><br>
+
+            <b class="sky">myMathModule</b>.<b class="golden">add</b>(2,2) <br>
+            <b class="sky">myMathModule</b>.<b class="golden">otherFunction</b>()
+        </p>
+
+        <p>
+            <b class="verde">Importar por defecto</b> <br>
+            <b class="morado">import</b> <b class="golden">add</b>  
+            <b class="morado">from</b> './math_functions.js'
+        </p>
+        `
+    }  
+}
+
+
 

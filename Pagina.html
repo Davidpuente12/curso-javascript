@@ -5105,7 +5105,7 @@
         </div>
     </section>
 
-    <!-- MODULOS GLOBALES -->
+    <!-- OBJETOS GLOBALES -->
     <section>
         <H2>Objetos Globales</H2>
         <p>
@@ -5181,6 +5181,87 @@
         </div>
     </section>
 
+    <section>
+        <h2>Exportar Modulos</h2>
+        <p>Para que el código de JavaScript sea más ordenado, legible y mantenible; ES6 introduce una forma de manejar código en archivos de manera modular. Esto involucra exportar funciones o variables de un archivo, e importarlas en otros archivos donde se necesite.</p>
+        <p>
+            Para explicar cómo funciona las exportaciones e importaciones de código, debes 
+            tener mínimo dos archivos, uno para exportar las funcionalidades y otro que las 
+            importe para ejecutarlas. Además, si iniciaste un proyecto con NPM (Node Package Manager) 
+            con Node.js, necesitas especificar que el código es modular en el archivo package.json
+        </p>
+
+        <h6 class="morado">export</h6>
+        <p>
+            es la instrucción que permite exportar funciones, variables, objetos o clases 
+            de un archivo para que puedan ser utilizadas en otros mediante import. Existen 
+            dos formas de exportar, <b>antes de declarar la funcionalidad</b>, o entre <b>llaves {}</b>.
+        </p>
+        <p>
+            <b>Exportaciones por defecto</b>
+            Si solo UN valor será exportado, entonces se puede utilizar export default. De 
+            esta manera no es necesario las llaves {} al exportar e importar. Adicionalmente, 
+            no se puede usar export default antes de declaraciones const, let o var, pero 
+            puedes exportarlas al final.
+        </p>
+
+        <h6 class="morado">import</h6>
+        <p>
+            es la instruccion para traer funciones, objetos o valores desde otro archivo o 
+            módulo al código actual, deberá estar siempre lo más arriba del archivo y utilizando
+            el mismo nombre que el archivo original, junto a export forma el sistema de módulos de ES6.
+        </p>
+        <p>
+            Para importar todas las funcionalidades de un archivo se utiliza un asterisco (*)
+            y se puede cambiar el nombre para evitar la repetición de variables o funciones 
+            a través de la palabra reservada as.
+        </p>
+        <p>
+            <b>Importaciones por defecto</b>
+            Si únicamente un valor será importado, entonces se puede utilizar cualquier 
+            nombre en la importación. De esta manera no es necesario las llaves {}. Sin 
+            embargo, es recomendable utilizar siempre el nombre de la función, para evitar 
+            confusiones.
+        </p>
+
+        <!-- botones -->
+        <div style="height: 58px; margin: 100px 0 0;">
+            <button class="btn-cambiar-consola" onclick="ejecutarExport()" >Export</button>
+            <button class="btn-cambiar-consola" onclick="ejecutarExport('import')">Import</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            
+            <div id="codigo-export">
+                <p style="margin-top: 0;">
+                    <b class="verde">Antes de declarar</b> <br>
+                    <b class="morado">export</b> <b class="azul">const</b>
+                    <b class="golden">add</b> = (x,y) => { <br>
+                    &emsp; return x + y <br>
+                    } 
+                </p>
+
+                <p>
+                    <b class="verde">Primero declarar y exportar entre llaves</b> <br>
+                    <b class="azul">const</b> <b class="golden">add</b> = (x,y) => { <br>
+                    &emsp; <b class="morado">return</b> x + y <br>
+                    } <br><br>
+
+                    <b class="morado">export</b> { <b class="golden">add</b>, <b class="golden">otherFunction</b>, ... }
+                </p>
+
+                <p>
+                    <b class="verde">Exportar por defecto</b> <br>
+                    <b class="morado">export</b> <b class="morado">default</b>
+                    <b class="azul">function</b> <b class="golden">add</b> (x,y){ <br>
+                    &emsp; <b class="morado">return</b> x + y; <br>
+                    }
+                </p>
+            </div>
+
+            <div id="consola-export"></div>
+        </div>
+    </section>
 
     <!-- MENSAJES EMERGENTES -->
     <section>

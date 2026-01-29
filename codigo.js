@@ -2366,7 +2366,36 @@ function ejecutarformatoJSON(){
     
 }ejecutarformatoJSON()
 
-    //CONDICION IF
+    //SET
+function ejecutarSet(tipo){
+    const consola = document.getElementById("consola-set")
+
+    const set = new Set([1,2,3,4,1])
+    set.add(5)
+    // encadenar
+    set.add(2).add(6)
+
+
+    if(tipo == "delete"){set.delete(3)}
+    if(tipo == "clear"){set.clear()}
+
+    consola.innerHTML = `
+    <p style="margin-top:0">
+        <b class="doger">set</b> ${set} <br><br>
+
+        <b>//Convertir set a array</b> <br>
+        <b class="aqua">Array</b>.<b class="golden">from</b>(<b class="doger">set</b>)
+        ${Array.from(set)} <br><br>
+
+        <b>//longitud</b> <br>
+        <b class="doger">set</b>.<b class="doger">size</b>
+        ${set.size} <br>
+    </p>
+    `
+
+}ejecutarSet()
+
+//CONDICION IF
 function condicionIF(){
     const input = document.getElementById("input-nota").value
     const consola = document.getElementById("consola-if")

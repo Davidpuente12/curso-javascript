@@ -1748,6 +1748,99 @@
             </div>
         </div>
 
+        <!-- estructuras de datos nativas -->
+        <div>
+            <h3 class="letra-B">Estructuras de datos nativas</h3>
+            <h3 class="golden margen60">set</h3>
+            <p>
+                Los Set en Javascript son estructuras de datos nativas que almacenan 
+                conjuntos de datos. La característica principal es que los datos
+                insertados no se pueden repetir. por lo que si intentamos insertar
+                un valor que ya existe, no se insertará de nuevo Para iniciar un Set, se 
+                debe crear una instancia de su clase a partir de un iterable. 
+                Generalmente, un iterable es un array.
+            </p>
+
+            <!-- sintaxis  -->
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="azul">const</b>
+                    <b class="doger">set</b> =
+                    <b class="azul">new</b>
+                    <b class="aqua">Set</b>(iterable)
+                </p>
+                <p></p>
+            </div>
+
+            <table>
+                <tr>
+                    <th style="width: 250px;">
+                        <b class="golden">Metodos</b> y 
+                        <b class="doger">propiedades</b>
+                    </th>
+                    <th>Funcion</th>
+                </tr>
+
+                <tr>
+                    <td><b class="golden">add(<span class="letra-B">element</span>)</b></td>
+                    <td>Añade un elemento al conjunto (si no está repetido) y devuelve el set. Muta</td>
+                </tr>
+                <tr>
+                    <td><b class="golden">delete(<span class="letra-B">element</span>)</b></td>
+                    <td>Elimina el element del conjunto. Devuelve <span class="azul">true</span> si lo eliminó correctamente.</td>
+                </tr>
+                <tr>
+                    <td><b class="golden">has(<span class="letra-B">element</span>)</b></td>
+                    <td>Comprueba si element ya existe en el conjunto. Devuelve <span class="azul">true</span> si existe.</td>
+                </tr>
+                <tr>
+                    <td><b class="golden">clear()</b></td>
+                    <td>Vacía el conjunto completo.</td>
+                </tr>
+                <tr>
+                    <td><b class="sky">size</b></td>
+                    <td>Propiedad que devuelve el número de elementos que tiene el conjunto.</td>
+                </tr>
+            </table>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p style="margin-top: 0;">
+                        <b class="azul">const</b> <b class="doger">set</b> = 
+                        <b class="azul">new</b> <b class="aqua">Set</b>([1,2,3,4,1]) <br><br>
+                        
+                        <b class="verde">// añadir</b> <br>
+                        <b class="doger">set</b>.<b class="golden">add</b>(5) <br><br>
+
+                        <b>// encadenar</b> <br>
+                        <b class="doger">set</b>.<b class="golden">add</b>(2).<b class="golden">add</b>(6)
+                    </p>
+
+                    <p>
+                        <b class="verde">// eliminar</b> <br>
+                        <b class="doger">set</b>.<b class="golden">delete</b>(3)
+                        <button 
+                            class="btn-consola2"
+                            onclick="ejecutarSet('delete')"    
+                            >delete
+                        </button>  
+                    </p>
+
+                    <p>
+                        <b class="doger">set</b>.<b class="golden">clear</b>()
+                        <button 
+                            class="btn-consola2"
+                            onclick="ejecutarSet('clear')"    
+                            >clear
+                        </button>
+                    </p>
+                </div>
+
+                <div id="consola-set"></div>
+            </div>
+        </div>
     </section>
 
     <!-- EJECUCION CONDICIONAL -->
@@ -5181,6 +5274,7 @@
         </div>
     </section>
 
+    <!-- EXPORTACION E IMPORTACION DE MODULOS -->
     <section>
         <h2>Exportar Modulos</h2>
         <p>Para que el código de JavaScript sea más ordenado, legible y mantenible; ES6 introduce una forma de manejar código en archivos de manera modular. Esto involucra exportar funciones o variables de un archivo, e importarlas en otros archivos donde se necesite.</p>

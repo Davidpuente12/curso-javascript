@@ -265,6 +265,17 @@
                             <li><span class="golden">concat(<span class="sky">variable</span>)</span> sirve para concatenar strings, funciona especificando el nombre de la variable que contiene el estring a concatenar.</li>
                             <li><span class="golden">match(<span class="naranja">"expresion regular"</span>)</span> sirve para buscar coincidencias, funciona especificando la expresion regular que se desea obtener de la cadena, al final devuelve el indice.</li>
                             <li><span class="golden">replace(<span class="naranja">"expresion regular, reemplazo"</span>)</span> sirve para reemplazar texto, funciona especificando la expresion regular y el reemplazo deseado. </li>
+                            <li>
+                                <b class="golden">padStart(</b> <span class="verde">longitud</span>, <span class="naranja">string</span> <b class="golden">)</b> |
+                                <b class="golden">padEnd(</b> <span class="verde">longitud</span>, <span class="naranja">string</span> <b class="golden">)</b> <br>
+                                este metodo aplica un "string padding", esto significa que rellena un string con un 
+                                caracter especificado que podria repetirse hasta que complete la longitud maxima 
+                                descrita. padStart rellena al inicio del string y padEnd lo hace al final. Recibe dos argumentos:
+                                <ul>
+                                    <li>La <span class="verde">longitud</span> máxima a rellenar, incluyendo el string inicial.</li>
+                                    <li>El <span class="naranja">string</span> para rellenar, por defecto, es un espacio.</li>
+                                </ul>
+                            </li>
                         </ul>
 
                         <!-- codigo -->
@@ -330,7 +341,8 @@
                     <button class="fondo-verde" onclick="mostrarExplicacion('explicacion-number')">Ver Mas</button>
                 </code>
 
-                <div class="seccion" id="explicacion-number" style="display: none;"><!-- Manipulacion de numeros -->
+                <!-- Manipulacion de numeros -->
+                <div class="seccion" id="explicacion-number" style="display: none;">
                     <h4 class="letra-B">Manipulacion de numeros</h4>
                     <p>En JavaScript, el tipo de dato primitivo number es esencial para el manejo de operaciones numéricas. Aunque existen diversas formas de escribir números, como enteros y decimales, todos se reconocen bajo el mismo tipo de dato: number. Esta unificación facilita la manipulación y el cálculo numérico. Veamos cómo se representan en este lenguaje:</p>
 
@@ -509,12 +521,56 @@
             </div>
 
             <div><!-- numero grande -->
-                <p><b class="letra-big azul">BigInt</b> Permite representar numeros enteros grandes mas alla de <b>Number.MAX_SAFE_INTEGER</b>.</p>
+                <p><b class="letra-big azul">BigInt</b> 
+                    El dato primitivo bigint permite manejar números enteros muy grandes. 
+                    Existen dos formas de crear un bigint: el número entero seguido de n o 
+                    mediante la función BigInt.
+                </p>
+                
                 <code class="codigo">
                     <p>Sintaxis</p>
                     <p><b class="azul">let </b> <b class="sky">numeroGrande</b> = <b class="verde">9007199254740991</b><b class="azul">n</b> </p>
-                    <p></p>
+                    <button 
+                        class="fondo-azul"
+                    >Ver mas</button>
                 </code>
+
+                <div>
+                    <p>
+                        JavaScript tiene límites numéricos, un máximo Number.MAX_SAFE_INTEGER 
+                        y un mínimo Number.MIN_SAFE_INTEGER. Después de los límites, los cálculos 
+                        muestran resultados erróneos. Los bigint ayudan a manejar operaciones de 
+                        enteros fuera de los límites mencionados.
+                    </p>
+
+                    <div class="codigo-consola">
+                        <div>
+                            <p style="margin-top: 0;">
+                                <b class="azul">const</b> <b class="doger">max</b> = 
+                                <b class="aqua">Number</b>.<b class="doger">MAX_SAFE_INTEGER</b> <br>
+
+                                <b class="azul">const</b> <b class="doger">min</b> = 
+                                <b class="aqua">Number</b>.<b class="doger">MIN_SAFE_INTEGER</b> 
+                            </p>
+                            <p>
+                                <b class="azul">const</b> <b class="doger">number1</b> = 45n <br>
+                                <b class="azul">const</b> <b class="doger">number2</b> = 
+                                <b class="golden">BigInt</b>(45)
+                            </p>
+                                
+                            <p>
+                                <b>operacion</b> <br>
+                                <b class="azul">const</b> <b class="doger">increment</b> = 2 <br>
+                                <b class="azul">const</b> <b class="doger">operacion</b> = <b class="doger">max</b> + <b class="doger">increment</b> <br>
+                                <b class="azul">const</b> <b class="doger">operacionBig</b> = 
+                                <b class="golden">BigInt</b>(<b class="doger">max</b>) + 
+                                <b class="golden">BigInt</b>(<b class="doger">increment</b>)
+                            </p>
+                        </div>
+                        <div id="consola-bigInt"></div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
@@ -1421,8 +1477,8 @@
                         <li><b class="doger">objeto</b><b class="golden">[<b class="naranja">"propiedad"</b>]</b> muestra el valor de la propiedad.</li>
                         <li><b class="doger">objeto</b>.<b class="golden">metodo</b> muestra el metodo, osea la funcion completa. para ejecutar funciones que estan dentro de objetos, la llamamos mediante parentesis ().</li>
 
-
-                        <p class="margen100"><h6 class="golden">Metodo <code class="aqua letra-big">Object</code></h6> La clase Object tiene métodos que devuelven un array de las claves, valores o pares clave-valor de las propiedades propias y enumerables del objeto.</p>
+                        <h5 class="golden">Metodo <code class="aqua">Object</code> </h5>
+                        <p>La clase Object tiene métodos que devuelven un array de las claves, valores o pares clave-valor de las propiedades propias y enumerables del objeto.</p>
                         <ul>
                             <li><code class="aqua">Object</code>.<code class="golden">keys(<code class="letra-B">objeto</code>)</code>
                             Devuelve un array con los nombres (claves) de las propiedades propias y enumerables.</li>
@@ -1433,30 +1489,51 @@
                             <li><code class="aqua">Object</code>.<code class="golden">entries(<code class="letra-B">objeto</code>)</code>
                             Devuelve un array de arrays [clave, valor] (pares clave-valor).</li>
 
+                            <li>
+                                <code class="aqua">Object</code>.<code class="golden">fromEntries(<code class="letra-B">array</code>)</code>
+                                Este metodo devuelve un objeto a partir de un array donde sus elementos son 
+                                las entries en forma ["propiedad", "valor"]. Se considera la operación inversa de 
+                                Object.entries. 
+                            </li>
+
                             <li><code class="aqua">Object</code>.<code class="golden">assign(<code class="letra-B">{}</code>)</code></li>
                         </ul>
                     </div>
 
-                    <h5 class="letra-B">Objetos anidados</h5>
+                    <h5>Objetos anidados</h5>
                     <li> entre los tipos de datos que puede contener un objeto, incluye la anidacion de otros objetos, que se convierten en una propiedad mas del objeto, para acceder a sus atributos, usamos la notacion de punto: (objeto.propiedad.propiedad).
                         <b class="doger">automovil</b>.<b class="sky">direccion</b>.<b class="sky">calle</b> muestra el valor de la propiedad, del objeto anidado.
                     </li>
 
-                    <h5 class="letra-B">Añadir propiedades o metodos</h5>
+                    <h5>Añadir propiedades o metodos</h5>
                     <li> al igual que asignamos valores a las variables, en los objetos se hace mediante el operador de asignacion: (objeto.propiedadnueva = valor) .
                         <b class="doger">automovil</b>.<b class="sky">año</b> = <b class="verde">2022</b> primero se escribe el objeto y seguido del punto el nuevo atributo del mismo.
                         <b class="doger">automovil</b>.<b class="golden">metodo</b> = <b class="azul">function</b> primero se escribe el objeto y seguido del punto el nuevo metodo del mismo.
                     </li>
 
-                    <h5 class="letra-B">Borrar propiedades o metodos</h5>
+                    <h5>Borrar propiedades o metodos</h5>
                     <li>
                         <b class="azul letra-big">delete</b> es un operador que sirve para eliminar propiedades o métodos de un objeto,
                         <b class="azul">delete</b> <b class="doger">objeto</b>.<b class="sky">propiedad</b>/<b class="golden">metodo</b>. Devuelve true si la operacion fue exitosa, aunque no siempre significa que la propiedad desaparecio (hay casos especiales).
                     </li>
 
-                    <h5 class="letra-B">Objetos Literales</h5>
-                    <p> consiste en crear objetos a partir de variables que ya estan definidas por fuera, esto evita la necesidad de repetir variables internas que guarden valores externos, sino que javascript creara la propiedad a partir del nombre de la variable con su respectivo valor.</p>
+                    <h5>Objetos Literales</h5>
+                    <p>consiste en crear objetos a partir de variables que ya estan definidas por fuera, esto evita la necesidad de repetir variables internas que guarden valores externos, sino que javascript creara la propiedad a partir del nombre de la variable con su respectivo valor.</p>
 
+                    <h5>Optional Chaining</h5>
+                    <p>
+                        Cuando intentas acceder a propiedades de un objeto que no existen, JavaScript te 
+                        retornará undefined. Al acceder a una propiedad más profunda de un objeto, que 
+                        previamente fue evaluada como undefined, el programa se detendrá y mostrará un 
+                        error de tipo. <br><br>
+
+                        El encadenamiento opcional (?) es una forma segura de realizar comprobaciones de 
+                        acceso a propiedades de objetos anidados, este operador toma la referencia a su
+                        izquierda y verifica si no está definida o es nula. Si la referencia es cualquiera
+                        de estos valores nulos, las comprobaciones se detendrán y devolverán un valor indefinido. 
+                    
+                        Se debe utilizar únicamente cuando probablemente un valor no exista.
+                    </p>
 
                     <!-- Desestructuracion de objetos -->
                     <h4 class="letra-B">Desestructuracion de <span class="golden">Objetos</span></h4>
@@ -1734,7 +1811,7 @@
 
             <!-- Funciones -->
             <div>
-                <h4 class="letra-B">3. <b class="azul letra-big">Funciones</b></h4>
+                <h3 class="azul">Funciones</h3>
                 <p>Bloques de codigo reutilizables que ejecutan una tarea especifica.</p>
                 <code class="codigo">
                     <p>Sintaxis</p>
@@ -1912,8 +1989,8 @@
         <table>
             <tr>
                 <th>Operador</th>
-                <th style="width: 1000px;">Descripción</th>
-                <th>Ejemplo</th>
+                <th>Descripción</th>
+                <th style="width: 250px;">Ejemplo</th>
             </tr>
             <tr>
                 <td>&&</td>
@@ -1922,7 +1999,11 @@
             </tr>
             <tr>
                 <td>||</td>
-                <td><b class="letra-B">Operador OR (o)</b> es útil cuando queremos que al menos una de varias condiciones se cumpla. Si al menos una condición es verdadera, el resultado será true.</td>
+                <td><b class="letra-B">Operador OR (o)</b>
+                    Evalua que al menos una de varias condiciones se cumpla. Si al menos 
+                    una condición es verdadera, el resultado será true. retorna falso: (
+                    false, 0, "", NaN, null, undefined).
+                </td>
                 <td><code>(A == B || A == C)</code></td>
             </tr>
             <tr>
@@ -2047,25 +2128,49 @@
         </div>
 
         <h4 class="letra-B">Operacion ternaria</h4>
-        <p> son una forma abreviada de escribir una instrucción if-else en una sola línea, utilizando tres operandos: una condición, un valor si la condición es verdadera y un valor si la condición es falsa. Se utiliza comúnmente para asignar valores condicionalmente a variables, hacer que el código sea más conciso y legible para decisiones simples. </p>
-        <!-- codigo -->
-        <div class="codigo-consola">
-            <div>
-                <p class="margen0"><b class="letra-B">Sintaxis:</b> condicion ? valor si es verdadero : valor si es falso </p>
-                
-                <p>
-                    <b class="azul">let </b> <b class="sky">edad</b> = <b class="verde">30</b>
-                    <br><b class="azul">let </b> <b class="sky">mensaje</b> = (<b class="sky">edad</b> >= <b class="verde">18</b>) ?
-                    <b class="naranja">"Es mayor de edad"</b> : <b class="naranja">"Es menor de edad"</b>
-                    <br><b class="sky">console</b>.<b class="golden">log(<b class="sky">mensaje</b>)</b>
-                </p>
-            </div>
-            <div>
-                <p class="letra-B">Es mayor de edad</p>
-            </div>
+        <p>son una forma abreviada de escribir una instrucción if-else en una sola línea, utilizando tres operandos: una condición, un valor si la condición es verdadera y un valor si la condición es falsa. Se utiliza comúnmente para asignar valores condicionalmente a variables, hacer que el código sea más conciso y legible para decisiones simples. </p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>condicion ? valor si es verdadero : valor si es falso </p>
+            <p></p>
         </div>
 
+        <h4 class="letra-B">Operador Nullish Coalescing</h4>
+        <p>
+            El operador de coalescencia nula (??) devuelve el operando de la 
+            derecha solo cuando el operando de la izquierda es null o undefined.
+            En cualquier otro caso, devuelve el operando de la izquierda. <br><br>
+
+            <b>Diferencia entre el operador OR y el Nullish coalescing</b> El operador 
+            OR (||) evalúa un valor falsey. Un valor falsy es aquel que es falso en un 
+            contexto booleano, estos son: 0, "" (string vacío), false, NaN, undefined o 
+            null.
+        </p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>expresionIzquierda ?? expresionDerecha</p>
+            <p></p>
+        </div>   
+        
+        <!-- botones -->
+        <div style="height: 58px; margin: 150px 0 0;">
+            <button onclick="ejecutarOperadorTernario()" class="btn-cambiar-consola">Operador Ternario</button>
+            <button onclick="ejecutarOperadorNullish()" class="btn-cambiar-consola">Operador Nullish</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            <div id="codigo-operador-termarioYnullish">
+                <p class="margenTop0">
+                    <b class="azul">let </b> <b class="sky">edad</b> = <b class="verde">30</b> <br>
+                    <b class="azul">let </b> <b class="sky">mensaje</b> = (<b class="sky">edad</b> >= <b class="verde">18</b>) ?
+                    <b class="naranja">"Es mayor de edad"</b> : <b class="naranja">"Es menor de edad"</b> 
+                </p>
+            </div>
+
+            <div id="consola-operador-termarioYnullish"></div>
+        </div>
         <div class="notas">Si edad >= 18 es true, se asigna "Eres mayor de edad" a mensaje. Si es false, se asigna "Eres menor de edad".  Ideal para condiciones simples y asignaciones rápidas.</div>
+    
     </section>
 
     <!-- CICLOS -->
@@ -3095,7 +3200,24 @@
             <ul>
                 <li><code class="letra-big azul">async</code> es una palabra clave que se coloca antes de una funcion, hace que esa funcion siempre devuelva una promesa, si la funcion devuelve un valor normal, javascript lo envuelve automaticamente en una promesa resuelta.</li>
                 <li><code class="letra-big morado">await</code> solo puede usarse dentro de una funcion async, su funcion es pausar la ejecucion de la funcion hasta que la promesa se resuelva o rechace, haciendo que el codigo asincrono se lea como si fuera sincrono.</li>
-                <li><code class="letra-big morado">try</code> y <b class="morado">catch</b> (intentar/atrapar) son la base del manejo de errores en codigo asincrono y sincrono, try maneja el bloque de codigo que puede fallar, catch maneja el codigo que fallo dentro de try, y lo guarda en una variable que definimos como parametro.</li>
+                
+                <h5 class="letra-B">Manejo de Errores</h5>
+                <li>
+                    <code class="letra-big morado">try</code> y 
+                    <code class="letra-big morado">catch</code>
+                    (intentar/atrapar) es una estructura de control que permiten gestionar 
+                    los errores en codigo sincrono y asincrono de manera controlada.
+                    Esto permite que el programa continúe ejecutándose incluso después
+                    de un error, evitando que todo el script falle. <br><br>
+                    
+                    El bloque try es donde se coloca el codigo que pueda fallar durante 
+                    su ejecucion, puede contener uno o mas bloques try y termina con
+                    al menos una clausala catch o finally.<br><br>
+
+                    El bloque catch se ejecuta si el codigo en try lanza un error, capturandolo 
+                    en una variable que recibe como parametro. Cuando no se utiliza el error
+                    no se detecta y continuara en el bloque superior try.
+                </li>
             </ul>
 
             <div class="codigo">
@@ -5202,7 +5324,18 @@
     <section>
         <H2>Objetos Globales</H2>
         <p>
-            Los módulos globales son componentes integrados en Node.js que permite que 
+            El motor de JavaScript, aquel que compila tu archivo y lo convierte en código 
+            que entiende el computador, al iniciar la compilación crea un objeto global.
+        </p>
+        <p>
+            Los objetos globales proporciona funciones y variables propias e integradas en 
+            el lenguaje o el entorno. Dependiendo la plataforma, este objeto global tendrá 
+            un nombre diferente. En el navegador el objeto global es <b class="sky">window</b>, 
+            para Node.js es <b class="sky">global</b>, y así para cada entorno. Sin embargo, en Node.js no podrás acceder a window, ni en el navegador podrás acceder a global.
+        </p>
+
+        <p>
+            En Node.js los objetos globales son componentes integrados  que permite que 
             ciertas variables y funciones estén disponibles en toda la aplicación sin 
             importaciones explícitas. Node.js proporciona un conjunto de objetos globales
             disponibles en cada módulo.
@@ -5223,15 +5356,15 @@
         </p>
 
         <p>
-            <code class="sky letra-big">SetInterval</code> y
-            <code class="sky letra-big">ClearInterval</code> <br>
+            <code class="golden letra-big">SetInterval</code> y
+            <code class="golden letra-big">ClearInterval</code> <br>
             (establecer intervalo) SetInterval Ejecuta funciones repetidamente en intervalos de tiempo específicos, 
             y clearInterval detiene la ejecución.
         </p>
 
         <p>
-            <code class="sky letra-big">SetTimeout</code> y 
-            <code class="sky letra-big">ClearTimeout</code> <br>
+            <code class="golden letra-big">SetTimeout</code> y 
+            <code class="golden letra-big">ClearTimeout</code> <br>
             (establecer tiempo de espera) SetTimeout ejecuta una función una vez después 
             de un retraso y ClearTimeout detiene la ejecucion.
         </p>
@@ -5272,6 +5405,16 @@
 
             <div id="consola-ObjetosGlobales"></div>
         </div>
+
+        <h4 class="letra-B">Objeto <span class="sky">globalThis</span></h4>
+        <p>
+            El objeto globalThis en JavaScript es una propiedad que proporciona una forma 
+            estándar y uniforme de acceder al objeto global en cualquier entorno de 
+            ejecución (navegador, Node.js, Web Workers, etc.) unificando el acceso y 
+            evitando tener que usar diferentes nombres según el entorno. globalThis 
+            contiene el valor de this global, es decir, el objeto global del contexto actual.
+        </p>
+
     </section>
 
     <!-- EXPORTACION E IMPORTACION DE MODULOS -->

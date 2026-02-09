@@ -71,6 +71,7 @@ h2{
     font-size: 2.5rem;
     margin: 70px 0 10px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 
 }h6{
     font-size: 2.2rem;
@@ -81,7 +82,7 @@ h2{
 
 /* TAMAÑOS Y FUENTES DE LETRAS */
 .letra-big{
-    font-size: 2.1rem;
+    font-size: 2.6rem;
     font-weight: 900;
 }.letra-segoe{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -113,6 +114,7 @@ h2{
 .margen100{margin-top: 100px;}
 .margen150{margin-top: 150px;}
 .margen0{margin: 0;}
+.margenTop0{margin-top: 0;}
 .margenIz{padding-left: 24px;}
 
 /* LISTAS */
@@ -172,7 +174,7 @@ th,td{
 .btn-cambiar-consola{
     background-color: transparent;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     padding: 15px;
 }.btn-cambiar-consola:hover{

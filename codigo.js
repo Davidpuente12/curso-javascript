@@ -178,7 +178,9 @@ function closure(){
     mostrar2("Gamez")
 }closure()
 
-//MANIPULACION DE STRINGS
+/////////////////////////// TIPOS DE DATOS
+
+///////STRINGS
 function ejecutarString(){
     let nombre = document.getElementById("nombre").value
     let edad = document.getElementById("edad").value
@@ -195,7 +197,7 @@ function ejecutarString(){
     consola.textContent = `Hola soy ${nombre} y tengo ${edad} años`
 }
 
-    //metodos de los string
+//metodos de los string
 function metodosStrings(){
     let frase = document.getElementById("frase").value
     let palabra = "Genial"
@@ -215,7 +217,11 @@ function metodosStrings(){
         return
     }
     
-    consola.textContent = frase.length;
+    consola.innerHTML = `
+    ${frase.length} <br>
+    ${frase.padStart(25, " _")} <br>
+    ${frase.padEnd(25, " *")}
+    `
     consola2.textContent = frase.toUpperCase();
     consola3.textContent = frase.toLowerCase();
     consola4.textContent = frase.substring(0, 10);
@@ -226,7 +232,7 @@ function metodosStrings(){
     consola9.textContent = frase.replace("mejor","actual");
 }
 
-//OPERACIONES CON NUMEROS
+/////// NUMEROS
 let resultado
 let tipodeOperacion
 
@@ -403,6 +409,39 @@ function PropiedadesMath(){
     const tabla = document.getElementById("propiedades-metodos")
     tabla.style.display = (tabla.style.display == 'none') ? 'block' : 'none'
 }
+
+////// BIGINT
+function ejecutarBigInt(){
+    const consola = document.getElementById("consola-bigInt")
+
+    const max = Number.MAX_SAFE_INTEGER
+    const min = Number.MIN_SAFE_INTEGER
+
+    const number1 = 45n
+    const number2 = BigInt(45)
+
+    // operacion
+    const increment = 2
+    const operacion = max + increment
+    const operacionBig = BigInt(max) + BigInt(increment)
+
+    consola.innerHTML = `
+    <p style="margin-top:0">
+        <b class="doger">max</b> ${max} <br>
+        <b class="doger">min</b> ${min} <br>
+    </p>
+
+    <p>
+        <b class="azul">typeof</b> <b class="doger">number1</b> ${typeof number1} <br>
+        <b class="azul">typeof</b> <b class="doger">number2</b> ${typeof number2} <br>
+    </p>
+
+    <p>
+        <b class="doger">operacion</b> ${operacion} <br>
+        <b class="doger">operacionBig</b> ${operacionBig} <br>
+    </p>
+    `
+}ejecutarBigInt()
 
 //ARRAYS
 function ejecutarArrays(tipo){
@@ -2395,7 +2434,7 @@ function ejecutarSet(tipo){
 
 }ejecutarSet()
 
-//CONDICION IF
+////////////////////CONDICIONALES
 function condicionIF(){
     const input = document.getElementById("input-nota").value
     const consola = document.getElementById("consola-if")
@@ -2442,7 +2481,70 @@ function condicionSwitch(){
     }
 }
 
-    //CICLOS
+function ejecutarOperadorTernario(){
+    const consola = document.getElementById("consola-operador-termarioYnullish")
+    const codigo = document.getElementById("codigo-operador-termarioYnullish")
+
+    let edad = 30
+    let mensaje = (edad >= 18) ? "Es mayor de edad" : "Es menor de edad"
+
+    codigo.innerHTML = `
+    <p class="margenTop0">
+        <b class="azul">let </b> <b class="sky">edad</b> = <b class="verde">30</b> <br>
+        <b class="azul">let </b> <b class="sky">mensaje</b> = (<b class="sky">edad</b> >= <b class="verde">18</b>) ?
+        <b class="naranja">"Es mayor de edad"</b> : <b class="naranja">"Es menor de edad"</b> 
+    </p>
+    `
+    consola.innerHTML = `
+    <p class="margenTop0">
+        <b class="sky">mensaje</b> ${mensaje}
+    </p>
+    `
+}
+
+function ejecutarOperadorNullish(){
+    const consola = document.getElementById("consola-operador-termarioYnullish")
+    const codigo = document.getElementById("codigo-operador-termarioYnullish")
+
+    const nombre = null ?? "Invitado"
+    const edad = undefined ?? 18
+    const cantidad = 0 ?? 12
+
+    const usuarios = {}
+    const nombre1 = usuarios.name ?? "Andres"
+
+    codigo.innerHTML = `
+    <p  class="margenTop0">
+        <b class="azul">const</b> <b class="doger">nombre</b> = <b class="azul">null</b> ?? "Invitado" <br>
+        
+        <b class="azul">const</b> <b class="doger">edad</b> = 
+        <b class="azul">undefined</b> ?? <b class="verde">18</b> <br>
+        
+        <b class="azul">const</b> <b class="doger">cantidad</b> = 
+        <b class="verde">0</b> ?? <b class="verde">12</b> <br><br>
+
+        <b class="azul">const</b> <b class="doger">usuarios</b> = {} <br>
+        
+        <b class="azul">const</b> <b class="doger">nombre1</b> = 
+        <b class="doger">usuarios</b>.<b class="sky">name</b> ?? "Andres"
+    </p>
+    `
+    consola.innerHTML = `
+    <p class="margenTop0">
+        <b class="doger">nombre</b> ${nombre} <br>
+        <b class="doger">edad</b> ${edad} <br>
+        <b class="doger">cantidad</b> ${cantidad} <b class="verde">cero NO es null ni undefined</b>
+    </p>
+
+    <p>
+        <b class="doger">nombre</b> ${nombre1} <br>
+    </p>
+    `
+
+
+}
+
+///////////////////////CICLOS
 function ejecutarFor(){
     const consola = document.getElementById("consola-for")
     const consola2 = document.getElementById("consola-for2")
@@ -7855,5 +7957,12 @@ function ejecutarExport(tipo) {
     }  
 }
 
+// const users = {
+//     david: {country: 'MX'},
+//     sharon: {country: 'VE'},
+//     adriana: {country: 'CO'},
+// }
 
+// console.log(users.jireh?.age)
+// console.log("Hola")
 

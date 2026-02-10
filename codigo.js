@@ -465,7 +465,19 @@ function ejecutarArrays(tipo){
         <b class="sky">colores</b>.<b class="azul">[<b class="verde">1</b>]</b> ${colores[1]} <br>
         <b class="sky">colores</b>.<b class="azul">[<b class="verde">2</b>]</b> ${colores[2]} <br>
         <b class="sky">colores</b>.<b class="azul">[<b class="verde">3</b>]</b> ${colores[3]} <br>
-        <b class="sky">colores</b>.<b class="azul">[<b class="verde">4</b>]</b> ${colores[4]} <br><br>
+        <b class="sky">colores</b>.<b class="azul">[<b class="verde">4</b>]</b> ${colores[4]} 
+
+        <p>
+            <b class="verde">//obtener ultimo elemento</b><br>
+
+            <b class="sky">colores</b>.<b class="azul">[</b> 
+            <b class="sky">colores</b>.<b class="sky">length</b> -
+            <b class="verde">1</b> <b class="azul">]</b> 
+            ${colores[colores.length -1]} <br>
+
+            <b class="sky">colores</b>.<b class="golden">at(</b>-<b class="verde">1</b><b class="golden">)</b> 
+            ${colores.at(-1)}
+        </p>
 
         <b class="verde">//obtener valor, modificarlo y mostrarlo</b><br>
         <b class="sky">verduras</b><b class="golden">[<b class="verde">2</b>]</b> ${verduras[2]}<br>
@@ -493,7 +505,7 @@ function ejecutarArrays(tipo){
     }
     
     
-}ejecutarArrays()
+}ejecutarArrays("accederElementos")
 
     //mutables
 const paises = ["venezuela","colombia","peru"]
@@ -2540,7 +2552,6 @@ function ejecutarOperadorNullish(){
         <b class="doger">nombre</b> ${nombre1} <br>
     </p>
     `
-
 
 }
 
@@ -7965,4 +7976,3 @@ function ejecutarExport(tipo) {
 
 // console.log(users.jireh?.age)
 // console.log("Hola")
-

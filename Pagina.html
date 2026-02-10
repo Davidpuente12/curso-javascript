@@ -25,7 +25,8 @@
         <h1>JavaScript </h1>
     </header>
 
-    <section><!-- inicio -->
+    <!-- INICIO -->
+    <section>
 
         <p>JavaScript es un lenguaje de programación que permite hacer que las páginas web sean interactivas, dinámicas y funcionales. Es uno de los tres pilares del desarrollo web junto con HTML y CSS de cualquier página web, los programas creados en este lenguaje se llaman scripts. Estos scripts son texto y no necesitan ser compilados de ninguna forma para funcionar, como otros lenguajes como puede ser Java.</p>
         <ul>
@@ -264,7 +265,14 @@
                             <li><span class="golden">trim()</span> elimina los espacios en blanco al principio y final de la cadena.</li>
                             <li><span class="golden">concat(<span class="sky">variable</span>)</span> sirve para concatenar strings, funciona especificando el nombre de la variable que contiene el estring a concatenar.</li>
                             <li><span class="golden">match(<span class="naranja">"expresion regular"</span>)</span> sirve para buscar coincidencias, funciona especificando la expresion regular que se desea obtener de la cadena, al final devuelve el indice.</li>
-                            <li><span class="golden">replace(<span class="naranja">"expresion regular, reemplazo"</span>)</span> sirve para reemplazar texto, funciona especificando la expresion regular y el reemplazo deseado. </li>
+                            
+                            <li>
+                                <span class="golden">replace(<span class="naranja">"expresion regular, reemplazo"</span>)</span> 
+                                reemplaza la primera coincidencia en el texto, funciona especificando el texto o 
+                                la expresion regular y el reemplazo deseado. Para reemplazar todas las coincidencias
+                                usariamos <span class="golden">replaceAll</span>.
+                            </li>
+                            
                             <li>
                                 <b class="golden">padStart(</b> <span class="verde">longitud</span>, <span class="naranja">string</span> <b class="golden">)</b> |
                                 <b class="golden">padEnd(</b> <span class="verde">longitud</span>, <span class="naranja">string</span> <b class="golden">)</b> <br>
@@ -594,9 +602,24 @@
                     <button class="fondo-aqua" onclick="mostrarExplicacion('ver-mas-arrays')">Ver mas</button>
                 </code>
 
-                <div id="ver-mas-arrays" style="display: none;">
+                <div id="ver-mas-arrays" style="display: block;">
                     <p><b class="letra-B">Corchetes</b> <b class="golden">[]</b> abren un segmento en donde podemos escribir datos de cualquier tipo como un "array" (formacion), strings (cadenas), numeros, y objetos, son utiles porque permiten almacenar gran cantidad de informacion en un solo lugar.</p>
-                    <p><h6 class="letra-B">Acceder a sus elementos</h6> Para acceder a los valores de un array, utilizamos la sintaxis <span class="sky">variable</span><span class="morado">[<span class="verde">indice</span>]</span>. Los valores que contiene un array estan indexados por numeros empezando desde 0, accedemos a sus valores mediante sus indices, si este esta fuera de rango devuelve undefined.</p>
+                    
+                    <h5 class="letra-B">Acceder a sus elementos</h5>
+                    <p>
+                        Los valores que contiene un array estan indexados por numeros empezando desde 0, 
+                        esto permite acceder a sus valores mediante sus indices, Para acceder a los valores 
+                        de un array, utilizamos la sintaxis <span class="sky">variable</span>
+                        <span class="morado">[<span class="verde">indice</span>]</span>. 
+                        si el indice esta fuera de rango devuelve undefined. <br><br>
+
+                        Tambien es posible encontrar valores mediante el metodo <b class="golden">at()</b>
+                        este recibe por argumento el indice del elemento y lo devuelve, la utilidad mas importante
+                        es que recibe tambien indices negativos, algo que no se puede con las notaciones de 
+                        corchetes, donde tendrias que obtener la longitud del array y restarle las unidades 
+                        necesarias para encontrar elementos del final. 
+                    </p>
+                    
                     <p><h6 class="letra-B">Acceder a su longitud</h6><span class="sky letra-big">length</span> en una propiedad que devuelve la longitud del arreglo, esto quiere decir que devuelve el numero de elementos que contiene.</p>
 
                     <p><h6 class="letra-B">Comprobar Array</h6><b class="aqua">Array</b>.<b class="golden">isArray(</b><b class="sky">variableDeArray</b><b class="golden">)</b> sirve para comprobar si una variable contiene un tipo de dato array.</p>
@@ -5428,7 +5451,7 @@
             con Node.js, necesitas especificar que el código es modular en el archivo package.json
         </p>
 
-        <h6 class="morado">export</h6>
+        <h4 class="morado">export</h4>
         <p>
             es la instrucción que permite exportar funciones, variables, objetos o clases 
             de un archivo para que puedan ser utilizadas en otros mediante import. Existen 
@@ -5442,7 +5465,7 @@
             puedes exportarlas al final.
         </p>
 
-        <h6 class="morado">import</h6>
+        <h4 class="morado">import</h4>
         <p>
             es la instruccion para traer funciones, objetos o valores desde otro archivo o 
             módulo al código actual, deberá estar siempre lo más arriba del archivo y utilizando
@@ -5460,6 +5483,55 @@
             embargo, es recomendable utilizar siempre el nombre de la función, para evitar 
             confusiones.
         </p>
+
+        <h4>Importaciones dinamicas</h4>
+        <p>
+            La importación dinámica consiste en cargar los módulos cuando el usuario 
+            los vaya a utilizar, y no al iniciar la aplicación. Esto permite que la 
+            página web sea más rápida, porque descarga menos recursos. Para lograrlo 
+            utilizaremos la exprecion import() que permite manejar módulos dinámicamente,
+            ya que la sintaxis de ECMAScript import ... from ... no lo permite.
+        </p>
+
+        <p>
+            La expresión <b class="azul">import()</b> es una forma especial 
+            de importar módulos de manera dinámica. A diferencia de la sentencia estática 
+            import, que se evalúa al inicio del archivo, import() es una función que 
+            devuelve una promesa y permite cargar módulos bajo demanda, en tiempo de ejecución.
+            La expresión recibe un argumento de tipo string con la ruta del módulo a importar.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                <th>Característica</th>
+                <th>import estático</th>
+                <th>import() dinámico</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Momento de carga</td>
+                <td>Al inicio del archivo</td>
+                <td>En tiempo de ejecución</td>
+                </tr>
+                <tr>
+                <td>Sintaxis</td>
+                <td><code>import { x } from "./modulo.js";</code></td>
+                <td><code>import("./modulo.js").then(...)</code></td>
+                </tr>
+                <tr>
+                <td>Uso típico</td>
+                <td>Organización modular fija</td>
+                <td>Carga condicional, lazy loading</td>
+                </tr>
+                <tr>
+                <td>Retorno</td>
+                <td>Exportaciones directamente</td>
+                <td>Una promesa con el módulo</td>
+                </tr>
+            </tbody>
+        </table>
 
         <!-- botones -->
         <div style="height: 58px; margin: 100px 0 0;">

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras de Datos</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+    <nav>
+        <button 
+            onclick="window.location.href='../pagina.html'">
+            Home 🏠
+        </button>
+    </nav>
+
+    <section>
+        <h2>Estructuras de datos</h2>
+        <p>Una vez que ya conocemos los tipos de datos elementales de Javascript, tenemos que comenzar a pensar más a lo grande. Estos tipos de datos son la naturaleza más pequeña que almacenamos en nuestro código. A medida que nuestra aplicación web va creciendo y haciéndose más grande, comenzaremos a crear estructuras cada vez más complejas.</p>
+        <p>Estas estructuras se denominan estructuras de datos y conociendo las más básicas suele ser suficiente. Sin embargo, cuantas más conozcamos y dominemos, mucho mejor.</p>
+
+        <!-- hashtable -->
+        <div>
+            <h3 class="letra-B">Hash Table</h3>
+            <p>Es una estructura de datos que implementa el tipo de dato abstracto, similar a un objeto o mapa. Permite almacenar datos con el concepto de "key-value". De esta manera se tiene acceso a los elementos almacenados a partir de una clave generada mediante una función hash que retorna un hash, un número que identifica la posición (bucket) donde la tabla hash localiza el valor deseado.</p>
+
+            <!-- botones -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarEstructurasDeDatos('añadir-elementos')" >Añadir Elementos</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarEstructurasDeDatos('obtener-elementos')">Obtener y eliminar elementos</button><br>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div>
+                    <code id="codigo-estructurasDeDatos">
+                    </code>
+                </div>
+
+                <div id="consola-estructurasDeDatos" style="width: 700px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- linked list -->
+        <div>
+            <h3 class="letra-B">Linked list</h3>
+            <p>las linked list (listas enlazadas), son estructuras de datos lineales formadas por nodos que no se encuentran en ubicaciones contiguas (en la memory heap) y se conectan entre si mediante enlaces. Cada nodo consta de dos partes: un valor, que puede ser cualquier tipo de dato, y un puntero (enlace) denominado <b>next</b> que señala a la referencia en memoria del siguiente nodo en la secuencia.</p>
+            <p> La lista tiene dos extremos: la cabeza (head) que es el primer nodo y con el cual podemos recorrer toda la lista gracias a <b>next</b>, esto es la variable que guarda la ubicacion del siguiente nodo, y esta en cada nodo de la lista apuntando al siguiente y la cola (tail) que es el ultimo nodo, cuyo puntero <b>next</b> apunta a una referencia vacia <b class="azul">null</b>.</p>
+            <p><b class="letra-B">El uso principal</b> de un LINKED LIST es cuando necesitamos una estructura de datos que pueda crecer indefinidamente en la que podemos añadir o eliminar rápidamente elementos en cualquier posición, ya que los nodos se asignan el cualquier parte de la memoria heap, el uso de recursos del sistema es menor.</p>
+
+            <h5 class="letra-B">Recorrer Linkedlist</h5>
+            <p>Para recorrer una LINKED LIST, tenemos que ir “saltando” de nodo en nodo, a través de cada uno de los enlaces. No es posible acceder a través de un índice, por fuerza hay que recorrer toda la cadena. </p>
+            <p>Por su parte, la doble LinkedList es una versión mejorada de la linked list “sencilla”, donde cada nodo contiene un enlace al nodo siguiente y al anterior. Esto permite un recorrer de forma tanto hacia adelante como hacia atrás.</p>        
+            
+            <h5 class="letra-B">Tipos de LinkedList</h5>
+            <ul>
+                <li><b>Simple Linked List</b> (Lista Enlazada Simple). La navegación siempre es hacia adelante.</li>
+                <li><b>Doubly Linked List</b> (Lista Enlazada Doble). La navegación puede ser hacia adelante o hacia atrás.</li>
+                <li><b>Circular Linked List</b> (Lista Enlazada Circular). En el primer elemento tiene un puntero que apunta al elemento final y elemento final apunta al primero. Esto se traduciría en un bucle infinito, también se puede combinar con las anteriores.</li>
+            </ul>
+            
+            <button class="btn-next-example" onclick="mostrarExplicacion('tabla-comparacion-arrayVSlistaEnlazada')">Comparacion entre Arrays y LinkedList 🔻</button>
+            <div id="tabla-comparacion-arrayVSlistaEnlazada" style="display: none;"><!-- tabla -->
+                <table aria-describedby="desc">
+                <caption>Comparación de estructuras: Array vs Lista Enlazada</caption>
+                <thead>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Array</th>
+                    <th>Lista enlazada</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>Organización en memoria</strong></td>
+                    <td>Contigua (bloque continuo).</td>
+                    <td>No contigua; nodos dispersos con punteros.</td>
+                </tr>
+                <tr>
+                    <td><strong>Acceso por índice</strong></td>
+                    <td><code>O(1)</code> directo: lectura/escritura por posición.</td>
+                    <td><code>O(n)</code>: requiere recorrer desde el inicio o un nodo conocido.</td>
+                </tr>
+                <tr>
+                    <td><strong>Inserción/eliminación en medio</strong></td>
+                    <td>Costosa: desplazamiento de elementos (<code>O(n)</code>).</td>
+                    <td>Eficiente si ya tienes el nodo previo: solo re-enlazar (<code>O(1)</code> por operación local).</td>
+                </tr>
+                <tr>
+                    <td><strong>Inserción al final</strong></td>
+                    <td>Amortizada <code>O(1)</code> en arrays dinámicos; puede requerir realocación.</td>
+                    <td><code>O(1)</code> si se mantiene puntero a cola; sin realocación.</td>
+                </tr>
+                <tr>
+                    <td><strong>Búsqueda por valor</strong></td>
+                    <td>Lineal <code>O(n)</code> (a menos que esté ordenado y uses búsqueda binaria).</td>
+                    <td>Lineal <code>O(n)</code>; no soporta búsqueda binaria sin índice adicional.</td>
+                </tr>
+                <tr>
+                    <td><strong>Localidad de caché</strong></td>
+                    <td>Alta: elementos contiguos, iteración muy rápida.</td>
+                    <td>Baja: saltos de punteros, más fallos de caché.</td>
+                </tr>
+                <tr>
+                    <td><strong>Uso de memoria por elemento</strong></td>
+                    <td>Bajo: solo datos (más posible capacidad extra en dinámicos).</td>
+                    <td>Mayor: datos + puntero(s) por nodo (y overhead del asignador).</td>
+                </tr>
+                <tr>
+                    <td><strong>Tamaño y redimensionamiento</strong></td>
+                    <td>Tamaño fijo o dinámico con realocaciones y copias.</td>
+                    <td>Flexible: crece/disminuye nodo a nodo sin mover el resto.</td>
+                </tr>
+                <tr>
+                    <td><strong>Iteración</strong></td>
+                    <td>Muy rápida, buena para recorridos y operaciones vectorizadas.</td>
+                    <td>Más lenta; cada paso sigue punteros y puede fragmentarse.</td>
+                </tr>
+                <tr>
+                    <td><strong>Complejidad de implementación</strong></td>
+                    <td>Sencilla; menor propensión a errores.</td>
+                    <td>Más compleja; cuidado con punteros, referencias y fugas de memoria.</td>
+                </tr>
+                <tr>
+                    <td><strong>Variantes comunes</strong></td>
+                    <td>Array estático, dinámico, vector (en C++), <code>ArrayList</code>.</td>
+                    <td>Singly/Doubly linked list, circular, skip list.</td>
+                </tr>
+                <tr>
+                    <td><strong>Casos de uso típicos</strong></td>
+                    <td>Acceso aleatorio rápido, procesamiento secuencial intensivo, buffers.</td>
+                    <td>Inserciones/eliminaciones frecuentes en medio/principio, tamaño muy variable.</td>
+                </tr>
+                </tbody>
+                </table>
+                <p> si necesitas acceso por índice y rendimiento de iteración, prefiere <strong>array</strong>. Si tu patrón es insertar/eliminar nodos en posiciones conocidas sin copiar grandes bloques, prefiere <strong>lista enlazada</strong>.</p>
+            </div>
+
+            <h4 style="text-align: center;" class="azul">LinkedList simple</h4>
+            <!-- botones -->
+            <div style="height: 58px; margin: 50px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlist()" >Crear Clase</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlist('metodo-Append')">Metodo Append</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlist('metodo-Prepend')">Metodo Prepend</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlist('Obtener-Nodo')">Obtener Nodo</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlist('metodo-Insert')">Metodo Insert</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlist('metodo-Delete')">Metodo Delete</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-linkedlist">
+                    <p style="margin-top: 0;">
+                        <b class="azul">class</b> <b class="aqua">Node</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">value</b> = <b class="sky">value</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">next</b> = <b class="azul">null</b> <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <p>
+                        <b class="azul">class</b> <b class="aqua">Mylinkedlist</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">head</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="sky">value</b>) <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">tail</b> = <b class="azul">this</b>.<b class="sky">head</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">length</b> = 1 <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <p>
+                        <b>crear instancias</b> <br>
+                        <b class="azul">let</b> <b class="sky">nodo</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="naranja">"nodo"</b>) <br>
+                        <b class="azul">let</b> <b class="sky">lista</b> = <b class="azul">new</b> <b class="aqua">Mylinkedlist</b>(1) <br>
+                    </p>
+                </div>
+                <div id="consola-linkedlist"></div>
+            </div>
+
+            <!-- lista enlazada doble -->
+
+            <h4 style="text-align: center;" class="azul">LinkedList doble</h4>
+            <!-- botones -->
+            <div style="height: 58px; margin: 50px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlistDouble()" >Crear Clase</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarlinkedlistDouble('metodo-append')">Metodo Append</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-linkedlistDouble">
+                    <p style="margin-top: 0;">
+                        <b class="azul">class</b> <b class="aqua">Node</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">value</b> = <b class="sky">value</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">next</b> = <b class="azul">null</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">prev</b> = <b class="azul">null</b> <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <p>
+                        <b class="azul">class</b> <b class="aqua">Mylinkedlist</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">head</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="sky">value</b>) <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">tail</b> = <b class="azul">this</b>.<b class="sky">head</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">length</b> = 1 <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <p>
+                        <b>crear instancias</b> <br>
+                        <b class="azul">let</b> <b class="sky">nodo</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="naranja">"nodo"</b>) <br>
+                        <b class="azul">let</b> <b class="sky">lista</b> = <b class="azul">new</b> <b class="aqua">Mylinkedlist</b>(1) <br>
+                    </p>
+                </div>
+                <div id="consola-linkedlistDouble" style="width: 600px;"></div>
+            </div>
+
+        </div>
+
+        <!-- stacks (pilas) -->
+        <div>
+            <h3 class="letra-B">Stacks</h3>
+            <p>Una pila es una estructura de datos lineal que sigue el principio de LIFO (ultimo en entrar, primero en salir), el ultimo elemento insertado es el primero en extraerse. Esto significa que tanto las operaciones de insercion como las de eliminacion se realizan en un solo extremo y no permite acceso directo a elementos intermedios aleatorios sino que cada elemento tiene un puntero <b>next</b> que apunta al inferior.</p>
+        
+            <!-- botones -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarStack()" >Crear Clase</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarStack('metodo-push')">Metodo Push</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarStack('metodo-pop')">Metodo Pop</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarStack('metodo-Peek')">Metodo Peek</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-Stack">
+                    <!-- clase nodo -->
+                    <p style="margin-top: 0;">
+                        <b class="azul">class</b> <b class="aqua">Node</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">value</b> = <b class="sky">value</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">next</b> = <b class="azul">null</b> <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <!-- clase stack -->
+                    <p>
+                        <b class="azul">class</b> <b class="aqua">Stack</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">top</b> = <b class="azul">null</b>  <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">bottom</b> = <b class="azul">null</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">length</b> = 0 <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <!-- instacias -->
+                    <p>
+                        <b>crear instancias</b> <br>
+                        <b class="azul">let</b> <b class="sky">nodo</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="naranja">"nodo"</b>) <br>
+                        <b class="azul">let</b> <b class="sky">lista</b> = <b class="azul">new</b> <b class="aqua">Stack</b> <br>
+                    </p>
+                </div>
+                <div id="consola-Stack" style="width: 600px;"></div>
+            </div>
+
+        </div>
+
+        <!-- queues (colas) -->
+        <div>
+            <h3 class="letra-B">Queues</h3>
+            <p>tambien conocida como "cola", es una structura de datos lineal que sigue el principio de <b>FIFO</b> (first in, first out), lo que significa que el primer elemento que fue insertado, sera el primero en salir <b>(Dequeue)</b>. La fila consta de dos extremos: el primero (cabeza de la cola) y el ultimo (la cola), esta ultima es la que recibe los elementos insertados <b>(Enqueue)</b> que se añaden siempre al final. </p>
+         
+            <!-- botones -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarQueues()" >Crear Clase</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarQueues('Enqueue')">Metodo Enqueue</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarQueues('Dequeue')">Metodo Dequeue</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarQueues('Peek')">Metodo Peek</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-queues">
+                    <!-- clase nodo -->
+                    <p style="margin-top: 0;">
+                        <b class="azul">class</b> <b class="aqua">Node</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">value</b> = <b class="sky">value</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">next</b> = <b class="azul">null</b> <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <!-- clase stack -->
+                    <p>
+                        <b class="azul">class</b> <b class="aqua">Queue</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">first</b> = <b class="azul">null</b>  <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">last</b> = <b class="azul">null</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">length</b> = 0 <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+  
+                    <!-- instacias -->
+                    <p>
+                        <b>crear instancias</b> <br>
+                        <b class="azul">let</b> <b class="sky">nodo</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="verde">456</b>) <br>
+                        <b class="azul">let</b> <b class="sky">lista</b> = <b class="azul">new</b> <b class="aqua">Queue</b> <br>
+                    </p>
+                </div>
+
+                <div id="consola-queues"></div>
+            </div>
+        </div>
+
+        <!-- trees (Arboles) -->
+        <div>
+            <h3 class="letra-B">Trees</h3>
+            <p>Los arboles son estructuras de datos jerarquica no lineal que organiza datos en una relacion padre-hijo, similar a una estructura DOM. En un arbol el nodo principal es conocido como el nodo raiz (root), desde el cual se ramifican los datos. Cada nodo puede tener varios hijos pero un solo padre y los nodos sin hijos son conocidos como hojas.</p>
+            
+            <h5 class="letra-B">Tipos de arbol</h5>
+            <p>Las estructuras de datos de árbol se pueden clasificar según la cantidad de hijos que puede tener cada nodo.</p>
+            <ul>
+                <li><b class="letra-B">Arbol Binario</b> se caracteriza por su estructura balanceada. En este tipo de arbol, cada nodo tiene un maximo de dos nodos hijos, lo que permite mantener un equilibrio en ambas direcciones del arbol.</li>
+                <ul>
+                    <li><b class="letra-B">Arbol de busqueda Binario (BST)</b> es una variacion del arbol binario diseñado para hacer busquedas de manera mas eficiente, ya que organiza los valores numericos mayores a la derecha y los menores a la izquierda del arbol.</li>
+                </ul>
+                <li><b class="letra-B">Arbol Ternario</b> cada nodo puede tener como maximo tres hijos, a menudo etiquetados como izquierdo, medio y derecho.</li>
+                <li><b class="letra-B">Árbol N-ario (o árbol genérico)</b> Cada nodo puede tener cualquier número de hijos.</li>
+            </ul>
+
+            <h6 class="letra-B">Eliminar nodos en un arbol de busqueda binario</h6>
+            <ul>
+                <li><b>- Nodo hoja (sin hijos)</b> se elimina directamente, haciendo que su valor sea <span class="azul">null</span></li>
+                <li><b>- Nodo con un solo hijo (izquierdo o derecho)</b> se reemplaza el nodo por su hijo.</li>
+                <li><b>- Nodo con dos hijos</b> se busca el sucesor in-order (el menor en el subárbol derecho) o el predecesor in-order (el mayor en el subárbol izquierdo), se reemplaza el valor y luego se elimina ese sucesor/predecesor.</li>
+            </ul>
+        
+            <!-- botones -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarTrees()" >Crear Clase</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarTrees('Insert')">Metodo Insert</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarTrees('Delete')">Metodo Delete</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarTrees('Search')">Metodo Search</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-tree">
+                    <!-- clase nodo -->
+                    <p style="margin-top: 0;">
+                        <b class="azul">class</b> <b class="aqua">Node</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(<b class="sky">value</b>){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">value</b> = <b class="sky">value</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">left</b> = <b class="azul">null</b> <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">right</b> = <b class="azul">null</b> <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+
+                    <!-- clase tree -->
+                    <p>
+                        <b class="azul">class</b> <b class="aqua">BinarySearchTree</b> { <br>
+                        &emsp; <b class="azul">constructor</b>(){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">root</b> = <b class="azul">null</b>  <br>
+                        &emsp; } <br>
+                        }
+                    </p>
+  
+                    <!-- instacias -->
+                    <p>
+                        <b>crear instancias</b> <br>
+                        <b class="azul">let</b> <b class="sky">nodo</b> = <b class="azul">new</b> <b class="aqua">Node</b>(<b class="verde">12</b>) <br>
+                        <b class="azul">let</b> <b class="sky">lista</b> = <b class="azul">new</b> <b class="aqua">BinarySearchTree</b>() <br>
+                    </p>
+                </div>
+                
+                <div id="consola-tree" style="width: 800px;"></div>
+            </div>
+        </div>
+
+        <!-- graphs (graficos) -->
+        <div>
+            <h3 class="letra-B">Graphs</h3>
+            <p>los graficos con estructuras de datos no lineales que representan objetos (nodos o vertices) y sus relaciones, estas son los enlaces que los conectan (aristas).</p>
+
+            <!-- botones -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button class="btn-cambiar-consola" onclick="ejecutarGraphs()" >Crear Clase</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarGraphs('Nodos')">Crear Nodos</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarGraphs('Enlaces')">Crear Enlaces</button>
+            </div>
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-graphs">
+                    <p style="margin-top: 0;">
+                        <b class="azul">class</b> <b class="aqua">Graphs</b> { <br>
+                        &emsp; <b class="azul">constructor</b> (){ <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">nodes</b> = 0 <br>
+                        &emsp; &emsp; <b class="azul">this</b>.<b class="sky">adyacentList</b> = {} <br>
+                        &emsp; } <br>
+                        } <br> <br>
+                    </p>
+                    <p>
+                        <b class="azul">const</b> <b class="doger">myGraph</b> = <b class="azul">new</b> <b class="aqua">Graphs</b>()
+                    </p>
+                </div>
+                <div id="consola-graphs"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../codigo.js"></script>
+    <script src="./estructuras.js"></script>
+</body>
+</html>

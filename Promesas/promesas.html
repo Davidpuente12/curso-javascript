@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="./proyecto.css">
+</head>
+<body>
+    <nav>
+        <button 
+            onclick="window.location.href='../pagina.html'">Home 🏠
+        </button>
+    </nav>
+    
+    <!-- PROMESAS -->
+    <section>
+        <h2>Promesas</h2>
+        <p>Las promesas son objetos que representan el eventual resultado (completado o fallido) de una operación asincrónica. Funciona al indicar al navegador que ciertas funciones deben ejecutarse de manera independiente (como peticiones HTTP, temporizadores, lectura de archivos, etc) permitiendo trabajar de forma asincrona. Una vez resueltas, las promesas se integran en el call stack para proporcionar un resultado.</p>
+
+        <h5>Estados de una promesa</h5>
+        <ul>
+            <li><b class="letra-B">Pending</b> (pendiente): Este es el estado inicial. La promesa está creada pero aún no se ha resuelto ni ha fallado. Cuando deja de estar pendiente, almacena un valor (si fue resuelta) o una razón (si fue rechazada).</li>
+            <li><b class="letra-B">Fulfilled</b> (resuelta): Indica que la promesa se ha completado con éxito. Se gestiona a travez del then.</li>
+            <li><b class="letra-B">Rejected</b> (rechazada): Ocurre cuando la promesa no se puede cumplir, produciendo un error. Se gestiona a travez del catch.</li>
+        </ul>
+
+        <p>El <b class="letra-B">Call Stack</b> (pila de llamadas) es una pila de tareas donde se registran las funciones que deben ejecutarse. Cuando se llama a una funcion esta se agrega al callstack, ejecutandose de manera secuencial, a esto se le conoce como ejecucion sincrona.</p>
+        
+        <p>Una <b class="letra-B">Operacion asincrona</b> es una tarea que se inicia y luego se ejecuta en un momento posterior, sin bloquear el hilo principal de ejecución. Esto permite que el programa continúe ejecutando otro código mientras la operación asincrónica se completa.</p>
+
+        <!-- Promise -->
+        <div>
+            <h3 class="aqua">Promise</h3>
+            <p>Una promesa se crea utilizando el constructor Promise(). Dentro del constructor, se pasa una función asíncrona como argumento. Esta función asíncrona, también conocida como función de resolución o rechazo, recibe dos argumentos:</p>
+            <ul>
+                <h5>Funciones callback que usan las promesas</h5>
+                <li><code class="golden letra-big">resolve</code> una función de Javascript que se llama cuando la operación asincrónica se completa con éxito. Se le pasa un valor como parámetro, que representa el resultado de la operación.</li>
+                <li><code class="golden letra-big">reject</code> una función de Javascript que se llama cuando la operación asincrónica falla. Se le pasa un error como parámetro, que representa la causa del fallo.</li>
+            </ul>
+
+            <!-- sintaxis -->
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="azul">new</b>
+                    <b class="aqua">Promise</b><b class="golden">(</b><b class="azul">function</b><b class="morado">(</b><b class="golden">resolve</b>, <b class="golden">reject</b><b class="morado">)</b>
+                    <b class="morado">{</b><br>
+                    &emsp;&emsp;<b>codigo asincrono</b><br>
+                    <b class="morado">}</b><b class="golden">)</b><br>
+                </p>
+                <p></p>
+            </div>
+
+            <ul>
+                <li><b class="azul">new</b> <b class="aqua">Promise</b> crea una nueva promesa usando el constructor (Promise) el cual devuelve un objeto que representa la eventual finalizacion o falla de una operacion asincrona.</li>
+                <li><b class="azul">function</b><b class="morado">(</b><b class="golden">resolve</b>, <b class="golden">reject</b><b class="morado">)</b> esta funcion es el argumento del constructor "Promise", recibe dos parametros que representan dos funciones de Javascript. Estos callbacks seran llamados en medio de la funcion asincrona y reciben un valor que luego retornan, este valor representa el resultado de la operacion segun sea el caso: exito o error, y se mostrara en el estado de la promesa.</li>
+                <li><b class="letra-B">codigo asincrono</b> aqui va la logica asincrona, y una condicion que pregunta si la condicion se cumple llamamos a resolve y si no llamamos a reject.</li>
+                <li>Promise devuelve una instancia del objeto "Promise", este objeto no guarda un valor, sino mantiene el estado y comportamiento que permiten gestionar operaciones asincronas. Solo es visible cuando se manipula con metodos como: "then", "catch", "finally".</li>
+            </ul>
+
+            <!-- metodos -->
+            <h4><span class="golden">Metodos</span> <span class="letra-B">que usan las promesas</span></h4>
+            
+            <p><code class="golden letra-big">then</code> (entonces) Es un metodo de las promesas que recibe uno o dos callback como argumento que se ejecutan si la promesa se resuelve. Estos callbacks los llama javascript con el valor correspondiente una vez que la operación asíncrona (la promesa) termina. then devuelve una nueva promesa que permite encadenar operaciones asincrónicas. A través de este método, podemos llevar a cabo acciones basadas en el resultado exitoso de una promesa.</p>
+            <ul>
+                <li><b class="azul">function</b><span class="morado">(<span class="sky">resultado</span>)</span> es un callback conocido como funcion de exito que se ejecuta si la promesa devuelve un resultado exitoso. then puede recibir dos callbacks: uno para exito, y otro para error, sin embargo es mas comun usar catch() para el manejo de errores.</li>
+                <li><b class="azul">function</b><span class="morado">(<span class="sky">error</span>)</span> este segundo callback tambien conocido como funcion de rechazo, puede atrapar errores si estos ocurren en el bloque de codigo que esta dentro del mismo then(). recibe el error en su parametro, es el callback que la promesa llamará si se rechaza.</li>
+                <li><b class="sky">resultado</b> es un parámetro (una variable local) que representa el valor con el que se resolvió la promesa (el valor de éxito o error).</li>
+            </ul>
+
+            <p><code class="golden letra-big">catch</code> (atrapar) Se utiliza para manejar cualquier error en la cadena. Si la promesa falla, el catch nos proporciona la información necesaria para entender por qué no se resolvió.</p>
+
+            <!-- sintaxis -->
+            <div class="codigo" style="height: 168px;">
+                <p>Sintaxis</p>
+
+                <div style="display: flex; align-items: center;">
+                    <p id="then-uno">
+                        <b class="doger">promesa</b>.<b class="golden">then(</b><br>
+
+                        &emsp; <b class="azul">function</b><b class="morado">(<b class="sky">resultado</b>) {</b> 
+                        <b>codigo para manejar el exito</b> <b class="morado">}</b>, <br>
+
+                        &emsp; <b class="azul">function</b><b class="morado">(<b class="sky">resultado</b>) {</b> 
+                        <b>codigo para manejar el rechazo</b> <b class="morado">}</b> <br>
+
+                        <b class="golden">)</b><br>
+                    </p>
+
+                    <p style="display: none" id="then-dos">
+                        <b class="doger">promesa</b><br>
+                        &emsp; .<b class="golden">then(</b><br>
+                        &emsp; &emsp; <b class="sky">resultado</b> <b class="azul">=></b> <b>codigo</b>, <br>
+                        &emsp; &emsp; <b class="sky">resultado</b> <b class="azul">=></b> <b>codigo</b> <br>
+                        &emsp; <b class="golden">)</b>
+                    </p>
+
+                    <p style="display: none;" id="then-tres">
+                        <b class="doger">promesa</b> <br>
+                        &emsp; .<b class="golden">then(</b>
+                        <b class="azul">function</b><b class="morado">(<b class="sky">resultado</b>) {</b> 
+                        <b>codigo para manejar el exito</b> <b class="morado">}</b><b class="golden">)</b><br>
+
+                        &emsp; .<b class="golden">catch(</b>
+                        <b class="azul">function</b><b class="morado">(<b class="sky">resultado</b>) {</b>
+                        <b>codigo para manejar el rechazo</b> <b class="morado">}</b><b class="golden">)</b>
+                    </p>
+                </div>
+
+                <button class="fondo-azul" style="font-size: 4rem;" onclick="next('then-dos')" id="btn-uno">➡️</button>
+                <button class="fondo-azul" style="font-size: 4rem; display: none;" onclick="next('then-tres')" id="btn-dos">➡️</button>
+                <button class="fondo-azul" style="font-size: 4rem; display: none;" onclick="next('then-uno')" id="btn-tres">➡️</button>
+            </div>
+
+            <!-- control -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button onclick="ejecutarPromise()" class="btn-cambiar-consola">Promise</button>
+                <button onclick="ejecutarPromise2()" class="btn-cambiar-consola">Cadena de promesas</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-promise">
+                    <p>
+                        <b class="azul">const</b> <b class="doger">obtenerDatos</b> = <b class="azul">new</b>
+                        <b class="aqua">Promise</b><b class="golden">(</b><b class="morado">(</b><b class="golden">resolver</b>, <b class="golden">rechazar</b><b class="morado">)</b>
+                        <b class="azul">=></b> <b class="morado">{</b><br>
+
+                        &emsp;&emsp;<b class="azul">let</b> <b class="sky">operacion</b> <br><br>
+
+                        &emsp; &emsp;<b class="golden">setTimeout</b><b class="azul">(</b><b class="golden">()</b> <b class="azul">=></b> <b class="golden">{</b> <br>
+
+                        &emsp; &emsp; &emsp;<b class="morado">if(</b><b class="sky">operacion</b><b class="morado">) {</b><br>
+                        &emsp; &emsp; &emsp; <b class="golden">resolver(<b class="naranja">"La operacion fue exitosa"</b>)</b><br>
+
+                        &emsp; &emsp; &emsp;<b class="morado">} else {</b>   <br>
+                        &emsp; &emsp; &emsp; <b class="golden">rechazar(<b class="naranja">"La operacion fallo"</b>)</b><br>
+                        &emsp; &emsp; &emsp;<b class="morado">}</b><br>
+                        &emsp; &emsp;<b class="golden">}</b>, <b class="verde">1000</b><b class="azul">)</b><br>
+                        <b class="morado">}</b><b class="golden">)</b><br><br>
+                    </p>
+
+                    <p>
+                        <b>obtener estado de la promesa:</b><br>
+                        <b class="doger">obtenerDatos</b><br>
+
+                        &emsp; .<b class="golden">then(</b><b class="azul">function</b> <b class="morado">(<b class="sky">resolver</b>) {</b><br>
+                        &emsp; &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b><b class="naranja">`Estado: resuelto; <b class="golden">${<b class="sky">resolver</b>}</b>`</b><b class="azul">)</b><br>
+                        &emsp; <b class="morado">}</b><b class="golden">)</b><br>
+
+                        &emsp; .<b class="golden">catch(</b><b class="azul">function</b> <b class="morado">(<b class="sky">rechazar</b>) {</b><br>
+                        &emsp; &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b><b class="naranja">`Estado: rechazado; <b class="golden">${<b class="sky">rechazar</b>}</b>`</b><b class="azul">)</b><br>
+                        &emsp; <b class="morado">}</b><b class="golden">)</b><br><br>
+                    </p>
+
+                    <button 
+                        onclick="ejecutarPromise(true)" 
+                        class="btn-simple2">
+                        <b class="sky">operacion</b>=
+                        <b class="azul">true</b>
+                    </button>
+
+                    <button 
+                        onclick="ejecutarPromise(false)" 
+                        class="btn-simple2">
+                        <b class="sky">operacion</b>=
+                        <b class="azul">false</b>
+                    </button>
+                </div>
+
+                <div id="consola-promise"></div>
+            </div>
+
+            <div>
+                <ul>
+                    <h5 class="letra-B">Creacion de la instancia</h5>
+                    <li><b class="doger">obtenerDatos</b> es la variable que guarda la instancia del constructor Promise, osea un objeto vacio que mantiene el estado de la promesa, de inicio en "pendiente". Esta recibe dos funciones que seran llamadas en una condicion.</li>
+                </ul>
+
+                <ul>
+                    <h5 class="letra-B">Cuerpo de la instancia</h5>
+                    <li><b class="sky">operacion</b> simula la funcion asincrona que esta en proceso y devuelve true.</li>
+                    <li><b class="golden">setTimeout</b> aqui utilizamos esta funcion para simular un tiempo de espera, que representa lo que ocurre cuando se manejan operaciones con codigo que no devuelve un resultado inmediato, sino que lo devuelven en algun tiempo.</li>
+                    <li><b class="morado">condicion</b> esta usa las funciones de resolver y rechazar de acuerdo al resultado de la operacion, estas funciones lo que hacen es retornar el valor que se les pasa cuando se llaman, este valor es solo un mensaje que utilizamos para describir la accion asociada al resultado que obtenemos de la operacion.</li>
+                </ul>
+
+                <ul>
+                    <h5 class="letra-B">Obtener Estado de la promesa</h5>
+                    <li><b class="golden">then</b> y <b class="golden">catch</b> son dos metodos que traen las promesas para gestionar es resultado de la misma, y lo hacen registrando si alguna de las funciones (resolve, reject) cumplio la condicion y se ejecuto, el parametro recibe el valor que retorna la funcion que se ejecuto y lo usa dentro de su propio codigo.</li>
+                </ul>
+            </div>
+        
+        </div>
+
+        <!-- async and await -->
+        <div>
+            <h3><span class="azul">async</span> y <span class="morado">await</span></h3>
+            
+            <p>asincrono/esperar es un paradigma que nos permite escribir código asíncrono de forma más legible y estructurada. En JavaScript, el uso de async/await nos permite manejar promesas de una manera más clara, comparada con los métodos tradicionales que usan .then() y .catch(). Cuando declaras una función con async, esta automáticamente devuelve una promesa. Por otro lado, await hace que JavaScript espere a que una promesa se resuelva antes de continuar con el siguiente bloque de código.</p>
+            <ul>
+                <li><code class="letra-big azul">async</code> es una palabra clave que se coloca antes de una funcion, hace que esa funcion siempre devuelva una promesa, si la funcion devuelve un valor normal, javascript lo envuelve automaticamente en una promesa resuelta.</li>
+                <li><code class="letra-big morado">await</code> solo puede usarse dentro de una funcion async, su funcion es pausar la ejecucion de la funcion hasta que la promesa se resuelva o rechace, haciendo que el codigo asincrono se lea como si fuera sincrono.</li>
+            </ul>
+
+            <!-- sintaxis -->
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="azul">async function</b> <b class="golden">nombreFuncion() {</b><br>
+                    &emsp; <b class="morado">try {</b><br>
+                        &emsp; &emsp;<b class="azul">const</b> <b class="doger">resultado</b> = <b class="morado">await</b> <b class="golden">algunaPromesa()</b><br>
+                        &emsp; &emsp;<b>codigo para manejar el <span class="doger">resultado</span></b><br>
+                    &emsp; <b class="morado">} catch (<span class="sky">error</span>) {</b><br>
+                        &emsp; &emsp;<b>codigo para manejar el <b class="sky">error</b></b><br>
+                    &emsp; <b class="morado">}</b><br>
+                    <b class="golden">}</b>
+                </p>
+                <p></p>
+            </div>
+
+            <!-- controls -->
+            <div style="height: 58px; margin: 100px 0 0;">
+                <button onclick="ejecutarAsyncYawait()" class="btn-cambiar-consola">Async Await</button>
+                <button onclick="ejecutarAsyncYawait2()" class="btn-cambiar-consola">Cadena de promesas</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+
+                <div id="codigo-async">
+                    <p>
+                        <b class="azul">async function</b> <b class="golden">fetchData() {</b><br><br>
+                        &emsp; <b class="morado">try {</b><br>
+                            &emsp; &emsp;<b class="azul">const</b> <b class="doger">resultado</b> = <b class="morado">await</b> <b class="golden">fetch</b><b class="azul">(<b class="naranja">'https://swapi.dev/api/planets/3/'</b>)</b><br>
+                            &emsp; &emsp;<b class="azul">const</b> <b class="doger">datos</b> = <b class="morado">await</b> <b class="doger">resultado</b>.<b class="golden">json</b><b class="azul">(<b class="naranja"></b>)</b><br>
+                            &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(<span class="doger">datos</span>)</b> <br>
+                        &emsp; <b class="morado">} catch (<span class="sky">error</span>) {</b><br>
+                            &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b><b class="sky">error</b><b class="azul">)</b> <br>
+                        &emsp; <b class="morado">}</b><br><br>
+                        <b class="golden">}</b>
+                    </p>
+
+                    <button
+                        onclick="ejecutarAsyncYawait()"
+                        class="btn-consola"
+                        >Ejecutar
+                    </button>
+                </div>
+
+                <div id="consola-async" class="naranja"></div>
+            </div>
+
+            <p>Para poner en práctica estos conceptos, vamos a hacer una petición a una API pública usando fetch. Este método proporciona una forma fácil de obtener recursos de manera asíncrona a través de la red.</p>
+            <ul>
+                <li><b class="azul">async</b> convierte la funcion "fetchData" en asincrona y devuelve una promesa.</li>
+                <li><b class="morado">try</b> maneja el codigo del fetch, se ejecuta miestras el codigo de peticion se resuelva, y si no <span class="morado">catch</span> lo atrapa y se ejecuta su codigo. </li>
+                <li><b class="morado">await</b> detiene el codigo hasta que se resuelva el fetch, el segundo "await" es necesario para que "datos" se vaya tambien al Queue y se ejecute de manera posterior a "respuesta" cuando obtenga los datos.</li>
+                <li><b class="golden">fetch</b> realiza una solicitud a la API de Star Wars, una vez recibida la respuesta, la convierte a JSON y luego imprime los datos.</li>
+            </ul>
+            
+        </div>
+
+        <!-- for await of -->
+        <div>
+            <h3><span class="morado">for await</span> ... <span class="azul">of</span></h3>
+            <p>Es un bucle que permite iterar sobre objetos asíncronos, como promesas (async iterables), parecido al for..of con la diferencia de que espera(await) a que cada una se resuelva antes de continuar con la siguiente. Solo se puede usar dentro de una funcion async. Ideal cuando necesitas trabajar con múltiples solicitudes HTTP.</p>
+
+            <!-- sintaxis -->
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="morado">for</b> <b class="morado">await</b>
+                    <b class="golden">(</b><b class="azul">const</b> <b class="sky">variable</b>
+                    <b class="azul">of</b> <b class="sky">AsincronosIterables</b><b class="golden">) {</b><br>
+                    &emsp; &emsp;<b>código que se ejecuta en cada iteración</b><br>
+                    <b class="morado">}</b><br>
+                </p>
+                <p></p>
+            </div>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p>
+                        <b class="azul">async function</b> <b class="golden">fetchDatalist() {</b><br><br>
+                        &emsp; <b class="azul">const</b> <b class="doger">URLS</b> = <b class="morado">[</b> <br>
+                        &emsp; &emsp; <b class="naranja">'https://rickandmortyapi.com/api/character'</b>, <br>
+                        &emsp; &emsp; <b class="naranja">'https://rickandmortyapi.com/api/location'</b>, <br>
+                        &emsp; &emsp; <b class="naranja">'https://rickandmortyapi.com/api/episode'</b>, <br>
+                        &emsp; <b class="morado">]</b> <br><br>
+
+                        &emsp; <b class="morado">try {</b><br>
+                        <div style="background-color: rgb(31, 31, 34); padding: 10px;">
+                            &emsp; &emsp; <b class="morado">for</b> <b class="morado">await</b> <b class="azul">(let</b>
+                            <b class="sky">URL</b> <b class="azul">of</b> <b class="doger">URLS</b><b class="azul">) {</b> <br>
+                            &emsp; &emsp; &emsp; <b class="azul">const</b> <b class="doger">resultado</b> = <b class="morado">await</b> <b class="golden">fetch</b><b class="azul">(<b class="sky">URL</b>)</b><br>
+                            &emsp; &emsp; &emsp; <b class="azul">const</b> <b class="doger">datos</b> = <b class="morado">await</b> <b class="doger">resultado</b>.<b class="golden">json</b><b class="azul">(<b class="naranja"></b>)</b><br>
+                            &emsp; &emsp; &emsp; <b class="sky">console</b>.<b class="golden">log</b><b class="azul">(<span class="doger">datos</span>)</b> <br>
+                            &emsp; &emsp; <b class="azul">}</b> <br>
+                        </div>
+                        &emsp; <b class="morado">} catch (<span class="sky">error</span>) {</b><br>
+                            &emsp; &emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b><b class="sky">error</b><b class="azul">)</b> <br>
+                        &emsp; <b class="morado">}</b><br><br>
+                        <b class="golden">}</b><br><br>
+
+                        <button 
+                            class="btn-consola"
+                            onclick="fetchDatalist()">
+                            Ejecutar
+                        </button>
+                    </p>
+                </div>
+
+                <div>
+                    <b>El contenido es demasiado extenso. Ver en consola del navegador!</b>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- manejo de errores -->
+        <h3 class="letra-B">Manejo de Errores</h3>
+        <h4 class="margen60"><span class="morado">try</span> / <span class="morado">catch</span></h4>
+        <p>
+            (intentar/atrapar) es una estructura de control que permiten gestionar 
+            los errores en codigo sincrono y asincrono de manera controlada.
+            Esto permite que el programa continúe ejecutándose incluso después
+            de un error, evitando que todo el script falle. <br><br>
+            
+            El bloque try es donde se coloca el codigo que pueda fallar durante 
+            su ejecucion, puede contener uno o mas bloques try y termina con
+            al menos una clausala catch o finally.<br><br>
+
+            El bloque catch se ejecuta si el codigo en try lanza un error, capturandolo 
+            en una variable que recibe como parametro. Cuando no se utiliza el error
+            no se detecta y continuara en el bloque superior try.
+        </p>
+
+        <div class="codigo-consola">
+            <div>
+                <p>
+                    <b class="morado">try</b>{ <br>
+                    &emsp; <b class="azul">let</b> <b class="sky">result</b> =
+                    <b class="verde">3</b> + <b class="sky">z</b> <br>
+                    } <b class="morado">catch</b> (<b class="sky">error</b>) { <br>
+                    &emsp; consola.innerHTML = <br>
+                    &emsp; `<b class="naranja">ha ocurrido el siguiente error</b>:
+                    ${<b class="sky">error</b>.<b class="sky">message</b>}` <br>
+                    }
+                </p>
+            </div>
+            <div id="consola-try-catch"></div>
+        </div>
+
+    </section>
+
+    <!-- Metodos de peticion -->
+    <section>
+        <h2 style="text-align: center;">Metodos de Peticion</h2>
+        
+        <p>Cuando hablamos de métodos de petición (o HTTP request methods), nos referimos a las acciones que un cliente (ej. tu navegador o una app) le pide a un servidor que realice sobre un recurso.  En respuesta, el servidor provee la información o realiza acciones solicitadas, lo que permite al cliente renderizar páginas, actualizar datos o recibir contenido nuevo. Los metodos de peticion son conocidos como los “verbos” del lenguaje HTTP, y cada uno tiene un propósito distinto.</p>
+        <p><b class="letra-B">HTTP</b> significa HyperText Transfer Protocol (Protocolo de Transferencia de Hipertexto). Es el lenguaje estándar que usan los navegadores (clientes) y los servidores para comunicarse e intercambiar información en la web. HTTPS es una versión más segura o una extensión de HTTP. En HTTPS, el navegador y el servidor establecen una conexión segura y cifrada antes de transferir datos.</p>
+        <ul>
+            <li>Permite que tu navegador pida páginas, imágenes, videos, etc. a un servidor.</li>
+            <li>Define cómo se hacen las peticiones (con métodos como GET, POST, PUT, DELETE).</li>
+            <li>Define cómo se envían las respuestas (con códigos de estado como 200 OK, 404 Not Found, 500 Error).</li>
+        </ul>
+
+        <h5 class="letra-B">Funcion de las URL en las solicitudes HTTP</h5>
+        <p>Cada vez que ingresamos una URL en un navegador, como "platzi.com", se inicia un proceso en el que se envía una solicitud HTTP al servidor correspondiente. Este mecanismo es el que permite al cliente obtener la información necesaria para mostrar al usuario la página solicitada. Si todo va bien, el servidor proporciona el contenido; si hay un problema, como un recurso que no se encuentra, devuelve un error 404.</p>
+
+        <h5 class="letra-B">Metodos/Verbos HTTP para peticiones</h5>
+        <p>Los verbos HTTP son esenciales para definir la acción que se desea realizar durante una interacción cliente-servidor. A continuación, exploramos los verbos más comunes:</p>
+        <ul>
+            <li><span class="naranja">GET</span> Se utiliza para obtener información que ya existe en el servidor sin realizar ningún cambio. Por ejemplo, al acceder a "platzi.com", se envía un GET para recibir y mostrar la página en el navegador.</li>
+            <li><span class="naranja">POST</span> Este verbo es empleado para enviar datos nuevos al servidor. Cuando publicamos una actualización en redes sociales, como en Facebook, se usa un POST para almacenar esa nueva información en la base de datos del usuario.</li>
+            <li><span class="naranja">PUT</span>  Se utiliza para actualizar un recurso existente, reemplazando su contenido por completo.</li>
+            <li><span class="naranja">PATCH</span> Se utiliza para actualizar un recurso existente, modificando solo los datos especificados.</li>
+            <li><span class="naranja">DELETE</span> Se emplea cuando deseamos eliminar un recurso del servidor. Puede ser la foto que subimos hace años y que ya no queremos conservar.</li>
+        </ul>
+
+        <!-- fetch -->
+        <h3 class="golden">fetch</h3>
+        <p>
+            Es una función global de JavaScript que permite realizar peticiones HTTP desde el navegador de forma asíncrona y basada en Promesas; esta información la podemos manejar y mostrar en el DOM. Mediante fetch podemos hacer pedidos a una API, que a menudo nos devuelve datos en formato JSON.
+            La Promesa representa un valor que podría estar disponible ahora, en el futuro, o nunca. Mientras la solicitud viaja por la red (tarda un tiempo), el resto de tu código JavaScript continúa ejecutándose.
+        </p>
+
+        <!-- sintaxis -->
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="golden">fetch(</b><b class="naranja">URL</b>, <b>opciones</b><b class="golden">{})</b><br>
+                &emsp; &emsp;.<b class="golden">then(</b><b class="sky">response</b> <b class="azul">=></b> <b>codigo para manejar respuesta</b><b class="golden">)</b><br>
+                &emsp; &emsp;.<b class="golden">catch(</b><b class="sky">error</b> <b class="azul">=></b> <b>codigo para manejar error</b><b class="golden">)</b>
+            </p>
+            <p></p>
+        </div>
+
+        <ul>
+            <li><b class="golden">fetch()</b> realiza una peticion http y devolverá una <span class="aqua">promise</span> que será aceptada cuando reciba una respuesta y sólo será rechazada si hay un fallo de red o si por alguna razón no se pudo completar la petición.</li>
+
+            <h5>Argumentos que recibe por parametros:</h5>
+            
+            <li><span class="naranja">URL</span> en este argumento especificamos una cadena con la direccion del recurso del que queremos obtener datos.</li>
+            <li><span class="letra-B">opciones<b class="golden">{}</b></span> este parametro es opcional, recibe un objeto en donde podemos especificar algunas caracteristicas del fetch como:</li>
+            <ul style="margin-top: 0;">
+                <li><span class="sky">method</span> aqui se define el metodo HTTP de la peticion (como string y en mayusculas). Por defecto usa <span class="naranja">"GET"</span>, pero tambien podemos especificar los otros metodos: <span class="naranja">"POST"</span>, <span class="naranja">"PUT"</span> etc.<li>
+                <li><span class="sky">headers</span> cabeceras HTTP. Por defecto, se define dentro de un objeto {}.</li>
+                <li><span class="sky">body</span> cuerpo de la petición HTTP. Puede ser de varios tipos: String, FormData, Blob, etc...</li>
+                <li><span class="sky">credentials</span> modo de credenciales. Por defecto, omit. Otras opciones: same-origin e include.</li>
+            </ul>
+        </ul>
+
+        <!-- metodos de fetch -->
+        <div>
+            <h4 class="letra-B">Metodos de <span class="golden">fetch</span></h4>
+
+            <p><code class="golden letra-big">then()</code> es un metodo que sirve para manejar las promesas. Recibe una <span class="azul">función callback</span> donde su parámetro <span class="sky">response</span> es el objeto de respuesta de la petición que hemos realizado, eso quiere decir que recibe la respuesta que nos llega del servidor web al momento de recibir nuestra petición. En su interior realizaremos la lógica que queramos hacer con la respuesta a nuestra petición.</p>
+            <div class="seccion">
+                <p><b class="sky">response</b> (variable) representa un objeto response nativo de Javascript que contiene los metadatos de la respuesta HTTP, Cuando usas fetch(url) en JavaScript, la promesa se resuelve con este objeto Response. Generalmente, el siguiente paso es llamar a un método como .json() sobre este objeto para extraer los datos que están dentro del body.
+                Podemos acceder a los valores del objeto response como lo hariamos con otros objetos.
+                <button onclick="mostrarExplicacion('tabla-response')" class="btn-simple">Datos response 👇</button></p>
+                <table id="tabla-response" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Propiedad</th>
+                            <th>Valor</th>
+                            <th>Significado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>status</strong></td>
+                            <td>200</td>
+                            <td>El <strong>código de estado HTTP</strong>. 200 significa "OK" (éxito). La solicitud fue recibida, entendida y aceptada.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ok</strong></td>
+                            <td>true</td>
+                            <td>Un <strong>booleano</strong> que es `true` si el código de estado HTTP está en el rango 200-299 (lo que indica éxito). Es una manera rápida de verificar el éxito.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>url</strong></td>
+                            <td>'https://jsonplaceholder.typicode.com/posts/1'</td>
+                            <td>La <strong>URL final</strong> de donde se obtuvo la respuesta.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>type</strong></td>
+                            <td>'cors'</td>
+                            <td>Indica el tipo de respuesta. <strong>cors</strong> (Cross-Origin Resource Sharing) significa que el recurso se solicitó desde un dominio diferente al de tu aplicación (lo cual es normal para APIs externas).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>redirected</strong></td>
+                            <td>false</td>
+                            <td>Indica si la solicitud fue <strong>redirigida</strong> a una URL diferente antes de obtener la respuesta final.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>headers</strong></td>
+                            <td>Headers {}</td>
+                            <td>Un objeto que contiene todos los <strong>encabezados HTTP</strong> que el servidor envió con la respuesta (por ejemplo, `Content-Type`, `Date`, etc.).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>body</strong></td>
+                            <td>ReadableStream</td>
+                            <td>El <strong>contenido real</strong> (los datos JSON, el HTML, etc.) enviado por el servidor. Para acceder a los datos, necesitas llamar a un método como `response.json()` o `response.text()`, lo que consume este *stream*.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>bodyUsed</strong></td>
+                            <td>false</td>
+                            <td>Indica si el cuerpo (`body`) de la respuesta ya ha sido leído (consumido) por un método como `response.json()`.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><code class="golden letra-big">catch</code> (atrapar) Se utiliza para manejar cualquier error en la cadena. Si la promesa falla, el catch nos proporciona la información necesaria para entender por qué no se resolvió.</p>
+        </div>
+
+        <!-- controls -->
+        <div style="height: 58px; margin: 100px 0 0;">
+            <button onclick="ejecutarFetch('fetch-uno')" class="btn-cambiar-consola">Fetch</button>
+            <button onclick="ejecutarFetch('fetch-dos')" class="btn-cambiar-consola">Imprimir Datos</button>
+            <button onclick="ejecutarFetch('fetch-tres')" class="btn-cambiar-consola">Response</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+
+            <div id="code-fetch">
+                <p>
+                    <b class="golden">fetch(</b>
+                    <b class="naranja">"https://jsonplaceholder.typicode.com/posts/1"</b>
+                    <b class="golden">)</b><br>
+                    &emsp; &emsp;.<b class="golden">then(</b><b class="sky">response</b> <b class="azul">=></b> <b class="sky">response</b>.<b class="golden">json<b class="morado">()</b>)</b><br>
+                    &emsp; &emsp;.<b class="golden">then(</b><b class="sky">datos</b> <b class="azul">=></b> <b class="sky">console</b>.<b class="golden">log<b class="morado">(<b class="sky">datos</b>)</b>)</b><br><br>
+                </p>
+            </div>
+
+            <div>
+                <code>
+                    <p id="consola-fetch" style="height: 300px"></p>
+                    <div id="btn-nextpost"></div>
+                </code>
+            </div>
+        </div>
+        <p class="letra-B">Este código es una cadena de promesas que realiza una solicitud GET a una API de ejemplo que devuelve información ficticia.</p>
+
+        <ul><!-- Explicacion del codigo -->
+            <li><span class="golden">fetch()</span> recibe como argumento una URL y devuelve una <span class="aqua">Promise</span> que se resuelve con un objeto response.</li>
+            <li>.<span class="golden">then(<span class="sky">response</span>)</span> se encadena a la promesa que devuelve fetch y <span class="sky">response</span> es el objeto que representa la respuesta HTTP. Se ejecuta solamente cuando la solicitud de red ha terminado y la promesa se ha resuelto (es decir, el servidor a respondido)</li>
+            <li><span class="golden">json()</span> es un metodo clave de objeto <span class="sky">response</span>, este lee el cuerpo de la respuesta de forma asincrona (lee <span class="sky">response</span>.<span class="azul">body</span> ), convierte el cuerpo de la respuesta en un objeto javascript, y retorna una nueva <span class="aqua">Promise</span>, que se resuelve con otro objeto final (data).
+                <button onclick="mostrarExplicacion('detalle-json')" class="btn-simple" style="border: goldenrod 3px solid;">Detalles</button> </li>
+                <div id="detalle-json" style="display: none;" class=" notas">
+                    <p class="letra-B" style="text-align: center;"><b>¿Porque devuelve una promesa?</b></p>
+                    <p>El método <span class="sky">response</span>.<span class="golden">json()</span> devuelve una Promesa porque el proceso de leer el cuerpo (body) de la respuesta HTTP y convertirlo de una cadena de texto a un objeto JavaScript utilizable (JSON) es una operación asíncrona que toma tiempo. ⏳</p>
+                    <ul>
+                        <li><span class="letra-B">1. El Cuerpo es un "Stream" (Flujo de Datos)</span> <br><br>
+                            Cuando recibes una respuesta de red, el cuerpo de la respuesta (response.body) no es un simple objeto ya listo, sino un ReadableStream. Esto significa que los datos pueden llegar en partes a lo largo del tiempo, especialmente si el archivo es grande.
+                        </li>
+                        <li><span class="letra-B">2. Lectura y Conversión</span> <br><br>
+                            El método response.json() tiene que realizar dos tareas importantes:
+                            Leer todo el stream de datos hasta que el cuerpo esté completo.
+                            Analizar (parsear) la cadena de texto completa para convertirla en el objeto JavaScript (JSON) que necesitas.
+                        </li>
+                        <li><span class="letra-B">3. Evitar el Bloqueo del Hilo Principal</span> <br><br>
+                            Si estas operaciones (leer el stream y parsear) se ejecutaran de forma síncrona, el hilo principal de tu navegador (donde se ejecuta el JavaScript que maneja la interfaz de usuario) se bloquearía completamente. Esto haría que la página se congelara y no respondiera hasta que se completara el proceso.
+                            <br><br>Al devolver una Promesa, response.json() permite que la lectura y el parseo ocurran en segundo plano sin congelar la interfaz. La Promesa simplemente indica: "Te notificaré (a través del siguiente .then()) cuando el trabajo esté hecho y los datos estén listos."
+                            De esta forma, el flujo de fetch es completamente asíncrono: <br><br>
+                            fetch(url) → Devuelve una Promesa (por la solicitud de red). <br>
+                            response.json() → Devuelve una Promesa (por la lectura y conversión de datos).
+                        </li>
+                    </ul>
+
+
+
+                </div>
+            <li>.<span class="golden">then(<span class="sky">datos</span>)</span> este segundo then se encadena para esperar a que la Promesa devuelta por response.json() se resuelva: espera a que el cuerpo de la respuesta haya sido leido y convertido a un objeto Javascript(el paso anterior), <span class="sky">datos</span> es el objeto javascript que representa los datos JSON extraidos y lo muestra por consola.</li>
+        </ul>
+
+    </section>
+
+    <!-- Proyecto fetch  -->
+    <section id="Proyecto-fetch">
+        <h4 style="text-align: center; margin-top: 0;">Proyecto: Solicitudes HTTP</h4>
+
+        <div id="main">
+            <label for="titulo-post">titulo</label>
+            <input id="titulo-post"></input>
+
+            <label for="contenido-post" style="display: inline-block; margin-top: 30px;">Contenido</label>
+            <textarea id="contenido-post"></textarea>
+
+            <button 
+                onclick="ProyectoSolicitudesHTTP('enviar-post')" 
+                class="btn-POST-GET" 
+                style="background-color: rgb(80, 184, 80);">
+                Enviar (POST)
+            </button>
+
+            <button 
+                onclick="ProyectoSolicitudesHTTP('traer-post')" 
+                class="btn-POST-GET">
+                Obtener (GET)
+            </button>
+        </div>
+
+        <div id="content-targets"></div>
+
+        <!-- codigo -->
+        <div class="codigo-consola">
+            <div>
+                <p>
+                    <b class="azul">function</b> <b class="golden">enviarPeticion(</b>
+                    <b class="sky">metodo</b>, <b class="sky">url</b>, <b class="sky">data</b><b class="golden">) {</b><br>
+                    &emsp; <b class="morado">return</b> <b class="golden">fetch</b><b class="morado">(</b><b class="sky">url</b>, <b class="azul">{</b><br>
+                    &emsp; &emsp; <b class="sky">method: metodo</b>,<br>
+                    &emsp; &emsp; <b class="sky">body: JSON</b>.<b class="golden">stringify(<b class="sky">data</b>)</b>, <br>
+                    &emsp; &emsp; <b class="sky">headers:</b> <b class="golden">{<b class="naranja">"Content-type": "application/json"</b>}</b>, <br>
+                    &emsp; <b class="azul">}</b><b class="morado">)</b>.<b class="golden">then</b><b class="morado">(</b><b class="sky">response</b> <b class="azul">=> {</b> <br>
+                    &emsp; &emsp; <b class="morado">return</b> <b class="sky">response</b>.<b class="golden">json()</b> <br>
+                    &emsp; <b class="azul">}</b><b class="morado">)</b> <br>
+                    <b class="golden">}</b>
+                </p>
+
+                <p>
+                    <b class="azul">async function</b> <b class="golden">traerPost() {</b><br>
+                    &emsp; <b class="azul">const</b> <b class="doger">response</b> = <b class="morado">await</b> <br>
+                    &emsp; <b class="golden">enviarPeticion</b><b class="azul">(</b><b class="naranja">"GET"</b>,<b class="naranja">"https://jsonplaceholder.typicode.com/posts"</b><b class="azul">)</b> <br>
+                    &emsp; <b>Aqui tomamos los datos en <b class="doger">response</b> para ponerlos en el DOM</b> <br>
+                    <b class="golden">}</b>
+                </p>
+            </div>
+
+            <div id="consola-Proyecto-HTTP"></div>
+        </div>
+
+    </section>
+
+
+    <script src="../codigo.js"></script>
+    <script src="promesas.js"></script>
+</body>
+</html>

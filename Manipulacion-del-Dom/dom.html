@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulacion del DOM</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="./dom.css">
+</head>
+<body>
+    <nav>
+        <button onclick="window.location.href='../Pagina.html'" >
+            Home 🏠
+        </button>
+    </nav>
+
+    <section id="DOM">
+        <h2>Manipulacion del DOM</h2>
+        <p>El DOM (Modelo de Objetos del Documento) es una interfaz  que representa la estructura de un documento HTML como un árbol de nodos, cada etiqueta html se convierte en un nodo. Estos son  objetos de JavaScript que pueden ser seleccionados y manipulados, creando una interacción dinámica y personalizada entre el usuario y el contenido web. </p>
+        <table>
+            <thead>
+                <tr>
+                <th>Capacidades del DOM</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>🔍 Buscar etiquetas</td>
+                <td>Formas y métodos para buscar elementos en el DOM como <code>.querySelector()</code>.</td>
+                </tr>
+                <tr>
+                <td>🧾 Modificar contenido</td>
+                <td>Acceder y modificar el contenido de una etiqueta HTML del DOM desde JavaScript.</td>
+                </tr>
+                <tr>
+                <td>🎭 Gestionar atributos o clases</td>
+                <td>Uso de varias de las API de JavaScript para manipular clases CSS o atributos HTML.</td>
+                </tr>
+                <tr>
+                <td>🔮 Crear etiquetas</td>
+                <td>Métodos y consejos para crear elementos en el DOM y trabajar con ellos.</td>
+                </tr>
+                <tr>
+                <td>🔌 Insertar etiquetas</td>
+                <td>Varias de las API de JavaScript para insertar elementos en el DOM de una página.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4 class="letra-B">Windows Object</h4>
+        <p>El Window Object es el objeto que representa a la ventana del navegador, es decir, toda la pantalla del navegador en la que se despliega el contenido del DOM. Al estar sobre el navegador, el Window Object ofrece acceso a varias web APIs además del DOM. </p>
+        <p>Incluye una amplia gama de métodos y propiedades para interactuar con la ventana del navegador, controlar el historial, gestionar temporizadores como (setTimeout, setInterval ). Contiene sub-objetos o propiedades como history, location, navigator y uno de los más usados document.</p>
+        <ul>
+            <li>Para mostrar un cuadro de alerta (alert), usamos el Window Object.</li>
+            <li>Si necesitamos solicitar acceso al micrófono o la cámara del usuario, se realiza a través de las APIs del Window Object.</li>
+        </ul>
+
+        <h3 class="sky">document</h3>
+        <p>es un objeto javascript que representa el arbol DOM de la pagina o mas concretamente la página web cargada en el navegador. Es tu puerta de entrada para interactuar, modificar y acceder al contenido HTML de esa página. En su interior pueden existir varios tipos de elementos, pero principalmente serán objetos de tipo Element o node.</p>
+        <p>document tambien es un nodo, mas especificamente es un nodo de tipo Document (El nodo raiz del arbol DOM) que hereda de la clase Node. Contiene el nodo &lt;HTML> como su hijo directo. El DOM esta estructurado como una jerarquia de objetos, y todos los elementos (incluyendo Document) son instancias de clases que derivan de Node.</p>
+
+        <p><b class="letra-B">Elementos:</b> (elements) es un tipo especial de nodo que representa una etiqueta HTML. Son objetos que se pueden manipular con javascript para cambiar el contenido, estilo, estructura o comportamiento.</p>
+        <p><b class="letra-B">Nodos:</b> (node) es la unidad básica que representa cualquier parte del documento HTML o XML. Cada elemento, texto o comentario en una página web es un nodo. todo el DOM está hecho de nodos, y puedes recorrerlos, modificarlos, eliminarlos y tambien podemos agregar eventos a esos elementos.
+        <button class="btn-simple" onclick="mostrarExplicacion('tabla-tiposdeNodos')">Tipos de nodos 👇</button> </p>
+
+        <table id="tabla-tiposdeNodos" style="display: none;">
+            <thead>
+                <tr>
+                <th>nodeType</th>
+                <th>Nombre del nodo</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>1</td>
+                <td>Element</td>
+                <td>Representa una etiqueta HTML como &lt;div&gt;, &lt;p&gt;, &lt;span&gt;, etc.</td>
+                </tr>
+                <tr>
+                <td>2</td>
+                <td>Attribute</td>
+                <td>Representa un atributo de un elemento (menos usado directamente hoy en día).</td>
+                </tr>
+                <tr>
+                <td>3</td>
+                <td>Text</td>
+                <td>Contenido textual dentro de un elemento HTML.</td>
+                </tr>
+                <tr>
+                <td>8</td>
+                <td>Comment</td>
+                <td>Comentario en el HTML, como &lt;!-- Esto es un comentario --&gt;.</td>
+                </tr>
+                <tr>
+                <td>9</td>
+                <td>Document</td>
+                <td>Representa el documento completo, accesible como <code>document</code>.</td>
+                </tr>
+                <tr>
+                <td>10</td>
+                <td>DocumentType</td>
+                <td>Representa la declaración <code>&lt;!DOCTYPE html&gt;</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- METODOS DEL DOM -->
+        <h4 class="letra-B"><b class="golden">Metodos</b> y <b class="doger">Propiedades</b> de <b class="sky">document</b></h4>
+        <p>En el DOM de JavaScript, los métodos permiten seleccionar, modificar, recorrer y escuchar eventos en los elementos HTML.</p>
+
+        <!-- Metodos tradicionales de busqueda -->
+        <h5 class="letra-B"><b><span class="golden">Metodos</span> tradicionales de busqueda de elementos</b></h5>
+        <p>Si nos encontramos en nuestro código Javascript y queremos obtener información del contenido de nuestra página, lo primero que debemos hacer es buscar el elemento que nos interesa. La forma más sencilla de hacerlo es identificar el elemento a través de alguno de sus atributos más utilizados, generalmente el id o la clase mediante el atributo class, pero tambien existen otras formas.</p>
+        <div class="seccion">
+            <p><b class="golden"><code>getElementById()</code></b><br> es un metodo que pertenece a la clase Document. busca un elemento HTML con el id especificado. un documento HTML no debería tener más de un elemento con el mismo id, por lo tanto, este método devolverá siempre un solo elemento que podremos almacenar en una variable. En caso de no encontrar el elemento devuelve Null.</p>
+            <p><b class="golden"><code>getElementsByClassName()</code></b><br> permite buscar los elementos que tengan la clase especificada en class. El método tiene getElements en plural, esto ocurre porque en este caso buscamos clases, y puede devolver varios elementos, ya que al contrario que los id, pueden existir varios elementos con la misma clase. devuelven siempre un array con todos los elementos encontrados.</p>
+            <p><b class="golden"><code>getElementsByName()</code></b><br> funciona igual que el caso anterior. En este caso, estamos buscando elementos HTML por el valor que tienen en el atributo name, algo muy habitual en formularios HTML. Devuelven siempre un array con todos los elementos encontrados.</p>
+            <p><b class="golden"><code>getElementsByTagName()</code></b><br> permite buscar elementos por el tipo de etiqueta HTML. Es decir, si queremos buscar todos los elementos &lt;div> de una página, podemos hacerlo indicándole el parámetro div. devuelve un array con todos los elementos encontrados.</p>
+        </div>
+
+        <!-- Metodos modernos de busqueda -->
+        <h5 class="letra-B margen100"><b><span class="golden">Metodos</span> modernos de busqueda de elementos</b></h5>
+        <p>En este nuevo grupo, tenemos sólo dos métodos que son equivalentes a todos los métodos tradicionales, y aún más potentes, ya que permiten hacer cosas que no se podían realizar con los anteriores (en menos codigo) gracias a CSS.</p>
+        <div class="seccion">
+
+            <p><b class="golden"><code>querySelector()</code></b><br> devuelve el primer elemento que encuentra y encaja con el selector CSS indicado por parametro. Este selector puede ser un id, una clase, un atributo name, una etiqueta (deben especificarse con su simbolo de CSS), o incluso una combinacion de selectores anidados. </p>
+            <p><b class="golden"><code>querySelectorAll()</code></b><br> realiza una busqueda de elementos en el DOM, y devuelve una NodeList (lista de nodos) con todos los elementos que coinciden con el selector CSS especificado. A diferencia de metodos anteriores que devuelven coleccionesHTML, este devuelve NodeList que tambien pueden ser convertidos a arrays. </p>
+            <p><b class="golden"><code>closest()</code></b><br> nos permite encontrar el primer elemento padre o ancestro mas cercano hacia arriba en el arbol DOM, que coincida con el selector CSS indicado por parametro. Es decir como un querySelector, pero que busca ascendentemente. Se usa en elementos hijos de algun otro elemento previamente seleccionado.</p>
+            <p><b class="golden"><code>matches()</code></b><br> este metodo no sirve para buscar, pero nos permite comprobar si un elemento especifico coincide con un selector CSS indicado por parametro. Devuelve un booleano como resultado.</p>
+
+            <h6 class="letra-B">Estos metodos reciben por argumentos selectores de CSS</h6>
+            <ul>
+                <li>consultar por Id: <code class="naranja">"#nombreDeId"</code></li>
+                <li>consultar por clase: <code class="naranja">".nombreDeClase"</code></li>
+                <li>consultar por atributo name: <code class="naranja">"[name='nombre']"</code></li>
+                <li>consultar por etiqueta: <code class="naranja">"nombreDeEtiqueta"</code></li>
+            </ul>
+        </div>
+
+        <p class="letra-B margen150"><b>Veamos en el siguiente codigo HTML como podemos encontrar elementos</b></p>
+        
+        <!-- codigo html -->
+        <div class="codigoHTML">
+            <div>
+                <b class="letra-B">HTML</b><br>
+
+                &lt;<b class="azul">div</b> <b class="sky">id</b> = <b class="naranja">"container"</b>&gt; <br>
+                    &emsp; &lt;<b class="azul">h4</b>&gt; Titulo &lt;/<b class="azul">h4</b>&gt;<br>
+                    &emsp; &lt;<b class="azul">p</b>&gt; parrafo de ejemplo &lt;/<b class="azul">p</b>&gt;<br>
+
+                    &emsp; &lt;<b class="azul">input</b> <b class="sky">name</b> = <b class="naranja">"nombre"</b>&gt; <br>
+                    &emsp; &lt;<b class="azul">input</b> <b class="sky">name</b> = <b class="naranja">"nombre"</b>&gt; <br>
+
+                    &emsp; &lt;<b class="azul">article</b>&gt; <br>
+                        &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">class</b>=<b class="naranja">"items uno"</b>&gt; items[0] &lt;/<b class="azul">div</b>&gt;<br>
+                        &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">class</b>=<b class="naranja">"items dos"</b>&gt; items[1] &lt;/<b class="azul">div</b>&gt;<br>
+                        &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">class</b>=<b class="naranja">"items tres"</b>&gt; items[2] &lt;/<b class="azul">div</b>&gt;<br>
+                    &emsp; &lt;/<b class="azul">article</b>&gt;<br>
+
+                &lt;/<b class="azul">div</b>&gt;
+            </div>
+            
+            <div id="container">
+                <p style="margin: 0;font-size: 1.8rem;"><b>Titulo</b></p>
+                <p style="margin: 10px;font-size: 1.5rem;">parrafo de ejemplo</p>
+
+                <input type="text" name="nombre" placeholder=" input" style="border: 3px solid rgb(55, 113, 200); width: 200px; border-radius: 20px; height: 25px;">
+                <input type="text" name="nombre" placeholder=" input" style="border: 3px solid rgb(55, 113, 200); width: 200px; border-radius: 20px; height: 25px;">
+
+                <article style="margin-top: 10px ; border: solid 3px rgb(0, 187, 124); padding: 5px; width: 200px; border-radius: 20px;">
+                    <code>
+                        <li class="items uno" style="border: solid 2px rgb(168, 88, 208); padding: 3px; width: 120px; border-radius: 20px; margin: 2px; font-size: 1.2rem;">items[0]</li>
+                        <li class="items dos" style="border: solid 2px rgb(168, 88, 208); padding: 3px; width: 120px; border-radius: 20px; margin: 2px; font-size: 1.2rem;">items[1]</li>
+                        <li class="items tres" style="border: solid 2px rgb(168, 88, 208); padding: 3px; width: 120px; border-radius: 20px; margin: 2px; font-size: 1.2rem;">items[2]</li>
+                    </code>
+                </article>
+            </div>
+        </div>
+
+        <!-- botones -->
+        <div style="height: 58px; margin: 100px 0 0;">
+            <button onclick="ejecutarMetodosDeBusqueda('metodos-tradicionales')" class="btn-cambiar-consola">Metodos tradicionales de Busqueda</button>
+            <button onclick="ejecutarMetodosDeBusqueda('metodos-modernos')" class="btn-cambiar-consola">Metodos modernos de Busqueda</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            <div id="codigo-MetodosDeBusqueda">
+            </div>
+
+            <div 
+                style="width: 600px;"
+                id="consola-MetodosDeBusqueda">
+            </div>
+        </div>
+
+        <p><span class="golden">getElementsByClassName</span> y <span class="golden">getElementsByTagName</span> devuelven un HTMLCollection que contiene todos los elementos encontrados que encajen con el criterio. En el caso de no encontrar ninguno, devolverá un array vacío: []. Esta coleccion puede convertirse en un array real para recorrer.</p>
+
+        <!-- PROPIEDADES DEL DOM -->
+        <div>
+            <h4 class="letra-B margen150"><span class="doger">Propiedades</span> de los elementos DOM</h4>
+            <p>Cuando el navegador carga la pagina, lee el HTML y genera objetos DOM a partir de el. Para los nodos de elementos, la mayoria de los atributos HTML estandar se convierten automaticamente en propiedades de los objetos DOM. </p>
+            <p>Por ejemplo, si la etiqueta tiene el atributo: &lt;<b class="azul">body</b> <b class="sky">id</b>=<b class="naranja">"page"</b>>, entonces el objeto DOM tiene la propiedad: <b class="azul">body</b>.<b class="sky">id</b>=<b class="naranja">"page"</b>. </p>
+            <p>Las propiedades del DOM son atributos que permiten acceder, leer o modificar elementos, nodos y estructuras de una página web desde JavaScript. Estas propiedades son esenciales para manipular dinámicamente el contenido. <button class="btn-simple" onclick="mostrarExplicacion('tabla-propiedadesDom')">Ver Propiedades 👇</button></p>
+
+            <table id='tabla-propiedadesDom' style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Propiedad</th>
+                        <th>Descripción</th>
+                        <th>Tipo de Nodo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><code>nodeType</code></td>
+                    <td>Indica el tipo de nodo (1 = elemento, 3 = texto, etc.)</td>
+                    <td>Todos los nodos</td>
+                    </tr>
+                    <tr>
+                    <td><code>nodeName</code></td>
+                    <td>Nombre del nodo (por ejemplo, DIV, P, #text)</td>
+                    <td>Todos los nodos</td>
+                    </tr>
+                    <tr>
+                    <td><code>nodeValue</code></td>
+                    <td>Contenido del nodo (solo para nodos de texto o comentario), tambien permite cambiar el contenido con el operador de asignacion.</td>
+                    <td>Texto/Comentario</td>
+                    </tr>
+                    <tr>
+                        <td><code>outerHTML</code></td>
+                        <td>Permite ver o modificar todo el HTML de un elemento, incluyendo el propio elemento y su contenido.</td>
+                        <td>ELEMENT_NODE</td>
+                    </tr>
+                    <tr>
+                        <td><code>innerHTML</code></td>
+                        <td>HTML interno del elemento</td>
+                        <td>ELEMENT_NODE</td>
+                    </tr>
+                    <tr>
+                    <td><code>textContent</code></td>
+                    <td>Texto del elemento (sin etiquetas)</td>
+                    <td>ELEMENT_NODE, TEXT_NODE, COMMENT_NODE</td>
+                    </tr>
+                    <tr>
+                    <td><code>id</code></td>
+                    <td>Valor del atributo <code>id</code> del elemento</td>
+                    <td>ELEMENT_NODE</td>
+                    </tr>
+                    <tr>
+                    <td><code>className</code></td>
+                    <td>Valor del atributo <code>class</code> del elemento</td>
+                    <td>ELEMENT_NODE</td>
+                    </tr>
+                    <tr>
+                    <td><code>style</code></td>
+                    <td>Acceso a los estilos CSS en línea</td>
+                    <td>ELEMENT_NODE</td>
+                    </tr>
+                    <tr>
+                    <td><code>attributes</code></td>
+                    <td>Lista de todos los atributos del elemento</td>
+                    <td>ELEMENT_NODE</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Navegar jerarquia del DOM -->
+            <div>
+                <h5 class="letra-B">Navegar por la jerarquia de elementos</h5>
+                <p>el DOM es una estructura jerarquica de nodos, en donde podemos encontrar padres, hijos o ancestros por medio de propiedades y metodos que permiten navegar los elementos HTML. Se debe tener precaucion al usar estas propiedades porque la estructura del DOM puede cambiar. Solo se debe usar si tenemos una estructura solida que no cambia.</p>
+
+                <ul>
+                    <h6 class="letra-B">Navergar Elementos</h6>
+                    <li><b class="doger"><code>children</code></b> devuelve una lista [object HTMLCollection] de elementos hijos, del elemento, Permite navegar por indice[]</li>
+                    <li><b class="doger"><code>parentElement</code></b> duvuelve el padre del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>firstElementChild</code></b> duvuelve el primer hijo del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>lastElementChild</code></b> duvuelve el ultimo hijo del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>previousElementSibling</code></b> duvuelve el elemento hermano anterior del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>nextElementSibling</code></b> duvuelve el elemento hermano siguiente del elemento seleccionado [object HTMLElement].</li>
+                </ul>
+                <ul>
+                    <h6 class="letra-B">Navergar Nodos </h6>
+                    <li><b class="doger"><code>childNodes</code></b> duvuelve una lista [object NodeList] de nodos hijos, del elemento seleccionado, Permite navegar por indice[]</li>
+                    <li><b class="doger"><code>parentNode</code></b> duvuelve el nodo padre del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>firstChild</code></b> duvuelve el primer nodo hijo del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>lastChild</code></b> duvuelve el ultimo nodo hijo del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>previousSibling</code></b> duvuelve el nodo hermano anterior del elemento seleccionado [object HTMLElement].</li>
+                    <li><b class="doger"><code>nextSibling</code></b> duvuelve el nodo hermano siguiente del elemento seleccionado [object HTMLElement].</li>
+                </ul>
+
+                <!-- codigo -->
+                <div class="codigo-consola">
+                    <div>
+                        <div style="background-color: rgb(27, 27, 27); padding: 10px; display: flex; gap: 80px;">
+                            <code style="font-size: 1.2rem;">
+                                <b class="letra-B">HTML</b><br>
+
+                                &lt;<b class="azul">span</b>&gt; <b>Elemento hermano anterior</b> &lt;/<b class="azul">span</b>&gt; <br>
+                                <b>Nodo hermano anterior</b><br>
+
+                                &lt;<b class="azul">div</b> <b class="sky">id</b> = <b class="naranja">"elemento"</b> <b class="sky">class</b> = <b class="naranja">"letra-B"</b>&gt; <br>
+                                    &emsp; <b>Primer Nodo</b><br>
+
+                                    &emsp; &lt;<b class="azul">p</b>&gt;Nodo Elemento P &lt;/<b class="azul">p</b>&gt; <br>
+
+                                    &emsp; &lt;<b class="azul">ul</b>&gt; <br>
+                                        &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">id</b> = <b class="naranja">"lista"</b>&gt; Elemento li &lt;/<b class="azul">li</b>&gt; <br>
+                                        &emsp; &emsp; &lt;<b class="azul">li</b>&gt; Elemento li &lt;/<b class="azul">li</b>&gt; <br>
+
+                                    &emsp; &lt;/<b class="azul">ul</b>&gt; <br>
+
+                                    &emsp; &lt;<b class="azul">div</b>&gt;Nodo Elemento DIV &lt;/<b class="azul">div</b>&gt; <br>
+
+                                    &emsp; <b class="verde">&lt;!-- comentario --&gt;</b> <br>
+                                    &emsp; <b>Ultimo Nodo</b> <br>
+                                &lt;/<b class="azul">div</b>&gt; <br>
+
+                                <b>Nodo hermano siguiente</b><br>
+                                &lt;<b class="azul">span</b>&gt; <b>Elemento hermano siguiente</b> &lt;/<b class="azul">span</b>&gt; <br>
+                            </code>
+
+                            <div style="font-size: 1.3rem; width: 300px; margin-top: 40px;">
+                                <span style="display: block; color: black; border-radius: 10px;width: 300px;" class="fondo-doger">Nodo Elemento hermano anterior</span>
+                                Nodo texto hermano anterior
+
+                                <div id="elemento" class="letra-B fondo-azul" style="border-radius: 10px; padding: 5px; width: 300px;">
+                                    Nodo Texto First
+                                    <p style="margin: 0; border-radius: 10px; font-size: 1.4rem;width: 300px;" class="fondo-aqua">Nodo Elemento P</p>
+
+                                    <ul style="margin: 5px 0; padding: 5px; border-radius: 10px;width: 290px;" class="fondo-golden">
+                                        <li id="lista" style="margin: 0 0 5px; width: 120px;" class="fondo-morado">Nodo lista</li>
+                                        <li id="lista" style="margin: 0; width: 120px;" class="fondo-morado">Nodo lista</li>
+                                    </ul>
+
+                                    <div style="border-radius: 10px;width: 300px;" class="fondo-naranja">Nodo Elemento &lt;DIV&gt;</div>
+                                    <!-- comentario -->
+                                    Nodo Texto Last
+                                </div>
+
+                                Nodo texto hermano siguiente
+                                <span style="display: block; border-radius: 10px; color: black;width: 300px;" class="fondo-sky">Nodo Elemento hermano siguiente</span>
+
+                            </div>
+                        </div>
+                        <br>
+
+                        <code>
+                            <b class="verde">//Seleccionamos elementos</b><br>
+                            <b class="azul">let</b> <b class="sky">nodo</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"elemento"</b>)</b> <br>
+                            <b class="azul">let</b> <b class="sky">nodoLista</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"lista"</b>)</b> <br>
+                            <b class="azul">let</b> <b class="sky">texto</b> = <b class="sky">nodo</b>.<b class="doger">firstChild</b>
+                        </code>
+                        <br><br>
+
+                        <button class="btn-consola2" onclick="ejecutarPropiedadesDom('buscar-elementos')">Navegar Elementos</button><br><br>
+                        <button class="btn-consola2" onclick="ejecutarPropiedadesDom('buscar-nodos')">Navegar Nodos</button><br><br>
+
+                        <b class="sky">nodo</b> <b class="azul">instanceof</b> <b class="aqua">Node</b> <br>
+                        ${nodo instanceof Node} <br>
+                        <b class="sky">nodo</b> <b class="azul">instanceof</b> <b class="aqua">Element</b> <br>
+                        ${nodo instanceof Element}
+                    </div>
+
+                    <div style="width: 700px;">
+                        <code>
+                            <b id="consola-propiedades"></b>
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manipulacion de Elementos -->
+        <h4 class="letra-B margen150">Manipulacion de elementos del DOM</h4>
+        <p>Nuestra página está repleta de elementos HTML y es posible que queramos modificar uno de dichos elementos para cambiar su contenido de texto por otro. Ya sabemos localizar elementos del DOM, ahora lo que necesitamos es aprender una serie de propiedades para acceder al contenido de los elementos HTML.</p>
+        <div class="seccion">
+            <p><b class="doger"><code>nodeName</code></b> esta propiedad devuelve el nombre del nodo (la etiqueta en mayusculas). Se trata de una propiedad de solo lectura, por lo tanto no modifica el nodo, solo accede a el.</p>
+            <p><b class="doger"><code>nodeType</code></b> esta propiedad devuelve el tipo de nodo (numerico: 1= elemento, 2= texto, 3= comentario). Se trata de una propiedad de solo lectura, por lo tanto no modifica el nodo, solo accede a el.</p>
+
+            <div class="bloques-oscuros margen60"><!-- Manipular  texto -->
+                <h5 class="letra-B" style="margin: 0 0 70px;"><b>Manipular contenido de <span class="naranja">texto</span></b></h5>
+                <p><b class="sky"><code>textContent</code></b><br> esta propiedad devuelve el contenido de texto plano de un elemento en concreto, sin importar su tipo. Tambien pemite cambiar el contenido de texto, por medio de el operador de asigancion (=) seguido del texto en cuestion.</p>
+                <p><b class="sky"><code>innerText</code></b><br> esta propiedad devuelve el contenido de texto que se renderiza (lo que es visible para el usuario) respetando ciertos estilos css que tienen que ver con visibilidad como: display, hidden, text-transform, estos no se renderizan, por lo tanto no lo muestra. Otros estilos que no afectan el contenido textual, sino la presentacion visual (color, font-size, background) si son ignorados. Tambien permite cambiar el contenido usando el operador de asignacion (=)</p>
+                <p><b class="sky"><code>outerText</code></b><br> funciona igual que innerText, teniendo en cuenta el display, de un elemento en concreto. Pero al reemplazar tambien reemplaza la etiqueta contenedora. Para cambiar el contenido usamos el operador de asignacion (=)</p>
+            </div>
+
+            <div class="bloques-oscuros margen60"><!-- Manipular  HTML -->
+                <h5 class="letra-B" style="margin: 0 0 70px;"><b>Manipular contenido de <span class="sky">HTML</span></b></h5>
+
+                <p><code class="sky"><b>innerHTML</b></code><br>
+                    nos permite obtener, reemplazar y añadir html a todo el contenido interno de un elemento. Reemplaza contenido por medio del operador de asignacion (=). Añade contenido por medio de la asignacion y suma (+=), este no es recomendable para añadir mucho contendio ya que reenderiza todo el elemento en cada insercion. Este contenido html se especifica como un string y al momento de inyectarse al DOM, los elementos se convierten a html.
+                </p>
+
+                <p><code class="sky"><b>outerHTML</b></code><br>similar a innerhtml, este devuelve el contenido html dede el exterior, es decir incluyendo al propio elemento contenedor. Tambien es posible modificar con el operador de asignacion. </p>
+                <p><code class="golden"><b>getHTML()</b></code><br> es un metodo moderno que permite obtener el HTML de un elemento al igual que innerhtml, pero no permite modificar, solo obtener.</p>
+
+                <p><code><b class="golden">insertAdjacentHTML(</b><b class="naranja">"posicion"</b>, <b class="naranja">"HTMLString"</b><b class="golden">)</b></code><br> tambien permite añadir contenido html pero a diferencia de innerHTML, permite especificar una posicion relativa a un elemento ya existente donde deseas insertar el html, sin reemplazar el contenido ya existente y sin renderizar todo elemento, sino solo el elemento añadido. Este metodo recibe:</p>
+                <ul>
+                    <p><b class="naranja">posicion:</b> este parametro recibe palabras claves como argumento, que indican donde se inserta el htmlstring.</p>
+                    <ul>
+                        <li><code class="naranja">"beforebegin"</code> Antes del elemento (afuera del nodo)</li>
+                        <li><code class="naranja">"afterbegin"</code> dentro, al principio del contenido del nodo </li>
+                        <li><code class="naranja">"beforeend"</code> dentro, al final del contenido del nodo </li>
+                        <li><code class="naranja">"afterend"</code> despues del elemento (afuera del nodo)</li>
+                    </ul>
+                    <p><b class="naranja">htmlstring:</b> este parametro recibe el html que se va a insertar en forma de texto.</p>
+                </ul>
+
+                <p><code><b class="golden">createElement()</b></code><br> es un metodo que permite crear elementos html usando el DOM, estos elementos son etiquetas en html. Funciona generando un nuevo nodo en el document, que luego podemos modificar, estilizar e insertar en la web. Devuelve la etiqueta que le pasemos por parametro, la cual podemos almacenar en una variable para su eventual manipulacion.</p>
+
+                <h6 class="letra-B margen100"><b>Insertar elementos</b></h6>
+                <p><code><b class="golden">append()</b></code> Inserta uno o varios nodos o texto como últimos hijos</p>
+                <p><code><b class="golden">appendChild()</b></code> inserta un solo nodo como ultimo hijo de un elemento. Devuelve el nodo insertado.</p>
+                <p><code><b class="golden">prepend()</b></code> añade el elemento al inicio de su contenedor</p>
+                <p><code><b class="golden">before()</b></code> inserta el elemento antes de otro elemento existente</p>
+                <p><code><b class="golden">after()</b></code> inserta el elemento despues de otro existente</p>
+
+                <h6 class="letra-B margen100"><b>Eliminar elementos</b></h6>
+                <p><code><b class="golden">remove()</b></code> este metodo permite eliminar de forma directa un elemento, para eso debemos identificar el elemento y usar remove sobre el, y eliminaras el elemento del DOM. </p>
+                <p><code><b class="golden">removeChild()</b></code> este metodo permite eliminar elementos de forma mas especifica, para eso debemos aplicarlo al elemento padre que contiene el elemento hijo que queremos eliminar, pasamos por parametro el elemento hijo, y eliminaras el elemento del DOM. </p>
+
+                <h6 class="letra-B margen100"><b>Clonar elementos</b></h6>
+                <p><code><b class="golden">cloneNode()</b></code> permite duplicar un nodo existente, manteniendo su estructura y contenido. Funciona seleccionando el elemento a clonar, luego empleamos el metodo cloneNode, almacenamos en una variable y podemos insertar en el DOM. CloneNode recibe un parametro boleano si es "true" copia los hijos del nodo, de ser false, no lo hace.</p>
+
+                <h6 class="letra-B margen100"><b>Reemplazar elementos</b></h6>
+                <p><code><b class="golden">replaceWith()</b></code> permite sustituir un elemento selecionado por otro, o inlcuso varios, de forma directa. Funciona en elementos, nodos de texto y comentarios. Por parametro recibe el elemento que sustituira al otro.</p>
+            </div>
+
+            <!-- botones -->
+            <div style="height: 58px;">
+                <button onclick="ejecutarMetodosDeManipulacion('ver-contenidoDeTexto')" class="btn-cambiar-consola">Manipular texto</button>
+                <button onclick="ejecutarMetodosDeManipulacion('ver-contenido-HTML')" class="btn-cambiar-consola">Manipular HTML</button>
+                <button onclick="ejecutarMetodosDeManipulacion('crear-insertar')" class="btn-cambiar-consola">Crear, Insertar y Eliminar</button>
+                <button onclick="ejecutarMetodosDeManipulacion('clonar-reemplazar')" class="btn-cambiar-consola">Clonar, Reemplzar</button>
+            </div>
+            <!-- codigo  -->
+            <div class="codigo-consola" style="margin-top: 0; height: 750px;">
+                <div>
+                    <code>
+                        <b class="azul">const</b> <b class="doger">elemento</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"elemento"</b>)</b> <br>
+                        <b class="azul">const</b> <b class="doger">parrafo</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">".parrafo"</b>)</b> <br><br>
+                    </code>
+
+                    <code id="javascript-manipulaciondelDom"></code>
+
+                    <p id="notas-manipulaciondelDom" style="border: 1px solid gray; display: none; padding: 5px 10px 20px; margin-top: 50px;"></p>
+                </div>
+
+                <div style="width: 520px;">
+
+                    <div class="ElementoDeManipulacion letra-B" style="padding: 5px; border-radius: 10px; background: #da9d47; margin-bottom: 30px;">
+                        <div style="font-size: 2rem; font-weight: bold;">Titulo del elemento</div>
+
+                        <p style="margin: 0;" class="parrafo fondo-azul">
+                            <b style=" text-transform: uppercase;">parrafo</b> que se puede manipular <br>
+                            <span class="fondo-morado">texto dentro de un span</span>
+                            <span style="display: none;">(texto oculto con display)</span>
+                            <span hidden>texto oculto con hidden</span>
+                        </p>
+                    </div>
+
+                    <code>
+                        <b id="consola-manipulaciondelDom-elemento" class="letra-B"></b>
+                        <b id="consola-manipulaciondelDom" class="letra-B"></b>
+                    </code>
+                </div>
+            </div>
+
+            <div class="bloques-oscuros margen60"><!-- Manipular Atributos  -->
+                <h5 class="letra-B" style="margin: 0 0 70px;"><b>Manipular Atributos <span class="sky">HTML</span></b></h5>
+
+                <h6 class="letra-B"><b>Obtener atributos</b></h6>
+                <ul>
+                    <p><code class="doger"><b>attributes</b></code><br> devuelve una coleccion (NamedNodeMap) en vivo que contiene todos los atributos de un nodo/elemento HTML. Cada atributo se representa como un objeto «Attr» con propiedades como "name" y "value". Se puede recorrer con for...of, se usa mas para inspeccion dinamica de nodos.</p>
+                    <p><code class="golden"><b>hasAttributes()</b></code> indica si el elemento tiene atributos HTML. Devuelve un booleano que representa la respuesta.</p>
+                    <p>
+                        <code class="golden"><b>hasAttribute(<span class="naranja">"atributo"</span>)</b></code>
+                        indica si el elemento tiene el atributo que se le indica por parametro. Devuelve un booleano que representa la respuesta.
+                    </p>
+                    <p><code class="golden"><b>getAttributeNames()</b></code> devuelve un array con los atributos del elemento.</p>
+                    <p><code class="golden"><b>getAttribute(<span class="naranja">"atributo"</span>)</b></code> devuelve el valor del atributo que se le indica por parametro.</p>
+                </ul>
+
+                <h6 class="letra-B margen100"><b>manipular atributos</b></h6>
+                <ul>
+                    <li>
+                        <code>
+                            <b class="golden">setAttribute(</b><b class="naranja">"atributo"</b>,
+                            <b class="naranja">"valor"</b></b><b class="golden">)</b>
+                        </code><br>
+                        este metodo nos permite añadir o cambiar un atributo y su valor, si el atributo no existe lo crea, si existe le modifica el valor que indiquemos por parametro.
+                    </li>
+
+                    <li><code>
+                            <b class="golden">toggleAttribute(</b><b class="naranja">"atributo"</b>,
+                            <b class="naranja">"force"</b><b class="golden">)</b>
+                        </code><br>
+                        este metodo nos permite añadir o eliminar un atributo, si el atributo no existe lo crea (auqnue no permite especificar el valor), si existe lo elimina, esto es ideal para alternar visibilidad (hidden, disabled, checked,etc).<br> El parametro force es opcional, representa un booleano que verifica si el atributo esta presente en el elemento, si es true: fuerza que el atributo este presente, si es false: fuerza que el atributo se elimine, (bloquean el toggle).
+                    </li>
+
+                    <li>
+                        <code class="golden">removeAttribute(<b class="naranja">"atributo"</b>)</code><br> este metodo nos permite eliminar un atributo del elemento HTML.
+                    </li>
+                </ul>
+
+                <h6 class="letra-B margen100"><b>manipular y obtener</b></h6>
+
+                    <p>
+                        <code><b class="sky">style</b></code><br> es una propiedad que permite obtener y modificar los estilos CSS en linea, de un elemento html desde el DOM, es como tener acceso al atributo (style="") de html. No elimina estilos que ya esten declarados en el html, solo añade los que se especifiquen.<br><br>
+                        Al ser una propiedad de un objeto, usa camelCase para definir sus propiedades (background-color / backgroundColor). Si se utiliza para lectura, devuelve un [object CSSStyleDeclaration].
+                    </p>
+                    <p>
+                        <code><b class="sky">className</b></code><br> es una propiedad que permite obtener el valor del atributo html: <code class="sky">class</code> como un <span class="naranja">string</span>. Permite reemplazar clases por medio de la asignacion, esto sobreescribe todas las clases que tenga el atributo class, si no se desea eso se debe especificar las clases existentes antes de añadir la nueva. sus metodos equivalentes serian: getAttribute("class") que devuelve el valor del atributo, setAttribute("class",value) que cambiaria el valor del atributo.
+                    </p>
+
+                    <p><code><b class="sky">classList</b></code><br> igual a className permite obtener el valor del atributo html: <code class="sky">class</code> pero como un <span class="aqua">array</span> (DOMTokenList). Al usarse la asignacion (=) por si solo tambien reemplaza todo el contenido, pero classList se diferencia ya que incorpora una serie de <b class="golden">metodos</b> que permiten agregar, eliminar, o alternar clases sin modificar las que ya existen. </p>
+                    <ul>
+                        <li><code><b class="golden">item(<b class="verde">indice</b>)</b></code> devuelve la clase indicada en el indice, null si no existe.</li>
+                        <li><code><b class="golden">contains(<b class="naranja">"clase"</b>)</b></code> indica si la clase que se le pasa por parametro existe en el elemento. Devuelve un booleano que representa la afirmacion o negacion del resultado.</li>
+                        <li><code><b class="golden">add(<b class="naranja">"clase,clases"</b>)</b></code> añase la clase o clases que se le pasan por parametro, si es mas de una clase se deben separar por comas.</li>
+                        <li><code><b class="golden">remove(<b class="naranja">"clase,clases"</b>)</b></code> elimina la clase o clases que se le pasan por parametro, si es mas de una clase se deben separar por comas.</li>
+                        <li><code><b class="golden">toggle(<b class="naranja">"clase"</b><b class="letra-B">, condicion</b>)</b></code> permite alternar la clase que se le pasa por parametro, por medio de un booleano: true si la clase no existe, la añade, false si la clase existe, la elimina. Opcionalmente puede recibir un segundo parametro qeu sirve para establecer una condicion adicional, que de ser verdadera siempre se añadira la clase, de lo contrario siempre se eliminara.</li>
+                        <li><code><b class="golden">replace(</b><b class="naranja">"clase old"</b>, <b class="naranja">"clase new"</b><b class="golden">)</b></code> reemplaza la clase que se establece en el primer parametro por la del segundo parametro.</li>
+                    </ul>
+
+
+            </div>
+
+            <!-- botones -->
+            <div style="height: 58px;">
+                <button onclick="ejecutarManipulacionDeAtributos('Manipular-atributos')" class="btn-cambiar-consola">Manipular atributos</button>
+                <button onclick="ejecutarManipulacionDeAtributos('Manipular-clases')" class="btn-cambiar-consola">Manipular clases</button>
+            </div>
+            <!-- codigo  -->
+            <div class="codigo-consola" style="margin-top: 0; height: 550px;">
+                <div>
+                    <code>
+                        <b class="azul">const</b> <b class="doger">elemento</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"elemento"</b>)</b> <br>
+                        <b class="azul">const</b> <b class="doger">parrafo</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">".parrafo"</b>)</b> <br><br>
+                    </code>
+
+                    <code id="codigo-manipulacionDeAtributos"></code>
+                </div>
+
+                <div style="width: 520px;">
+
+                    <div class="ElementoDeManipulacion letra-B" style="padding: 5px; border-radius: 10px; background: #da9d47; margin-bottom: 30px;">
+                        <div style="font-size: 2rem; font-weight: bold;">Titulo del elemento</div>
+
+                        <p style="margin: 0;" class="parrafo fondo-azul">
+                            <b style=" text-transform: uppercase;">parrafo</b> que se puede manipular <br>
+                            <span class="fondo-morado">texto dentro de un span</span>
+                            <span style="display: none;">(texto oculto con display)</span>
+                            <span hidden>texto oculto con hidden</span>
+                        </p>
+                    </div>
+
+                    <code>
+                        <b id="consola-manipulacionDeAtributos" class="letra-B"></b>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- HTMLCOLLECTION Y NODELIST -->
+        <div>
+            <!-- HTMLCollection -->
+            <p><code class="letra-B">HTMLCollection</code> <button class="btn-flechas" onclick="mostrarExplicacion('mostrar-HTMLCollection')">🔻</button></p>
+            <div id='mostrar-HTMLCollection' style="display: none" class="bloques-ocultos">
+                <p>es un tipo de objeto que representa una coleccion de elementos HTML en el DOM en tiempo real, lo que significa que si modificas elementos del DOM, se actualizan en la estructura.</p>
+                <ul>
+                    <li>Permite acceder a los elementos como si fuera un array: <span class="letra-B">collection[0]</span></li>
+                    <li>Tambien elementos que tienen atributo name:  <span class="letra-B">collection["nombre"]</span></li>
+                    <li>Permite enumerar sus elementos con length: <span class="letra-B">collection.length</span></li>
+                </ul>
+
+                <b class="letra-B">Es devuelto por varios metodos del DOM como:</b>
+                <ul>
+                    <code class="golden"><span class="sky">document</span>.getElementsByTagName()</code> <br>
+                    <code class="golden"><span class="sky">document</span>.getElementsByClassName()</code> <br>
+                    <code class="doger"><span class="sky">document</span>.children</code>
+                </ul>
+
+                <p class="margen100"><b class="letra-B">Convertir a array:</b></p>
+                <p>Esta coleccion no permite metodos para recorrerlos como los arrays: <code class="golden">forEach()</code>, <code class="golden">map()</code> o similares, obtendriás un error (porque no existen). Para evitar este problema, podemos utilizar <span class="letra-B">Array.from()</span> o la reestructuración <b class="letra-B">[...]</b>, y así convertirlo fácilmente en un Array real.</p>
+                <ul>
+                    <li><span class="letra-B">spread operator</span>: <code class="letra-B">[...<span class="sky">document</span>.<span class="golden">getElementsByTagName(<span class="naranja">"etiqueta"</span>)</span>]</code> convierte esta coleccion en un array real, es decir copia cada elemento del HTMLCollection dentro de un nuevo array (quedando como elementos individuales). De esta forma se pueden utilizar todos los metodos de un array.</li>
+                    <li><span class="letra-B">metodo</span>: <code><span class="aqua">Array</span>.<span class="golden">from(<span class="sky">elemento</span>)</span></code> convierte directamente la coleccion en un array real, habilitando sus metodos.</li>
+                    <li><span class="letra-B">bucle manual</span>: <code><span class="morado">for</span>(i = 0; i &lt; <span class="sky">coleccion</span>.<span class="sky">length</span>; i++)</code> recorre la coleccion y la almacena en un array vacio por medio del metodo push().</li>
+                </ul>
+
+                <!-- codigo -->
+                <div class="codigo-consola">
+                    <div>
+
+                        <code>
+                            <b class="letra-B">HTML</b><br>
+
+                            &lt;<b class="azul">div</b>&gt; <br>
+                            &emsp; &emsp;&lt;<b class="azul">article</b>&gt; <br>
+                                &emsp; &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">class</b>=<b class="naranja">"coleccion"</b>&gt; items[0] &lt;/<b class="azul">li</b>&gt;<br>
+                                &emsp; &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">class</b>=<b class="naranja">"coleccion"</b>&gt; items[1] &lt;/<b class="azul">li</b>&gt;<br>
+                                &emsp; &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">class</b>=<b class="naranja">"coleccion"</b>&gt; items[2] &lt;/<b class="azul">li</b>&gt;<br>
+                            &emsp; &emsp;&lt;/<b class="azul">article</b>&gt;<br>
+                            &lt;/<b class="azul">div</b>&gt;
+                        </code>
+                        <br><br>
+
+                        <div>
+                            <div style="background-color: rgb(55, 113, 200); width: 30%; padding: 15px; border-radius: 20px; ">
+                                <li class="coleccion" style="width: 150px; padding: 5px; background-color: chocolate;">item[0]</li>
+                                <li class="coleccion" style="width: 150px; padding: 5px; background-color: rgb(175, 142, 60);">item[1]</li>
+                                <li class="coleccion" style="width: 150px; padding: 5px; background-color: rgb(168, 88, 208);">item[2]</li>
+                            </div>
+                        </div>
+                        <br><br>
+
+                        <code>
+                            <b>HTMLCollection:</b> <br>
+                            <b class="azul">const</b> <b class="doger">Elemento</b> = <b class="sky">document</b>.<b class="golden">getElementsByClassName(<b class="naranja">"coleccion"</b>)</b> <br><br>
+
+                            <b>Convertir a arrays:</b> <br>
+                            <b class="azul">const</b> <b class="doger">spreadOperator</b> = <b class="morado">[</b>...<b class="sky">document</b>.<b class="golden">getElementsByClassName(<b class="naranja">"coleccion"</b>)</b><b class="morado">]</b> <br><br>
+                            <b class="azul">const</b> <b class="doger">ArrayFrom</b> = <b class="aqua">Array</b>.<b class="golden">from</b><b class="morado">(</b><b class="sky">document</b>.<b class="golden">getElementsByClassName(<b class="naranja">"coleccion"</b>)</b><b class="morado">)</b> <br><br>
+                            <b class="azul">const</b> <b class="doger">bucle</b> = <b class="golden">[]</b> <br><br>
+
+                            <b class="morado">for</b><b class="golden">(</b><b class="sky">i</b> = 0;
+                            <b class="sky">i</b> &lt; <b class="doger">Elemento</b>.<b class="sky">length</b>; <b class="sky">i</b>++<b class="golden">) {</b><br>
+                            &emsp; <b class="doger">bucle</b>.<b class="golden">push</b>(<b class="doger">Elemento</b>[<b class="sky">i</b>]) <br>
+                            <b class="golden">}</b>
+                        </code>
+                        <br><br>
+
+                        <button class="btn-consola2" onclick="ejecutarHTMLCollection('Manipular-HTMLCollection')" style="margin-right: 50px;">Manipular HTMLCollection</button>
+                        <button class="btn-consola2" onclick="ejecutarHTMLCollection('Manipular-array')">Manipular Array</button>
+                    </div>
+
+                    <div style="width: 550px;">
+                        <code>
+                            <b id="consola-HTMLCollection"></b>
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NodeList -->
+            <p><code class="letra-B">NodeList</code> <button class="btn-flechas" onclick="mostrarExplicacion('mostrar-NodeList')">🔻</button></p>
+            <div id="mostrar-NodeList" style="display: none;" class="bloques-ocultos">
+                <p>es una coleccion de nodos del DOM (pueden ser elementos, texto, comentarios, etc). Es similar a un array, ya que permite usar la propiedad length y el metodo forEach para recorrerlo, para usar todos los metodos de un array debe convertirse en uno, con spread operator o el metodo from().</p>
+                <ul>
+                    <li>Permite acceder a los elementos como si fuera un array: <span class="letra-B">NodeList[0]</span></li>
+                    <li>Permite enumerar sus elementos con length: <span class="letra-B">NodeList.length</span></li>
+                </ul>
+
+
+                <b class="letra-B">Es devuelto por varios metodos y propiedades del DOM como:</b>
+                <ul>
+                    <code class="golden"><span class="sky">document</span>.querySelectorAll()</code> <br>
+                    <code class="doger"><span class="sky">document</span>.childNodes</code> <br>
+                </ul>
+
+                <table>
+                    <thead style="background-color: #f0f0f0;">
+                        <tr>
+                        <th>🔧 Método / Propiedad</th>
+                        <th>📦 Devuelve</th>
+                        <th>📌 Tipo de NodeList</th>
+                        <th>📝 Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><code>document.querySelectorAll(selector)</code></td>
+                        <td>Elementos que coinciden con el selector CSS</td>
+                        <td>Estático</td>
+                        <td>No se actualiza si el DOM cambia</td>
+                        </tr>
+                        <tr>
+                        <td><code>element.querySelectorAll(selector)</code></td>
+                        <td>Elementos descendientes que coinciden con el selector</td>
+                        <td>Estático</td>
+                        <td>Igual que el anterior, pero dentro de un nodo específico</td>
+                        </tr>
+                        <tr>
+                        <td><code>document.childNodes</code></td>
+                        <td>Nodos hijos del documento</td>
+                        <td>Vivo</td>
+                        <td>Incluye nodos de texto y comentarios</td>
+                        </tr>
+                        <tr>
+                        <td><code>element.childNodes</code></td>
+                        <td>Nodos hijos del elemento</td>
+                        <td>Vivo</td>
+                        <td>Incluye nodos de texto, no solo elementos</td>
+                        </tr>
+                        <tr>
+                        <td><code>range.cloneContents()</code></td>
+                        <td>Nodos clonados dentro del rango</td>
+                        <td>Estático</td>
+                        <td>Menos común, útil para manipular rangos</td>
+                        </tr>
+                        <tr>
+                        <td><code>range.extractContents()</code></td>
+                        <td>Nodos extraídos del rango</td>
+                        <td>Estático</td>
+                        <td>Extrae nodos sin clonarlos</td>
+                        </tr>
+                        <tr>
+                        <td><code>range.createContextualFragment(html)</code></td>
+                        <td>Nodos creados desde HTML</td>
+                        <td>Estático</td>
+                        <td>Devuelve un fragmento con nodos, útil para insertar HTML dinámico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- tabla comparativa -->
+            <p><b class="letra-B">Tabla comparativa</b> <button class="btn-flechas" onclick="mostrarExplicacion('mostrar-tabalaComparativa-HTMLCollectionVsNodeList')">🔻</button></p>
+            <table id="mostrar-tabalaComparativa-HTMLCollectionVsNodeList" style="display: none;">
+                <thead style="background-color: #f0f0f0;">
+                    <tr>
+                    <th>🔧 Característica</th>
+                    <th>📦 NodeList</th>
+                    <th>📦 HTMLCollection</th>
+                    <th>📦 Array</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>¿Qué contiene?</td>
+                    <td>Nodos del DOM (elementos, texto…)</td>
+                    <td>Solo elementos del DOM</td>
+                    <td>Cualquier tipo de dato</td>
+                    </tr>
+                    <tr>
+                    <td>¿Es vivo o estático?</td>
+                    <td>Estático o vivo</td>
+                    <td>Vivo (se actualiza con el DOM)</td>
+                    <td>Estático</td>
+                    </tr>
+                    <tr>
+                    <td>Tiene <code>.length</code></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    </tr>
+                    <tr>
+                    <td>Tiene <code>.forEach()</code></td>
+                    <td>✅ (moderno)</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    </tr>
+                    <tr>
+                    <td>Tiene <code>.map()</code>, <code>.filter()</code></td>
+                    <td>❌ (requiere conversión)</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    </tr>
+                    <tr>
+                    <td>Conversión a array</td>
+                    <td><code>Array.from()</code> o <code>[...nodelist]</code></td>
+                    <td><code>Array.from()</code> o <code>[...collection]</code></td>
+                    <td>No necesita</td>
+                    </tr>
+                    <tr>
+                    <td>Verificación</td>
+                    <td><code>instanceof NodeList</code></td>
+                    <td><code>instanceof HTMLCollection</code></td>
+                    <td><code>Array.isArray()</code></td>
+                    </tr>
+                    <tr>
+                    <td>Uso común</td>
+                    <td><code>querySelectorAll</code>, <code>childNodes</code></td>
+                    <td><code>getElementsByClassName</code>, <code>getElementsByTagName</code></td>
+                    <td>Listas, datos, lógica</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- EVENTOS -->
+        <div>
+            <h3 class="letra-B">Eventos</h3>
+            <p>Se definen como acciones o sucesos que ocurren en el entorno de una aplicacion, desde un clic del raton hasta el envio de un formulario. Los eventos desencadenan respuestas, que permiten configurar como debe comportarse la aplicacion cada vez que ocurre algo especifico. Un evento no es más que una «notificación» de que una característica relevante acaba de suceder.</p>
+            <p>Existen una variedad de eventos como: en el mouse (clic y desplazamiento), en el teclado (al presionar las teclas), en la ventana windows (relacionados con la carga o cambio de tamaño de las ventanas), en formularios (como entrada de datos y envio), y eventos tactiles (relevantes en dispositivos, como toques y deslizamientos). <button onclick="mostrarExplicacion('tablas-eventos')" class="btn-simple 👇">Ver eventos</button></p>
+
+            <div id="tablas-eventos" style="display: none;">
+                                <!-- 📌 Eventos del mouse -->
+                <table border="1">
+                <caption>Eventos del Mouse</caption>
+                <thead>
+                    <tr><th>Evento</th><th>Descripción</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>click</td><td>Cuando se hace clic sobre un elemento</td></tr>
+                    <tr><td>dblclick</td><td>Doble clic</td></tr>
+                    <tr><td>mousedown</td><td>Cuando se presiona el botón del mouse</td></tr>
+                    <tr><td>mouseup</td><td>Cuando se suelta el botón del mouse</td></tr>
+                    <tr><td>mousemove</td><td>Movimiento del mouse dentro del elemento</td></tr>
+                    <tr><td>mouseenter</td><td>El mouse entra en el área del elemento (sin burbujeo)</td></tr>
+                    <tr><td>mouseleave</td><td>El mouse sale del área del elemento (sin burbujeo)</td></tr>
+                    <tr><td>mouseover</td><td>El mouse pasa por encima (con burbujeo)</td></tr>
+                    <tr><td>mouseout</td><td>El mouse sale (con burbujeo)</td></tr>
+                    <tr><td>contextmenu</td><td>Clic derecho (abre menú contextual)</td></tr>
+                </tbody>
+                </table>
+
+                <!-- ⌨️ Eventos del teclado -->
+                <table border="1">
+                <caption>Eventos del Teclado</caption>
+                <thead>
+                    <tr><th>Evento</th><th>Descripción</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>keydown</td><td>Cuando se presiona una tecla</td></tr>
+                    <tr><td>keyup</td><td>Cuando se suelta una tecla</td></tr>
+                    <tr><td>keypress</td><td>(Obsoleto) Cuando se presiona una tecla imprimible</td></tr>
+                </tbody>
+                </table>
+
+                <!-- 🖊️ Eventos de formulario -->
+                <table border="1">
+                <caption>Eventos de Formulario</caption>
+                <thead>
+                    <tr><th>Evento</th><th>Descripción</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>submit</td><td>Cuando se envía un formulario</td></tr>
+                    <tr><td>change</td><td>Cuando cambia el valor de un input/select</td></tr>
+                    <tr><td>input</td><td>Cuando el usuario escribe en un campo</td></tr>
+                    <tr><td>focus</td><td>Cuando un elemento recibe foco</td></tr>
+                    <tr><td>blur</td><td>Cuando un elemento pierde el foco</td></tr>
+                    <tr><td>reset</td><td>Cuando se reinicia un formulario</td></tr>
+                </tbody>
+                </table>
+
+                <!-- 📱 Eventos táctiles -->
+                <table border="1">
+                <caption>Eventos Táctiles</caption>
+                <thead>
+                    <tr><th>Evento</th><th>Descripción</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>touchstart</td><td>Cuando se toca la pantalla</td></tr>
+                    <tr><td>touchend</td><td>Cuando se levanta el dedo</td></tr>
+                    <tr><td>touchmove</td><td>Cuando se arrastra el dedo</td></tr>
+                    <tr><td>touchcancel</td><td>Cuando se cancela el toque</td></tr>
+                </tbody>
+                </table>
+
+                <!-- 🌐 Eventos de ventana y documento -->
+                <table border="1">
+                <caption>Eventos de Ventana y Documento</caption>
+                <thead>
+                    <tr><th>Evento</th><th>Descripción</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>load</td><td>Cuando la página ha cargado completamente</td></tr>
+                    <tr><td>DOMContentLoaded</td><td>Cuando el DOM está listo</td></tr>
+                    <tr><td>resize</td><td>Cuando se cambia el tamaño de la ventana</td></tr>
+                    <tr><td>scroll</td><td>Cuando se hace scroll</td></tr>
+                    <tr><td>unload</td><td>Cuando se abandona la página</td></tr>
+                    <tr><td>beforeunload</td><td>Antes de abandonar la página</td></tr>
+                </tbody>
+                </table>
+
+                <!-- 📦 Eventos de medios y recursos -->
+                <table border="1">
+                <caption>Eventos de Medios y Recursos</caption>
+                <thead>
+                    <tr><th>Evento</th><th>Descripción</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>play</td><td>Cuando se inicia la reproducción</td></tr>
+                    <tr><td>pause</td><td>Cuando se pausa la reproducción</td></tr>
+                    <tr><td>ended</td><td>Cuando termina la reproducción</td></tr>
+                    <tr><td>error</td><td>Cuando ocurre un error al cargar un recurso</td></tr>
+                </tbody>
+                </table>
+            </div>
+
+            <p>Existen varias formas alternativas de manejar eventos en Javascript. Vamos a ver cada una de ellas por separado, con sus particularidades:</p>
+
+            <h4 class="letra-B">Manejar eventos desde HTML</h4>
+            <p>Probablemente, la forma más fácil de trabajar con eventos Javascript es mediante atributos de una etiqueta HTML, aqui los eventos tienen el perfijo «on» seguido del nombre del evento. Sin embargo, aunque es la más sencilla, también es la menos recomendable, pero es un buen punto de partida para comenzar a trabajar con eventos.
+            <br><br>La razon por la que es menos recomendable es que eventualmente podriamos requerir cambiar el nombre de la funcion asociada con onclick sin tener encuenta que el html depende de esas funciones, estos ocacionaria que los eventos no respondan.
+            </p>
+
+            <p><code><b class="sky">onclick</b></code><br> la propiedad onclick en html y javascript se utiliza para asignar una accion que se ejecuta cuando el usuario hace clic en un elemento. Es una forma de manejar eventos de interaccion en la web. Cuando se hace clic en el elemento, ejecuta el codigo javascript que se haya definido (normalmente llamados de funciones), puede usarse directamente en el HTML o mediante Javascript.</p>
+            <code class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    &lt;<b class="azul">button</b> <b class="sky">onclick</b>=<span class="naranja">"<b class="golden">llamadoDefuncion()</b>"</span>&gt; &lt;/<b class="azul">button</b>&gt;
+                </p>
+                <div></div>
+            </code>
+
+            <h4 class="letra-B">Manejar eventos desde Javascript</h4>
+            <!-- addEventListener -->
+            <p class="margen60"><code class="golden" style="font-weight: bold;">addEventListener()</code><br> es el metodo que ofrece la capacidad de escuchar eventos que ocurren en la pagina web y permite reaccionar ante ellos. Detecta clics, teclas presionadas, movimientos del mouse, y al obtener estos eventos podemos desencadenar funciones que reaccionan a ellos. Esta funcion puede ser anonima y declararse en el mismo metodo, pero es mas recomendable pasarsela como callback.</p>
+            <code class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="sky">element</b>.<b class="golden">addEventListener(</b><b>tipo de evento</b>, <b class="azul">funcionCAllback</b>, <b class="golden">{<b class="letra-B">opciones</b>}</b><b class="golden">)</b>
+                </p>
+                <button class="fondo-golden" onclick="mostrarExplicacion('explicacion-addEventListener')">Ver mas</button>
+            </code>
+            <div id="explicacion-addEventListener" style="display: none;">
+                <p><b class="letra-B">tipo de evento:</b> este parametro recibe como argumento el nombre del evento como click, keydown, submit.</p>
+                <p><b class="letra-B">funcionCallback:</b> este parametro recibe como argumento la funcion que se ejecuta como respuesta al evento.</p>
+                <p><b class="letra-B">opciones:</b> este parametro recibe como argumento un objeto opcional que contiene configuraciones. Estos son booleanos que al ser true se activan, por defecto son "false". </p>
+                <ul>
+                    <li><b class="morado">{<b class="sky">once:</b> <b class="azul">true</b>}</b> indica que la funcion se ejecuta solo una vez, luego elimina el listener</li>
+                    <li><b class="morado">{<b class="sky">capture:</b><b class="azul">true</b>}</b> dispara el evento al inicio en la fase de captura(capture), en lugar de al final(bubble).</li>
+                    <li><b class="morado">{<b class="sky">passive:</b><b class="azul">true</b>}</b> la función nunca llama a .preventDefault(), mejorando así el rendimiento.</li>
+                </ul>
+            </div>
+
+            <!-- removeEventListener -->
+            <p><code class="golden"><b>removeEventListener()</b></code><br> sirve para eliminar un listener previamente registrado, evitando que se ejecute cuando vuelva a ocurrir el evento. Su estructura es igual a addEventListener, recibe el nombre del evento y la funcion que se va a remover, aqui es necesario que la funcion sea callback, si es anonima no se podra remover. Si el listener tenia alguna opcion tambien se debe especificar en remove. <p>
+
+            <!-- botones -->
+            <div style="height: 58px;margin-top: 100px;">
+                <button onclick="ejecutarEventos('con-propiedades')" class="btn-cambiar-consola">Evento con propiedades</button>
+                <button onclick="ejecutarEventos('con-metodos')" class="btn-cambiar-consola">Evento con metodos</button>
+                <button onclick="ejecutarEventos('remover-eventos')" class="btn-cambiar-consola">Remover Eventos</button>
+            </div>
+            <!-- codigo  -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div>
+                    <code>
+                        <b class="verde">//Selecionamos cada boton por su clase:</b><br>
+                        <b class="azul">const</b> <b class="doger">botonConPropiedad</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">".button"</b>)</b> <br>
+                        <b class="azul">const</b> <b class="doger">botonConMetodo</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">".button2"</b>)</b> <br><br>
+                    </code>
+
+                    <code id="javascript-eventos">
+                    </code>
+                </div>
+                <div>
+                    <code>
+                        <b id="consola-eventos"></b>
+                    </code>
+                </div>
+            </div>
+            <!-- cambiar evento -->
+            <div id="cambiar-eventoDelMouse"></div>
+
+            <!-- Objeto Event -->
+            <div>
+                <h3 class="letra-B">Objeto <span class="sky">event</span></h3>
+                <p>Los eventos son objetos generados por acciones del usuario, estos objetos almacenan informacion relacionada con la naturaleza del evento en si. Event es contextual, solo existe dentro del manejador de eventos (la funcion que se pasa como argumento al escuchador de eventos, o a los atributos html de eventos). </p>
+                <p>Por ejemplo: en un evento de tipo "click", podriamos saber con que boton del raton se hizo click, en que punto de la pantalla se hizo, cual fue el elemento que lo activo, esto y muchos detalles mas almacenan los eventos. Con esta informacion podemos manipular las propiedades del objeto event como el <code class="doger">target</code> (objetivo), que representa el elemento que lo activo. <button onclick="mostrarExplicacion('tabla-propiedadesDeeventoClick')" class="btn-simple">Propiedades de evento click 👇</button></p>
+                <table style="display: none;" id="tabla-propiedadesDeeventoClick">
+                    <thead>
+                        <tr style="background-color:#f2f2f2;">
+                        <th>Propiedad</th>
+                        <th>Valor</th>
+                        <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>type</td>
+                        <td>"click"</td>
+                        <td>Tipo de evento que ocurrió</td>
+                        </tr>
+                        <tr>
+                        <td>target</td>
+                        <td>button</td>
+                        <td>Elemento que disparó el evento</td>
+                        </tr>
+                        <tr>
+                        <td>currentTarget</td>
+                        <td>button</td>
+                        <td>Elemento que tiene el listener registrado</td>
+                        </tr>
+                        <tr>
+                        <td>pointerType</td>
+                        <td>"mouse"</td>
+                        <td>Dispositivo que generó el evento (mouse, touch, pen)</td>
+                        </tr>
+                        <tr>
+                        <td>ctrlKey</td>
+                        <td>false</td>
+                        <td>¿La tecla CTRL estaba presionada?</td>
+                        </tr>
+                        <tr>
+                        <td>altKey</td>
+                        <td>false</td>
+                        <td>¿La tecla ALT estaba presionada?</td>
+                        </tr>
+                        <tr>
+                        <td>shiftKey</td>
+                        <td>false</td>
+                        <td>¿La tecla SHIFT estaba presionada?</td>
+                        </tr>
+                        <tr>
+                        <td>clientX</td>
+                        <td>43</td>
+                        <td>Coordenada X del clic dentro de la ventana</td>
+                        </tr>
+                        <tr>
+                        <td>clientY</td>
+                        <td>16</td>
+                        <td>Coordenada Y del clic dentro de la ventana</td>
+                        </tr>
+                        <tr>
+                        <td>detail</td>
+                        <td>1</td>
+                        <td>Número de veces que se ha hecho clic</td>
+                        </tr>
+                        <tr>
+                        <td>isTrusted</td>
+                        <td>true</td>
+                        <td>Indica si el evento fue generado por el usuario (no por script)</td>
+                        </tr>
+                        <tr>
+                        <td>timeStamp</td>
+                        <td>(número)</td>
+                        <td>Momento en que ocurrió el evento (ms desde carga)</td>
+                        </tr>
+                        <tr>
+                        <td>bubbles</td>
+                        <td>true</td>
+                        <td>¿El evento burbujea hacia elementos padres?</td>
+                        </tr>
+                        <tr>
+                        <td>cancelable</td>
+                        <td>true</td>
+                        <td>¿Se puede cancelar con <code>preventDefault()</code>?</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Hasta ahora, al trabajar con <code class="golden">addEventListener()</code>, hemos indicado como segundo parámetro del metodo, una function sin parámetros. Sin embargo, podemos definir un parámetro (con el nombre que queramos, por ejemplo, <code class="sky">event</code> ) que nos va a proporcionar información interesante sobre el evento</p>
+
+                <!-- botones -->
+                <div style="height: 58px;margin-top: 100px;">
+                    <button onclick="ejecutarObjetoEvent('propiedades-objeto-event')" class="btn-cambiar-consola">Propiedades del Objeto Event</button>
+                    <button onclick="ejecutarObjetoEvent('propiedad-target')" class="btn-cambiar-consola">Propiedad target</button>
+                </div>
+                <!-- codigo -->
+                <div class="codigo-consola" style="margin-top: 0;">
+                    <div>
+                        <code>
+                            <div id="codigo-ObjetoEvent"></div>
+                        </code>
+                    </div>
+
+                    <div>
+                        <div id="manipularTarget" style="background: #2d2c2c;padding: 10px;">
+                            <button class="btn-consola2">boton</button>
+                            <p class="fondo-aqua" style="margin: 0;">contenido en parrafo</p>
+                            <div class="fondo-morado">contenido en div</div>
+                        </div>
+                        <br>
+
+                        <div style="display: flex; flex-direction: column;gap: 20px;">
+                            <div style="border: 1px white solid; height: 300px; padding: 10px;">
+                                <code><b id="consola-objetoEvent"></b></code>
+                            </div>
+                            <div style="border: 1px white solid; height: 300px; padding: 10px;">
+                                <code><b id="consola-objetoEvent2"></b></code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- comportamientos por defecto -->
+                <div>
+                    <h4 class="letra-B">Comportamiento por defecto</h4>
+                    <p>El comportamiento por defecto se refiere a la acción o respuesta que ocurre automáticamente cuando no se especifica una instrucción diferente. Es un concepto muy común en programación, abordaremos el tema en formularios html, generalmente los formularios intentan enviar datos a un servidor, refrescando la pagina y perdiendo cualquier informacion no guardada.</p>
+                    <p>Los botones que se ecuentran en el contexto del tag <code class="azul">form</code> sin especificar el atributo "type", por defecto seran del tipo "submit", al ser presionados envian datos al mismo URL usando el metodo get. Este comportamiento podemos evitarlo de varias formas, veamos como solucionarlo con Javascript.</p>
+
+                    <p class="margen60"><code class="golden"><b>preventDefault()</b></code><br> es un método en JavaScript que se usa para cancelar el comportamiento por defecto de un evento. Es especialmente útil cuando quieres controlar lo que ocurre al interactuar con elementos como formularios, enlaces, botones, etc. Si usas preventDefault() pero el evento no tiene comportamiento por defecto, no pasa nada. Funciona cambiando la propiedad del evento <code class="doger">defaultPrevented</code> a true.</p>
+
+                    <!-- codigo -->
+                    <div class="codigo-consola">
+                        <div>
+                            <code>
+                            <b class="azul">const</b> <b class="doger">details</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">"details"</b>)</b> <br>
+                            <b class="azul">const</b> <b class="doger">formulario</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">"formulario"</b>)</b> <br><br>
+
+                            </code>
+                            <code>
+                                <b class="letra-B">Añadir preventDefault <button class="añadirpreventDefault btn-consola2">Añadir</button></b> <br>
+
+                                <b class="doger">details</b>.<b class="golden">addEventListener(</b><b class="naranja">"click"</b>, <b class="morado">(<b class="sky">event</b>)</b> <b class="azul">=></b> <b class="morado">{</b> <br>
+                                &emsp; <b class="sky">event</b>.<b class="golden">preventDefault()</b><br>
+                                <b class="morado">}</b><b class="golden">)</b><br><br>
+                            </code>
+                            <code>
+                                <b class="doger">formulario</b>.<b class="golden">addEventListener(</b><b class="naranja">"click"</b>, <b class="morado">(<b class="sky">event</b>)</b> <b class="azul">=></b> <b class="morado">{</b> <br>
+                                &emsp; <b class="sky">event</b>.<b class="golden">preventDefault()</b><br>
+                                <b class="morado">}</b><b class="golden">)</b><br><br>
+                            </code>
+
+                            <p class="letra-B">elementos</p>
+                            <details class="fondo-azul" style="width: 40%; padding: 10px;">
+                                <li>comportamiento por defecto es desplegar una seccion oculta</li>
+                                <li>comportamiento por defecto es desplegar una seccion oculta</li>
+                                <li>comportamiento por defecto es desplegar una seccion oculta</li>
+                            </details>
+
+                            <form class="fondo-morado formulario" style="width: 40%; margin-top: 20px;padding: 10px;">
+                                <input style="border: white solid 1px;width: 150px; height: 25px;">
+                                <button style="font-size: 1.2rem;" class="fondo-golden">enviar</button>
+                            </form>
+                        </div>
+                        <div>
+                            <code>
+                                <b id="consola-preventDefault"></b>
+                            </code>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- delegation pattern -->
+            <div>
+                <h4 class="letra-B">Delegation Pattern</h4>
+                <p>El patron de delegacion, es una tecnica que optimiza la gestion de eventos. En lugar de asignar un evento a cada elemento individual, se delega la escucha del evento a un elemento padre. Asi el elemento padre puede reconocer y gestionar eventos de sus hijos. Este método reduce el número de listeners activos en el documento, delegando la responsabilidad al elemento padre.</p>
+
+                <div class="codigo-consola">
+                    <div>
+                        <div id="elementosDinamicos">
+                            <div>Opcion 1</div>
+                            <div>Opcion 2</div>
+                            <div>Opcion 3</div>
+                            <div>Opcion 4</div>
+                        </div>
+                        <br>
+
+                        <code>
+                            <b class="letra-B">Asignar eventos individuales a cada item</b><br>
+                            <b class="azul">const</b> <b class="doger">elementosDinamicos</b> = <b class="sky">document</b>.<b class="golden">querySelectorAll(<b class="naranja">"#elementosDinamicos div"</b>)</b> <br><br>
+
+                            <b class="doger">elementosDinamicos</b>.<b class="golden">forEach(</b><b class="sky">item</b> <b class="azul">=></b> <b class="morado">{</b> <br>
+                            &emsp; <b class="sky">item</b>.<b class="golden">addEventListener(</b><b class="naranja">"click"</b>, <b class="morado">(<b class="sky">event</b>)</b> <b class="azul">=></b> <b class="morado">{</b> <br>
+
+                            &emsp; &emsp; <b class="sky">event</b>.<b class="doger">target</b>.<b class="sky">classList</b>.<b class="golden">toggle(<b class="naranja">"fondo-morado"</b>)</b><br>
+                            &emsp; <b class="morado">}</b><b class="golden">)</b><br>
+                            <b class="morado">}</b><b class="golden">)</b><br><br>
+                        </code>
+
+                        <code>
+                            <b class="letra-B">Usar el Delegation Pattern (Recomendado)</b><br>
+                            <b class="azul">const</b> <b class="doger">elementosDinamicos</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"elementosDinamicos"</b>)</b> <br><br>
+
+                            <b class="doger">elementosDinamicos</b>.<b class="golden">addEventListener(</b><b class="naranja">"click"</b>, <b class="morado">(<b class="sky">event</b>)</b> <b class="azul">=></b> <b class="morado">{</b> <br>
+                            &emsp; &emsp; <b class="sky">event</b>.<b class="doger">target</b>.<b class="golden">closest(<b class="naranja">"#elementosDinamicos div"</b>)</b>.<b class="sky">classList</b>.<b class="golden">toggle(<b class="naranja">"fondo-morado"</b>)</b><br>
+                            <b class="morado">}</b><b class="golden">)</b><br><br>
+                        </code>
+                    </div>
+
+                    <div>
+                        <code>
+                            <b id="consola-delegationPattern"></b>
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- percistencia de datos -->
+        <div>
+            <h3 class="letra-B">Persistencia de Datos</h3>
+            <p>Una de las limitaciones que podemos tener en Javascript cliente (navegador) es que a priori no es posible guardar de forma persistente nuestros datos, de forma que cuando recargues la página, continue conservando esos datos. Sin embargo, existe un mecanismo de navegador llamado LocalStorage que permite hacer algo similar: guardar los datos que le indiquemos en el propio navegador del usuario, de modo que posteriormente pueda recuperarlos.</p>
+
+            <h4 class="sky">localStorage</h4>
+            <p> El (API) LocalStorage, como su propio nombre indica, es un almacén que permite guardar datos de forma local, en nuestro navegador. Esto es importante porque hay que tener en cuenta que los datos sólo serán accesibles por el usuario que los ha guardado, y en el navegador que lo ha hecho, a diferencia de una base de datos completa. Para trabajar con Local Storage, existen dos métodos.</p>
+            <ul>
+                <li>localStorage Solo puede almacenar cadenas de texto (string), cada dato guardado se identifica con un nombre, que será un <span class="naranja">string</span>.
+                y sus valores se guardan siempre como <span class="naranja">string</span>. Si tienes objetos o arrays, pasalos a JSON.</li>
+                <li>Para guardar un arreglo o un objeto de JavaScript y poder recuperarlo más tarde, debes usar <code class="sky">JSON</code>.<code class="golden">stringify()</code> antes de guardarlo, y <code class="sky">JSON</code>.<code class="golden">parse()</code> al recuperarlo</li>
+                <li>Los datos se guardan por dominio. Desde un dominio diferente no puedes recuperar esos datos.</li>
+                <li>Si utilizas otro navegador, no tendrás los datos, ya que se guardan en el navegador. Puedes verlos desde el Dev Tools, en la pestaña Applications, sección LocalStorage.</li>
+            </ul>
+
+            <h5 class="letra-B"><span class="golden">Metodos</span> y <span class="sky">Propiedades</span> de LocalStorage</h5>
+            <ul>
+                <li><code><b class="golden">setItem(</b><b class="naranja">"nombre"</b>,<b class="naranja">"valor"</b><b class="golden">)</b></code> Este método se usa para guardar valores en Local Storage. Permite agregar información a la misma y se estructura con dos parámetros: una clave (nombre) y un valor. Aunque convierte automáticamente cualquier cosa que no sea una cadena de texto a un string simple, es mejor hacer la conversión con JSON.stringify() antes de guardarlo.</li>
+                <li><code><b class="golden">getItem(<b class="naranja">"nombre"</b>)</b></code> (obtener elemento) Una vez almacenada la información, este método la recupera para su uso en la aplicación. Devuelve la información asociada al dato con el nombre.</li>
+                <li><code><b class="golden">removeItem(<b class="naranja">"nombre"</b>)</b></code> (eliminar elemento) Elimina el dato guardado en "nombre".</li>
+                <li><code><b class="doger">length</b></code> (obtener longitud) Devuelve la cantidad de elementos de datos almacenados en la página actual.</li>
+                <li><code><b class="golden">key(<b class="verde">indice</b>)</b></code> Muestra la key del elemento guardado en la posición number del localStorage.</li>
+                <li><code><b class="golden">clear()</b></code> Vacía todos los datos del almacén del localStorage para esta página. No borra las que estan almacenadas en el navegador</li>
+            </ul>
+
+
+            <!-- botones -->
+            <div style="height: 58px;margin-top: 100px;">
+                <button onclick="ejecutarLocalStorage('GuardaryRemoverStrings')" class="btn-cambiar-consola">Guardar y Remover Strings</button>
+                <button onclick="ejecutarLocalStorage('GuardarArreglosyObjetos')" class="btn-cambiar-consola">Guardar arreglos y objetos</button>
+                <button onclick="ejecutarLocalStorage('FuncionCrearArrayTareas')" class="btn-cambiar-consola">Funcion para crear un array de tareas</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div>
+                    <code id="codigo-localStorage">
+                    </code>
+                </div>
+
+                <div style="width: 800px;">
+                    <code>
+                        <b id="consola-localStorage"></b>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Proyecto lista de compras -->
+        <h3 class="letra-B">Proyecto Dom: Lista de compras</h3>
+        <div class="proyecto-listaDeCompras">
+            <button id="btn-modoClaroyoscuro">modo ☀️</button>
+            <div class="formulario">
+                <h6 class="letra-B">Lista de Compras</h6>
+                <form style="display: inline-block;">
+                    <input type="text" placeholder="Ingrese Producto">
+                    <button>Añadir</button>
+                </form>
+                <button id="btn-resetearProyectoListaDeCompras">Reset</button>
+
+                <ul style="padding: 0; margin-bottom: 10px;">
+                    <!-- <li>Lista de contenido
+                        <div>
+                            <span class="btn-delete">Borrar</span> <span class="btn-edit">Editar</span>
+                        </div>
+                    </li> -->
+                </ul>
+                <div id="confirmar-peticion" style="display: none;">Deseas eliminar este elemento? <span class="btn-delete-confirm">Confirmar</span></div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script src="./dom.js"></script>
+</body>
+</html>

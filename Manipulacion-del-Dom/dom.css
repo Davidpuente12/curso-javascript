@@ -1,0 +1,90 @@
+/* Codigo HTML de ejemplo */
+.codigoHTML{
+    display: flex; 
+    gap: 300px;
+    background: #252525; 
+    padding: 15px;
+    font-size: 1.8rem;
+    margin: 20px auto;
+}
+.codigoHTML div:nth-child(1){
+    font-family: monospace;
+}
+#container{
+    width: 220px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: solid 4px rgb(254, 210, 99); 
+    padding: 8px; 
+    border-radius: 20px;
+}
+
+/* PROYECTO DOM: LISTA DE COMPRAS */
+.proyecto-listaDeCompras{
+    background-color: #171616;
+    padding: 40px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}.formulario{
+    background-color: #1b2444;
+    width: 500px;
+    padding: 30px 20px;
+    box-shadow: 0 0 20px rgba(164, 162, 162, 0.5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.4rem;
+}.proyecto-listaDeCompras h6{
+    margin-bottom: 40px;
+    margin-top: 0;
+}.proyecto-listaDeCompras input{
+    height: 40px;
+    width: 280px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    font-weight: bold;
+}.proyecto-listaDeCompras > button{
+    position: relative;
+    bottom: 110px;
+    right: 450px;
+}
+.proyecto-listaDeCompras button{
+    height: 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    border: 1px white solid;
+    border-radius: 10px;
+}.proyecto-listaDeCompras #btn-resetearProyectoListaDeCompras{
+    background-color: red;
+    border: none;
+    margin-left: 70px;
+}
+.proyecto-listaDeCompras li{
+    background-color: rgb(71, 71, 71);
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}.proyecto-listaDeCompras #confirmar-peticion{
+    background-color: rgb(246, 214, 214);
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(39, 39, 39);
+    display: flex; 
+    justify-content: space-between; 
+}.btn-delete-confirm, .btn-delete{
+    font-size: 1.3rem;
+    color: rgb(222, 62, 62);
+}.btn-edit{
+    font-size: 1.3rem;
+    color: rgb(206, 175, 63);
+}
+/* cambiar tema */
+.tema-claro-container{
+    background-color: #c2c2c2;
+    
+}.tema-claro-formulario{  
+    background-color:#2f6db9 ;
+}

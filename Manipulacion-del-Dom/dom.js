@@ -2,6 +2,7 @@
 const temas = [
     //HOME
     "Home",
+    "Proyectos-Dom",
     //datosPrimitivos
     "explicacion-strings",
     "explicacion-number",
@@ -211,6 +212,15 @@ function ejecutarMetodosDeBusqueda(tipo){
     }   
 }ejecutarMetodosDeBusqueda("metodos-tradicionales")
 
+//propiedades de busqueda
+const botonesPropiedadesBusqueda = document.querySelectorAll('.btn-propiedades-busqueda button')
+botonesPropiedadesBusqueda.forEach((boton, index) => {
+    boton.addEventListener('click', () => {
+        if(index === 0) ejecutarPropiedadesDom('buscar-elementos')
+        else if(index === 1) ejecutarPropiedadesDom('buscar-nodos')
+    })
+})
+
 function ejecutarPropiedadesDom(tipo){
 
     const consola = document.getElementById("consola-propiedades")
@@ -234,9 +244,7 @@ function ejecutarPropiedadesDom(tipo){
 
     if(tipo == "buscar-nodos"){
         consola.innerHTML = `
-        <p style="border-bottom: rgb(254, 210, 99) 3px solid; width: 175px" >Buscar nodos:</p>
-
-        <ul style="padding: 0;">    
+        <ul style="padding: 0; margin: 0">    
             <li>
                 <b class="sky">nodoLista</b>.<b class="doger">parentNode</b> ${nodoLista.parentNode}  <br>
                 <b class="sky">nodoLista</b>.<b class="doger">parentNode</b>.<b class="doger">nodeName</b> ${nodoLista.parentNode.nodeName} 
@@ -277,9 +285,7 @@ function ejecutarPropiedadesDom(tipo){
     }
     else if(tipo == "buscar-elementos"){
         consola.innerHTML = `
-        <p style="border-bottom: rgb(254, 210, 99) 3px solid; width: 230px" >Buscar elementos:</p>
-
-        <ul style="padding: 0">
+        <ul style="padding: 0; margin: 0">
             <li>
                 <b class="sky">nodo</b>.<b class="doger">children</b> ${nodo.children} <br>
                 <b class="aqua">arrayHTMLCollection</b>.<b class="doger">nodeName</b> ${Array.from(nodo.children).map(n => n.nodeName)} 
@@ -323,6 +329,7 @@ function ejecutarPropiedadesDom(tipo){
     }
     
 }ejecutarPropiedadesDom()
+
 
 //metodos y propiedades de manipulacion de elementos
 function ejecutarMetodosDeManipulacion(tipo){
@@ -1193,133 +1200,5 @@ function ejecutarHTMLCollection(tipo){
     
 }
 
-//Proyecto DOM: Lista de Compras
-function proyectoDOM(){
-    const listaDeCompras = document.querySelector(".proyecto-listaDeCompras form")
-    const lista = document.querySelector(".proyecto-listaDeCompras ul")
-    const modo = document.getElementById("btn-modoClaroyoscuro")
 
-    const confirmarPeticion = document.getElementById("confirmar-peticion")
-    const btnReset = document.getElementById("btn-resetearProyectoListaDeCompras")
-    let input = document.querySelector(".proyecto-listaDeCompras input")
 
-    //crear elementos
-    function crearElementos(input){
-        let nuevo = document.createElement("li")
-        nuevo.textContent = input
-
-        let botonDelete = document.createElement("span")
-        botonDelete.textContent = " Borrar"
-        botonDelete.classList.add("btn-delete")
-        
-        let botonEdit = document.createElement("span")
-        botonEdit.textContent = " Editar"
-        botonEdit.classList.add("btn-edit")
-        
-        let nuevodiv = document.createElement("div")
-        nuevodiv.append(botonDelete,botonEdit)
-        nuevo.append(nuevodiv)
-        lista.append(nuevo)
-    }
-    //guardar valores en almacenamiento local
-    function Guardarinputs(input){
-        let almacen = JSON.parse(localStorage.getItem("item") || "[]") 
-        almacen.push(input) 
-        localStorage.setItem("item", JSON.stringify(almacen))
-    }
-    //obtener valores del almacenamiento local
-    function traerLocalStorage(){
-        const almacenLocalStorage = JSON.parse(localStorage.getItem("item") || "[]")
-            almacenLocalStorage.forEach(item => {
-            crearElementos(item)
-        })
-    }traerLocalStorage()
-
-    //guardar elementos de la lista en almacenamiento local
-    function GuardarLista(){
-        const elementos = Array.from(lista.querySelectorAll("li")).map(item => 
-            item.firstChild.textContent)
-
-            localStorage.setItem("item", JSON.stringify(elementos))
-    }
-
-    //Boton de enviar
-    listaDeCompras.addEventListener("submit", (event) => {
-        event.preventDefault()
-        let valor = input.value
-
-        if(valor){
-            crearElementos(valor)
-            Guardarinputs(valor)
-            console.log(localStorage)
-            input.value = ""
-        }
-    })
-
-    //Boton de borrar y editar
-    lista.addEventListener("click", (event) => {
-        if(event.target.classList.contains("btn-delete")){
-            confirmarPeticion.style.display = "flex"
-
-            confirmarPeticion.addEventListener("click", (evento) => {
-                if(evento.target.classList.contains("btn-delete-confirm")){
-                    event.target.closest("li").remove()
-                    GuardarLista()
-                    confirmarPeticion.style.display = "none"
-                }else if(evento.target){
-                    confirmarPeticion.style.display = "none"
-                }
-            })   
-        }
-        else if(event.target.classList.contains("btn-edit")){
-            let input = document.querySelector(".proyecto-listaDeCompras input").value
-            if(input == ""){
-                confirmarPeticion.style.display = "flex"
-                confirmarPeticion.textContent = "Se debe rellenar el campo"
-            }
-            else{
-                confirmarPeticion.style.display = "none"
-                event.target.closest("li").firstChild.textContent = input
-                GuardarLista()
-            }
-        }
-    })
-
-    //boton de tema
-    
-    modo.addEventListener("click", () => {
-
-        if(modo.textContent == "modo ☀️"){
-            modo.textContent = "modo 🌙"
-            modo.style.border = "black 2px solid"
-            modo.style.color = "black"
-        }
-        else if(modo.textContent == "modo 🌙"){
-            modo.textContent = "modo ☀️"
-            modo.style.border = "white 2px solid"
-            modo.style.color = "white"
-        }
-        
-        document.querySelector(".proyecto-listaDeCompras").classList.toggle("tema-claro-container")
-        document.querySelector(".proyecto-listaDeCompras div").classList.toggle("tema-claro-formulario")
-       
-        const tema = 
-        document.querySelector(".proyecto-listaDeCompras").classList.contains("tema-claro-container") ? "claro" : "oscuro";
-        localStorage.setItem("tema",tema)
-    })
-    const temaActual = localStorage.getItem("tema")
-    if(temaActual == "claro"){
-        document.querySelector(".proyecto-listaDeCompras").classList.add("tema-claro-container")
-        document.querySelector(".proyecto-listaDeCompras div").classList.add("tema-claro-formulario")
-    }else if(temaActual == "oscuro"){
-        document.querySelector(".proyecto-listaDeCompras").classList.remove("tema-claro-container")
-        document.querySelector(".proyecto-listaDeCompras div").classList.remove("tema-claro-formulario")
-    }
-
-    //boton de resetear
-    btnReset.addEventListener("click", () => {
-        localStorage.clear()
-    })
-
-    
-}proyectoDOM()

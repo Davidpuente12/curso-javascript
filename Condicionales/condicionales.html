@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecucion condicional</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+    <nav>
+         <button 
+            onclick="window.location.href='../pagina.html'">
+            Home 🏠
+        </button>
+    </nav>
+
+    <!-- EJECUCION CONDICIONAL -->
+    <section id="Ejecucion-condicional">
+        <h2>Ejecucion condicional</h2>
+        <p>La ejecución condicional es un concepto clave en programación que nos permite tomar diferentes caminos en nuestro código según ciertas condiciones. Esto se logra mediante el uso de operadores de comparación, los cuales evalúan expresiones para determinar si son verdaderas o falsas. Esta evaluación nos facilita la toma de decisiones dentro del código, permitiendo ejecutar ciertas partes solo si las condiciones establecidas se cumplen.</p>
+
+        <h4 class="letra-B">Operadores de comparacion</h4>
+        <p> son herramientas esenciales en el desarrollo de software que permiten comparar dos valores. Dependiendo de la comparación realizada, estas herramientas devuelven un valor booleano (verdadero o falso).</p>
+        <table>
+            <tr>
+                <th>Operador</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+                <th>Resultado</th>
+            </tr>
+            <tr>
+                <td>==</td>
+                <td>Compara si dos valores son iguales en valor</td>
+                <td><code>5 == "5"</code></td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td>===</td>
+                <td>Igualdad estricta, compara dos valores en valor y tipo</td>
+                <td><code>5 === "5"</code></td>
+                <td><code>false</code></td>
+            </tr>
+            <tr>
+                <td>!=</td>
+                <td>Desigualdad (sin tipo)</td>
+                <td><code>5 != "5"</code></td>
+                <td><code>false</code></td>
+            </tr>
+            <tr>
+                <td>!==</td>
+                <td>Desigualdad estricta (con tipo)</td>
+                <td><code>5 !== "5"</code></td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td>&gt;</td>
+                <td>Mayor que</td>
+                <td><code>7 &gt; 5</code></td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td>&lt;</td>
+                <td>Menor que</td>
+                <td><code>3 &lt; 5</code></td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td>&gt;=</td>
+                <td>Mayor o igual que</td>
+                <td><code>5 &gt;= 5</code></td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <td>&lt;=</td>
+                <td>Menor o igual que</td>
+                <td><code>4 &lt;= 5</code></td>
+                <td><code>true</code></td>
+            </tr>
+        </table>
+
+        <h4 class="letra-B">Operadores Logicos</h4>
+        <p> Los operadores lógicos son fundamentales para manejar condiciones y tomar decisiones en nuestros programas. Son tres: AND, OR y NOT. Estos operadores nos permiten validar múltiples condiciones de manera simultánea o individual.</p>
+        <table>
+            <tr>
+                <th>Operador</th>
+                <th>Descripción</th>
+                <th style="width: 250px;">Ejemplo</th>
+            </tr>
+            <tr>
+                <td>&&</td>
+                <td><b class="letra-B">Operador AND (y)</b> se utiliza cuando queremos verificar si múltiples condiciones son verdaderas al mismo tiempo. Si todas las condiciones que se evalúan son verdaderas, el resultado será true; de lo contrario, será false.</td>
+                <td><code> (A === B && A === C)</code></td>
+            </tr>
+            <tr>
+                <td>||</td>
+                <td><b class="letra-B">Operador OR (o)</b>
+                    Evalua que al menos una de varias condiciones se cumpla. Si al menos 
+                    una condición es verdadera, el resultado será true. retorna falso: (
+                    false, 0, "", NaN, null, undefined).
+                </td>
+                <td><code>(A == B || A == C)</code></td>
+            </tr>
+            <tr>
+                <td>!</td>
+                <td><b class="letra-B">Operador NOT (no)</b> resulta muy útil cuando queremos invertir el resultado de una evaluación. Si aplicamos NOT a una condición, convertimos true en false y viceversa.</td>
+                <td><code>!(A === C)</code></td>
+            </tr>
+        </table>
+
+        <!-- Estructuras de control -->
+        <h3 class="letra-B">Estructuras de control</h3>
+        <p> estas estructuras nos permiten decidir qué parte de nuestro código se ejecutará basado en ciertas condiciones. En JavaScript, la estructura condicional más básica es la sentencia if, que nos permite ejecutar un bloque de código sólo si una determinada condición es verdadera.</p>
+
+        <h4 class="letra-B">Condicionales</h4>
+        <div class="seccion"><!-- Condicion if -->
+            <h3 class="letra-B morado" style="margin-top: 0;">if</h3>
+            <p>es una estructura de control condicional que permite ejecutar un bloque de código solo si se cumple una condición. Para utilizar la estructura if, se deben emplear operadores que nos ayuden a crear condiciones lógicas que puedan evaluarse como verdaderas o falsas. Estos operadores pueden ser de comparación o de relación.</p>
+
+            <ul>
+                <li><b class="morado letra-big">else if</b> (sino) para evaluar múltiples condiciones, se puede extender la estructura con else if. Esto nos permite comprobar varias condiciones en serie.</li>
+                <li><b class="morado letra-big">else</b> (de otro modo) en caso de que ninguna de las condiciones anteriores sea verdadera, se ejecuta el bloque dentro del else. Proporcionando asi una salida</li>
+                <li><b class="golden">llaves {}</b> abren un segmento en donde el bloque de codigo que contengan solo se ejecutara si la condicion que tenga atras se cumple</li>
+            </ul>
+
+            <div class="codigo-consola">
+                <div>
+                    <code>
+                        <b class="azul">let </b> <b class="sky">nota</b> =
+                        <b class="verde">
+                            <input type="number" id="input-nota" placeholder="numero" style="color: rgb(87, 176, 87)" max="20">
+                        </b><br><br>
+
+                        <b class="morado">if </b> <b class="golden">(</b><b class="sky">nota</b> == <b class="verde">20</b><b class="golden">) {</b><br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"sobresaliente"</b>)</b><br>
+                        <b class="golden">}</b> <br>
+
+                        <b class="morado">else if </b>
+                        <b class="golden">(</b><b class="sky">nota</b> &gt;= <b class="verde">15</b><b class="golden"></b> &&
+                        <b class="sky">nota</b> &lt; <b class="verde">20</b><b class="golden">) {</b><br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"Puede Mejorar"</b>)</b>
+                        <br><b class="golden">}</b> <br>
+
+                        <b class="morado">else if </b>
+                        <b class="golden">(</b><b class="sky">nota</b> &gt;= <b class="verde">10</b><b class="golden"></b> &&
+                        <b class="sky">nota</b> &lt; <b class="verde">15</b><b class="golden">) {</b><br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"Puede Mejorar"</b>)</b><br>
+                        <b class="golden">}</b> <br>
+
+                        <b class="morado">else </b> <b class="golden">{</b><br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"Reprobado"</b>)</b><br>
+                        <b class="golden">}</b>
+                    </code>
+
+                    <br><button onclick="condicionIF()" class="btn-consola">Ejecutar</button>
+                </div>
+                <div>
+                    <code>
+                        <p id="consola-if"></p>
+                    </code>
+                </div>
+            </div>
+
+            <div class="notas">
+                <p>JavaScript convierte automáticamente ciertos valores a booleanos cuando se usan en if. Por ejemplo:</p>
+                <ul style="margin: 0;">
+                    <li>se consideran false: 0, "", null, undefined, NaN</li>
+                    <li>se consideran true: cualquier otro valor</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="seccion" style="margin-top: 120px;"><!-- Switch -->
+            <h3 class="morado">switch</h3>
+            <p>es una estructura de control que te permite comparar una expresión contra múltiples valores posibles, como if pero con una diferencia esencial: evalúa solo si una expresión es verdadera y no múltiples condiciones. Se utiliza exclusivamente para validar si la expresión que estamos evaluando es true. <b>Componentes clave:</b></p>
+            <ul>
+                <li><b class="morado letra-big">case</b> (caso) compara la expresion que esta dentro de la condicion, con un valor especificado enseguida, y despues de dos puntos sigue el codigo a ejecutar o el valor de retorno en el caso que coincida. Puedes agrupar varios case que ejecutan el mismo código</li>
+                <li><b class="morado letra-big">breack</b> (romper) Interrumpe la ejecución del Switch de manera que, una vez validado un caso, no se continúa evaluando los siguientes. Si no se establece, el programa salta al siguiente caso aunque no se cumpla la condicion.</li>
+                <li><b class="morado letra-big">default</b> (por defecto) Se utiliza como el "else" de un Switch, proporcionando una salida cuando ninguna condición es verdadera.</li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <code>
+                        <b class="azul">let </b> <b class="sky">fruta</b> =
+                        <b class="naranja">
+                            "<input type="text" placeholder="Ingresa fruta" style="color: chocolate;" id="input-fruta">"
+                        </b>
+                        <br>
+                        <br><b class="morado">switch </b> <b class="golden">(</b><b class="sky">fruta</b><b class="golden">) {</b>
+                        <br>&emsp;&emsp;<b class="morado">case</b> <b class="naranja">"naranjas"</b>:
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"cuesta 2.000 pesos la libra"</b>)</b>
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="morado">breack</b>;
+
+                        <br>&emsp;&emsp;<b class="morado">case</b> <b class="naranja">"manzanas"</b>:
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"cuesta 4.000 pesos la libra"</b>)</b>
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="morado">breack</b>;
+
+                        <br>&emsp;&emsp;<b class="morado">case</b> <b class="naranja">"cambures"</b>:
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"cuesta 3.000 pesos la libra"</b>)</b>
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="morado">breack</b>;
+
+                        <br>&emsp;&emsp;<b class="morado">case</b> <b class="naranja">"mangos"</b>:
+                        <br>&emsp;&emsp;<b class="morado">case</b> <b class="naranja">"papayas"</b>:
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(<b class="naranja">"cuesta 5.000 pesos la libra"</b>)</b>
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="morado">breack</b>;
+
+                        <br>&emsp;&emsp;<b class="morado">default</b>:
+                        <br>&emsp;&emsp;&emsp;&emsp;<b class="sky">console</b>.<b class="golden">log(</b><b class="naranja">"Lo siento, no contamos con: "</b> + <b class="sky">fruta</b><b class="golden">)</b>
+
+                        <br><b class="golden">}</b>
+
+                        <br><button onclick="condicionSwitch()" class="btn-consola"><b>Ejecutar</b></button>
+                    </code>
+                </div>
+                <div>
+                    <p class="letra-B" id="consola-switch"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <h4 class="letra-B">Operacion ternaria</h4>
+        <p>son una forma abreviada de escribir una instrucción if-else en una sola línea, utilizando tres operandos: una condición, un valor si la condición es verdadera y un valor si la condición es falsa. Se utiliza comúnmente para asignar valores condicionalmente a variables, hacer que el código sea más conciso y legible para decisiones simples. </p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>condicion ? valor si es verdadero : valor si es falso </p>
+            <p></p>
+        </div>
+
+        <h4 class="letra-B">Operador Nullish Coalescing</h4>
+        <p>
+            El operador de coalescencia nula (??) devuelve el operando de la 
+            derecha solo cuando el operando de la izquierda es null o undefined.
+            En cualquier otro caso, devuelve el operando de la izquierda. <br><br>
+
+            <b>Diferencia entre el operador OR y el Nullish coalescing</b> El operador 
+            OR (||) evalúa un valor falsey. Un valor falsy es aquel que es falso en un 
+            contexto booleano, estos son: 0, "" (string vacío), false, NaN, undefined o 
+            null.
+        </p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>expresionIzquierda ?? expresionDerecha</p>
+            <p></p>
+        </div>   
+        
+        <!-- botones -->
+        <div class="control-consola">
+            <button onclick="ejecutarOperadorTernario()">Operador Ternario</button>
+            <button onclick="ejecutarOperadorNullish()">Operador Nullish</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            <div id="codigo-operador-termarioYnullish">
+                <p class="margenTop0">
+                    <b class="azul">let </b> <b class="sky">edad</b> = <b class="verde">30</b> <br>
+                    <b class="azul">let </b> <b class="sky">mensaje</b> = (<b class="sky">edad</b> >= <b class="verde">18</b>) ?
+                    <b class="naranja">"Es mayor de edad"</b> : <b class="naranja">"Es menor de edad"</b> 
+                </p>
+            </div>
+
+            <div id="consola-operador-termarioYnullish"></div>
+        </div>
+        <div class="notas">Si edad >= 18 es true, se asigna "Eres mayor de edad" a mensaje. Si es false, se asigna "Eres menor de edad".  Ideal para condiciones simples y asignaciones rápidas.</div>
+    
+    </section>
+
+    <script src="condicionales.js"></script>
+</body>
+</html>

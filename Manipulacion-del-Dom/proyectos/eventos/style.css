@@ -1,0 +1,147 @@
+:root{
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #1f1f1f;
+    font-family: system-ui, Segoe UI, Roboto, sans-serif;
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    color: white;
+}
+nav{
+    background-color: black;
+    height: 50px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    display: flex;
+}
+nav button{
+    background-color: black;
+    color: white;
+    width: 260px;
+    height: 100%; 
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    border: none;
+}
+nav button:hover{ background: #5a5959;}
+nav a{
+    text-decoration: none; 
+    color: white;
+}
+nav ul{
+    background-color:#111111;
+    width: 260px;
+    padding: 15px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    width: min(960px, 92vw);
+    margin: 0 auto;
+    padding: 24px 0;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #111;
+}
+.btn {
+    border: 1px solid #939393;
+    background: #111;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.btn.secondary {
+    background: transparent;
+}
+.hero {
+    padding: 28px 0;
+}
+.hero h1 {
+    margin: 50px 0 8px;
+    font-size: 28px;
+}
+.hero p {
+    margin: 0 0 16px;
+}
+.card {
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 14px;
+    background: #333;
+}
+
+.section-title {
+    margin: 24px 0 10px;
+    font-size: 18px;
+}
+.demo {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 14px;
+}
+
+@media (max-width: 760px) {
+.demo {
+    grid-template-columns: 1fr;
+}
+}
+.status {
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: #555555;
+    border: 1px solid #eee;
+}
+.hover-zone {
+    border-radius: 14px;
+    border: 1px dashed #bbb;
+    padding: 16px;
+    min-height: 120px;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    transition: background 160ms ease, border-color 160ms ease;
+    background: #4d4d4d;
+}
+.hover-zone.is-hover {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+.pill {
+    display: inline-block;
+    padding: 4px 10px;
+    height: 15px;
+    border-radius: 999px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    background: #6f6f6f;
+}
+.hover-zone.is-hover .pill {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}

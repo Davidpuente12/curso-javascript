@@ -4,6 +4,10 @@
     --azul: rgb(55, 113, 200);
     --sky: skyblue;
     --golden:  rgb(250, 210, 110);
+    --doger: rgb(0, 158, 210);
+    --aqua: rgb(0, 187, 124);
+    --morado: rgb(168, 88, 208);
+    --naranja: chocolate;
 }
 body{
     background-color: #1f1f1f;
@@ -13,16 +17,20 @@ body{
     margin: 0;
     padding: 0;
 }
+
 nav{
     background-color: black;
     height: 50px;
     position: fixed;
+    z-index: 1;
     top: 0;
     width: 100%;
-}nav button{
+    display: flex;
+}
+nav button{
     background-color: black;
     color: white;
-    width: 260px;
+    padding: 0 30px;
     height: 100%; 
     cursor: pointer;
     font-size: 2rem;
@@ -65,34 +73,36 @@ h2{
     text-align: center;
     font-size: 7rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}h3{
+}
+h3{
     font-size: 5rem;
     margin: 150px auto 40px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 800;
     color: white;
-}h4{
+}
+h4{
     font-size: 3.7rem;
-    margin: 120px auto 50px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 800;
     color: white;
-}h5{
-    font-size: 2.5rem;
-    margin: 70px 0 0;
+}
+h5{
+    font-size: 2.7rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
-
-}h6{
+    margin-bottom: 20px;
+}
+/* h6{
     font-size: 2.2rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 50px 0 0;
     font-weight:800;
-}
+} */
 
 /* TAMAÑOS Y FUENTES DE LETRAS */
 .letra-big{
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 900;
 }.letra-segoe{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -102,12 +112,12 @@ h2{
 .letra-B{color: white;}
 .azul{color: var(--azul)}
 .sky{color: var(--sky);}
-.doger{color: rgb(0, 158, 210);}
+.doger{color: var(--doger);}
 .golden{color: var(--golden);}
-.naranja{color: chocolate;}
+.naranja{color: var(--naranja);}
 .verde{color: rgb(64, 185, 64);}
-.morado{color: rgb(168, 88, 208);}
-.aqua{color: rgb(0, 187, 124);}
+.morado{color: var(--morado);}
+.aqua{color: var(--aqua);}
 
 /* COLORES FONDOS */
 .fondo-azul{background-color: rgb(55, 113, 200);}
@@ -133,24 +143,27 @@ ul{
     margin: 40px 0 60px;
 }li{
     list-style: none;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 /* TABLAS */
 table{
     border-collapse: collapse;
+    width: 90%;
     margin: 60px auto;
-    width: 85%;
     font-size: 2rem;
+    box-shadow: 0 0 10px #101010;
 }
 caption{
     background-color: #414343;
     padding: 10px;
     font-weight: 600;
     margin-bottom: 8px;
+    color: white;
 }
 th{
-    background-color:#141414;
+    background-color: var(--azul);
+    color: white;
 }
 table tr:nth-child(even) { background: #333131; }
 th,td{
@@ -162,8 +175,13 @@ th,td{
     font-weight: bold;
     color: var(--golden);
 }
+.table-propiedades td:nth-child(1){
+    font-weight: bold;
+    color: var(--doger);
+    font-family: monospace;
+}
 
-/*                      BOTONES */
+/* BOTONES */
 
 .btn-simple{
     background-color: transparent;
@@ -187,21 +205,6 @@ th,td{
     padding: 0;
 }
 
-/* botones control-Consola */
-.control-consola{
-    height: 57px;
-    margin-top: 150px;
-}
-.btn-cambiar-consola{
-    background-color: transparent;
-    color: white;
-    font-size: 1.7rem;
-    font-weight: bold;
-    padding: 15px;
-}.btn-cambiar-consola:hover{
-    border-bottom: rgb(254, 210, 99) solid 4px;
-}
-
 .btn-consola{
     width: 130px;
     height: 30px;
@@ -210,15 +213,17 @@ th,td{
     background-color: #F0C431;
     font-size: 1.5rem;
     font-weight: bold;
-}.btn-consola2{
-    background-color: rgb(0, 68, 170);
+}
+.btn-consola2{
+    background-color: transparent;
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
     border: white 1px solid;
     border-radius: 5px;
     padding: 5px;
-}.codigo-consola .btn-flechas{
+}
+.codigo-consola .btn-flechas{
     background-color: transparent;
     width: auto;
     border: none;
@@ -238,9 +243,16 @@ th,td{
 }
 .bloques-oscuros{
     background-color: #191818;
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 100px;
+    margin: 50px auto;
+}
+.sintaxis{
+    background: #111111;
+    padding: 10px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 2.1rem;
 }
 
 .codigo{
@@ -252,7 +264,7 @@ th,td{
     font-size: 2.1rem;
     font-family: monospace;
 }.codigo p{
-    padding: 20px 0 20px;
+    padding: 15px 0;
     margin: 0;
 }.codigo > p:nth-child(1){
     background-color:rgb(25, 25, 30);
@@ -265,28 +277,45 @@ th,td{
     font-weight: bold;
 }
 
-/* Codigo y Consola */
+/*               CONTROLS CONSOLA */
+.control-consola{
+    height: 57px;
+    margin-top: 150px;
+}
+.control-consola button{
+    background-color: rgb(20,20,20);
+    border: none;
+    box-shadow: 0 5px 5px rgb(15,15,15);
+    color: white;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 15px;
+}
+.control-consola button:hover{
+    border-bottom: rgb(254, 210, 99) solid 4px;
+}
+
+/*               CODIGO Y CONSOLA */
+
 .codigo-consola{
     display: flex;
     width: 100%;
-    margin: 80px auto 0;
-    box-shadow: 3px 3px 7px gray;
+    box-shadow: 0 0 10px rgb(15, 15, 15);
     font-family: monospace;
     font-size: 1.7rem;
-}.codigo-consola > div{
+}
+.codigo-consola > div{
     padding: 20px 20px 50px;
-}.codigo-consola > div:nth-child(2){
+}
+.codigo-consola > div:nth-child(2){
     background-color: rgb(14, 14, 46);
     width: 35%;
-}.codigo-consola > div:nth-child(1){
+}
+.codigo-consola > div:nth-child(1){
     background-color: rgb(18, 18, 27);
     width: 65%;
 }
-.codigo-consola .bloques{
-    display: flex; 
-    flex-direction: column; 
-    justify-content: space-between;
-}
+
 .codigo-consola input{
     font-size: 1.6rem;
     background-color: transparent;
@@ -294,18 +323,11 @@ th,td{
     border-radius: 10px;
     color: white;
 }
-.sintaxis{
-    background: #111111;
-    padding: 10px;
-    text-align: center;
-}
 
 
 
 
-#input-tree-search{
-    width: 100px;
-}
+    
 
 /* Delegation pattern */
 #elementosDinamicos{
@@ -330,12 +352,13 @@ th,td{
 }
 
 .notas{
+    background-color: #3d3e41;
+    color: white;
     width: 90%;
-    margin: 50px auto 20px;
-    border: 3px solid #F0C431;
-    border-radius: 10px;
+    margin: 40px auto 20px;
+    border-left: 10px solid var(--azul);
     padding: 10px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 #tabla-variables{

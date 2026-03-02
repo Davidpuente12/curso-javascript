@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclos</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+    <nav>
+         <button 
+            onclick="window.location.href='../pagina.html'">
+            Home 🏠
+        </button>
+    </nav>
+
+    <section>
+        <h2>Ciclos</h2>
+        <p>En JavaScript, los ciclos (o bucles) son estructuras que permiten ejecutar un bloque de código repetidamente, mientras se cumpla una condición. Son esenciales para automatizar tareas repetitivas, recorrer listas, validar datos, y mucho más.</p>
+
+        <!-- Ciclo for -->
+        <div>
+            <h3 class="morado"><span class="letra-B">Ciclo</span> for</h3>
+            <p> (para) es un metodo que crea un bucle que consiste en tres expresiones opcionales, encerradas en parentesis y separadas por puntos y comas, seguidas de una sentencia ejecutada en un bucle. permite recorrer elementos dentro de una lista o array.</p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="morado">for</b> <b class="golden">(</b> <b>expresion inicial</b> ; <b >condicion</b> ; <b>incremento</b>
+                    <b class="golden">){
+                    <br>&emsp;&emsp; sentencia <br> }</b>
+                </p>
+                <p></p>
+            </div>
+
+            <ul>
+                <li><b class="letra-B">Exprecion inicial</b> define una variable de control (comúnmente 'i'), asignando un valor inicial. Por ejemplo, let i = 0.</li>
+                <li><b class="letra-B">Condicion</b> evalúa la condición que debe cumplirse para que el loop continúe. Normalmente, se compara la variable de control con una longitud. Un ejemplo es i &lt; lista.length.</li>
+                <li><b class="letra-B">Incremento</b> se ejecuta al final de cada iteracion del bucle, incrementando el valor de la variable en cada iteracion en uno (i++).</li>
+                <li><b class="golden">Sentencia</b> este es el bloque de codigo que se ejecutara todas las veces que la condicion sea verdadera.</li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <div>
+                        <code>
+                            <b class="azul">let</b> <b class="sky">numero</b> = <b class="verde">10</b>
+                        </code>
+                        <br><br>
+                        <code>
+                            <b class="morado">for</b> <b class="golden">(</b>
+                            <b class="azul">let</b> <b class="sky">i</b> = <b class="verde">0</b> ;
+                            <b class="sky">i</b> &lt;= <b class="verde">10</b> ;
+                            <b class="sky">i</b> ++ <b class="golden">){</b>
+                        </code>
+                        <br>
+                        <code>
+                            &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(<span class="sky">i</span>)</b> <br>
+                            &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">numero</b> ++<b class="morado">)</b> <br>
+                            <b class="golden">}</b>
+                        </code>
+                    </div>
+                    <br>
+
+                    <div>
+                        <code>
+                            <b class="letra-B">Recorrer Arrays</b><br>
+                            <b class="azul">let</b> <b class="sky">frutas</b> =
+                            <b class="morado">[</b><b class="naranja">"mandarina"</b>,<b class="naranja">"cambur"</b>,<b class="naranja">"naranja"</b>,<b class="naranja">"sandia"</b><b class="morado">]</b>
+                        </code>
+                        <br><br>
+                        <code>
+                            <b class="morado">for</b> <b class="golden">(</b>
+                            <b class="azul">let</b> <b class="sky">i</b> = <b class="verde">0</b> ;
+                            <b class="sky">i</b> &lt; <b class="sky">frutas.length</b> ;
+                            <b class="sky">i</b> ++ <b class="golden">){</b> <br>
+
+                            &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">frutas</b><b class="azul">[<span class="sky">i</span>]</b><b class="morado">)</b> <br>
+                            <b class="golden">}</b>
+                        </code>
+                        <br>
+                    </div>
+                    <button onclick="ejecutarFor()" class="btn-consola"><b>Ejecutar</b></button>
+                </div>
+
+                <div>
+                    <code>
+                        <p><b class="sky">i</b> = <b id="consola-for" class="verde"></b></p>
+                        <p><b class="sky">numero </b> <br> <b id="consola-for2" class="verde"></b></p>
+                        <p><b class="sky">frutas</b> <br><b id="consola-for3" class="naranja"></b></p>
+                    </code>
+                </div>
+            </div>
+
+            <ul>
+                <li>En el <b class="letra-B">primer ciclo</b> se inicializa una variable en 0, la condicion es que sea menos o igual a 10 mientras itera la variable (i), en cada ciclo se imprime el valor de (i) y tambien se incrementa el valor de la variable numero.</li>
+                <li>En el <b class="letra-B">segundo ciclo</b> se inicializa la variable en 0, la condicion es que debe ser menor a la longitud de la variable frutas, e itera. Y luego imprime de la lista frutas el indice indicado por (i)</li>
+            </ul>
+        </div>
+        
+        <!-- Ciclo for of --> 
+        <div>
+            <h3 class="morado"><span class="letra-B">Ciclo</span> for of</h3>
+            <p>El método loop for-of es una herramienta que te permite recorrer los valores de objetos iterables como <b class="letra-B">(arrays, string, Map, Set)</b> que implemetan Symbol.iterator, Gracias a su estructura, el for-of nos permite ejecutar código de manera repetitiva para cada elemento presente en estas colecciones.</p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="morado">for</b> <b class="golden">(</b> <b class="sky">variable</b> <b class="morado">of</b> <b class="sky">objeto iterable</b>
+                    <b class="golden">){
+                    <br>&emsp;&emsp; sentencia <br> }</b>
+                </p>
+                <p></p>
+            </div>
+        
+            <ul>
+                <li><b class="sky">variable</b> esta almacena temporalmente a cada elemento del objeto iterable durante cada iteracion del bucle.</li>
+                <li><b class="sky">objeto iterable</b> representa la lista de objetos iterables</li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p class="margen0">
+                        <b class="azul">let</b> <b class="sky">canasta</b> =
+                        <b class="morado">[</b><b class="naranja">"harina"</b>,<b class="naranja">"leche"</b>,<b class="naranja">"pan"</b>,<b class="naranja">"queso"</b><b class="morado">]</b>
+                    </p>
+                    
+                    <p>
+                        <b class="morado">for</b> <b class="golden">(</b>
+                        <b class="azul">let</b> <b class="sky">item</b> <b class="morado">of</b>
+                        <b class="sky">canasta</b>
+                        <b class="golden">){</b> <br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">item</b><b class="morado">)</b> <br>
+                        <b class="golden">}</b>
+                    </p>
+
+                    <p>
+                        <b>iterar string</b><br>
+                        <b class="azul">let</b> <b class="sky">string</b> = <b class="naranja">palabras</b> <br><br>
+                    
+                        <b class="morado">for</b> <b class="golden">(</b>
+                        <b class="azul">let</b> <b class="sky">item</b> <b class="morado">of</b>
+                        <b class="sky">string</b>
+                        <b class="golden">){</b> <br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">item</b> + <b class="naranja">" "</b> <b class="morado">)</b> <br>
+                        <b class="golden">}</b>
+                    </p>
+                    
+                    <button onclick="ejecutarForof()" class="btn-consola"><b>Ejecutar</b></button>
+                </div>
+
+                <div>
+                    <p id="consola-for-of" class="naranja"></p> <br>
+                    <p id="consola-for-of2" class="naranja"></p>
+                </div>
+            </div>
+
+            <p>Comienza con la palabra reservado for, añade parantesis (), donde se define una variable que representa cada elemento, el termino <b class="morado">of</b> seguido del objeto iterable (array) a recorrer. Finalmente entre llaves {} ejecuta el bloque de codigo para cada elemento de la lista. </p>
+        </div>
+
+        <!-- Ciclo for in -->
+        <div>
+            <h3 class="morado"><span class="letra-B">Ciclo</span> for in</h3>
+            <p>Es una estructura de bucle que recorre las propiedades enumerables de un objeto, en lugar de iterar sobre valores como un for...of (elementos iterables como arreglos y cadenas) , aquí iteras sobre claves (nombres de propiedades), los objetos en JavaScript poseen propiedades, cada una con un valor asociado, a las cuales podemos acceder.</p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="morado">for</b> <b class="golden">(</b> <b class="sky">variable</b> <b class="morado">in</b> <b class="sky">objeto</b>
+                    <b class="golden">){
+                    <br>&emsp;&emsp; <b class="letra-B">codigo a ejecutar</b> <br> }</b>
+                </p>
+                <p></p>
+            </div>
+        
+            <ul>
+                <li><b class="sky">variable</b> es la que representara cada propiedad del objeto durante la iteracion</li>
+                <li><b class="sky">objeto</b> es el objeto que estamos iterando</li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p class="margen0">
+                        <b class="azul">const</b> <b class="doger">canasta</b> =
+                        <b class="golden">{</b> <br>
+                        &emsp;&emsp;<b class="sky">harina:</b> <b class="verde">5</b>, <br>
+                        &emsp;&emsp;<b class="sky">leche:</b> <b class="verde">3</b>, <br>
+                        &emsp;&emsp;<b class="sky">pan:</b> <b class="verde">2</b>, <br>
+                        &emsp;&emsp;<b class="sky">queso:</b> <b class="verde">1</b> <br>
+                        <b class="golden">}</b>
+                    </p>
+                    
+                    <p>
+                        <b class="morado">for</b> <b class="golden">(</b>
+                        <b class="azul">let</b> <b class="sky">producto</b> <b class="azul">in</b>
+                        <b class="doger">canasta</b>
+                        <b class="golden">){</b> <br>
+                    
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">producto</b><b class="morado">)</b>
+                        <b class="verde">// Imprime la propiedad</b><br>
+
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="doger">canasta[<b class="sky">producto</b>]</b> <b class="morado">)</b>
+                        <b class="verde">// Imprime el valor de la propiedad</b><br>
+
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">producto</b> + <b class="doger">canasta[<b class="sky">producto</b>]</b> <b class="morado">)</b> <br>
+                        <b class="golden">}</b>
+                    </p>
+                    
+                    <button onclick="ejecutarForin()" class="btn-consola"><b>Ejecutar</b></button>
+                </div>
+
+                <div>
+                    <p id="consola-for-in" class="naranja"></p> 
+                    <p id="consola-for-in2" class="verde"></p> 
+                    <p id="consola-for-in3"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ciclo While -->
+        <div>
+            <h3 class="morado"><span class="letra-B">Ciclo</span> while</h3>
+            <p>(mientras) crea un bucle que ejecuta una sentencia especificada, mientras cierta condicion se evalue como verdadera, dicha condicion es evaluada antes de ejecutar la sentencia. Esta técnica permite realizar iteraciones eficientes, ejecutando una secuencia de instrucciones repetidamente hasta que la condición evaluada deje de cumplirse, pero su implementación debe manejarse con precaución para evitar conflictos como los 'loops' infinitos. </p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="morado">while</b> <b class="golden">(</b> <b class="sky">condicion</b>
+                    <b class="golden">){
+                    <br>&emsp;&emsp; <b class="verde">//codigo a ejecutar</b> <br> }</b>
+                </p>
+                <p></p>
+            </div>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p class="margen0">
+                        <b class="azul">let</b> <b class="sky">contador</b> = <b class="verde">0</b>
+                    </p>
+                    
+                    <p>
+                        <b class="morado">while</b> <b class="golden">(</b>
+                        <b class="sky">contador</b> &lt;= <b class="verde">10</b>
+                        <b class="golden">){</b> <br>
+
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">contador</b><b class="morado">)</b> <br>
+                        &emsp;&emsp;<b class="sky">contador</b> ++<br>
+                        <b class="golden">}</b>
+                    </p>
+                    <br>
+                    <button onclick="ejecutarWhile()" class="btn-consola"><b>Ejecutar</b></button>
+                </div>
+
+                <div>
+                    <p id="consola-while" class="naranja"></p> <br>
+                </div>
+            </div>
+
+            <p>Los loops infinitos ocurren cuando la condición en un ciclo while nunca se vuelve falsa, permitiendo que el ciclo continúe indefinidamente. Esto puede llevar al consumo excesivo de recursos del sistema y, por ende, a inestabilidades en las aplicaciones. Para evitarlo: Asegúrate de modificar las variables involucradas en la condición dentro del bloque del ciclo (como por ejemplo estableciendo un contador) Esto garantiza que eventualmente el ciclo pueda salir.</p>
+        </div>
+
+        <!-- Ciclo Do-While -->
+        <div>
+            <h3 class="morado"><span class="letra-B">Ciclo</span> do while</h3>
+            <p> (hacer mientras) crea un bucle que ejecuta una sentencia especificada, hasta que la condicion de comprobacion se evalua como falsa. la condicion se evalua despues de ejecutar la sentencia, dando como resultado que la sentencia especificada se ejecute al menos una vez. </p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="morado">do </b> <b class="golden">{</b>
+                    <br>&emsp;&emsp; <b class="verde">//codigo a ejecutar</b> <br>
+                    <b class="golden">}</b> <br>
+                    <b class="morado">while</b><b class="golden">(<b class="sky">condicion</b>)</b>
+                </p>
+                <p></p>
+            </div>
+        
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p class="margen0">
+                        <b class="azul">let</b> <b class="sky">contador</b> = <b class="verde">0</b>
+                    </p>
+                   
+                    <p>
+                        <b class="morado">do</b> <b class="golden">{</b> <br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">contador</b><b class="morado">)</b> <br>
+                        &emsp;&emsp;<b class="sky">contador</b> ++<br>
+                        <b class="golden">}</b> <br><br>
+                        <b class="morado">while</b>
+                        <b class="golden">(</b><b class="sky">contador</b> &lt;= <b class="verde">10</b><b class="golden">)</b>
+                    </p>
+                    
+                    <button onclick="ejecutarDoWhile()" class="btn-consola"><b>Ejecutar</b></button>
+                </div>
+
+                <div>
+                    <p id="consola-Dowhile" class="naranja"></p> <br>
+                </div>
+            </div>
+
+            <p>Opta por doWhile cuando requieras que el código se ejecute al menos una vez, independientemente de si la condición es verdadera al inicio. Por otro lado, utiliza while si deseas asegurar que el código solo se ejecuta cuando la condición inicial se cumple.</p>
+        </div>
+
+    </section>
+
+    <script src="ciclos.js"></script>
+</body>
+</html>

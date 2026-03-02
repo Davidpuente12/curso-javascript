@@ -1,5 +1,7 @@
-// setInterval -setTimeout
+import { sumar } from './moduloExport.js';
 
+// SET INTERVAL - SET TIME OUT
+window.ejecutarObjetosGlobales = ejecutarObjetosGlobales
 function ejecutarObjetosGlobales(){
     const consola = document.getElementById("consola-ObjetosGlobales")
 
@@ -18,10 +20,53 @@ function ejecutarObjetosGlobales(){
     },4500)    
 }
 
-// export - import
 
-function ejecutarExport(tipo) {
-    const consola = document.getElementById("consola-export")
+// REQUIRE (ejecutar por consola)
+window.ejecutarRequire = ejecutarRequire
+function ejecutarRequire(tipo){
+    const codigo = document.getElementById('codigo-require')
+
+    if(tipo === 'index'){
+        codigo.innerHTML = `
+        <p>
+            <b class="azul">const</b> <b class="golden">modulo</b> = 
+            <b class="golden">require</b>(<b class="naranja">'./modulo-require'</b>)
+        </p>
+        <p>
+            <b class="golden">modulo()</b>
+        </p>
+        `
+    }
+    else if(tipo === 'modulo'){
+        codigo.innerHTML = `
+        <p>
+            <b class="azul">function</b> <b class="golden">saludar</b>(){ <br>
+            &emsp; <b class="sky">console</b>.<b class="golden">log</b>(<b class="naranja">"Hola a todos!!"</b>) <br>
+            } <br><br>
+
+            <b class="golden">module</b>.<b class="golden">exports</b> = 
+            <b class="golden">saludar</b>
+        </p>
+        `
+    }
+}
+
+// EXPORT - IMPORT
+
+const botonesExport = document.querySelectorAll('#botones-export button')
+const consola = document.getElementById("consola-export")
+
+botonesExport.forEach((boton,index) => {
+    boton.addEventListener("click", () => {
+        if(index === 0){
+            codigoExport()
+        }else if(index === 1){
+            codigoExport('import')
+        }
+    })
+})
+
+function codigoExport(tipo) {
     const codigo = document.getElementById("codigo-export")
 
     codigo.innerHTML = `
@@ -55,8 +100,8 @@ function ejecutarExport(tipo) {
         codigo.innerHTML = `
         <p style="margin-top: 0;">
             <b class="morado">import</b> { <b class="golden">add</b>, <b class="golden">otherFunction</b> } 
-            <b class="morado">from</b> './math_functions.js' <br>
-            <b class="golden">add</b>(2,2)
+            <b class="morado">from</b> './math_functions.js' <br><br>
+            <b class="golden">add</b>(100, 150)
         </p>
 
         <p>
@@ -65,7 +110,7 @@ function ejecutarExport(tipo) {
             <b class="morado">as</b> <b class="sky">myMathModule</b> 
             <b class="morado">from</b> './math_functions.js'; <br><br>
 
-            <b class="sky">myMathModule</b>.<b class="golden">add</b>(2,2) <br>
+            <b class="sky">myMathModule</b>.<b class="golden">add</b>(100, 150) <br>
             <b class="sky">myMathModule</b>.<b class="golden">otherFunction</b>()
         </p>
 
@@ -74,11 +119,23 @@ function ejecutarExport(tipo) {
             <b class="morado">import</b> <b class="golden">add</b>  
             <b class="morado">from</b> './math_functions.js'
         </p>
+
+        <button 
+            class="btn-consola"
+            onclick="ejecutarExport()"
+            >ejecutar
+        </button>
         `
     }  
 }
 
+window.ejecutarExport = ejecutarExport
+function ejecutarExport(){
+    consola.innerHTML = `${sumar(150,100)}`  
+}
+
 // FILE SYSTEM
+// window.fileSystem = fileSystem
 function fileSystem(tipo){
     const codigo = document.getElementById('codigo-file-system')
 
@@ -176,6 +233,7 @@ function fileSystem(tipo){
 }
 
 // SUBPROCESOS
+window.childProcess = childProcess
 function childProcess(tipo){
     const codigo = document.getElementById('consola-childProcess')
 
@@ -233,38 +291,6 @@ function childProcess(tipo){
         </p>
         `
     }
-}
-{
-    const { exec, spawn } = require('child_process');
-    
-    exec('dir', (error, stdout, stderr) => {
-        if(error) {
-            console.log('Error ejecutando el comando: ', error)
-            return 
-        }
-        if(stderr) {
-            console.log('Error ejecutando el comando: ', stderr)
-            return 
-        }
-
-        console.log(stdout)
-
-    })
-
-    
-    let proceso = spawn('dir',{shell:true})
-    
-    proceso.stdout.on('data', (dato) => {
-        console.log(dato.toString())
-    })
-
-    proceso.stderr.on('data', (data) => {
-        console.error('Error: ', data )
-    })
-
-    proceso.on('close', (code) => {
-        console.log('proceso finalizado con codigo: ', code)
-    })
 }
 
 

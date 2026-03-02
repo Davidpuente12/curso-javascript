@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <link rel="stylesheet" href="../../../estilos.css">
+    <link rel="stylesheet" href="../../dom.css">
+</head>
+<body>
+    <nav>
+        <button>
+            <a href="../../dom.html">Manipulacion del Dom</a>
+        </button>
+    </nav>
+
+    <section class="proyecto-listaDeCompras">
+
+        <button id="btn-modoClaroyoscuro">modo ☀️</button>
+
+        <div class="formulario">
+            <h6>Lista de Compras</h6>
+            
+            <form>
+                <input type="text" placeholder="Ingrese Producto">
+                <button>Añadir</button>
+                <button id="btn-resetearProyectoListaDeCompras">Reset</button>
+            </form>
+
+            <ul style="padding: 0; margin-bottom: 10px;">
+                <!-- contenido renderizado -->
+            </ul>
+
+            <div id="confirmar-peticion" style="display: none;">Deseas eliminar este elemento? <span class="btn-delete-confirm">Confirmar</span></div>
+        </div>
+       
+    </section>
+
+    <script src="proyecto.js"></script>
+</body>
+</html>

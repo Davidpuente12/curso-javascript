@@ -1,0 +1,19 @@
+{
+  "name": "modulos",
+  "version": "1.0.0",
+  "main": "modulo-require.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
+    "moment": "^2.30.1",
+    "sharp": "^0.34.5"
+  }
+}

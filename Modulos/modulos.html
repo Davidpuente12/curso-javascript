@@ -64,22 +64,49 @@
             ciclo de vida del proceso. es un recurso invaluable para la gestión del entorno.
         </p>
 
-        <p><!-- require -->
-            <code class="golden letra-big">require()</code> <br>
-            es la función que se utiliza para importar módulos (archivos de JavaScript u otros recursos) dentro de tu aplicación. Es parte del sistema de módulos CommonJS, que fue el estándar por defecto en Node antes de que se popularizara import/export de ES6. <br><br>
-            require busca el archivo o paquete en la ruta indicada, envuelve el contenido
-            en una funcion para mantener su ambito aislado, ejecuta el codigo del modulo, y lo 
-            devuelve con export, por ultimo guarda el resultado en memoria para futuras llamadas.
-        </p>
-
-        <div class="codigo">
-            <p>Sintaxis</p>
-            <p> 
-                <b class="golden">require(</b>
-                <b class="naranja">"ruta/del/modulo"</b>
-                <b class="golden">)</b>
+        <!-- require -->
+        <div>
+            <p>
+                <code class="golden letra-big">require()</code> <br>
+                es la función que se utiliza para importar módulos (archivos de JavaScript u otros recursos) dentro de tu aplicación. Es parte del sistema de módulos CommonJS, que fue el estándar por defecto en Node antes de que se popularizara import/export de ES6. <br><br>
+                require busca el archivo o paquete en la ruta indicada, envuelve el contenido
+                en una funcion para mantener su ambito aislado, ejecuta el codigo del modulo, y lo 
+                devuelve con export, por ultimo guarda el resultado en memoria para futuras llamadas.
             </p>
-            <p></p>
+
+            <!-- sintaxis -->
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p> 
+                    <b class="golden">require(</b>
+                    <b class="naranja">"ruta/del/modulo"</b>
+                    <b class="golden">)</b>
+                </p>
+                <p></p>
+            </div>
+
+            <!-- botones -->
+            <div class="control-consola">
+                <button class="btn-cambiar-consola" onclick="ejecutarRequire('index')" >index.js</button>
+                <button class="btn-cambiar-consola" onclick="ejecutarRequire('modulo')">modulo.js</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-require">
+                    <p>
+                        <b class="azul">const</b> <b class="golden">modulo</b> = 
+                        <b class="golden">require</b>(<b class="naranja">'./modulo-require'</b>)
+                    </p>
+                    <p>
+                        <b class="golden">modulo()</b>
+                    </p>
+                </div>
+
+                <div>
+                    <p>require es propio de Node.js, no existe de forma nativa en el entorno del navegador.</p>
+                    <p>El navegador no entiende qué es require. Por tanto solo se puede ver en la terminal que ejecute node.js</p>
+                </div>
+            </div>
         </div>
 
         <p><!-- dirname -->
@@ -210,391 +237,675 @@
 
     </section>
 
-    <!-- MODULO: ARCHIVOS DEL SISTEMA -->
+    <!-- EXPORTACION E IMPORTACION DE MODULOS -->
     <section>
+        <h2>Exportar Modulos</h2>
+        <p>Para que el código de JavaScript sea más ordenado, legible y mantenible; ES6 introduce una forma de manejar código en archivos de manera modular, de esta manera podemos desarrolar nuestro propio codigo en modulos. Esto involucra exportar funciones o variables de un archivo, e importarlas en otros archivos donde se necesite.</p>
         
-        <h3>Modulo <span class="golden">file system (<span class="naranja">'fs'</span>)</span></h3>
-        
-        <p>El módulo FS (File System) en Node.js es una API que te permitirá acceder a archivos en tu sistema operativo. Con FS, podrás leer, escribir, modificar y renombrar archivos, entre muchas otras capacidades. Este módulo es crucial cuando trabajas con cualquier aplicación que necesite interacción con archivos, como bases de datos o almacenamiento de archivos.</p>
-        <p>Cargar el módulo FS dentro de Node.js es bastante sencillo, ya que está incluido por defecto en el entorno de ejecución. Solamente necesitas requerir el módulo usando el siguiente método:</p>
+        <h4>Modulos</h4>
         <p>
-            (<b class="naranja">fs</b>).<b class="aqua">promises</b> y (<b class="naranja">fs/promises</b>)
-            son una versión del módulo File System (fs) basada en promesas en lugar de callbacks.
-            Cada operación devuelve una Promise que se resuelve cuando la acción termina o se rechaza si ocurre un error,
-            permitiendo trabajar con el sistema de archivos usando async/await o .then()/.catch().
-        </p>
+            Un módulo en programación es un conjunto de funciones, objetos o variables 
+            agrupadas en un archivo, que se pueden importar y utilizar en otros 
+            archivos. La modularidad mejora la gestión del código, facilita el trabajo
+            en equipo y permite la escalabilidad de aplicaciones complejas. <br><br>
         
-        <div class="codigo">
-            <p>Sintaxis</p>
-            <p>
-                <b class="golden">require(<b class="naranja">'fs'</b>)</b> <br>
-                <b class="golden">require(<b class="naranja">'fs'</b>)</b>.<b class="aqua">promises</b> //Cuando necesitas mezclar callbacks y promesas en el mismo archivo <br>
-                <b class="golden">require(<b class="naranja">'fs/promises'</b>)</b> //submódulo que expone solo la API basada en promesas.
-            </p>
-            <p></p>
-        </div>
+            Para explicar <b class="letra-B">cómo funciona</b> las exportaciones e importaciones de código, debes 
+            tener mínimo dos archivos, uno para exportar las funcionalidades y otro que las 
+            importe para ejecutarlas. Ademas debes tomar las siguientes consideraciones:
+        </p>
+        <ul>
+            <li>Si iniciaste un proyecto con NPM con Node.js, necesitas especificar que el código es modular en el archivo package.json</li>
+            <li>Los navegadores bloquean import si abres el HTML directamente con file://. Debes servirlo con un servidor local (ejemplo: npx serve, live-server, o el servidor integrado de VS Code).</li>
+            <li>
+                Si el proyecto es sencillo, sin dependecias, debes cargar el archivo con:
+                &lt;<b class="azul">script</b> <b class="sky">type</b>=<b class="naranja">"module"</b>&gt;, 
+                esto cambia el comportamiento de los atributos de eventos escritos directamente
+                en el HTML, como <b class="sky">onclick</b>, que dejarian de funcionar porque las funciones 
+                del modulo ya no son globales, en tal caso se deben usar eventos en el modulo.
+            </li>
+            <li>
+                Los módulos se ejecutan en modo estricto automáticamente. Las variables y 
+                funciones declaradas en un módulo no se agregan al objeto global window, pero
+                se pueden agregar manualmente: 
+                <b class="sky">window</b>.<b class="sky">variable</b> = variable / funcion (debe tener el mismo nombre que la variable.)
+            </li>
+        </ul>
 
-        <h4><span class="golden">Metodos</span> principales</h4>
-        <!-- readFile -->
+        <h4 class="morado">export</h4>
         <p>
-            <code class="golden letra-big">readFile</code> / 
-            <code class="golden letra-big">readFileSync</code>
-            Estos metodos permiten leer un fichero, readFile es la version asincrona,
-            esta es la mas recomendable y readFileSync es la version sincrona. Estos reciben
-            3 parametros:
+            es la instrucción que permite exportar funciones, variables, objetos o clases 
+            de un archivo para que puedan ser utilizadas en otros mediante import. Existen 
+            dos formas de exportar, <b>antes de declarar la funcionalidad</b>, o entre <b>llaves {}</b>.
         </p>
-        <div class="codigo">
-            <p>Sintaxis</p>
-            <p>
-                <b class="aqua">archivo</b>.<b class="golden">readFile(</b>
-                <b class="naranja">File</b>, 
-                <b>options</b>, 
-                <b class="azul">callback</b>
-                <b class="golden">)</b>
-            </p>
-            <p></p>
-        </div>
-        <ul>
-            <li><code class="naranja">File</code> Ruta del archivo a leer (puede ser relativa o absoluta).</li>
-            <li><code class="letra-B">options</code> (opcional), puede ser un objeto o un string que indique la codificaicon (ej. "utf8") y otras opciones.</li>
-            <li>
-                <code class="azul">callback</code> Funcion que se ejecuta cuando la lectura termina. Recibe dos argumentos:
-                <code class="sky">err</code>: error si ocurrio alguno,
-                <code class="sky">data</code>: Contendio del archivo.
-            </li>
-        </ul>
-
-        <!-- writeFile -->
-        <p class="margen150">
-            <code class="golden letra-big">writeFile</code> / 
-            <code class="golden letra-big">writeFileSync</code>
-            Estos metodos permiten escribir un fichero, writeFile es la version asincrona,
-            esta es la mas recomendable y writeFileSync es la version sincrona. Crean un archivo
-            nuevo si no existe, y sobreescribe el contendio si el archivo existe. Estos reciben
-            4 parametros:
+        <p>
+            <b>Exportaciones por defecto</b>
+            Si solo UN valor será exportado, entonces se puede utilizar export default. De 
+            esta manera no es necesario las llaves {} al exportar e importar. Adicionalmente, 
+            no se puede usar export default antes de declaraciones const, let o var, pero 
+            puedes exportarlas al final.
         </p>
-        <div class="codigo">
-            <p>Sintaxis</p>
-            <p>
-                <b class="aqua">archivo</b>.<b class="golden">writeFile(</b>
-                <b class="naranja">File</b>, 
-                <b class="naranja">Contenido</b>, <b>options</b>, 
-                <b class="azul">callback</b>
-                <b class="golden">)</b>
-            </p>
-            <p></p>
-        </div>
-        <ul>
-            <li><code class="naranja">File</code> Ruta del archivo (string, Buffer, URL o descriptor) relativa o absoluta.</li>
-            <li><code class="naranja">Contenido</code> Contenido a escribir (string, Buffer, TypedArray, DataView)</li>
-            <li><code class="letra-B">options</code> (opcional), puede ser un objeto o un string que indique la codificacion (ej. "utf8"), permisos, etc.</li>
-            <li>
-                <code class="azul">callback</code> Funcion que se ejecuta cuando la lectura termina. Y recibe 
-                <code class="sky">error</code> (error si ocurrio alguno).
-            </li>
-        </ul>
 
-        <!-- unlink -->
-        <p class="margen150">
-            <code class="golden letra-big">unlink</code> /
-            <code class="golden letra-big">unlinkSync</code>
-            se utiliza para eliminar archivos o enlaces simbólicos del sistema de archivos,
-            no sirve para eliminar directorios. Es asincrono, pero tiene su variante sincrona unlinkSync y
-            su variante basada en promesas (fs.promises.unlink). Recibe dos parametros:
+        <h4 class="morado">import</h4>
+        <p>
+            es la instruccion para traer funciones, objetos o valores desde otro archivo o 
+            módulo al código actual, deberá estar siempre lo más arriba del archivo y utilizando
+            el mismo nombre que el archivo original, junto a export forma el sistema de módulos de ES6.
         </p>
-        <div class="codigo">
-            <p>Sintaxis</p>
-            <p>
-                <b class="aqua">archivo</b>.<b class="golden">unlink(</b>
-                <b class="naranja">File</b>, 
-                <b class="azul">callback</b>
-                <b class="golden">)</b>
-            </p>
-            <p></p>
-        </div>
-        <ul>
-            <li><code class="naranja">File</code> Ruta del archivo o enlace simbólico a eliminar. (puede ser relativa o absoluta).</li>
-            <li>
-                <code class="azul">callback</code> Funcion que se ejecuta cuando la lectura termina. Y recibe 
-                <code class="sky">error</code> (error si ocurrio alguno).
-            </li>
-        </ul>
+        <p>
+            Para importar todas las funcionalidades de un archivo se utiliza un asterisco (*)
+            y se puede cambiar el nombre para evitar la repetición de variables o funciones 
+            a través de la palabra reservada as.
+        </p>
+        <p>
+            <b>Importaciones por defecto</b>
+            Si únicamente un valor será importado, entonces se puede utilizar cualquier 
+            nombre en la importación. De esta manera no es necesario las llaves {}. Sin 
+            embargo, es recomendable utilizar siempre el nombre de la función, para evitar 
+            confusiones.
+        </p>
 
-        <!-- codigo -->
-        <div class="control-consola">
-            <button onclick="fileSystem('file-system')" class="btn-cambiar-consola">File System</button>
-            <button onclick="fileSystem('promises')" class="btn-cambiar-consola">File System promises</button>
-        </div>
-        <div class="codigo-consola" style="margin-top: 0;">
-            <div id="codigo-file-system">
-                <p style="margin-bottom: 0;">
-                    <b class="azul">const</b> <b class="aqua">file</b> = 
-                    <b class="golden">require</b>(<b class="naranja">'fs'</b>); <br><br>
-                    
-                    <b class="aqua">file</b>.<b class="golden">readFile</b>(
-                    <b class="naranja">'./Modulos/archivo.txt'</b>, 
-                    <b class="naranja">"utf8"</b>, 
-                    (<b class="sky">error</b>, <b class="sky">data</b>) 
-                    <b class="azul">=></b> {
-                    <div class="margenIz">
-                        <b class="morado">if</b> (<b class="sky">error</b>) { <br>
-                        &emsp; console.error(`Error al leer el archivo: ${<b class="sky">error</b>}`) <br>
-                        } <b class="morado">else</b> { <br>
-                        &emsp; console.log(`Contenido del archivo: ${<b class="sky">data</b>}`) <br>
-                        }  
-                    </div>      
-                    })
-                </p>
+        <h4>Importaciones dinamicas</h4>
+        <p>
+            La importación dinámica consiste en cargar los módulos cuando el usuario 
+            los vaya a utilizar, y no al iniciar la aplicación. Esto permite que la 
+            página web sea más rápida, porque descarga menos recursos. Para lograrlo 
+            utilizaremos la exprecion import() que permite manejar módulos dinámicamente,
+            ya que la sintaxis de ECMAScript import ... from ... no lo permite.
+        </p>
 
-                <p style="margin-bottom: 0;">        
-                    <b class="aqua">file</b>.<b class="golden">writeFile</b>(
-                    <b class="naranja">'./Modulos/nuevo.txt'</b>, 
-                    <b class="naranja">'Hola Mundo'</b>, 
-                    <b class="naranja">"utf8"</b>, 
-                    (<b class="sky">error</b>) 
-                    <b class="azul">=></b> {
-                    <div class="margenIz">
-                        <b class="morado">if</b> (<b class="sky">error</b>) { <br>
-                        &emsp; console.error(`Error al escribir el archivo: ${<b class="sky">error</b>}`) <br>
-                        }
-                    </div>      
-                    })
-                </p>
+        <p>
+            La expresión <b class="azul">import()</b> es una forma especial 
+            de importar módulos de manera dinámica. A diferencia de la sentencia estática 
+            import, que se evalúa al inicio del archivo, import() es una función que 
+            devuelve una promesa y permite cargar módulos bajo demanda, en tiempo de ejecución.
+            La expresión recibe un argumento de tipo string con la ruta del módulo a importar.
+        </p>
 
-                <p style="margin-bottom: 0;">        
-                    <b class="aqua">file</b>.<b class="golden">unlink</b>(
-                    <b class="naranja">'./Modulos/nuevo.txt'</b>, 
-                    (<b class="sky">error</b>) 
-                    <b class="azul">=></b> {
-                    <div class="margenIz">
-                        <b class="morado">if</b> (<b class="sky">error</b>) { <br>
-                        &emsp; console.error(`Error al borrar el archivo: ${<b class="sky">error</b>}`) <br>
-                        }
-                    </div>      
-                    })
-                </p>
-            </div>
-
-            <div>
-                <p>El modulo fs es parte de Node.js, y solo funciona en el lado del servidor.</p>
-                <p>En el navegador, no existe require ni el modulo fs, porque el navegador no tiene acceso directo al sistema de archivos por razones de seguridad.</p>
-                <p class="naranja">En Node.js puedes leer el archivo y mostrarlo en la terminal donde corres el archivo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODULO PROCESOS HIJOS -->
-    <section>
-        <h3 class="margen150">
-            Modulo 
-            <span class="golden">Proceso hijo 
-            (<span class="naranja">'child_process'</span>)</span>
-        </h3>
-        
-        <p>Un proceso es una instancia de un programa que se está ejecutando. Por ejemplo, cada vez que ejecutamos un comando en la terminal, se crea un nuevo proceso para ejecutar dicho comando.</p>
-        <p>Node.js no solo permite ejecutar sus propios procesos, sino que también nos capacita para ejecutar otros procesos del sistema. Esto es útil en diversos casos prácticos, como cuando necesitamos interactuar con comandos del sistema operativo o trabajar con scripts externos. Descubrir cómo hacerlo amplía considerablemente nuestras posibilidades para el desarrollo con Node.js.</p>
-        <p>El módulo <b class="naranja">child_process</b> en Node.js es un módulo integrado que permite crear y manejar procesos hijos (subprocesos) desde tu aplicación. Esto es útil porque Node.js corre en un solo hilo, y a veces necesitas ejecutar tareas externas o intensivas sin bloquear el hilo principal.</p>
-        
-        <ul class="letra-B">
-            <li>Ejecuta comandos del sistema desde Node.js.</li>
-            <li>Correr tareas intensivas en procesos separados para no bloquear el event loop.</li>
-            <li>Aprovechar múltiples núcleos de CPU ejecutando procesos en paralelo.</li>
-            <li>Comunicar tu aplicación con programas externos o scripts.</li>
-        </ul>
-
-        <table class="margen100 table-metodos">
-            <caption class="letra-B"><span class="golden letra-big">Metodos</span> principales para crear subprocesos</caption>
+        <table>
             <thead>
                 <tr>
-                <th>Método</th>
-                <th>Función</th>
+                <th>Característica</th>
+                <th>import estático</th>
+                <th>import() dinámico</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>spawn()</td>
-                    <td>Ejecuta un comando externo y permite interactuar con su salida en tiempo real.</td>
+                <td>Momento de carga</td>
+                <td>Al inicio del archivo</td>
+                <td>En tiempo de ejecución</td>
                 </tr>
                 <tr>
-                    <td>exec()</td>
-                    <td>Ejecuta comandos en una shell y devuelve toda la salida en un callback.</td>
+                <td>Sintaxis</td>
+                <td><code>import { x } from "./modulo.js";</code></td>
+                <td><code>import("./modulo.js").then(...)</code></td>
                 </tr>
                 <tr>
-                <td>execFile()</td>
-                <td>Ejecuta directamente un archivo binario sin pasar por un shell. Es más seguro y rápido que <code>exec()</code>.</td>
+                <td>Uso típico</td>
+                <td>Organización modular fija</td>
+                <td>Carga condicional, lazy loading</td>
                 </tr>
                 <tr>
-                <td>fork()</td>
-                <td>Crea un nuevo proceso Node.js, ideal para comunicación entre procesos mediante mensajes.</td>
+                <td>Retorno</td>
+                <td>Exportaciones directamente</td>
+                <td>Una promesa con el módulo</td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- exec -->
-        <p class="margen100">
-            <b class="golden letra-big">exec()</b> 
-            Sirve para ejecutar comandos del sistema operativo en un shell (por defecto /bin/sh en Unix o cmd.exe en Windows)
-            es asincrónico y utiliza un callback para manejar la salida del comando 
-            (stdout y stderr), devuelve toda la salida de golpe, no en tiempo real.
-            Más simple que spawn, pero menos eficiente para grandes volúmenes de datos. 
-            Recibe dos <b class="sky">parametros</b>:
-        </p>
-        <div class="sintaxis">
-            <b class="golden">exec</b>(<b class="naranja">'comando'</b>, 
-            (<b class="sky">error</b>, <b class="sky">stdout</b>, <b class="sky">estderr</b>)
-            <b class="azul">=></b> { codigo } )
+        <!-- botones -->
+        <div class="control-consola" id="botones-export">
+            <button class="btn-cambiar-consola">Export</button>
+            <button class="btn-cambiar-consola">Import</button>
         </div>
+        <!-- codigo -->
+        <div class="codigo-consola">
+            
+            <div id="codigo-export">
+                <b class="letra-B">Antes de declarar</b> 
+                <p>
+                    <b class="morado">export</b> <b class="azul">const</b>
+                    <b class="golden">add</b> = (x,y) => { <br>
+                    &emsp; return x + y <br>
+                    } 
+                </p>
+
+                <b class="letra-B">Primero declarar y exportar entre llaves</b> <br>
+                <p>
+                    <b class="azul">const</b> <b class="golden">add</b> = (x,y) => { <br>
+                    &emsp; <b class="morado">return</b> x + y <br>
+                    } <br><br>
+
+                    <b class="morado">export</b> { <b class="golden">add</b>, <b class="golden">otherFunction</b>, ... }
+                </p>
+
+                <b class="letra-B">Exportar por defecto</b> <br>
+                <p>
+                    <b class="morado">export</b> <b class="morado">default</b>
+                    <b class="azul">function</b> <b class="golden">add</b> (x,y){ <br>
+                    &emsp; <b class="morado">return</b> x + y; <br>
+                    }
+                </p>
+            </div>
+
+            <div id="consola-export"></div>
+        </div>
+
+    </section>
+
+    <!-- MODULOS DEL CORE DE NODE -->
+    <section>
+        <!-- MODULO: ARCHIVOS DEL SISTEMA -->
+        <div>
+            
+            <h3>Modulo <span class="golden">file system (<span class="naranja">'fs'</span>)</span></h3>
+            
+            <p>El módulo FS (File System) en Node.js es una API que te permitirá acceder a archivos en tu sistema operativo. Con FS, podrás leer, escribir, modificar y renombrar archivos, entre muchas otras capacidades. Este módulo es crucial cuando trabajas con cualquier aplicación que necesite interacción con archivos, como bases de datos o almacenamiento de archivos.</p>
+            <p>Cargar el módulo FS dentro de Node.js es bastante sencillo, ya que está incluido por defecto en el entorno de ejecución. Solamente necesitas requerir el módulo usando el siguiente método:</p>
+            <p>
+                (<b class="naranja">fs</b>).<b class="aqua">promises</b> y (<b class="naranja">fs/promises</b>)
+                son una versión del módulo File System (fs) basada en promesas en lugar de callbacks.
+                Cada operación devuelve una Promise que se resuelve cuando la acción termina o se rechaza si ocurre un error,
+                permitiendo trabajar con el sistema de archivos usando async/await o .then()/.catch().
+            </p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="golden">require(<b class="naranja">'fs'</b>)</b> <br>
+                    <b class="golden">require(<b class="naranja">'fs'</b>)</b>.<b class="aqua">promises</b> //Cuando necesitas mezclar callbacks y promesas en el mismo archivo <br>
+                    <b class="golden">require(<b class="naranja">'fs/promises'</b>)</b> //submódulo que expone solo la API basada en promesas.
+                </p>
+                <p></p>
+            </div>
+
+            <h4><span class="golden">Metodos</span> principales</h4>
+            <!-- readFile -->
+            <p>
+                <code class="golden letra-big">readFile</code> / 
+                <code class="golden letra-big">readFileSync</code>
+                Estos metodos permiten leer un fichero, readFile es la version asincrona,
+                esta es la mas recomendable y readFileSync es la version sincrona. Estos reciben
+                3 parametros:
+            </p>
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">archivo</b>.<b class="golden">readFile(</b>
+                    <b class="naranja">File</b>, 
+                    <b>options</b>, 
+                    <b class="azul">callback</b>
+                    <b class="golden">)</b>
+                </p>
+                <p></p>
+            </div>
+            <ul>
+                <li><code class="naranja">File</code> Ruta del archivo a leer (puede ser relativa o absoluta).</li>
+                <li><code class="letra-B">options</code> (opcional), puede ser un objeto o un string que indique la codificaicon (ej. "utf8") y otras opciones.</li>
+                <li>
+                    <code class="azul">callback</code> Funcion que se ejecuta cuando la lectura termina. Recibe dos argumentos:
+                    <code class="sky">err</code>: error si ocurrio alguno,
+                    <code class="sky">data</code>: Contendio del archivo.
+                </li>
+            </ul>
+
+            <!-- writeFile -->
+            <p class="margen150">
+                <code class="golden letra-big">writeFile</code> / 
+                <code class="golden letra-big">writeFileSync</code>
+                Estos metodos permiten escribir un fichero, writeFile es la version asincrona,
+                esta es la mas recomendable y writeFileSync es la version sincrona. Crean un archivo
+                nuevo si no existe, y sobreescribe el contendio si el archivo existe. Estos reciben
+                4 parametros:
+            </p>
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">archivo</b>.<b class="golden">writeFile(</b>
+                    <b class="naranja">File</b>, 
+                    <b class="naranja">Contenido</b>, <b>options</b>, 
+                    <b class="azul">callback</b>
+                    <b class="golden">)</b>
+                </p>
+                <p></p>
+            </div>
+            <ul>
+                <li><code class="naranja">File</code> Ruta del archivo (string, Buffer, URL o descriptor) relativa o absoluta.</li>
+                <li><code class="naranja">Contenido</code> Contenido a escribir (string, Buffer, TypedArray, DataView)</li>
+                <li><code class="letra-B">options</code> (opcional), puede ser un objeto o un string que indique la codificacion (ej. "utf8"), permisos, etc.</li>
+                <li>
+                    <code class="azul">callback</code> Funcion que se ejecuta cuando la lectura termina. Y recibe 
+                    <code class="sky">error</code> (error si ocurrio alguno).
+                </li>
+            </ul>
+
+            <!-- unlink -->
+            <p class="margen150">
+                <code class="golden letra-big">unlink</code> /
+                <code class="golden letra-big">unlinkSync</code>
+                se utiliza para eliminar archivos o enlaces simbólicos del sistema de archivos,
+                no sirve para eliminar directorios. Es asincrono, pero tiene su variante sincrona unlinkSync y
+                su variante basada en promesas (fs.promises.unlink). Recibe dos parametros:
+            </p>
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">archivo</b>.<b class="golden">unlink(</b>
+                    <b class="naranja">File</b>, 
+                    <b class="azul">callback</b>
+                    <b class="golden">)</b>
+                </p>
+                <p></p>
+            </div>
+            <ul>
+                <li><code class="naranja">File</code> Ruta del archivo o enlace simbólico a eliminar. (puede ser relativa o absoluta).</li>
+                <li>
+                    <code class="azul">callback</code> Funcion que se ejecuta cuando la lectura termina. Y recibe 
+                    <code class="sky">error</code> (error si ocurrio alguno).
+                </li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="control-consola">
+                <button onclick="fileSystem('file-system')" class="btn-cambiar-consola">File System</button>
+                <button onclick="fileSystem('promises')" class="btn-cambiar-consola">File System promises</button>
+            </div>
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-file-system">
+                    <p style="margin-bottom: 0;">
+                        <b class="azul">const</b> <b class="aqua">file</b> = 
+                        <b class="golden">require</b>(<b class="naranja">'fs'</b>); <br><br>
+                        
+                        <b class="aqua">file</b>.<b class="golden">readFile</b>(
+                        <b class="naranja">'./Modulos/archivo.txt'</b>, 
+                        <b class="naranja">"utf8"</b>, 
+                        (<b class="sky">error</b>, <b class="sky">data</b>) 
+                        <b class="azul">=></b> {
+                        <div class="margenIz">
+                            <b class="morado">if</b> (<b class="sky">error</b>) { <br>
+                            &emsp; console.error(`Error al leer el archivo: ${<b class="sky">error</b>}`) <br>
+                            } <b class="morado">else</b> { <br>
+                            &emsp; console.log(`Contenido del archivo: ${<b class="sky">data</b>}`) <br>
+                            }  
+                        </div>      
+                        })
+                    </p>
+
+                    <p style="margin-bottom: 0;">        
+                        <b class="aqua">file</b>.<b class="golden">writeFile</b>(
+                        <b class="naranja">'./Modulos/nuevo.txt'</b>, 
+                        <b class="naranja">'Hola Mundo'</b>, 
+                        <b class="naranja">"utf8"</b>, 
+                        (<b class="sky">error</b>) 
+                        <b class="azul">=></b> {
+                        <div class="margenIz">
+                            <b class="morado">if</b> (<b class="sky">error</b>) { <br>
+                            &emsp; console.error(`Error al escribir el archivo: ${<b class="sky">error</b>}`) <br>
+                            }
+                        </div>      
+                        })
+                    </p>
+
+                    <p style="margin-bottom: 0;">        
+                        <b class="aqua">file</b>.<b class="golden">unlink</b>(
+                        <b class="naranja">'./Modulos/nuevo.txt'</b>, 
+                        (<b class="sky">error</b>) 
+                        <b class="azul">=></b> {
+                        <div class="margenIz">
+                            <b class="morado">if</b> (<b class="sky">error</b>) { <br>
+                            &emsp; console.error(`Error al borrar el archivo: ${<b class="sky">error</b>}`) <br>
+                            }
+                        </div>      
+                        })
+                    </p>
+                </div>
+
+                <div>
+                    <p>El modulo fs es parte de Node.js, y solo funciona en el lado del servidor.</p>
+                    <p>En el navegador, no existe require ni el modulo fs, porque el navegador no tiene acceso directo al sistema de archivos por razones de seguridad.</p>
+                    <p class="naranja">En Node.js puedes leer el archivo y mostrarlo en la terminal donde corres el archivo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULO PROCESOS HIJOS -->
+        <div>
+            <h3 class="margen150">
+                Modulo 
+                <span class="golden">Proceso hijo 
+                (<span class="naranja">'child_process'</span>)</span>
+            </h3>
+            
+            <p>Un proceso es una instancia de un programa que se está ejecutando. Por ejemplo, cada vez que ejecutamos un comando en la terminal, se crea un nuevo proceso para ejecutar dicho comando.</p>
+            <p>Node.js no solo permite ejecutar sus propios procesos, sino que también nos capacita para ejecutar otros procesos del sistema. Esto es útil en diversos casos prácticos, como cuando necesitamos interactuar con comandos del sistema operativo o trabajar con scripts externos. Descubrir cómo hacerlo amplía considerablemente nuestras posibilidades para el desarrollo con Node.js.</p>
+            <p>El módulo <b class="naranja">child_process</b> en Node.js es un módulo integrado que permite crear y manejar procesos hijos (subprocesos) desde tu aplicación. Esto es útil porque Node.js corre en un solo hilo, y a veces necesitas ejecutar tareas externas o intensivas sin bloquear el hilo principal.</p>
+            
+            <ul class="letra-B">
+                <li>Ejecuta comandos del sistema desde Node.js.</li>
+                <li>Correr tareas intensivas en procesos separados para no bloquear el event loop.</li>
+                <li>Aprovechar múltiples núcleos de CPU ejecutando procesos en paralelo.</li>
+                <li>Comunicar tu aplicación con programas externos o scripts.</li>
+            </ul>
+
+            <table class="margen100 table-metodos">
+                <caption class="letra-B"><span class="golden letra-big">Metodos</span> principales para crear subprocesos</caption>
+                <thead>
+                    <tr>
+                    <th>Método</th>
+                    <th>Función</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>spawn()</td>
+                        <td>Ejecuta un comando externo y permite interactuar con su salida en tiempo real.</td>
+                    </tr>
+                    <tr>
+                        <td>exec()</td>
+                        <td>Ejecuta comandos en una shell y devuelve toda la salida en un callback.</td>
+                    </tr>
+                    <tr>
+                    <td>execFile()</td>
+                    <td>Ejecuta directamente un archivo binario sin pasar por un shell. Es más seguro y rápido que <code>exec()</code>.</td>
+                    </tr>
+                    <tr>
+                    <td>fork()</td>
+                    <td>Crea un nuevo proceso Node.js, ideal para comunicación entre procesos mediante mensajes.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- exec -->
+            <p class="margen100">
+                <b class="golden letra-big">exec()</b> 
+                Sirve para ejecutar comandos del sistema operativo en un shell (por defecto /bin/sh en Unix o cmd.exe en Windows)
+                es asincrónico y utiliza un callback para manejar la salida del comando 
+                (stdout y stderr), devuelve toda la salida de golpe, no en tiempo real.
+                Más simple que spawn, pero menos eficiente para grandes volúmenes de datos. 
+                Recibe dos <b class="sky">parametros</b>:
+            </p>
+            <div class="sintaxis">
+                <b class="golden">exec</b>(<b class="naranja">'comando'</b>, 
+                (<b class="sky">error</b>, <b class="sky">stdout</b>, <b class="sky">estderr</b>)
+                <b class="azul">=></b> { codigo } )
+            </div>
+            <ul>
+                <li>El <b class="naranja">comando</b> que quieres ejecutar (ejemplo: "ls -lh" en Linux/macOS o "dir" en Windows).</li>
+                <li>Un <b class="azul">callback</b> que recibe:
+                    (error) si ocurre un error al ejecutar el comando,
+                    (stdout) la salida estandar del comando, y
+                    (stderr) la salida de error del comando.
+                </li>
+            </ul>
+
+            <!-- spawn -->
+            <p class="margen100">
+                <b class="golden letra-big">spawn()</b> 
+                Se utiliza para ejecutar comandos del sistema operativo o programas en un proceso secundario, permitiendo interactuar con su entrada y salida en tiempo real,
+                es asincrónico y utiliza eventos para manejar la salida del proceso hijo,
+                No usa un shell por defecto (a diferencia de exec()), a menos que lo especifiquemos con la opcion {shell: true}. <br><br>
+
+                Permite streaming de datos: la salida (stdout) y los errores (stderr) se reciben en fragmentos mientras el proceso corre.
+                Ideal para procesos largos o que generan mucha salida. Se puede enviar datos al proceso hijo mediante stdin.
+            </p>
+            <div class="sintaxis">
+                <b class="golden">spawn</b>(<b class="naranja">'comando'</b>, [<b class="naranja">'argumentos'</b>] )
+            </div>
+            <ul>
+                <li>El <b class="naranja">comando</b> que quieres ejecutar (ejemplo: "ls -lh" en Linux/macOS o "dir" en Windows) y los argumentos.</li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="control-consola">
+                <button onclick="childProcess('exec')" class="btn-cambiar-consola">File System</button>
+                <button onclick="childProcess('spawn')" class="btn-cambiar-consola">File System promises</button>
+            </div>
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="consola-childProcess">
+                    <p>
+                        <b class="azul">const</b> { <b class="golden">exec</b>, <b class="golden">spawn</b> } =
+                        <b class="golden">require</b>(<b class="naranja">'child_process'</b>);
+                    </p>
+                    <p class="margen0">
+                        <b class="golden">exec</b>(<b class="naranja">'dir'</b>, 
+                        (<b class="sky">error</b>, <b class="sky">stdout</b>, <b class="sky">estderr</b>)
+                        <b class="azul">=></b> {
+                        <div class="margenIz">
+                            <b class="morado">if</b>(<b class="sky">error</b>) { <br>
+                            &emsp; console.log('Error ejecutando el comando: ', <b class="sky">error</b>) <br>
+                            &emsp; <b class="morado">return</b> <br>
+                            }
+                            <b class="morado">if</b>(<b class="sky">estderr</b>) { <br>
+                            &emsp; console.log('Error ejecutando el comando: ', <b class="sky">estderr</b>) <br>
+                            &emsp; <b class="morado">return</b> <br>
+                            } <br>
+
+                            console.log(<b class="sky">stdout</b>)
+                        </div>
+                        })
+                    </p>
+                </div>
+                <div>
+                    <p>El modulo child_process es parte de Node.js, y solo funciona en el lado del servidor.</p>
+                    <p class="naranja">En Node.js puedes leer el archivo y mostrarlo en la terminal donde corres el archivo.</p>
+                </div>
+            </div>
+
+            <p>Aqui usaremos desestructuracion de objetos para adquirir los metodos directamente del modulo.</p>
+        </div>
+
+        <!-- MODULO SISTEMA OPERATIVO -->
+        <div>
+            <h3>Modulo <span class="golden">sistema operativo</span> <span class="naranja">'os'</span></h3>
+            <p>Node.js ofrece un módulo llamado 'os' que permite acceder a una serie de características del sistema operativo que usualmente estarían reservadas para lenguajes de bajo nivel. Estas funcionalidades son de gran utilidad para desarrolladores que necesitan interactuar con la memoria RAM, el número de cores de la CPU, el tipo de sistema de archivos, entre otras cosas.</p>
+            <p>Es un módulo nativo (no requiere instalación) y ofrece métodos y propiedades que permiten consultar detalles del sistema y del usuario. Para obtenerlo usaremos una variable con la siguiente sintaxis:</p>
+            <div class="sintaxis">
+                <b class="azul">const</b> <b class="aqua">os</b> = 
+                <b class="golden">require(<b class="naranja">'os'</b>)</b> 
+            </div>
+
+            <table class="table-metodos">
+                <thead>
+                    <tr class="letra-B">
+                        <th><span class="golden">Método</span>/<span class="sky">Propiedad</span></th>
+                        <th>Qué devuelve</th>
+                        <th>Ejemplo práctico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>arch()</td>
+                    <td>Arquitectura de la CPU (x64, arm, etc.)</td>
+                    <td>Detectar compatibilidad de binarios</td>
+                    </tr>
+                    <tr>
+                    <td>platform()</td>
+                    <td>Plataforma del SO (linux, win32, darwin)</td>
+                    <td>Ejecutar código condicional según sistema</td>
+                    </tr>
+                    <tr>
+                    <td>cpus()</td>
+                    <td>Información de cada núcleo de CPU</td>
+                    <td>Medir paralelismo disponible</td>
+                    </tr>
+                    <tr>
+                    <td>totalmem()</td>
+                    <td>Memoria total del sistema (bytes)</td>
+                    <td>Calcular límites de caché</td>
+                    </tr>
+                    <tr>
+                    <td>freemem()</td>
+                    <td>Memoria libre disponible</td>
+                    <td>Monitorear consumo de recursos</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--sky);">constants</td>
+                        <td>Constantes del sistema</td>
+                        <td>señas y códigos de error clave.</td>
+                    </tr>
+                    <tr>
+                        <td>hostname()</td>
+                        <td>Nombre del host</td>
+                        <td>Identificar máquina en red</td>
+                    </tr>
+                    <tr>
+                    <td>networkInterfaces()</td>
+                    <td>Interfaces de red y direcciones IP</td>
+                    <td>Configurar servidores o sockets</td>
+                    </tr>
+                    <tr>
+                    <td>homedir()</td>
+                    <td>Carpeta home del usuario actual</td>
+                    <td>Guardar configuraciones personalizadas</td>
+                    </tr>
+                    <tr>
+                    <td>uptime()</td>
+                    <td>Tiempo que lleva encendido el sistema (segundos)</td>
+                    <td>Métricas de disponibilidad</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <h4>Funciones principales del modulo</h4>
+            <ul>
+                <li><b class="letra-B">La arquitectura de la máquina</b> indica si estás trabajando con un sistema de 32 o 64 bits, y esto puede influir en la manera en la que compilamos o ejecutamos algunos módulos nativos. Para obtener esta información en Node.js, utilizamos <b class="golden">arch()</b>.</li>
+                <li><b class="letra-B">Conocer la plataforma</b> sobre la que tu código corre puede ser esencial, especialmente si tu software requiere ejecutar comandos específicos de un sistema operativo. El método <b class="golden">platform()</b> te proporciona esta información</li>
+                <li><b class="letra-B">Saber cuántos núcleos tiene tu procesador</b> y cómo se están utilizando puede ayudar a optimizar el rendimiento de tus aplicaciones. Node.js te permite acceder a esta información con <b class="golden">cpus()</b>.</li>
+                <li>Cuando desarrollamos aplicaciones que requieren gran <b class="letra-B">cantidad de memoria</b>, es crucial saber cuánta memoria libre hay disponible y cuál es su capacidad total. Puedes utilizar <b class="golden">freemem()</b> y <b class="golden">totalmem()</b> para esto.</li>
+                <li>Node.js ofrece una lista de <b class="letra-B">constantes del sistema</b> que pueden ser vitales al trabajar con procesos a muy bajo nivel. La propiedad <b class="sky">constants</b> te proporciona una serie de señas y códigos de error clave</li>
+                <li>Saber dónde almacenar <b class="letra-B">archivos temporales o específicos</b> del usuario es esencial para evitar errores o pérdida de información. Node.js nos da acceso a esta información con <b class="golden">homedir()</b> y <b class="golden">tmpdir()</b>.</li>
+                <li>Cuando se trabaja con redes, conocer el <b class="letra-B">nombre del host y las interfaces de red disponibles</b> puede ser crítico. Node.js te proporciona los métodos <b class="golden">hostname()</b> y <b class="golden">networkInterfaces()</b> para obtener esta información.</li>
+            </ul>
+
+            <p><b class="letra-B">En resumen</b> el módulo os es como una ventana al sistema operativo: te permite saber dónde estás corriendo tu aplicación, qué recursos tienes disponibles y cómo interactuar con el entorno de manera portátil y consistente entre Windows, Linux y macOS.</p>
+        </div>
+    </section>
+
+    <!-- MODULOS DE NPM -->
+    <section>
+        <h2>Librerias de npm</h2>
+        <p>Las librerías de npm (también llamadas paquetes o packages) son conjuntos de código (modulos) que otros desarrolladores han creado y publicado en el registro de npm para que puedan ser reutilizados en proyectos de Node.js o JavaScript en general.</p>
         <ul>
-            <li>El <b class="naranja">comando</b> que quieres ejecutar (ejemplo: "ls -lh" en Linux/macOS o "dir" en Windows).</li>
-            <li>Un <b class="azul">callback</b> que recibe:
-                (error) si ocurre un error al ejecutar el comando,
-                (stdout) la salida estandar del comando, y
-                (stderr) la salida de error del comando.
-            </li>
+            <li><b class="letra-B">npm</b> (Node Package Manager): es el gestor de paquetes oficial de Node.js y el registro más grande de software del mundo, con millones de paquetes disponibles.</li>
+            <li><b class="letra-B">Paquete</b> (package): es básicamente una carpeta o archivo comprimido que contiene código y un archivo package.json con la descripción, dependencias y metadatos del proyecto.</li>
+            <li><b class="letra-B">Dependencias</b>: son librerías que tu aplicación necesita para funcionar. npm se encarga de descargarlas, instalarlas y mantenerlas actualizadas.</li>
         </ul>
 
-        <!-- spawn -->
-        <p class="margen100">
-            <b class="golden letra-big">spawn()</b> 
-            Se utiliza para ejecutar comandos del sistema operativo o programas en un proceso secundario, permitiendo interactuar con su entrada y salida en tiempo real,
-            es asincrónico y utiliza eventos para manejar la salida del proceso hijo,
-            No usa un shell por defecto (a diferencia de exec()), a menos que lo especifiquemos con la opcion {shell: true}. <br><br>
+        <!-- diferencias: modulos / paquetes -->
+        <table>
+            <caption>Diferencias entre modulos y paquetes</caption>
+            <tr>
+                <th>Concepto</th>
+                <th>Funcion</th>
+                <th>Ejemplo</th>
+            </tr>
 
-            Permite streaming de datos: la salida (stdout) y los errores (stderr) se reciben en fragmentos mientras el proceso corre.
-            Ideal para procesos largos o que generan mucha salida. Se puede enviar datos al proceso hijo mediante stdin.
-        </p>
+            <tr>
+                <td><b class="letra-B">Modulo</b></td>
+                <td>Es cualquier archivo o conjunto de archivos de JavaScript que exporta funcionalidades (funciones, clases, objetos) y puede ser importado con require o import.</td>
+                <td>modulos propios o nativos de Node.js</td>
+            </tr>
+            <tr>
+                <td><b class="letra-B">Paquete</b></td>
+                <td>Es un módulo (o conjunto de módulos) empaquetado con un archivo package.json que describe su nombre, versión, dependencias y metadatos. Publicado en npm para que otros lo instalen fácilmente.</td>
+                <td>express, lodash, axios</td>
+            </tr>
+        </table>
+        <p>En resumen: todos los paquetes de npm son módulos, pero no todos los módulos son paquetes. Un módulo puede ser local y nunca salir de tu proyecto; un paquete es un módulo que alguien decidió empaquetar y compartir en npm.</p>
+
+        <!-- Cifrado de contraseñas -->
+        <h3>Cifrado de contraseñas</h3>
+        <p>Trabajar con contraseñas seguras es esencial en cualquier aplicación web. Una de las maneras más efectivas para hacerlo es mediante el uso del módulo bcrypt, el cual añade una capa de seguridad cifrando contraseñas y permitiendo compararlas sin exponerlas en texto plano.</p>
+        <p>El hash de contraseñas garantiza que las contraseñas de texto plano sean difíciles de encontrar para los atacantes, incluso si una base de datos está comprometida. Sin embargo, no todos los métodos de hash son iguales, y aquí es donde bcrypt destaca.</p>
+
+        <h4>Bcrypt</h4>
+        <p>Bcrypt en Node.js es una popular biblioteca de cifrado utilizada para hashear (encriptar de forma irreversible) contraseñas antes de almacenarlas en una base de datos. incorpora una "sal" (salt) automática para proteger contra ataques de tablas arcoíris y es intencionalmente lenta para dificultar ataques de fuerza bruta.</p>
+        <ul>
+            <li><b class="letra-B">Hasheo Seguro</b>: Transforma contraseñas en texto plano en cadenas irreconocibles.</li>
+            <li><b class="letra-B">Salting (Sal)</b>: Añade datos aleatorios únicos a cada contraseña, garantizando que contraseñas idénticas tengan hashes distintos.</li>
+            <li><b class="letra-B">Factor de Coste</b>: Permite ajustar la lentitud del algoritmo para adaptarse a los aumentos de velocidad del hardware, manteniendo la seguridad a largo plazo.</li>
+            <li><b class="letra-B">Comparación de Contraseñas</b>: Ofrece métodos para verificar si una contraseña ingresada coincide con el hash almacenado.</li>
+        </ul>
+
+        <p>Para <b class="letra-B">instalar bcrypt</b>, necesitará tener un proyecto de Node.js configurado. Si aún no lo ha creado, siga estos pasos:</p>
         <div class="sintaxis">
-            <b class="golden">spawn</b>(<b class="naranja">'comando'</b>, [<b class="naranja">'argumentos'</b>] )
+            <b class="golden">npm</b> init -y |
+            <b class="golden">npm</b> install bcrypt
+        </div>
+
+        <p>Luego debes <b class="letra-B">importar</b> el modulo en tu archivo Javascript.</p>
+        <!-- sintaxis -->
+        <div class="sintaxis">
+            <b class="azul">const</b> <b class="doger">bcrypt</b> = 
+            <b class="golden">require</b>(<b class="naranja">'bcrypt'</b>); 
+            <br>
+            <b class="morado">import</b> <b class="sky">bcrypt</b>
+            <b class="morado">from</b> <b class="naranja">'bcrypt'</b>;
+        </div>
+        <p class="notas">
+            La librería bcrypt original está diseñada para Node.js (usa C++ interno). Si estás intentando usarla directamente en el navegador (Chrome, Firefox), te dará un error porque el navegador no entiende los módulos de Node. Prueba a usar 
+            <b class="naranja">'bcryptjs'</b> (una versión pura de JavaScript) que es más ligera para desarrollo: npm install bcryptjs y cambia el import a import bcrypt from 'bcryptjs';.</p>
+
+        <!-- metodos -->
+        <h4 style="text-align: center;"><b class="golden">Metodos</b> principales</h4>
+    
+        <p><b class="letra-big golden">hash()</b> Esta función se utiliza para generar un hash de una contraseña de texto plano. Toma la contraseña de texto plano y un factor de sal (opcional) como parámetros de entrada y devuelve la contraseña hash de forma asíncrona.</p>
+        <!-- sintaxis -->
+        <div class="sintaxis">
+            <b class="doger">bcrypt</b>.<b class="golden">hash</b>(
+            <b class="sky">data</b>, <b class="sky">saltRounds</b>,  
+            <b class="azul">callback</b> )
         </div>
         <ul>
-            <li>El <b class="naranja">comando</b> que quieres ejecutar (ejemplo: "ls -lh" en Linux/macOS o "dir" en Windows) y los argumentos.</li>
+            <li><b class="sky">data</b> es la cadena de texto que quieres hashear (normalmente la contraseña del usuario).</li>
+            <li><b class="sky">saltRounds</b> es un número entero que indica el “coste” del algoritmo. Cuanto mayor sea, más lento será el cálculo del hash, pero también más seguro contra ataques de fuerza bruta. Valor típico: 10 (equilibrio entre seguridad y rendimiento).</li>
+            <li><b class="azul">callback</b> (opcional en la versión asíncrona). Es una función que recibe dos parámetros: <span class="sky">err</span> (maneja el error) y <span class="sky">hash</span> (el hash generado). Se ejecuta cuando el proceso de hashing termina.</li>
         </ul>
 
         <!-- codigo -->
-        <div class="control-consola">
-            <button onclick="childProcess('exec')" class="btn-cambiar-consola">File System</button>
-            <button onclick="childProcess('spawn')" class="btn-cambiar-consola">File System promises</button>
-        </div>
-        <div class="codigo-consola" style="margin-top: 0;">
-            <div id="consola-childProcess">
-                <p>
-                    <b class="azul">const</b> { <b class="golden">exec</b>, <b class="golden">spawn</b> } =
-                    <b class="golden">require</b>(<b class="naranja">'child_process'</b>);
-                </p>
-                 <p class="margen0">
-                    <b class="golden">exec</b>(<b class="naranja">'dir'</b>, 
-                    (<b class="sky">error</b>, <b class="sky">stdout</b>, <b class="sky">estderr</b>)
-                    <b class="azul">=></b> {
-                    <div class="margenIz">
-                        <b class="morado">if</b>(<b class="sky">error</b>) { <br>
-                        &emsp; console.log('Error ejecutando el comando: ', <b class="sky">error</b>) <br>
-                        &emsp; <b class="morado">return</b> <br>
-                        }
-                        <b class="morado">if</b>(<b class="sky">estderr</b>) { <br>
-                        &emsp; console.log('Error ejecutando el comando: ', <b class="sky">estderr</b>) <br>
-                        &emsp; <b class="morado">return</b> <br>
-                        } <br>
+        <div class="codigo-consola">
+            <div id="codigo-bcrypt">
+                <b class="morado">import</b> <b class="sky">bcrypt</b>
+                <b class="morado">from</b> <b class="naranja">'bcrypt'</b>;
 
-                        console.log(<b class="sky">stdout</b>)
+                <p>
+                    <b class="azul">const</b> <b class="doger">password</b> = "1234segura!"; <br>
+                    <b class="azul">const</b> <b class="doger">saltRounds</b> = 10; <b class="verde">// Más seguro</b>
+                </p>
+
+                <p class="margen0">
+                    <b class="sky">bcrypt</b>.<b class="golden">hash</b>(<b class="doger">password</b>, 
+                    <b class="doger">saltRounds</b>, 
+                    (<b class="sky">error</b>,<b class="sky">hash</b>) <b class="azul">=></b> {
+                    <div class="margenIz">
+                        console.log(<b class="sky">hash</b>) <br><br>
+                        
+                        <b class="sky">bcrypt</b>.<b class="golden">compare</b>(<b class="doger">password</b>, 
+                        <b class="sky">hash</b>, (<b class="sky">error</b>,
+                        <b class="sky">result</b>) <b class="azul">=></b> { <br>
+                        &emsp; console.log(<b class="sky">result</b>)
+                        }) 
                     </div>
                     })
                 </p>
             </div>
-            <div>
-                <p>El modulo child_process es parte de Node.js, y solo funciona en el lado del servidor.</p>
-                <p class="naranja">En Node.js puedes leer el archivo y mostrarlo en la terminal donde corres el archivo.</p>
+            
+            <div style="width: 50%;">
+                El navegador es muy estricto con los import. Solo acepta tres cosas: <br>
+                Rutas relativas: ./mi-archivo.js <br>
+                Rutas absolutas: /scripts/mi-archivo.js <br>
+                URLs completas: https://sitio.com/libreria.js <br>
+
+                <p>
+                    cuando intentas usar módulos de Node.js directamente en el navegador sin un empaquetador (como Vite, Webpack o Parcel).
+                    El navegador no sabe dónde buscar la carpeta node_modules. Para él, "bcryptjs" es solo una palabra sin sentido, a menos que le des una ruta relativa (./) o una URL completa.
+                </p>
             </div>
         </div>
 
-        <p>Aqui usaremos desestructuracion de objetos para adquirir los metodos directamente del modulo.</p>
     </section>
-
-    <!-- MODULO SISTEMA OPERATIVO -->
-    <section>
-        <h3>Modulo <span class="golden">sistema operativo</span> <span class="naranja">'os'</span></h3>
-        <p>Node.js ofrece un módulo llamado 'os' que permite acceder a una serie de características del sistema operativo que usualmente estarían reservadas para lenguajes de bajo nivel. Estas funcionalidades son de gran utilidad para desarrolladores que necesitan interactuar con la memoria RAM, el número de cores de la CPU, el tipo de sistema de archivos, entre otras cosas.</p>
-        <p>Es un módulo nativo (no requiere instalación) y ofrece métodos y propiedades que permiten consultar detalles del sistema y del usuario. Para obtenerlo usaremos una variable con la siguiente sintaxis:</p>
-        <div class="sintaxis">
-            <b class="azul">const</b> <b class="aqua">os</b> = 
-            <b class="golden">require(<b class="naranja">'os'</b>)</b> 
-        </div>
-
-        <table class="table-metodos">
-            <thead>
-                <tr class="letra-B">
-                    <th><span class="golden">Método</span>/<span class="sky">Propiedad</span></th>
-                    <th>Qué devuelve</th>
-                    <th>Ejemplo práctico</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>arch()</td>
-                <td>Arquitectura de la CPU (x64, arm, etc.)</td>
-                <td>Detectar compatibilidad de binarios</td>
-                </tr>
-                <tr>
-                <td>platform()</td>
-                <td>Plataforma del SO (linux, win32, darwin)</td>
-                <td>Ejecutar código condicional según sistema</td>
-                </tr>
-                <tr>
-                <td>cpus()</td>
-                <td>Información de cada núcleo de CPU</td>
-                <td>Medir paralelismo disponible</td>
-                </tr>
-                <tr>
-                <td>totalmem()</td>
-                <td>Memoria total del sistema (bytes)</td>
-                <td>Calcular límites de caché</td>
-                </tr>
-                <tr>
-                <td>freemem()</td>
-                <td>Memoria libre disponible</td>
-                <td>Monitorear consumo de recursos</td>
-                </tr>
-                <tr>
-                    <td style="color: var(--sky);">constants</td>
-                    <td>Constantes del sistema</td>
-                    <td>señas y códigos de error clave.</td>
-                </tr>
-                <tr>
-                    <td>hostname()</td>
-                    <td>Nombre del host</td>
-                    <td>Identificar máquina en red</td>
-                </tr>
-                <tr>
-                <td>networkInterfaces()</td>
-                <td>Interfaces de red y direcciones IP</td>
-                <td>Configurar servidores o sockets</td>
-                </tr>
-                <tr>
-                <td>homedir()</td>
-                <td>Carpeta home del usuario actual</td>
-                <td>Guardar configuraciones personalizadas</td>
-                </tr>
-                <tr>
-                <td>uptime()</td>
-                <td>Tiempo que lleva encendido el sistema (segundos)</td>
-                <td>Métricas de disponibilidad</td>
-                </tr>
-            </tbody>
-        </table>
     
-        <h4>Funciones principales del modulo</h4>
-        <ul>
-            <li><b class="letra-B">La arquitectura de la máquina</b> indica si estás trabajando con un sistema de 32 o 64 bits, y esto puede influir en la manera en la que compilamos o ejecutamos algunos módulos nativos. Para obtener esta información en Node.js, utilizamos <b class="golden">arch()</b>.</li>
-            <li><b class="letra-B">Conocer la plataforma</b> sobre la que tu código corre puede ser esencial, especialmente si tu software requiere ejecutar comandos específicos de un sistema operativo. El método <b class="golden">platform()</b> te proporciona esta información</li>
-            <li><b class="letra-B">Saber cuántos núcleos tiene tu procesador</b> y cómo se están utilizando puede ayudar a optimizar el rendimiento de tus aplicaciones. Node.js te permite acceder a esta información con <b class="golden">cpus()</b>.</li>
-            <li>Cuando desarrollamos aplicaciones que requieren gran <b class="letra-B">cantidad de memoria</b>, es crucial saber cuánta memoria libre hay disponible y cuál es su capacidad total. Puedes utilizar <b class="golden">freemem()</b> y <b class="golden">totalmem()</b> para esto.</li>
-            <li>Node.js ofrece una lista de <b class="letra-B">constantes del sistema</b> que pueden ser vitales al trabajar con procesos a muy bajo nivel. La propiedad <b class="sky">constants</b> te proporciona una serie de señas y códigos de error clave</li>
-            <li>Saber dónde almacenar <b class="letra-B">archivos temporales o específicos</b> del usuario es esencial para evitar errores o pérdida de información. Node.js nos da acceso a esta información con <b class="golden">homedir()</b> y <b class="golden">tmpdir()</b>.</li>
-            <li>Cuando se trabaja con redes, conocer el <b class="letra-B">nombre del host y las interfaces de red disponibles</b> puede ser crítico. Node.js te proporciona los métodos <b class="golden">hostname()</b> y <b class="golden">networkInterfaces()</b> para obtener esta información.</li>
-        </ul>
 
-        <p><b class="letra-B">En resumen</b> el módulo os es como una ventana al sistema operativo: te permite saber dónde estás corriendo tu aplicación, qué recursos tienes disponibles y cómo interactuar con el entorno de manera portátil y consistente entre Windows, Linux y macOS.</p>
-    </section>
-
-    <script src="modulos.js"></script>
+    <script src="modulos.js" type="module"></script>
 </body>
 </html>

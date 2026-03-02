@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones</title>
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+    <nav>
+         <button 
+            onclick="window.location.href='../pagina.html'">
+            Home 🏠
+        </button>
+    </nav>
+
+    <section>
+        <h2>Funciones</h2>
+        <p>Es un procedimiento o un conjunto de instrucciones que realiza una tarea o calcula un valor para ello debe tomar alguna entrada y devolver una salida donde haya alguna relacion, para usarla debemos llamarla desde algun lugar de nuestro codigo. Las funciones son de tipo "function" mas sin embargo tambien son "objetos" ya que tienen propiedades, metodos, contexto de ejecucion y pueden ser invocadas.</p>
+
+        <h3 class="azul margen100">function</h3>
+        <p> una función es un bloque de código reutilizable que ejecuta una tarea específica o calcula un valor, y que puedes invocar (llamar) en cualquier momento de tu programa. Las funciones son los principales “bloques de construcción” del programa. Permiten que el código se llame muchas veces sin repetición.</p>
+        <p>Las funciones tambien son tipo de dato especial, conocido como <b>Objeto de primera clase</b>, esto significa que se pueden tratar como un valor, al que podemos asignar a variables, pasar como argumento a otras funciones, y retornar desde funciones. De esta forma las funciones pueden viajan por todo el codigo como un dato que contiene valores utiles para otras partes de nuestro codigo. </p>
+
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="azul">function</b> <b class="golden">nombre(</b><b class="sky">parametros</b><b class="golden">) {</b>
+                <br>&emsp;&emsp;<b class="verde">// bloque de instrucciones</b>
+                <br>&emsp;&emsp;<b class="morado">return</b> <b>valor retornado</b>
+                <br><b class="golden">}</b>
+                <br><br>
+                <b class="golden">nombre(</b><b class="naranja">argumentos</b><b class="golden">)</b> <b class="verde">//llamado de la funcion</b>
+            </p>
+            <p></p>
+        </div>
+
+        <ul>
+            <li><b class="azul">function</b> es la palabra clave que se usa para una declaracion de funcion o una expresion de funcion. </li>
+            <li><b class="golden">Nombre</b> las funciones deben tener un nombre descriptivo acerca de lo que realiza esa funcion, debe estar en "camelCase" (la primera letra minúscula y las iniciales de palabras subsiguientes en mayúsculas). El nombre de la funcion es al mismo tiempo la variable que almacena lo que retorna dicha funcion.</li>
+            <li><b class="sky">Parametros</b> van seguido del nombre de la funcion, entre parentesis y separados por comas, es la variable que guarda un valor (entrada de datos) que podra usar la funcion. Se pueden especificar mas de uno.</li>
+            <li><b class="letra-B">instruccion</b><b class="golden">{...}</b> es donde se ecribe el codigo que la funcion ejecutara, se encierra entre llaves. Puede incluir un return para devolver un valor al finalizar la ejecucion.</li>
+            <li><b class="morado">return</b> la setencia return finaliza la ejecucion de la funcion y devuelven un valor a donde se llama a la funcion. su uso es opcional pero si no hay return explícito y la funcion no realiza ninguna accion, la función devuelve undefined.</li>
+            <li><b class="letra-B">Llamado de funcion</b> Para ejecutar una función, se utiliza su nombre seguido de paréntesis que, opcionalmente, contienen argumentos; estos son los valores reales que reemplazan a los parámetros de la funcion.</li>
+        </ul>
+
+        <h5 class="letra-B margen100">Parametros por Defecto</h5>
+        <p>consiste en establecer parametros pre-definidos en una funcion, de esta manera podemos garantizar que la funcion cumpla su tarea correctamente en caso de que no se le pasen los argumentos que necesita para trabajar. La forma tradicional era por medio de variables que obtienen el parametro (si se establece en el llamado) de lo contrario toma el valor por defecto gracias al operador or (||).</p>
+        <p>desde EcmaScript 6, se eliminan las declaraciones de variables y el operador or, y asignamos el valor por defecto en los mismos parametros. Si obligatoriamente necesitamos que uno de los valores sea pasado por argumento, el parametro que se use por defecto debe estar en la ultima posicion: (nombre, pais="Italia").</p>
+
+        <!-- Tipos de funciones -->
+        <div class="bloques-oscuros">
+            <h4 class="azul" style="text-align: center;">Tipos de funciones</h4>
+
+            <h5 class="letra-B">Funcion Declarada</h5>
+            <p>Es la funcion que se crea en el flujo del codigo principal (ambito global), con su sintaxis original, usando la palabra reservada function.</p>
+            <ul>
+                <li><span class="letra-B">Hoisting:</span> Una funcion declarada es global (visible en todo el script), cuando javascript ejecuta el codigo busca primero las funciones declaradas y las eleva (Hoisting) osea las carga en memoria antes de ejecutar el codigo y despues lo ejecuta secuencialmente, teniendo ya acceso a estas funciones, pueden ser invocada en cualquier parte del codigo..</li>
+                <li><span class="letra-B">Scope:</span> las variables locales dentro de la funcion no son accesibles afuera, ya que se encuentran dentro de un bloque. Por otra parte una funcion declarada dentro de un bloque tampoco es accesible fuera de ese bloque.</li>
+                <li><span class="letra-B">Closures:</span> una funcion puede "recordar" variables del entorno donde fue creada.</li>
+            </ul>
+
+            <h5 class="letra-B">Expresion de Funcion</h5>
+            <p>Existe otra sintaxis para crear una función conocidas como Expresiónes de Función. Estas se crean en medio de cualquier expresion de asignacion (variable = funcion), aqui la funcion se asigna como valor de una variable, tomando su nombre y permitiendo ser llamada desde el. Son funciones anonimas ya que se crean sin un nombre propio.</p>
+            <ul>
+                <li><span class="letra-B">Hoisting:</span> estas funciones son creadas cuando el flujo de ejecucion las alcanza, esto significa que no pueden ser usadas antes de su creacion, sino a partir de esta.</li>
+            </ul> 
+        </div>
+   
+        <!-- botones -->
+        <div class="control-consola">
+            <button onclick="ejecutarFunciones('funcion-tradicional')" class="btn-cambiar-consola">Funcion Declarada</button>
+            <button onclick="ejecutarFunciones('expresionDeFuncion')" class="btn-cambiar-consola">Expresion de Funcion</button>
+            <button onclick="ejecutarFunciones('parametros-pordefecto')" class="btn-cambiar-consola">Parametros por Defecto</button>
+            <button onclick="ejecutarFunciones('retornar-objetos')" class="btn-cambiar-consola">Retornar objetos</button>
+        </div>
+        <!-- Codigo -->
+        <div class="codigo-consola">
+            <div id="codigo-function">
+                <p class="margen0">
+                    <b>Un parametro</b><br>
+                    <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>
+                    <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'Hola'</b> + <b class="sky">nombre</b> + <b class="naranja">"👋 Bienvenido"</b>
+                    <br><b class="golden">}</b>
+                    <br><br>
+
+                    <b>Dos parametros</b><br>
+                    <b class="azul">function</b> <b class="golden">saludar2(</b><b class="sky">nombre</b> , 
+                    <b class="sky">apellido</b><b class="golden">) {</b>
+                    <br>&emsp;&emsp;<b class="morado">return</b> 
+                    <b class="naranja">'Hola</b> 
+                    <b class="golden">$(</b><b class="sky">nombre</b><b class="golden">)</b>
+                    <b class="golden">$(</b><b class="sky">apellido</b><b class="golden">)</b>
+                    <b class="naranja">👋 Bienvenido'</b> 
+                    <br><b class="golden">}</b>
+                </p>
+            </div>
+            <div style="width: 700px;">
+                <code>
+                    <b id="consola-function"></b>
+                </code>
+            </div>
+        </div>
+
+        <p>Esta funcion recibe un valor de entrada en el parametro "nombre" y lo usa para devolver un valor de salida con return, el resultado se muestra por pantalla llamando a la funcion saludar.</p>
+
+        <table class="margen150">
+            <caption>Tipos de funciones en JavaScript</caption>
+            <tr>
+                <th>Tipo</th>
+                <th>Sintaxis</th>
+                <th>Notas / Características</th>
+            </tr>
+            <tr>
+                <td>Declarada</td>
+                <td>function nombre(a, b) { return a + b; }</td>
+                <td>Hoisting: se puede llamar antes de su definición.</td>
+            </tr>
+            <tr>
+                <td>Expresión de función</td>
+                <td>const fn = function(a, b) { return a + b; }; </td>
+                <td>No se hoistea como la declarada; útil para callbacks y encapsulación.</td>
+            </tr>
+            <tr>
+                <td>Flecha (Arrow)</td>
+                <td>const fn = (a, b) => a + b;</td>
+                <td>No tiene this , arguments  ni prototype propios; sintaxis concisa.</td>
+            </tr>
+            <tr>
+                <td>Método de objeto</td>
+                <td>const obj = { saludar() { ... } };</td>
+                <td>Se invoca como obj.metodo(); this referencia al objeto receptor.</td>
+            </tr>
+            <tr>
+                <td>IIFE</td>
+                <td>(function(){ /*...*/ })();</td>
+                <td>Se ejecuta inmediatamente; crea un ámbito aislado.</td>
+            </tr>
+            <tr>
+                <td>Asíncrona</td>
+                <td>async function fn(){ await ... }</td>
+                <td>Devuelve una Promise; permite usar await.</td>
+            </tr>
+            <tr>
+                <td>Generadora</td>
+                <td>function* gen(){ yield ... }</td>
+                <td>Produce secuencias perezosas con yield; retorna un iterador.</td>
+            </tr>
+            <tr>
+                <td>Constructor de funciones</td>
+                <td>const fn = new Function("a","b","return a+b");</td>
+                <td>Evalúa cadenas; evita usar salvo casos muy específicos por seguridad y rendimiento.</td>
+            </tr>
+            <tr>
+                <td>Anónima (callback)</td>
+                <td>arr.map(function(x){ return x*2; })</td>
+                <td>Sin nombre; común en callbacks y funciones de orden superior.</td>
+            </tr>
+        </table>
+
+        <div><!-- Callback -->
+            <h4 class="letra-B margen150">Pasar funciones como argumentos (<span class="golden">Callback</span>)</h4>
+
+            <p>Un callback en javascript es simplemente una funcion que se pasa como argumento a otra funcion, y que se ejecuta despues de que ocurre algo especifico como: terminar una tarea, recibir una respuesta, o completar una accion.</p>
+            <p>JavaScript es un lenguaje asíncrono, lo que significa que puede ejecutar tareas sin bloquear el flujo principal. Los callbacks permiten que una función diga: "Cuando termines, llama a esta otra función para continuar". Esto es posible porque en JavaScript las funciones son ciudadanos de primera clase, se pueden asignar a variables, pasar como parámetros y devolver desde otras funciones. </p>
+            <ul>
+                <li><b class="letra-B">Función de orden superior</b> es la funcion que recibe otra función como argumento.</li>
+                <li><b class="letra-B">Callback</b> es la función que se pasa y que será llamada dentro de la función de orden superior, ya sea de forma inmediata (síncrona) o después de que ocurra algo (asíncrona).</li>
+            </ul>
+
+            <!-- botones -->
+            <div class="control-consola">
+                <button onclick="ejecutarCallback('callback')">Callback</button>
+                <button onclick="ejecutarCallback('CallbackHell')">Callback Hell</button>
+                <button onclick="ejecutarCallback('CallbackHellRecursivo')">Callback Hell Refactorizado</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-callback">
+                    <p class="margen0">
+                        <b>funcion que se pasa como callback</b><br>
+                        <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>  <br>
+                        &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="naranja">"hola"</b>  +
+                        <b class="sky">nombre</b><b class="morado">)</b><br>
+                        <b class="golden">}</b>
+                    </p>
+                        
+                    <p>
+                        <b>funcion de orden superior</b><br>
+                        <b class="azul">function</b> <b class="golden">procesarUsuario(</b><b class="sky">callback</b><b class="golden">) {</b> <br>
+                        &emsp;&emsp;<b class="azul">const</b> <b class="doger">nombre</b> = <b class="naranja">"Luis"</b>  <br>
+                        &emsp;&emsp;<b class="golden">callback</b><b class="morado">(</b><b class="doger">nombre</b><b class="morado">)</b>
+                        <b class="verde">//aqui se llama el callback</b><br>
+                        <b class="golden">}</b>
+                    </p>
+                        
+                    <button onclick="ejecutarCallback('callback')" class="btn-consola"><b>ejecutar</b></button>
+                </div>
+
+                <div id="consola-callback"></div>
+            </div>
+
+            <p>Aqui tenemos dos funciones declaradas: <span class="golden">procesarUsuario</span> es de orden superior, lo que quiere decir que recibe la funcion <span class="golden">saludar</span> como argumento y la llama dentro de su proceso de ejecucion, pasandole como paramentro la variable <span class="doger">nombre</span></p>
+            <p>por otro lado la funcion <span class="golden">saludar</span> es el callback de la funcion de orden superior y ejecuta un codigo con el argumento que este le dio. La palabra <span class="sky">callback</span> no es una palabra clave, solo es el nombre que se acostumbra para esa variable que recibira la funcion como argumento.</p>
+        </div>
+
+        <div><!-- Anidar funciones -->
+            <h4 class="letra-B margen150">Anidar funciones</b> (<b class="golden">Nested Funcion</b>)</h4>
+
+            <p>Son funciones que se definen dentro de otras funciones, desde ellas podemos acceder a propiedades de cualquiera de las otras funciones, Se pueden llamar dentro de ellas mismas y acceder a sus variables.</p>
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="azul">function</b> <b class="golden">uno() {</b>   <br>
+                    &emsp;&emsp;<b class="azul">function</b> <b class="golden">dos</b><b class="morado">() {</b> <br>
+                    &emsp;&emsp;&emsp;&emsp;<b class="azul">function</b> <b class="golden">tres</b><b class="azul">() {</b> <br>
+                    &emsp;&emsp;&emsp;&emsp;<b class="azul">}</b> <br>
+                    &emsp;&emsp;<b class="morado">}</b> <br>
+                    <b class="golden">}</b>
+                </p>
+                <p></p>
+            </div>
+
+            <h5>Closure</h5>
+            <p>es la capacidad que tiene una funcion de tener acceso a variables de un ambito externo (osea una función interna que tiene acceso a las variables de una función externa), incluso despues de que la funcion externa que la creo haya terminado de ejecutarse, lo que quiere decir que "recuerda" el entorno o contexto en el que fue creada y guarda una pequeña memoria de las variables que estaban en su alcance cuando se creo.</p>
+            <p>Este comportamiento se debe al <span class="letra-B">ámbito léxico</span>, el cual se define en el momento en que se crea una función. Este ámbito permite que las funciones accedan a variables dentro de su ámbito y a cualquier variable de los ámbitos superiores.</p>
+
+            <!-- botones -->
+            <div class="control-consola btn-closure">
+                <button>Ejemplo 1</button>
+                <button>Ejemplo 2</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div id="codigo-closure">
+                    <p class="margenTop0">
+                        <b class="azul">function</b> <b class="golden">saludo(</b><b class="golden">) {</b>  <br>
+                        &emsp;&emsp;<b class="azul">let</b> <b class="sky">mensaje</b> = <b class="naranja">"Hola Bienvenido/a"</b> <b class="verde">// ambito lexico</b> <br>
+                        &emsp;&emsp;<b class="azul">let</b> <b class="sky">numero</b> = <b class="verde">1</b>  <br>
+                    </p>
+                   
+                    <div style="box-shadow: 1px -1px 4px gray;">
+                        &emsp;&emsp;<b class="azul">function</b> <b class="golden">imprimir</b><b class="morado">(<b class="sky">nombre</b>) {</b> <b class="verde">// closure</b> <br>
+                        &emsp;&emsp;&emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="sky">mensaje</b> +
+                        <b class="naranja">" "</b>  + <b class="sky">nombre</b> +
+                        <b class="naranja">" "</b> + <b class="sky">numero</b><b class="morado">)</b><br>
+                        &emsp;&emsp;&emsp;&emsp;<b class="sky">numero</b> ++ <br>
+                        &emsp;&emsp;<b class="morado">}</b> <br>
+                    </div>
+
+                    <p class="margenIz">
+                        <b class="morado">return</b> <b class="golden">imprimir</b> <br>
+                    </p>
+                    <b class="golden">}</b>
+                    
+                    <p>
+                        <b class="azul">const</b> <b class="golden">users</b> = <b class="golden">saludo()</b> <br>
+                        <b class="golden">users(<b class="naranja">"Luis"</b>)</b>  <br>
+                        <b class="golden">users(<b class="naranja">"Sharon"</b>)</b> <br>
+                        <b class="golden">users(<b class="naranja">"Adriana"</b>)</b> 
+                    </p>
+                </div>
+
+                <div id="consola-closure"></div>
+            </div>
+
+            <ul>
+                <li><span class="golden">saludo()</span> crea dos variables y define una funcion interna que luego retorna</li>
+                <li><span class="golden">imprimir()</span> accede a las variables <span class="sky">mensaje</span> y <span class="sky">numero</span> aunque esten fuera de su propio scope, gracias al <span class="letra-B">closure</span> esta funcion retiene los datos de su ambito lexico en la que fue creada.</li>
+                <li><span class="morado">return</span> devuelve la funcion <span class="golden">imprimir</span> sin los parantesis, lo que quiere decir que no se ejecuta.</li>
+                <li><span class="letra-B">Invocar funcion</span> aqui "saludo" retorna la funcion interna "imprimir" pero no la ejecuta, porque no se esta invocando, para hacerlo tenemos dos maneras:</li>
+                <ul style="margin-top: 0;">
+                    <li><span class="letra-B">Ejecutar directamente</span> <span class="golden">saludo()()</span>: primero "saludo" devuelve "imprimir" y luego el segundo () la ejecuta.</li>
+                    <li><span class="letra-B">Guardarla y usarla varias veces:</span> se guarda el resultado "imprimir" en una variable nueva y luego la llamamos, de esta manera podemos reutilizar la funcion "imprimir" con su propio ambito lexico, lo que puede requerir mas memoria si no se gestiona correctamente.</li>
+                </ul>
+                <li><span class="golden">mostrar</span> esta variable guarda la funcion "imprimir", junto con su entorno cerrado, es decir el closure.</li>
+                <li><span class="golden">mostrardos</span> esta variable tambien guarda la funcion "imprimir", pero crea un nuevo closure con su propio ambito.</li>
+                <li>Aunque saludo() ya terminó, la función imprimir() sigue teniendo acceso a mensaje y numero porque JavaScript guarda ese contexto. Los valores de numero son independientes entre mostrar y mostrardos, proque cada closure mantiene su propio estado.</li>
+            </ul>
+            
+        </div>
+
+        <div><!-- Metodos -->
+            <h4 class="letra-B margen150">Almacenar funciones en objetos (<b class="golden">Metodos</b>)</h4>
+
+            <p>Un metodo es una funcion asociada a un objeto. Es decir, se trata de una funcion que se declara como propiedad de un objeto y generalmente opera con los datos internos de ese objeto, por lo tanto un metodo es esencialmente una funcion que opera sobre propiedades o comportamientos de un objeto. Esta simple relación marca una diferencia fundamental con las funciones normales, que están "desvinculadas" de objetos concretos. El uso de métodos es especialmente relevante al trabajar con programación orientada a objetos (POO), donde los métodos representan comportamientos de los objetos. </p>
+            <p>Vale la pena enfatizar que, aunque todos los métodos son funciones, no todas las funciones son métodos. La esencialidad de un método radica en que forma parte de un objeto y, normalmente, utiliza las propiedades del mismo a través de la palabra clave <b class="azul">this</b>. Esta relación permite modelar conductas y operaciones relacionadas directamente con los datos que representa cada objeto.</p>
+            <p><b class="azul letra-big">this</b> es la palabra clave que se usa dentro de un metodo declarado en un objeto literal para acceder a las propiedades del mismo</p>
+
+            <div class="codigo-consola">
+                <div>
+                    <code>
+                        <b class="azul">const</b> <b class="doger">persona</b> =
+                        <b class="golden">{</b> <br>
+                        &emsp;&emsp;<b class="sky">nombre:</b> <b class="naranja">"Sharon"</b>, <br>
+                        &emsp;&emsp;<b class="sky">apellido:</b> <b class="naranja">"Gamez"</b>, <br>
+                        &emsp;&emsp;<b class="sky">edad:</b> <b class="verde">31</b>,
+                    </code>
+                    <br>
+                    <code>
+                        <div style="box-shadow: 1px -1px 4px gray;">
+                            &emsp;&emsp;<b class="golden">saludar:</b> <b class="azul">function</b> <b class="morado">() {</b> <b class="verde">//abreviado seria: saludar () {}</b> <br>
+                            &emsp;&emsp;&emsp; <b class="morado">return</b> <b class="naranja">`Hola soy </b>
+                            <b class="azul">$(</b><b class="azul">this</b>.<b class="sky">nombre</b><b class="azul">)</b>
+                            <b class="azul">$(</b><b class="azul">this</b>.<b class="sky">apellido</b><b class="azul">)</b> <br>
+                            &emsp;&emsp;&emsp; <b class="naranja">y tengo</b>
+                            <b class="azul">$(</b><b class="azul">this</b>.<b class="sky">edad</b><b class="azul">)</b> <b class="naranja">años`</b> <br>
+                            &emsp;&emsp;<b class="morado">}</b> <br>
+                        </div>
+                    </code>
+                        <b class="golden">}</b>
+                </div>
+
+                <div>
+                    <code>
+                        <b id="consola-metodo"></b>
+                    </code>
+                </div>
+            </div>
+
+            <p>Aqui el método <b class="golden">saludar</b> es una funcion anonima que es una propiedad del objeto <b class="doger">persona</b> y tiene acceso directo a sus propiedades, como <b class="sky">nombre</b>, a través de <b class="azul">this</b>. Esta capacidad es la que distingue a los métodos y los hace potentes para definir comportamientos encapsulados</p>
+            <p><span class="letra-B">Abreviacion:</span> los métodos pueden declararse en objetos literales usando varias sintaxis. Una forma abreviada mas simple es estableciendo el nombre de la funcion directamente sin escribir la palabra reservada function: <b class="golden">saludar</b> <b class="morado">() {}</b>. </p>
+            <p><span class="letra-B">Lamado de metodo:</span> Para invocar el metodo, se utiliza la notacion de punto: <b class="doger">objeto</b>.<b class="golden">metodo</b><b class="morado">()</b> </p>
+        </div>
+
+        <div><!-- Metodos en clases -->
+            <h4 class="letra-B margen150">Almacenar funciones en clases (<b class="golden">Metodos en clases</b>) </h4>
+            <p>Con la llegada de ECMAScript 6 (ES6), JavaScript incorporó la sintaxis de clases, facilitando la creación de estructuras orientadas a objetos. Los métodos en clases se definen de manera concisa y presentan numerosas ventajas para proyectos de cierta envergadura.</p>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p class="margen0">
+                        <b class="azul">class</b> <b class="aqua">Persona</b> <b class="golden">{</b> <br>
+                        &emsp;&emsp;<b class="azul">constructor</b><b class="morado">(</b><b class="sky">nombre</b>,<b class="sky">hobbie</b><b class="morado">) {</b>  <br>
+                        &emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky">nombre</b> = <b class="sky">nombre</b> <br>
+                        &emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky">hobbie</b> = <b class="sky">hobbie</b> <br>
+                        &emsp;&emsp;<b class="morado">}</b>
+                    </p>
+                    
+                    <p style="box-shadow: 1px -1px 4px gray;">
+                        &emsp;&emsp;<b class="golden">saludar</b> <b class="morado">() {</b>  <br>
+                        &emsp;&emsp;&emsp; <b class="morado">return</b> <b class="naranja">`Hola soy </b>
+                        <b class="azul">$(</b><b class="azul">this</b>.<b class="sky">nombre</b><b class="azul">)</b><b class="naranja">`</b> <br>
+                        &emsp;&emsp;<b class="morado">}</b> 
+                    </p>
+                    
+                    <p style="box-shadow: 1px -1px 4px gray;">
+                        &emsp;&emsp;<b class="golden">instrumento</b> <b class="morado">() {</b>  <br>
+                        &emsp;&emsp;&emsp; <b class="morado">return</b> <b class="naranja">`y toco la</b>
+                        <b class="azul">$(</b><b class="azul">this</b>.<b class="sky">hobbie</b><b class="azul">)</b><b class="naranja">`</b> <br>
+                        &emsp;&emsp;<b class="morado">}</b> 
+                    </p>
+                    
+                    <p>
+                        <b class="golden">}</b> <br><br>
+
+                        <b class="azul">const</b> <b class="doger">david</b> =
+                        <b class="azul">new</b> <b class="aqua">Persona</b>
+                        <b class="golden">(</b><b class="naranja">"David"</b>,<b class="naranja">"guitarra"</b><b class="golden">)</b> <br>
+
+                        <b class="sky">console</b>.<b class="golden">log(</b>
+                        <b class="doger">david</b>.<b class="golden">saludar</b><b class="morado">()</b> +
+                        <b class="doger">david</b>.<b class="golden">instrumento</b><b class="morado">()</b>
+                        <b class="golden">)</b>
+                    </p>
+                    
+                    <button onclick="ejecutarMetodoDeClase()" class="btn-consola"><b>Ejecutar</b></button>
+                </div>
+
+                <div>
+                    <p id="consola-metodo-clase" class="naranja"></p> <br>
+                </div>
+            </div>
+
+            <p>En este ejemplo, la clase Persona tiene dos métodos: <span class="golden">saludar</span> e <span class="golden">instrumento</span>. Ambos métodos pueden operar sobre los atributos de la instancia usando <span class="azul">this</span>. Para utilizar los métodos, primero se crea una instancia de la clase y luego se invocan mediante la notación de punto.</p>
+        </div>
+
+        <div><!-- funcion generadora -->
+            <h4 class="letra-B"><span class="azul">Funciones</span> Generadoras</h4>
+            <p>Tambien conocida como generadores, son funciones especiales que pueden pausar su ejecucion, luego volver al punto donde se quedaron, recordando su scope y retornando valores. Se utilizan para trabajar con datos en grandes cantidades, porque ocupan poca memoria con respecto a si creamos un array u objeto.</p>
+
+            <code class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="azul">function*</b> <b class="golden">generador</b><b class="golden">(<b class="sky">parametros</b>) {</b>
+                    <br>&emsp;&emsp;<b class="verde">//codigo</b>
+                    <br>&emsp;&emsp;<b class="morado">yield</b> <b>pausa la ejecucion</b>
+                    <br><b class="golden">}</b><br><br>
+
+                    <b class="verde">//crear generador</b><br>
+                    <b class="azul">const</b> <b class="doger">valores</b> = <b class="golden">generador()</b><br><br>
+
+                    <b class="verde">//llamar generador</b><br>
+                    <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b><br>
+                </p>
+                <button class="fondo-azul"></button>
+            </code>
+
+            <ul>
+                <li><code class="azul letra-big">function*</code> seguida de un asterisco es la palabra reservada que usamos para crear la funcion generadora.</li>
+                <li><code class="morado letra-big">yield</code> "producir" esta palabra clave hace referencia al valor retornado cada vez que se invoque la funcion, recordando el valor anterior. En lugar de return que devuelve un valor y termina la ejecucion, yield la pausa, como si se tratara de puntos de control en la funcion que nos permiten retomarla cuando necesitemos.</li>
+                <li><code class="golden letra-big">next()</code> es un metodo que se usa sobre la variable que contiene la funcion generadora, next la ejecuta hasta que encuentre un yield, momento en el que pausara la ejecucion y devolvera un objeto que contiene una propiedad <code class="sky">value</code> con cada valor de yield, y otra propiedad <code class="sky">done</code> con un valor booleaño true/false que indica si el generador a finalizado (true). </li>
+            </ul>
+
+            <!-- botones -->
+            <div class="control-consola">
+                <button onclick="ejecutarGeneradores('Declaracion')">Declaracion</button>
+                <button onclick="ejecutarGeneradores('iterar-valores')">Iterar valores</button>
+                <button onclick="ejecutarGeneradores('Generar-valores')">Generar valores</button>
+            </div>
+            <!-- codigo -->
+             <div class="codigo-consola" style="margin-top: 0;">
+                <div>
+                    <p id="codigo-generador1" class="margen0">
+                        <b class="azul">function*</b> <b class="golden">generador</b><b class="golden">() {</b> <br>
+                        &emsp;&emsp;<b class="morado">yield</b> <b class="verde">10</b><br>
+                        &emsp;&emsp;<b class="morado">yield</b> <b class="verde">20</b><br>
+                        &emsp;&emsp;<b class="morado">yield</b> <b class="verde">30</b><br>
+                        <b class="golden">}</b><br><br>
+
+                        <b>Crear Generador</b><br>
+                        <b class="azul">const</b> <b class="doger">valores</b> = <b class="golden">generador()</b><br>
+                        <b class="azul">const</b> <b class="doger">valoresiterados</b> =
+                        <b class="morado">[</b>...<b class="golden">generador()</b><b class="morado">]</b>  <br>
+                    </p>
+
+                    <p id="codigo-generador2">
+                        <b class="azul">function*</b> <b class="golden">generador</b><b class="golden">(<b class="sky">array</b>) {</b> <br>
+                        &emsp;&emsp;<b class="morado">for(</b><b class="azul">let</b>
+                        <b class="sky">value</b> <b class="azul">of</b> <b class="sky">array</b><b class="morado">) {</b><br>
+                        &emsp; &emsp; <b class="morado">yield</b> <b class="sky">value</b><br>
+                        &emsp;&emsp;<b class="morado">}</b><br>
+                        <b class="golden">}</b><br><br>
+
+                        <b>Crear Generador</b><br>
+                        <b class="azul">const</b> <b class="doger">valores</b> =
+                        <b class="golden">generador(</b><b class="morado">[</b><b class="naranja">"Luis"</b>,<b class="naranja">"David"</b>,<b class="naranja">"Sharon"</b>,<b class="naranja">"Carmen"</b>,<b class="naranja">"Jireh"</b>,<b class="naranja">"Adriana"</b><b class="morado">]</b><b class="golden">)</b>
+                    </p>
+
+                    <p id="codigo-generador3">
+                        <b class="azul">function*</b> <b class="golden">obtener</b><b class="golden">() {</b> <br>
+                        &emsp;&emsp;<b class="morado">while(</b><b class="azul">true</b><b class="morado">) {</b><br>
+                        &emsp; &emsp; <b class="morado">yield</b>
+                        <b class="sky">Math</b>.<b class="golden">random()</b>.<b class="golden">toString(<b class="verde">36</b>)</b>.<b class="golden">substring(<b class="verde">5</b>)</b>.<b class="golden">toUpperCase()</b>  <br>
+                        &emsp;&emsp;<b class="morado">}</b><br>
+                        <b class="golden">}</b><br><br>
+
+                        <b>Crear Generador</b><br>
+                        <b class="azul">const</b> <b class="doger">codigos</b> =
+                        <b class="golden">obtener()</b>
+                    </p>
+                </div>
+
+                <div>
+                    <code>
+                        <b id="consola-generadores"></b>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+
+        <div><!--funcion flecha -->
+            <h4 class="azul">Arrow Function</h4>
+            <p>Una arrow function (función flecha) es una sintaxis más compacta para definir funciones anonimas, que son utiles en expresiones de funcion. Esta sintaxis elimina la palabra clave function y lo sustituye con una flecha (<b class="azul">=></b>) que se situa entre los parámetros() y el cuerpo de la función.</p>
+            <p>No tienen su propio contexto this, no puede usarse como constructores y como se usan en expresiones de funcion, no puedes llamarlas antes de su definicion.</p>
+
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="azul">const</b> <b class="golden">nombre</b> = <b class="golden">(<b class="sky">parametros</b>)</b>
+                    <b class="azul">=></b> <b class="golden">{</b>
+                    <br>&emsp;&emsp;<b class="morado">return</b> <b>valor retornado</b>
+                    <br><b class="golden">}</b>
+                </p>
+                <p></p>
+            </div>
+
+            <h6 class="letra-B">retorno implicito</h6>
+            <p>las arrow function premiten el retorno implicito si el cuerpo se define en una sola linea que contenga el codigo sin llaves, lo que quiere decir que retorna el valor automaticamente sin escribir <code class="morado">return</code>. Si se requiere un codigo mas complejo en multilineas puedes seguir usando el retorno implicito pero se debe envolver el cuerpo de la funcion entre parentesis.</p>
+
+            <h6 class="letra-B">Uso de parametros</h6>
+            <p>Si la funcion no tiene parametros, se indican los parentesis vacios. Si tiene un solo parametro, se puede omitir el uso de los parentesis para ese parametro. Si tienes dos o mas parametros, los parentesis seran obligatorios.</p>
+
+
+            <!-- Codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <code>
+                        <b class="letra-B">Funcion tradicional</b><br>
+                        <b class="azul">const</b> <b class="golden">saludar</b> = <b class="azul">function</b><b class="golden">(<b class="sky">nombre</b>)</b> <b class="golden">{</b>
+                        <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">"Hola "</b> + <b class="sky">nombre</b>
+                        <br><b class="golden">}</b><br><br>
+
+                        <b class="letra-B">Arrow Function</b><br>
+                        <b class="azul">const</b> <b class="golden">suma</b> =
+                        <b class="golden">(</b><b class="sky">primero</b> , <b class="sky">segundo</b><b class="golden">)</b>
+                        <b class="azul">=></b> <b class="golden">{</b> <br>
+                        &emsp;&emsp;<b class="morado">return</b>
+                        <b class="sky">primero</b> + <b class="sky">segundo</b> <br>
+                        <b class="golden">}</b><br><br>
+                    </code>
+
+                    <!-- retorno implicito -->
+                    <code>
+                        <b class="letra-B">Arrow Function con retorno implicito</b><br>
+                        <b class="azul">const</b> <b class="golden">resta</b> =
+                        <b class="golden">(</b><b class="sky">primero</b> , <b class="sky">segundo</b><b class="golden">)</b>
+                        <b class="azul">=></b> <b class="sky">primero</b> - <b class="sky">segundo</b> <br>
+
+                        <b class="azul">const</b> <b class="golden">multiplicar</b> =
+                        <b class="sky">numero</b> <b class="azul">=></b>
+                        <b class="sky">numero</b> * <b class="verde">5</b><br>
+
+                        <b class="azul">const</b> <b class="golden">numero</b> =
+                        <b class="golden">()</b>
+                        <b class="azul">=></b> <b class="verde">45</b><br><br>
+                    </code>
+
+                    <code>
+                        <b class="letra-B">Arrow Function con retorno implicito multilinea</b><br>
+                        <b class="azul">const</b> <b class="golden">multilinea</b> =
+                        <b class="golden">(</b><b class="sky">primero</b> , <b class="sky">segundo</b><b class="golden">)</b>
+                        <b class="azul">=></b> <b class="golden">(</b> <br>
+                        &emsp; <b class="sky">primero</b> * <b class="sky">segundo</b> + <b class="verde">45</b><br>
+                        <b class="golden">)</b><br><br>
+                    </code>
+                </div>
+                <div>
+                    <code>
+                        <b id="consola-Arrowfunction"></b>
+                    </code>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    
+    <script src="funciones.js"></script>
+</body>
+</html>

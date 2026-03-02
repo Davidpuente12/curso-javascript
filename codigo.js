@@ -6,7 +6,6 @@ const temas = [
     "explicacion-strings",
     "explicacion-number",
     //ARRAYS
-    "ver-mas-arrays",
     //metodos inmutables
     "explicacion-concat",
     "explicacion-map",
@@ -25,12 +24,6 @@ const temas = [
     "ver-mas-objeto",
     "explicaciom-funcionConstructora",
     "explicacion-clases",
-    //CICLOS
-    "explicacion-cicloFor",
-    "explicacion-cicloForof",
-    "explicacion-cicloForin",
-    "explicacion-ciclo-while",
-    "explicacion-do-while",
     //Detalles
     'detalle-json',
     //DOM
@@ -148,30 +141,6 @@ function ejecutarVariablesDeEntorno(){
     </p>
     `
 }
-
-    //CLOSURE
-function closure(){
-    const consola = document.getElementById("consola-closure")
-
-    function saludo(){
-        
-        let mensaje = "hola Bienvenido/a"
-        let numero = 1
-
-        function imprimir(nombre){
-            consola.innerHTML += `${mensaje}  ${nombre}  <span class="verde">${numero}<span> <br>`
-            numero++
-        }
-        return imprimir
-    }
-    
-    const mostrar = saludo()
-    const mostrar2 = saludo()
-    mostrar("Luis")
-    mostrar("Puente")
-    mostrar2("Sharon")
-    mostrar2("Gamez")
-}closure()
 
 /////////////////////////// TIPOS DE DATOS
 
@@ -728,20 +697,21 @@ function ejecutarmutables(tipo){
     
 }ejecutarmutables("sort")
 
-    //inmutables
+//      INMUTABLES
+
+const animales = ["Dog","Cat","Duck","Elephant","Mouse","Camell"]
+const palabras = ["Guitarra","Pua","Cuerda","Cable","Guitarra","Cable","Microfono","Guitarra","Pua","Cuerda","Cable","Guitarra"]
+const ciudades = ["Merida","Caracas","Falcon"]
+const multiplos = [1,2,3,4,5]
+const multiplosDecinco = [5,10,15,20,25]
+const clientes = [
+    {name: "Andres", producto: "iphone", precio: 1200},
+    {name: "Camilo", producto: "audifonos", precio: 120},
+    {name: "Rodrigo", producto: "cargador", precio: 50},
+    {name: "David", producto: "funda", precio: 80},
+]
+
 function ejecutarinmutables(metodo){
-    
-    const animales = ["Dog","Cat","Duck","Elephant","Mouse","Camell"]
-    const palabras = ["Guitarra","Pua","Cuerda","Cable","Guitarra","Cable","Microfono","Guitarra","Pua","Cuerda","Cable","Guitarra"]
-    const ciudades = ["Merida","Caracas","Falcon"]
-    const multiplos = [1,2,3,4,5,6,7,8,9,10]
-    const multiplosDecinco = [5,10,15,20,25]
-    const clientes = [
-        {name: "Andres", producto: "iphone", precio: 1200 , premium: true},
-        {name: "Camilo", producto: "audifonos", precio: 120 , premium: false},
-        {name: "Rodrigo", producto: "cargador", precio: 50 , premium: false},
-        {name: "David", producto: "funda", precio: 80 , premium: true}
-    ]
     
     if(metodo == "concat"){
         const consola = document.getElementById("consola-concat") 
@@ -753,7 +723,8 @@ function ejecutarinmutables(metodo){
         <b class="sky">paisYciudad</b> ${paisYciudad} <br>
         `
 
-    }else if(metodo == "map"){
+    }
+    if(metodo == "map"){
         const consola = document.getElementById("consola-map") 
 
         //sintaxis 1
@@ -765,14 +736,12 @@ function ejecutarinmutables(metodo){
         let elevar2 = multiplos.map(num => num * num)
 
         consola.innerHTML = `
-        <b class="doger">multiplos</b><br>
-        [${multiplos}] <br> <br>
         <b class="sky">elevar1</b><br>
         [${elevar1}] <br> 
         <b class="sky">elevar2</b><br>
         [${elevar2}]` 
-
-    }else if(metodo == "forEach"){
+    }
+    else if(metodo == "forEach"){
         const consola = document.getElementById("consola-forEach") 
         let suma = 0
         let sumados = 0
@@ -1254,64 +1223,6 @@ function ejecutarinmutables(metodo){
         `
     }
 
-    //Map en objetos
-    else if(metodo == "map-enObjetos"){
-        const consola = document.getElementById("consola-mapEnObjetos")
-
-        let precios = clientes.map(item => item.precio)
-        let impuestos = clientes.map(item => item.precio * .20)
-
-        consola.innerHTML = `
-        <b class="doger">clientes</b><br>
-        ${JSON.stringify(clientes)} <br> <br>
-        <b class="sky">precios</b><br>
-        ${JSON.stringify(precios)} <br> <br>
-        <b class="sky">impuestos</b><br>
-        ${JSON.stringify(impuestos)} <br> <br>
-        `
-    }else if(metodo == "map-modificar"){
-        const consola = document.getElementById("consola-mapEnObjetos")
-
-        let modificarPrecio = clientes.map(item => item.precio = 500)
-        let impuestos = clientes.map(item => item.precio * .20)
-
-        consola.innerHTML = `
-        <b class="doger">clientes</b><br>
-        ${JSON.stringify(clientes)} <br> <br>
-        <b class="sky">modificarPrecio</b><br>
-        ${JSON.stringify(modificarPrecio)} <br> <br>
-        <b class="sky">impuestos</b><br>
-        ${JSON.stringify(impuestos)} <br> <br>
-        `
-    }else if(metodo == "map-agregar"){
-        const consola = document.getElementById("consola-mapEnObjetos")
-
-        let agregarTax = clientes.map(item => item.tax = item.precio * .20)
-        let impuestos = clientes.map(item => item.precio * .20)
-        
-        consola.innerHTML = `
-        <b class="doger">clientes</b><br>
-        ${JSON.stringify(clientes)} <br> <br>
-        <b class="sky">impuestos</b><br>
-        ${JSON.stringify(impuestos)} <br> <br>
-        <b class="sky">agregarTax</b><br>
-        ${JSON.stringify(agregarTax)} <br> <br>
-        `
-    }else if(metodo == "map-crear"){
-        const consola = document.getElementById("consola-mapEnObjetos")
-
-        let copiarYextender = clientes.map(item => {
-            return {...item, tax: item.precio * .20}
-        })
-        
-        consola.innerHTML = `
-        <b class="doger">clientes</b><br>
-        ${JSON.stringify(clientes)} <br> <br>
-        <b class="sky">copiarYextender</b><br>
-        ${JSON.stringify(copiarYextender)} <br> <br>
-        `
-    }
-
     //some , every , includes
     if(metodo == "some"){
         const consola = document.getElementById("consola-some") 
@@ -1470,7 +1381,168 @@ function ejecutarinmutables(metodo){
         `
     }
 
-}ejecutarinmutables("flat")
+}
+
+//MAP
+const botonMap = document.querySelectorAll('.btn-map-enObjetos button')
+const consolamapEnObjetos = document.getElementById("consola-mapEnObjetos")
+const codigomapEnObjetos = document.getElementById("codigo-mapEnObjetos")
+
+botonMap.forEach((boton, index) => {
+    boton.addEventListener('click', () => {
+        if(index == 0) ejecutarMapEnObjetos('map-objetos')
+        if(index == 1) ejecutarMapEnObjetos("map-modificar")
+        if(index == 2) ejecutarMapEnObjetos("map-agregar")
+        if(index == 3) ejecutarMapEnObjetos("map-crear")
+    })
+})
+
+function ejecutarMapEnObjetos(metodo){
+    const clientes = [
+        {name: "Andres", producto: "iphone", precio: 1200},
+        {name: "Camilo", producto: "audifonos", precio: 120},
+        {name: "Rodrigo", producto: "cargador", precio: 50},
+        {name: "David", producto: "funda", precio: 80},
+    ]
+
+    //Map en objetos
+    if(metodo == 'map-objetos'){
+        let precios = clientes.map(item => item.precio)
+        let impuestos = clientes.map(item => item.precio * .20)
+
+        codigomapEnObjetos.innerHTML = `
+        <p class="margenTop0">
+            <b class="azul">let</b> <b class="doger">clientes</b> = <b class="golden">[</b><br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Andres"</b>, <b class="sky">producto:</b> <b class="naranja">"iphone"</b>, <b class="sky">precio:</b> <b class="verde">"1200$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Camilo"</b>, <b class="sky">producto:</b> <b class="naranja">"audifonos"</b>, <b class="sky">precio:</b> <b class="verde">"120$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Rodrigo"</b>, <b class="sky">producto:</b> <b class="naranja">"cargador"</b>, <b class="sky">precio:</b> <b class="verde">"50$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"David"</b>, <b class="sky">producto:</b> <b class="naranja">"funda"</b>, <b class="sky">precio:</b> <b class="verde">"80$"</b><b class="morado">}</b> <br>
+            <b class="golden">]</b>
+        </p>
+        
+        <p>
+            <b class="azul">let</b> <b class="sky">precios</b> =
+            <b class="doger">clientes</b>.<b class="golden">map(</b><b class="sky">item</b>
+            <b class="azul">=></b> <b class="sky">item</b>.<b class="sky">precio</b><b class="golden">)</b>
+        </p>
+    
+        <p>
+            <b class="azul">let</b> <b class="sky">impuestos</b> =
+            <b class="doger">clientes</b>.<b class="golden">map(</b><b class="sky">item</b>
+            <b class="azul">=></b> <b class="sky">item</b>.<b class="sky">precio</b> * .<b class="verde">20</b><b class="golden">)</b>
+        </p>
+        `
+
+        consolamapEnObjetos.innerHTML = `
+            <b class="doger">clientes</b><br>
+            ${JSON.stringify(clientes)} <br> <br>
+            <b class="sky">precios</b><br>
+            ${JSON.stringify(precios)} <br> <br>
+            <b class="sky">impuestos</b><br>
+            ${JSON.stringify(impuestos)} 
+        `
+    }
+  
+    else if(metodo == "map-modificar"){
+        let precios = clientes.map(item => item.precio = 500)
+
+        codigomapEnObjetos.innerHTML = `
+        <p class="margenTop0">
+            <b class="azul">let</b> <b class="doger">clientes</b> = <b class="golden">[</b><br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Andres"</b>, <b class="sky">producto:</b> <b class="naranja">"iphone"</b>, <b class="sky">precio:</b> <b class="verde">"1200$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Camilo"</b>, <b class="sky">producto:</b> <b class="naranja">"audifonos"</b>, <b class="sky">precio:</b> <b class="verde">"120$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Rodrigo"</b>, <b class="sky">producto:</b> <b class="naranja">"cargador"</b>, <b class="sky">precio:</b> <b class="verde">"50$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"David"</b>, <b class="sky">producto:</b> <b class="naranja">"funda"</b>, <b class="sky">precio:</b> <b class="verde">"80$"</b><b class="morado">}</b> <br>
+            <b class="golden">]</b>
+        </p>
+
+        <p>
+            <b class="azul">let</b> <b class="sky">precios</b> =
+            <b class="doger">clientes</b>.<b class="golden">map(</b><b class="sky">item</b>
+            <b class="azul">=></b> <b class="sky">item</b>.<b class="sky">precio</b> = <b class="verde">500</b><b class="golden">)</b>
+        </p>
+        `
+
+        consolamapEnObjetos.innerHTML = `
+        <p class="margenTop0">
+            <b class="doger">clientes</b><br>
+            ${JSON.stringify(clientes)} 
+        </p>
+        <p>
+            <b class="sky">precios</b><br>
+            ${JSON.stringify(precios)} 
+        </p>
+        `
+    }
+
+    else if(metodo == "map-agregar"){
+        let impuestos = clientes.map(item => item.tax = item.precio * .20)
+        
+        codigomapEnObjetos.innerHTML = `
+        <p class="margenTop0">
+            <b class="azul">let</b> <b class="doger">clientes</b> = <b class="golden">[</b><br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Andres"</b>, <b class="sky">producto:</b> <b class="naranja">"iphone"</b>, <b class="sky">precio:</b> <b class="verde">"1200$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Camilo"</b>, <b class="sky">producto:</b> <b class="naranja">"audifonos"</b>, <b class="sky">precio:</b> <b class="verde">"120$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Rodrigo"</b>, <b class="sky">producto:</b> <b class="naranja">"cargador"</b>, <b class="sky">precio:</b> <b class="verde">"50$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"David"</b>, <b class="sky">producto:</b> <b class="naranja">"funda"</b>, <b class="sky">precio:</b> <b class="verde">"80$"</b><b class="morado">}</b> <br>
+            <b class="golden">]</b>
+        </p>
+    
+        <p>
+            <b class="azul">let</b> <b class="sky">impuestos</b> =
+            <b class="doger">clientes</b>.<b class="golden">map(</b> 
+            <b class="sky">item</b> <b class="azul">=></b> { <br>
+            &emsp; <b class="sky">item</b>.<b class="sky">tax</b> =
+            <b class="sky">item</b>.<b class="sky">precio</b> * 
+            .<b class="verde">20</b>  <br>
+            }<b class="golden">)</b>
+        </p>
+        `
+
+        consolamapEnObjetos.innerHTML = `
+        <p class="margenTop0">
+            <b class="doger">clientes</b><br>
+            ${JSON.stringify(clientes)} 
+        </p>
+        <p>
+            <b class="sky">impuestos</b><br>
+            ${JSON.stringify(impuestos)} 
+        </p>
+        `
+    }
+
+    else if(metodo == "map-crear"){
+
+        let copiarYextender = clientes.map(item => {
+            return {...item, tax: item.precio * .20}
+        })
+        
+        consolamapEnObjetos.innerHTML = `
+        <b class="doger">clientes</b><br>
+        ${JSON.stringify(clientes)} <br> <br>
+        <b class="sky">copiarYextender</b><br>
+        ${JSON.stringify(copiarYextender)} 
+        `
+
+        codigomapEnObjetos.innerHTML = `
+        <p class="margenTop0">
+            <b class="azul">let</b> <b class="doger">clientes</b> = <b class="golden">[</b><br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Andres"</b>, <b class="sky">producto:</b> <b class="naranja">"iphone"</b>, <b class="sky">precio:</b> <b class="verde">"1200$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Camilo"</b>, <b class="sky">producto:</b> <b class="naranja">"audifonos"</b>, <b class="sky">precio:</b> <b class="verde">"120$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Rodrigo"</b>, <b class="sky">producto:</b> <b class="naranja">"cargador"</b>, <b class="sky">precio:</b> <b class="verde">"50$"</b><b class="morado">}</b>, <br>
+            &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"David"</b>, <b class="sky">producto:</b> <b class="naranja">"funda"</b>, <b class="sky">precio:</b> <b class="verde">"80$"</b><b class="morado">}</b> <br>
+            <b class="golden">]</b>
+        </p>
+        <p>
+            <b class="azul">let</b> <b class="sky">copiarYextender</b> =
+            <b class="doger">clientes</b>.<b class="golden">map(</b><b class="sky">item</b> <b class="azul">=></b> <b class="morado">{</b> <br>
+            &emsp; <b class="morado">return</b> <b class="azul">{</b>...<b class="sky">item</b>, <b class="sky">tax:</b>
+            <b class="sky">item</b>.<b class="sky">precio</b> * .<b class="verde">20</b><b class="azul">}</b> <br>
+            <b class="morado">}</b><b class="golden">)</b>
+        </p>
+        `
+    }
+}
 
    //iteracion de array
 function ejecutarIterarArray(){
@@ -2441,745 +2513,6 @@ function ejecutarSet(tipo){
 
 }ejecutarSet()
 
-//                  CONDICIONALES
-function condicionIF(){
-    const input = document.getElementById("input-nota").value
-    const consola = document.getElementById("consola-if")
-
-    if(input == ""){
-        consola.textContent = "⚠️ ingresa una nota"
-    }else if (input == 20) {
-        consola.textContent = "sobresaliente" 
-    }
-    else if (input >= 15 && input < 20) {
-        consola.textContent = "Buen Trabajo"
-    }
-    else if (input >= 10 && input < 15) {
-        consola.textContent = "Puede Mejorar"
-    }
-    else {
-        consola.textContent = "Reprobado"
-    }
-}
-
-function condicionSwitch(){
-    const input = document.getElementById("input-fruta").value
-    const consola = document.getElementById("consola-switch")
-
-    switch (input) {
-    case 'naranjas':
-        consola.textContent = 'cuesta 2.000 pesos la libra'
-        break
-    case 'manzanas':
-        consola.textContent = 'cuesta 4.000 pesos la libra'
-        break
-    case 'cambures':
-        consola.textContent = 'cuesta 3.000 pesos la libra'
-        break
-    case 'mangos':
-    case 'papayas':
-        consola.textContent = 'cuesta 5.000 pesos la libra'
-        break
-    case "":
-        consola.textContent = "⚠️ ingresa una fruta"
-        break
-    default:
-        consola.textContent = 'Lo siento, no contamos con: ' + input
-    }
-}
-
-function ejecutarOperadorTernario(){
-    const consola = document.getElementById("consola-operador-termarioYnullish")
-    const codigo = document.getElementById("codigo-operador-termarioYnullish")
-
-    let edad = 30
-    let mensaje = (edad >= 18) ? "Es mayor de edad" : "Es menor de edad"
-
-    codigo.innerHTML = `
-    <p class="margenTop0">
-        <b class="azul">let </b> <b class="sky">edad</b> = <b class="verde">30</b> <br>
-        <b class="azul">let </b> <b class="sky">mensaje</b> = (<b class="sky">edad</b> >= <b class="verde">18</b>) ?
-        <b class="naranja">"Es mayor de edad"</b> : <b class="naranja">"Es menor de edad"</b> 
-    </p>
-    `
-    consola.innerHTML = `
-    <p class="margenTop0">
-        <b class="sky">mensaje</b> ${mensaje}
-    </p>
-    `
-}
-
-function ejecutarOperadorNullish(){
-    const consola = document.getElementById("consola-operador-termarioYnullish")
-    const codigo = document.getElementById("codigo-operador-termarioYnullish")
-
-    const nombre = null ?? "Invitado"
-    const edad = undefined ?? 18
-    const cantidad = 0 ?? 12
-
-    const usuarios = {}
-    const nombre1 = usuarios.name ?? "Andres"
-
-    codigo.innerHTML = `
-    <p  class="margenTop0">
-        <b class="azul">const</b> <b class="doger">nombre</b> = <b class="azul">null</b> ?? "Invitado" <br>
-        
-        <b class="azul">const</b> <b class="doger">edad</b> = 
-        <b class="azul">undefined</b> ?? <b class="verde">18</b> <br>
-        
-        <b class="azul">const</b> <b class="doger">cantidad</b> = 
-        <b class="verde">0</b> ?? <b class="verde">12</b> <br><br>
-
-        <b class="azul">const</b> <b class="doger">usuarios</b> = {} <br>
-        
-        <b class="azul">const</b> <b class="doger">nombre1</b> = 
-        <b class="doger">usuarios</b>.<b class="sky">name</b> ?? "Andres"
-    </p>
-    `
-    consola.innerHTML = `
-    <p class="margenTop0">
-        <b class="doger">nombre</b> ${nombre} <br>
-        <b class="doger">edad</b> ${edad} <br>
-        <b class="doger">cantidad</b> ${cantidad} <b class="verde">cero NO es null ni undefined</b>
-    </p>
-
-    <p>
-        <b class="doger">nombre</b> ${nombre1} <br>
-    </p>
-    `
-
-}
-
-//                     CICLOS
-function ejecutarFor(){
-    const consola = document.getElementById("consola-for")
-    const consola2 = document.getElementById("consola-for2")
-    const consola3 = document.getElementById("consola-for3")
-    
-    let numero = 10
-
-    for (let i = 0; i <= 10; i++) {
-    consola.textContent += i + " "
-    consola2.textContent += (numero ++) + " "
-    } 
-
-    //Recorrer Arrays
-    let frutas = ["mandarina","cambur","naranja","sandia"]
-
-    for (let i = 0; i < frutas.length; i++){
-        consola3.textContent += frutas[i] + " "
-    }
-}
-
-function ejecutarForof(){
-    const consola = document.getElementById("consola-for-of")
-    const consola2 = document.getElementById("consola-for-of2")
-
-    let canasta = ["harina","leche","pan","queso"]
-
-    for(let item of canasta){
-        consola.textContent += item + " "
-    }
-
-    //iterar string
-    let string = "palabras"
-
-    for(let item of string){
-        consola2.textContent += item + " "
-    }
-}
-
-function ejecutarForin(){
-    const consola = document.getElementById("consola-for-in")
-    const consola2 = document.getElementById("consola-for-in2")
-    const consola3 = document.getElementById("consola-for-in3")
-
-    const canasta = {
-        harina: 5,
-        leche: 3,
-        pan: 2,
-        queso: 1
-    }
-
-    for(let producto in canasta){
-        consola.textContent += producto + " "
-        consola2.textContent += canasta[producto] + " "
-        consola3.textContent += producto + ": " + canasta[producto] + " "
-    }
-}
-
-function ejecutarWhile(){
-    const consola = document.getElementById("consola-while")
-
-    let contador = 0
-
-    while(contador <= 10){
-        consola.textContent += contador + " "
-        contador ++ 
-    }
-}
-
-function ejecutarDoWhile(){
-    const consola = document.getElementById("consola-Dowhile")
-
-    let contador = 0
-
-    do{
-        consola.textContent += contador + " "
-        contador ++
-    }
-    while(contador <= 10)
-}
-
-//                  FUNCIONES
-function ejecutarFunciones(tipo){ 
-    const consola = document.getElementById("consola-function") 
-    const codigo = document.getElementById("codigo-function")
-    
-    if(tipo == 'funcion-tradicional'){
-        //un parametro
-        function saludar(nombre) {
-            return "Hola " + nombre + "👋 Bienvenido/a"
-        }
-
-        //dos parametro
-        function saludar2(nombre,apellido) {
-            return `Hola ${nombre} ${apellido} 👋 Bienvenido/a`
-        }
-
-        codigo.innerHTML = `
-        <b>Un parametro</b><br>
-            <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>
-            <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'Hola'</b> + <b class="sky">nombre</b> + <b class="naranja">"👋 Bienvenido"</b>
-            <br><b class="golden">}</b>
-            <br><br>
-
-        <b>Dos parametros</b><br>
-            <b class="azul">function</b> <b class="golden">saludar2(</b><b class="sky">nombre</b> , 
-            <b class="sky">apellido</b><b class="golden">) {</b>
-            <br>&emsp;&emsp;<b class="morado">return</b> 
-            <b class="naranja">'Hola</b> 
-            <b class="golden">$(</b><b class="sky">nombre</b><b class="golden">)</b>
-            <b class="golden">$(</b><b class="sky">apellido</b><b class="golden">)</b>
-            <b class="naranja">👋 Bienvenido'</b> 
-            <br><b class="golden">}</b>
-        `
-
-        consola.innerHTML = `
-        <b class="verde">//Un parametro</b><br>
-        <b class="golden">saludar</b><b class="morado">(</b><b class="naranja">"David"</b><b class="morado">)</b>  
-        ${saludar("David")}<br>
-        <b class="golden">saludar</b><b class="morado">(</b><b class="naranja">"Sharom"</b><b class="morado">)</b>  
-        ${saludar("Sharom")}<br>
-        <b class="golden">saludar</b><b class="morado">()</b>  
-        ${saludar()}<br><br>
-
-        <b class="verde">//Dos parametros</b><br>
-        <b class="golden">saludar2</b><b class="morado">(</b><b class="naranja">"David"</b>, 
-        <b class="naranja">"Puente"</b><b class="morado">)</b> <br>
-        ${saludar2("David", "Puente")}<br>
-        <b class="golden">saludar2</b><b class="morado">(</b><b class="naranja">"Sharom"</b><b class="morado">)</b> <br>
-        ${saludar2("Sharom")}<br><br>
-
-        <b class="verde">//Pasar un parametro especifico</b><br>
-        <b class="golden">saludar2</b><b class="morado">(</b><b class="azul">undefined</b>, <b class="naranja">"Gamez"</b><b class="morado">)</b> <br>
-        ${saludar2(undefined,"Gamez")}<br>
-        ` 
-    }
-
-    else if(tipo == 'expresionDeFuncion'){
-        const saludo = function (nombre){
-            return "Hola " + nombre
-        }
-
-        codigo.innerHTML = `
-        <p style="margin-top:0">
-            <b class="azul">const</b> <b class="golden">saludo</b> = <b class="azul">function</b> <b class="golden">(</b><b class="sky">nombre</b><b class="golden">) {</b>
-            <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'Hola'</b> + <b class="sky">nombre</b> 
-            <br><b class="golden">}</b>
-            <br><br>
-        </p>
-        `
-        consola.innerHTML = `
-        <b class="golden">saludar(<b class="naranja">"Luis"</b>)</b>
-        ${saludo("Luis")}<br>
-        `
-    }
-
-    else if(tipo == 'parametros-pordefecto'){
-        function newuser(name,age,country){
-            let nombre = name || "Luis"
-            let edad = age || 30
-            let pais = country || "Venezuela"
-            return `${nombre} ${edad} ${pais}` 
-        }
-
-        function newAdmin(name= "Santiago", age= 50, country= "Londres"){
-            return `${name} ${age} ${country}` 
-        }
-
-        codigo.innerHTML = `
-        <b class="verde">//opcion 1</b><br>
-            <b class="azul">function</b> <b class="golden">newuser(</b><b class="sky">name</b> ,
-            <b class="sky">age</b> ,
-            <b class="sky">country</b><b class="golden">) {</b>
-
-            <br>&emsp;&emsp;<b class="azul">let</b> <b class="sky">nombre</b> = <b class="sky">name</b> || <b class="naranja">"Luis"</b>
-            <br>&emsp;&emsp;<b class="azul">let</b> <b class="sky">edad</b> = <b class="sky">age</b> || <b class="verde">30</b>
-            <br>&emsp;&emsp;<b class="azul">let</b> <b class="sky">pais</b> = <b class="sky">country</b> || <b class="naranja">"Venezuela"</b>
-
-            <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'</b> 
-            <b class="golden">$(</b><b class="sky">nombre</b><b class="golden">)</b>
-            <b class="golden">$(</b><b class="sky">edad</b><b class="golden">)</b>
-            <b class="golden">$(</b><b class="sky">pais</b><b class="golden">)</b>
-            <b class="naranja">'</b> 
-            <br><b class="golden">}</b><br><br>
-
-        <b class="verde">//opcion 2 ES6</b><br>
-            <b class="azul">function</b> <b class="golden">newAdmin(</b><b class="sky">name</b> = <b class="naranja">Santiago</b> ,
-            <b class="sky">age</b> = <b class="verde">50</b> ,
-            <b class="sky">country</b> = <b class="naranja">Londres</b><b class="golden">) {</b>
-
-            <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'</b> 
-            <b class="golden">$(</b><b class="sky">name</b><b class="golden">)</b>
-            <b class="golden">$(</b><b class="sky">age</b><b class="golden">)</b>
-            <b class="golden">$(</b><b class="sky">country</b><b class="golden">)</b>
-            <b class="naranja">'</b> 
-            <br><b class="golden">}</b>
-        `
-        
-        consola.innerHTML = `
-        <b class="verde">//Ninguno por defecto</b><br>
-            <b class="golden">newuser</b><b class="morado">(</b><b class="naranja">"David"</b>,
-            <b class="verde">32</b>, <b class="naranja">"Colombia"</b><b class="morado">)</b>  
-            ${newuser("David",32,"Colombia")}<br>
-
-            <b class="golden">newAdmin</b><b class="morado">(</b><b class="naranja">"Jorge"</b> ,
-            <b class="verde">42</b> , <b class="naranja">"Chile"</b><b class="morado">)</b>  
-            ${newAdmin("Jorge",42,"Chile")}<br><br>
-
-
-        <b class="verde">//Dos por defecto</b><br>
-            <b class="golden">newuser</b><b class="morado">(</b><b class="azul">undefined</b>,
-            <b class="verde">55</b><b class="morado">)</b>  
-            ${newuser(undefined,55)}<br>
-
-            <b class="golden">newAdmin</b><b class="morado">(</b><b class="naranja">"Carlos"</b><b class="morado">)</b>  
-            ${newAdmin("Carlos")}<br><br>
-
-
-        <b class="verde">//Todos por defecto</b><br>
-            <b class="golden">newuser</b><b class="morado">()</b>  
-            ${newuser()}<br>
-
-            <b class="golden">newAdmin</b><b class="morado">()</b> 
-            ${newAdmin()}<br>
-        `    
-    }
-
-}ejecutarFunciones('expresionDeFuncion')
-
-//Callback
-function ejecutarCallback(tipo) {
-    const consola = document.getElementById("consola-callback")
-    const codigo = document.getElementById("codigo-callback")
-
-    // callback
-    if(tipo == "callback"){
-        codigo.innerHTML = `
-        <p class="margen0">
-            <b>funcion que se pasa como callback</b><br>
-            <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>  <br>
-            &emsp;&emsp;<b class="sky">console</b>.<b class="golden">log</b><b class="morado">(</b><b class="naranja">"hola"</b>  +
-            <b class="sky">nombre</b><b class="morado">)</b><br>
-            <b class="golden">}</b>
-        </p>
-            
-        <p>
-            <b>funcion de orden superior</b><br>
-            <b class="azul">function</b> <b class="golden">procesarUsuario(</b><b class="sky">callback</b><b class="golden">) {</b> <br>
-            &emsp;&emsp;<b class="azul">const</b> <b class="doger">nombre</b> = <b class="naranja">"Luis"</b>  <br>
-            &emsp;&emsp;<b class="golden">callback</b><b class="morado">(</b><b class="doger">nombre</b><b class="morado">)</b>
-            <b class="verde">//aqui se llama el callback</b><br>
-            <b class="golden">}</b>
-        </p>
-        `
-
-        function procesarUsuario(callback) {
-            const nombre = "Luis";
-            callback(nombre); 
-        }
-
-        function saludar(nombre) {
-            consola.innerHTML = `
-            <b class="golden">procesarUsuario</b><b class="morado">(<b class="golden">saludar</b>)</b> <br>
-            Hola ${nombre}
-            `
-        }
-        
-        procesarUsuario(saludar)
-    }
-    
-    // callback hell
-    if(tipo == "CallbackHell"){
-        consola.innerHTML = ""
-
-        function saludar(nombre,callback){
-            consola.innerHTML += `<p>Hola ${nombre}</p>`
-            callback()
-        }
-        function instruccionUno(callback){
-            consola.innerHTML += `<p>Ve a la app store</p>`
-            callback()
-        }
-        function instruccionDos(callback){
-            consola.innerHTML += "<p>Compra unos airpods</p>"
-            callback()
-        }
-        function instruccionTres(callback){
-            consola.innerHTML += "<p>Traelos a mi casa</p>"
-            callback()
-        }
-        function despedir(nombre){
-            consola.innerHTML += `<p>Adios ${nombre}</p>`
-        }
-
-        saludar("David",function(){
-            instruccionUno(function(){
-                instruccionDos(function(){
-                    instruccionTres(function(){
-                        despedir("david")
-                    })
-                })
-            })
-        })
-
-        // codigo
-        codigo.innerHTML = `
-        <div class="margen0">
-            <b class="azul">function</b> <b class="golden">saludar</b>
-            (<b class="sky">nombre</b>,<b class="sky">callback</b>){ 
-            <div class="margenIz">
-                consola.<b class="sky">innerHTML</b> += 'Hola $ {<b class="sky">nombre</b>}' <br>
-                <b class="golden">callback()</b> <br>
-            </div>
-            } <br>
-
-            <b class="azul">function</b> <b class="golden">instruccionUno</b>
-            (<b class="sky">callback</b>){ <br>
-            <div class="margenIz">
-                consola.<b class="sky">innerHTML</b> += 'Ve a la app store' <br>
-                <b class="golden">callback()</b> <br>
-            </div>
-            } <br>
-
-            <b class="azul">function</b> <b class="golden">instruccionDos</b>
-            (<b class="sky">callback</b>){ <br>
-            <div class="margenIz">
-                consola.<b class="sky">innerHTML</b> += "Compra unos airpods" <br>
-                <b class="golden">callback()</b> <br>
-            </div>
-            } <br>
-
-            <b class="azul">function</b> <b class="golden">instruccionTres</b>
-            (<b class="sky">callback</b>){ <br>
-            <div class="margenIz">
-                consola.<b class="sky">innerHTML</b> += "Traelos a mi casa" <br>
-                <b class="golden">callback()</b> <br>
-            </div>
-            } <br>
-
-            <b class="azul">function</b> <b class="golden">despedir</b>
-            (<b class="sky">nombre</b>){ <br>
-            <div class="margenIz">
-                consola.<b class="sky">innerHTML</b> += 'Adios $ {<b class="sky">nombre</b>}' <br>
-            </div>
-            } <br>
-
-            <b class="golden">saludar</b>("David",<b class="azul">function</b>(){ 
-            <div class="margenIz">
-            <b class="golden">instruccionUno</b>(<b class="azul">function</b>(){
-                <div class="margenIz">
-                <b class="golden">instruccionDos</b>(<b class="azul">function</b>(){
-                    <div class="margenIz">
-                    <b class="golden">instruccionTres</b>(<b class="azul">function</b>(){
-                        <div class="margenIz"><b class="golden">despedir</b>("david")</div>
-                    })
-                    </div>
-                })
-                </div>
-            })
-            </div> 
-            
-                        
-            
-            
-            
-            
-            })
-        </div>
-        `
-    }
-
-    //Callback Hell Recursivo
-    if(tipo == "CallbackHellRecursivo"){
-        codigo.innerHTML = `
-        <div>
-            <b class="azul">function</b> <b class="golden">saludar</b>
-            (<b class="sky">nombre</b>,<b class="sky">callback</b>){ 
-            <div class="margenIz">
-                consola.innerHTML = 'Hola $ {<b class="sky">nombre</b>}' <br>
-                <b class="golden">callback</b>(<b class="sky">nombre</b>)
-            </div>
-            } <br>
-
-            <b class="azul">function</b> <b class="golden">hablar</b>(<b class="sky">callback</b>){
-            <div class="margenIz">
-                consola.innerHTML += 'bla bla bla' <br>
-                <b class="golden">callback</b>()
-            </div>
-            } <br> 
-
-            <b class="azul">function</b> <b class="golden">adios</b>(<b class="sky">nombre</b>){
-            <div class="margenIz">
-                consola.innerHTML += 'Adios $ {<b class="sky">nombre</b>}'
-            </div>
-            } <br><br>
-
-            <b class="verde">//Recursividad</b> <br>
-            <b class="azul">function</b> <b class="golden">conversacion</b>
-            (<b class="sky">veces</b>,<b class="sky">nombre</b>){
-            <div class="margenIz">
-                <b class="morado">if</b>(<b class="sky">veces</b> > 0){
-                <div class="margenIz">
-                    <b class="golden">hablar</b>(<b class="azul">function</b>(){
-                    <div class="margenIz">
-                        <b class="golden">conversacion</b>(--<b class="sky">veces</b>,<b class="sky">nombre</b>)
-                    </div>
-                    })
-                </div>
-                }<b class="morado">else</b>{
-                <div class="margenIz">
-                    <b class="golden">adios</b>(<b class="sky">nombre</b>)
-                </div>
-                }
-            </div>
-            } <br><br>
-
-            <b class="verde">//Invocacion</b> <br>
-            <b class="golden">saludar</b>("David",<b class="azul">function</b>
-            (<b class="sky">nombre</b>){
-            <div class="margenIz">
-                <b class="golden">conversacion</b>(3,<b class="sky">nombre</b>)
-            </div>
-            })
-        </div>
-        `
-
-        function saludar(nombre,callback){
-            consola.innerHTML = `<p>Hola ${nombre}</p>`
-            callback(nombre)
-        }
-        function hablar(callback){
-            consola.innerHTML += `<p>bla bla bla</p>`
-            callback()
-        }
-        function adios(nombre){
-            consola.innerHTML += `<p>Adios ${nombre}</p>`
-        }
-        //recursividad
-        function conversacion(veces,nombre){
-            if(veces > 0){
-                hablar(function(){
-                    conversacion(--veces,nombre)
-                })
-            }else{
-                adios(nombre)
-            }
-        }
-
-        saludar("David",function(nombre){
-            conversacion(3,nombre)
-        })
-
-    }
-}
-
-//Metodo en objetos
-function ejecutarMetodo(){
-
-    const persona = {
-        nombre: "Sharon",
-        apellido: "Gamez",
-        edad: 31,
-        saludar: function () {
-            return `Hola soy ${this.nombre} ${this.apellido} y tengo ${this.edad} años`
-        }
-    };
-
-    const consola = document.getElementById("consola-metodo")
-    consola.innerHTML = `
-    <b class="doger">persona</b>.<b class="golden">saludar</b><b class="morado">()</b> <br>
-    ${persona.saludar()}
-    `
-}ejecutarMetodo()
-
-//Metodos en Clases
-function ejecutarMetodoDeClase(){
-
-    class Persona {
-        constructor(nombre,hobbie) {
-            this.nombre = nombre;
-            this.hobbie = hobbie
-        }
-
-        saludar() {
-            return `Hola, soy ${this.nombre}`
-        }
-
-        instrumento() {
-            return `y toco la ${this.hobbie}`
-        }
-    }
-
-    const ana = new Persona("David","guitarra");
-
-    const consola = document.getElementById("consola-metodo-clase")
-    consola.textContent = ana.saludar() + " " + ana.instrumento()
-}
-
-//Generadores
-function ejecutarGeneradores(tipo){
-    const consola = document.getElementById("consola-generadores")
-    //bloques
-    const bloque1 = document.getElementById("codigo-generador1")
-    const bloque2 = document.getElementById("codigo-generador2")
-    const bloque3 = document.getElementById("codigo-generador3")
-
-    if(tipo == "Declaracion"){
-        bloque1.style.display = "block"
-        bloque2.style.display = "none"
-        bloque3.style.display = "none"
-
-
-        function* generador(){
-            yield 10  
-            yield 20  
-            yield 30 
-        }
-
-        //crear el generador
-        const valores = generador()
-        const valoresiterados = [...generador()]
-
-        consola.innerHTML = `
-        <b class="doger">valores</b> ${valores} = ${JSON.stringify(valores)} <br>
-            <b class="doger">valoresiterados</b> ${JSON.stringify(valoresiterados)} <br><br>
-
-        <b class="verde">//llamar Generador</b><br>
-        <b class="doger">valores</b>.<b class="golden">next()</b> ${JSON.stringify(valores.next())} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b> ${JSON.stringify(valores.next())} <br><br>
-
-        <b class="verde">//ver propiedades</b><br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">done</b> ${valores.next().done} <br>
-        `
-    }
-    else if(tipo == "iterar-valores"){
-        bloque1.style.display = "none"
-        bloque2.style.display = "block"
-        bloque3.style.display = "none"
-
-
-        function* generador(array){
-            for(let value of array){
-                yield value
-            }
-        }
-
-        //crear el generador
-        const valores = generador(["Luis","David","Sharon","Carmen","Jireh","Adriana"])
-
-        consola.innerHTML = `
-        <b class="verde">//ver propiedades</b><br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        `
-    }
-    else if(tipo == "Generar-valores"){
-        bloque1.style.display = "none"
-        bloque2.style.display = "none"
-        bloque3.style.display = "block"
-
-        function* obtenerId(){
-            while(true){
-                yield Math.random().toString(36).substring(5).toUpperCase()
-            }
-        }
-        const codigos = obtenerId()
-        
-        consola.innerHTML = `
-        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
-        ${codigos.next().value}<br>
-        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
-        ${codigos.next().value}<br>
-        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
-        ${codigos.next().value}<br>
-        `
-    }
-    
-}ejecutarGeneradores()
-
-//Arrow Function
-function ejecutarArrowFunction(){
-    const consola = document.getElementById("consola-Arrowfunction")
-
-    // funcion tradicional
-    const saludar = function(nombre){
-        return "Hola " + nombre
-    }
-    // arrow function
-    const suma = (num1,num2) => {
-        return num1 + num2
-    }
-    // arrow function con retorno implicito
-    const resta = (num1,num2) => num1 - num2
-    const multiplicar = numero => numero * 5
-    const numero = () => 45
-    // multilinea implicito
-    const multilinea = (num1,num2) => (
-        num1 * num2 + 45
-    )
-
-    consola.innerHTML = `
-    <b class="verde">//funcion tradicional</b><br>
-    <b class="golden">saludar</b><b class="morado">(</b><b class="naranja">"David"</b><b class="morado">)</b> <br>
-    ${saludar("David")}<br><br>
-
-    <b class="verde">//Arrow Function</b><br>
-    <b class="golden">suma</b><b class="morado">(</b><b class="verde">5,7</b><b class="morado">)</b> 
-    ${suma(5,7)}<br><br>
-
-    <b class="verde">//Arrow Function(retorno implicito)</b><br>
-    <b class="golden">resta</b><b class="morado">(</b><b class="verde">12,4</b><b class="morado">)</b> 
-    ${resta(12,4)}<br>
-
-    <b class="golden">multiplicar</b><b class="morado">(</b><b class="verde">5</b><b class="morado">)</b> 
-    ${multiplicar(5)}<br>
-
-    <b class="golden">numero</b><b class="morado">()</b> 
-    ${numero()}<br>
-
-    <b class="golden">multilinea</b><b class="morado">(</b><b class="verde">5</b><b class="morado">)</b> 
-    ${multilinea(5,3)}<br>
-    `
-
-}ejecutarArrowFunction()
     
 //PROYECTO RED SOCIAL   
 const datosUsuarios = [

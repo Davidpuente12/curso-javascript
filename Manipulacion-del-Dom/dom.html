@@ -9,12 +9,20 @@
 </head>
 <body>
     <nav>
-        <button onclick="window.location.href='../Pagina.html'" >
+        <button onclick="window.location.href='../Pagina.html'">
             Home 🏠
         </button>
+    
+        <div> <!--  bloque  -->
+            <button onclick="mostrarExplicacion('Proyectos-Dom')">Proyectos 📝</button>
+            <ul id="Proyectos-Dom" style="display: none;">
+                <li><a href='proyectos/lista-de-compras/proyecto.html'>Lista de Compras</a></li>
+                <li><a href='proyectos/eventos/index.html'>Eventos</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section id="DOM">
+    <section>
         <h2>Manipulacion del DOM</h2>
         <p>El DOM (Modelo de Objetos del Documento) es una interfaz  que representa la estructura de un documento HTML como un árbol de nodos, cada etiqueta html se convierte en un nodo. Estos son  objetos de JavaScript que pueden ser seleccionados y manipulados, creando una interacción dinámica y personalizada entre el usuario y el contenido web. </p>
         <table>
@@ -48,13 +56,15 @@
             </tbody>
         </table>
 
-        <h4 class="letra-B">Windows Object</h4>
-        <p>El Window Object es el objeto que representa a la ventana del navegador, es decir, toda la pantalla del navegador en la que se despliega el contenido del DOM. Al estar sobre el navegador, el Window Object ofrece acceso a varias web APIs además del DOM. </p>
-        <p>Incluye una amplia gama de métodos y propiedades para interactuar con la ventana del navegador, controlar el historial, gestionar temporizadores como (setTimeout, setInterval ). Contiene sub-objetos o propiedades como history, location, navigator y uno de los más usados document.</p>
-        <ul>
-            <li>Para mostrar un cuadro de alerta (alert), usamos el Window Object.</li>
-            <li>Si necesitamos solicitar acceso al micrófono o la cámara del usuario, se realiza a través de las APIs del Window Object.</li>
-        </ul>
+        <div class="bloques-oscuros">
+            <h4>Windows Object</h4>
+            <p>El Window Object es el objeto que representa a la ventana del navegador, es decir, toda la pantalla del navegador en la que se despliega el contenido del DOM. Al estar sobre el navegador, el Window Object ofrece acceso a varias web APIs además del DOM. </p>
+            <p>Incluye una amplia gama de métodos y propiedades para interactuar con la ventana del navegador, controlar el historial, gestionar temporizadores como (setTimeout, setInterval ). Contiene sub-objetos o propiedades como history, location, navigator y uno de los más usados document.</p>
+            <ul>
+                <li>Para mostrar un cuadro de alerta (alert), usamos el Window Object.</li>
+                <li>Si necesitamos solicitar acceso al micrófono o la cámara del usuario, se realiza a través de las APIs del Window Object.</li>
+            </ul>
+        </div>
 
         <h3 class="sky">document</h3>
         <p>es un objeto javascript que representa el arbol DOM de la pagina o mas concretamente la página web cargada en el navegador. Es tu puerta de entrada para interactuar, modificar y acceder al contenido HTML de esa página. En su interior pueden existir varios tipos de elementos, pero principalmente serán objetos de tipo Element o node.</p>
@@ -107,30 +117,31 @@
         </table>
 
         <!-- METODOS DEL DOM -->
-        <h4 class="letra-B"><b class="golden">Metodos</b> y <b class="doger">Propiedades</b> de <b class="sky">document</b></h4>
+        <h4 class="margen150"><b class="golden">Metodos</b> y <b class="doger">Propiedades</b> de <b class="sky">document</b></h4>
         <p>En el DOM de JavaScript, los métodos permiten seleccionar, modificar, recorrer y escuchar eventos en los elementos HTML.</p>
 
         <!-- Metodos tradicionales de busqueda -->
-        <h5 class="letra-B"><b><span class="golden">Metodos</span> tradicionales de busqueda de elementos</b></h5>
-        <p>Si nos encontramos en nuestro código Javascript y queremos obtener información del contenido de nuestra página, lo primero que debemos hacer es buscar el elemento que nos interesa. La forma más sencilla de hacerlo es identificar el elemento a través de alguno de sus atributos más utilizados, generalmente el id o la clase mediante el atributo class, pero tambien existen otras formas.</p>
-        <div class="seccion">
-            <p><b class="golden"><code>getElementById()</code></b><br> es un metodo que pertenece a la clase Document. busca un elemento HTML con el id especificado. un documento HTML no debería tener más de un elemento con el mismo id, por lo tanto, este método devolverá siempre un solo elemento que podremos almacenar en una variable. En caso de no encontrar el elemento devuelve Null.</p>
+        <div class="bloques-oscuros">
+            <h5 style="text-align: center;"><span class="golden">Metodos</span> tradicionales de busqueda de elementos</h5>
+            <p>Si nos encontramos en nuestro código Javascript y queremos obtener información del contenido de nuestra página, lo primero que debemos hacer es buscar el elemento que nos interesa. La forma más sencilla de hacerlo es identificar el elemento a través de alguno de sus atributos más utilizados, generalmente el id o la clase mediante el atributo class, pero tambien existen otras formas.</p>
+            
+            <p class="margen60"><b class="golden"><code>getElementById()</code></b><br> es un metodo que pertenece a la clase Document. busca un elemento HTML con el id especificado. un documento HTML no debería tener más de un elemento con el mismo id, por lo tanto, este método devolverá siempre un solo elemento que podremos almacenar en una variable. En caso de no encontrar el elemento devuelve Null.</p>
             <p><b class="golden"><code>getElementsByClassName()</code></b><br> permite buscar los elementos que tengan la clase especificada en class. El método tiene getElements en plural, esto ocurre porque en este caso buscamos clases, y puede devolver varios elementos, ya que al contrario que los id, pueden existir varios elementos con la misma clase. devuelven siempre un array con todos los elementos encontrados.</p>
             <p><b class="golden"><code>getElementsByName()</code></b><br> funciona igual que el caso anterior. En este caso, estamos buscando elementos HTML por el valor que tienen en el atributo name, algo muy habitual en formularios HTML. Devuelven siempre un array con todos los elementos encontrados.</p>
             <p><b class="golden"><code>getElementsByTagName()</code></b><br> permite buscar elementos por el tipo de etiqueta HTML. Es decir, si queremos buscar todos los elementos &lt;div> de una página, podemos hacerlo indicándole el parámetro div. devuelve un array con todos los elementos encontrados.</p>
         </div>
 
         <!-- Metodos modernos de busqueda -->
-        <h5 class="letra-B margen100"><b><span class="golden">Metodos</span> modernos de busqueda de elementos</b></h5>
-        <p>En este nuevo grupo, tenemos sólo dos métodos que son equivalentes a todos los métodos tradicionales, y aún más potentes, ya que permiten hacer cosas que no se podían realizar con los anteriores (en menos codigo) gracias a CSS.</p>
-        <div class="seccion">
+        <div class="bloques-oscuros">
+            <h5 style="text-align: center;"><b><span class="golden">Metodos</span> modernos de busqueda de elementos</b></h5>
+            <p>En este nuevo grupo, tenemos sólo dos métodos que son equivalentes a todos los métodos tradicionales, y aún más potentes, ya que permiten hacer cosas que no se podían realizar con los anteriores (en menos codigo) gracias a CSS.</p>
 
-            <p><b class="golden"><code>querySelector()</code></b><br> devuelve el primer elemento que encuentra y encaja con el selector CSS indicado por parametro. Este selector puede ser un id, una clase, un atributo name, una etiqueta (deben especificarse con su simbolo de CSS), o incluso una combinacion de selectores anidados. </p>
+            <p class="margen60"><b class="golden"><code>querySelector()</code></b><br> devuelve el primer elemento que encuentra y encaja con el selector CSS indicado por parametro. Este selector puede ser un id, una clase, un atributo name, una etiqueta (deben especificarse con su simbolo de CSS), o incluso una combinacion de selectores anidados. </p>
             <p><b class="golden"><code>querySelectorAll()</code></b><br> realiza una busqueda de elementos en el DOM, y devuelve una NodeList (lista de nodos) con todos los elementos que coinciden con el selector CSS especificado. A diferencia de metodos anteriores que devuelven coleccionesHTML, este devuelve NodeList que tambien pueden ser convertidos a arrays. </p>
             <p><b class="golden"><code>closest()</code></b><br> nos permite encontrar el primer elemento padre o ancestro mas cercano hacia arriba en el arbol DOM, que coincida con el selector CSS indicado por parametro. Es decir como un querySelector, pero que busca ascendentemente. Se usa en elementos hijos de algun otro elemento previamente seleccionado.</p>
             <p><b class="golden"><code>matches()</code></b><br> este metodo no sirve para buscar, pero nos permite comprobar si un elemento especifico coincide con un selector CSS indicado por parametro. Devuelve un booleano como resultado.</p>
 
-            <h6 class="letra-B">Estos metodos reciben por argumentos selectores de CSS</h6>
+            <h5>Estos metodos reciben por argumentos selectores de CSS</h5>
             <ul>
                 <li>consultar por Id: <code class="naranja">"#nombreDeId"</code></li>
                 <li>consultar por clase: <code class="naranja">".nombreDeClase"</code></li>
@@ -139,7 +150,7 @@
             </ul>
         </div>
 
-        <p class="letra-B margen150"><b>Veamos en el siguiente codigo HTML como podemos encontrar elementos</b></p>
+        <p class="letra-B margen150">El siguiente codigo HTML tenemos un contenedor con etiquetas de titulo, parrafo, inputs, articulos y listas, estos elementos tiene estilos definidos para que se visualicen de una mejor manera. A continuacion veremos en este codigo como podemos seleccionar los distintos elementos que se presentan.</p>
         
         <!-- codigo html -->
         <div class="codigoHTML">
@@ -180,9 +191,9 @@
         </div>
 
         <!-- botones -->
-        <div style="height: 58px; margin: 100px 0 0;">
-            <button onclick="ejecutarMetodosDeBusqueda('metodos-tradicionales')" class="btn-cambiar-consola">Metodos tradicionales de Busqueda</button>
-            <button onclick="ejecutarMetodosDeBusqueda('metodos-modernos')" class="btn-cambiar-consola">Metodos modernos de Busqueda</button>
+        <div class="control-consola">
+            <button onclick="ejecutarMetodosDeBusqueda('metodos-tradicionales')">Metodos tradicionales de Busqueda</button>
+            <button onclick="ejecutarMetodosDeBusqueda('metodos-modernos')">Metodos modernos de Busqueda</button>
         </div>
         <!-- codigo -->
         <div class="codigo-consola" style="margin-top: 0;">
@@ -199,7 +210,7 @@
 
         <!-- PROPIEDADES DEL DOM -->
         <div>
-            <h4 class="letra-B margen150"><span class="doger">Propiedades</span> de los elementos DOM</h4>
+            <h4 class="margen150"><span class="doger">Propiedades</span> de los elementos DOM</h4>
             <p>Cuando el navegador carga la pagina, lee el HTML y genera objetos DOM a partir de el. Para los nodos de elementos, la mayoria de los atributos HTML estandar se convierten automaticamente en propiedades de los objetos DOM. </p>
             <p>Por ejemplo, si la etiqueta tiene el atributo: &lt;<b class="azul">body</b> <b class="sky">id</b>=<b class="naranja">"page"</b>>, entonces el objeto DOM tiene la propiedad: <b class="azul">body</b>.<b class="sky">id</b>=<b class="naranja">"page"</b>. </p>
             <p>Las propiedades del DOM son atributos que permiten acceder, leer o modificar elementos, nodos y estructuras de una página web desde JavaScript. Estas propiedades son esenciales para manipular dinámicamente el contenido. <button class="btn-simple" onclick="mostrarExplicacion('tabla-propiedadesDom')">Ver Propiedades 👇</button></p>
@@ -268,99 +279,155 @@
 
             <!-- Navegar jerarquia del DOM -->
             <div>
-                <h5 class="letra-B">Navegar por la jerarquia de elementos</h5>
+                <h5 class="margen100">Navegar por la jerarquia de elementos</h5>
                 <p>el DOM es una estructura jerarquica de nodos, en donde podemos encontrar padres, hijos o ancestros por medio de propiedades y metodos que permiten navegar los elementos HTML. Se debe tener precaucion al usar estas propiedades porque la estructura del DOM puede cambiar. Solo se debe usar si tenemos una estructura solida que no cambia.</p>
 
-                <ul>
-                    <h6 class="letra-B">Navergar Elementos</h6>
-                    <li><b class="doger"><code>children</code></b> devuelve una lista [object HTMLCollection] de elementos hijos, del elemento, Permite navegar por indice[]</li>
-                    <li><b class="doger"><code>parentElement</code></b> duvuelve el padre del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>firstElementChild</code></b> duvuelve el primer hijo del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>lastElementChild</code></b> duvuelve el ultimo hijo del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>previousElementSibling</code></b> duvuelve el elemento hermano anterior del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>nextElementSibling</code></b> duvuelve el elemento hermano siguiente del elemento seleccionado [object HTMLElement].</li>
-                </ul>
-                <ul>
-                    <h6 class="letra-B">Navergar Nodos </h6>
-                    <li><b class="doger"><code>childNodes</code></b> duvuelve una lista [object NodeList] de nodos hijos, del elemento seleccionado, Permite navegar por indice[]</li>
-                    <li><b class="doger"><code>parentNode</code></b> duvuelve el nodo padre del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>firstChild</code></b> duvuelve el primer nodo hijo del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>lastChild</code></b> duvuelve el ultimo nodo hijo del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>previousSibling</code></b> duvuelve el nodo hermano anterior del elemento seleccionado [object HTMLElement].</li>
-                    <li><b class="doger"><code>nextSibling</code></b> duvuelve el nodo hermano siguiente del elemento seleccionado [object HTMLElement].</li>
-                </ul>
+                <table class="table-propiedades">
+                    <caption>Navergar Elementos</caption>
+                    <thead>
+                        <tr>
+                        <th>Propiedad</th>
+                        <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>children</td>
+                        <td>Devuelve una lista [object HTMLCollection] de elementos hijos del elemento. Permite navegar por índice [].</td>
+                        </tr>
+                        <tr>
+                        <td>parentElement</td>
+                        <td>Devuelve el padre del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>firstElementChild</td>
+                        <td>Devuelve el primer hijo del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>lastElementChild</td>
+                        <td>Devuelve el último hijo del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>previousElementSibling</td>
+                        <td>Devuelve el elemento hermano anterior del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>nextElementSibling</td>
+                        <td>Devuelve el elemento hermano siguiente del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                    </tbody>
+                </table>
 
+                <table class="table-propiedades">
+                    <caption>Navergar Nodos</caption>
+                    <thead>
+                        <tr>
+                        <th>Propiedad</th>
+                        <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>childNodes</td>
+                        <td>Devuelve una lista [object NodeList] de nodos hijos del elemento seleccionado. Permite navegar por índice []</td>
+                        </tr>
+                        <tr>
+                        <td>parentNode</td>
+                        <td>Devuelve el nodo padre del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>firstChild</td>
+                        <td>Devuelve el primer nodo hijo del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>lastChild</td>
+                        <td>Devuelve el último nodo hijo del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>previousSibling</td>
+                        <td>Devuelve el nodo hermano anterior del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                        <tr>
+                        <td>nextSibling</td>
+                        <td>Devuelve el nodo hermano siguiente del elemento seleccionado [object HTMLElement].</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="margen150">El siguiente codigo HTML tenemos un contenedor con nodos de tipo etiquetas: (parrafo, span y listas), y nodos de texto. Estos elementos tiene estilos definidos para que se visualicen de una mejor manera. A continuacion veremos en este codigo como podemos seleccionar los distintos elementos que se presentan.</p>
+                <!-- codigo html -->
+                <div class="codigoHTML">
+                    <div>
+                        <b class="letra-B">HTML</b><br>
+
+                        &lt;<b class="azul">span</b>&gt; <b>Elemento hermano anterior</b> &lt;/<b class="azul">span</b>&gt; <br>
+                        <b>Nodo hermano anterior</b><br>
+
+                        &lt;<b class="azul">div</b> <b class="sky">id</b> = <b class="naranja">"elemento"</b> <b class="sky">class</b> = <b class="naranja">"letra-B"</b>&gt; <br>
+                            &emsp; <b>Primer Nodo</b><br>
+
+                            &emsp; &lt;<b class="azul">p</b>&gt;Nodo Elemento P &lt;/<b class="azul">p</b>&gt; <br>
+
+                            &emsp; &lt;<b class="azul">ul</b>&gt; <br>
+                                &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">id</b> = <b class="naranja">"lista"</b>&gt; Elemento li &lt;/<b class="azul">li</b>&gt; <br>
+                                &emsp; &emsp; &lt;<b class="azul">li</b>&gt; Elemento li &lt;/<b class="azul">li</b>&gt; <br>
+
+                            &emsp; &lt;/<b class="azul">ul</b>&gt; <br>
+
+                            &emsp; &lt;<b class="azul">div</b>&gt;Nodo Elemento DIV &lt;/<b class="azul">div</b>&gt; <br>
+
+                            &emsp; <b class="verde">&lt;!-- comentario --&gt;</b> <br>
+                            &emsp; <b>Ultimo Nodo</b> <br>
+                        &lt;/<b class="azul">div</b>&gt; <br>
+
+                        <b>Nodo hermano siguiente</b><br>
+                        &lt;<b class="azul">span</b>&gt; <b>Elemento hermano siguiente</b> &lt;/<b class="azul">span</b>&gt; <br>
+                    </div>
+
+                    <div id="container-html-propiedades">
+                        <span style="display: block; border-radius: 10px;width: 300px;" class="fondo-doger">Nodo Elemento hermano anterior</span>
+                        Nodo texto hermano anterior
+
+                        <div id="elemento" class="letra-B fondo-azul" style="border-radius: 10px; padding: 5px; width: 300px;">
+                            Nodo Texto First
+                            <p style="margin: 0; border-radius: 10px;width: 300px;" class="fondo-aqua">Nodo Elemento P</p>
+
+                            <ul style="margin: 5px 0; padding: 5px; border-radius: 10px;width: 290px;" class="fondo-golden">
+                                <li id="lista" style="margin: 0 0 5px; width: 120px;" class="fondo-morado">Nodo lista</li>
+                                <li id="lista" style="margin: 0; width: 120px;" class="fondo-morado">Nodo lista</li>
+                            </ul>
+
+                            <div style="border-radius: 10px;width: 300px;" class="fondo-naranja">Nodo Elemento &lt;DIV&gt;</div>
+                            <!-- comentario -->
+                            Nodo Texto Last
+                        </div>
+
+                        Nodo texto hermano siguiente
+                        <span style="display: block; border-radius: 10px; width: 300px;" class="fondo-doger">Nodo Elemento hermano siguiente</span>
+
+                    </div>
+                </div>
+
+                <div class="control-consola btn-propiedades-busqueda">
+                    <button>Navegar Elementos</button>
+                    <button>Navegar Nodos</button>
+                </div>
                 <!-- codigo -->
                 <div class="codigo-consola">
                     <div>
-                        <div style="background-color: rgb(27, 27, 27); padding: 10px; display: flex; gap: 80px;">
-                            <code style="font-size: 1.2rem;">
-                                <b class="letra-B">HTML</b><br>
-
-                                &lt;<b class="azul">span</b>&gt; <b>Elemento hermano anterior</b> &lt;/<b class="azul">span</b>&gt; <br>
-                                <b>Nodo hermano anterior</b><br>
-
-                                &lt;<b class="azul">div</b> <b class="sky">id</b> = <b class="naranja">"elemento"</b> <b class="sky">class</b> = <b class="naranja">"letra-B"</b>&gt; <br>
-                                    &emsp; <b>Primer Nodo</b><br>
-
-                                    &emsp; &lt;<b class="azul">p</b>&gt;Nodo Elemento P &lt;/<b class="azul">p</b>&gt; <br>
-
-                                    &emsp; &lt;<b class="azul">ul</b>&gt; <br>
-                                        &emsp; &emsp; &lt;<b class="azul">li</b> <b class="sky">id</b> = <b class="naranja">"lista"</b>&gt; Elemento li &lt;/<b class="azul">li</b>&gt; <br>
-                                        &emsp; &emsp; &lt;<b class="azul">li</b>&gt; Elemento li &lt;/<b class="azul">li</b>&gt; <br>
-
-                                    &emsp; &lt;/<b class="azul">ul</b>&gt; <br>
-
-                                    &emsp; &lt;<b class="azul">div</b>&gt;Nodo Elemento DIV &lt;/<b class="azul">div</b>&gt; <br>
-
-                                    &emsp; <b class="verde">&lt;!-- comentario --&gt;</b> <br>
-                                    &emsp; <b>Ultimo Nodo</b> <br>
-                                &lt;/<b class="azul">div</b>&gt; <br>
-
-                                <b>Nodo hermano siguiente</b><br>
-                                &lt;<b class="azul">span</b>&gt; <b>Elemento hermano siguiente</b> &lt;/<b class="azul">span</b>&gt; <br>
-                            </code>
-
-                            <div style="font-size: 1.3rem; width: 300px; margin-top: 40px;">
-                                <span style="display: block; color: black; border-radius: 10px;width: 300px;" class="fondo-doger">Nodo Elemento hermano anterior</span>
-                                Nodo texto hermano anterior
-
-                                <div id="elemento" class="letra-B fondo-azul" style="border-radius: 10px; padding: 5px; width: 300px;">
-                                    Nodo Texto First
-                                    <p style="margin: 0; border-radius: 10px; font-size: 1.4rem;width: 300px;" class="fondo-aqua">Nodo Elemento P</p>
-
-                                    <ul style="margin: 5px 0; padding: 5px; border-radius: 10px;width: 290px;" class="fondo-golden">
-                                        <li id="lista" style="margin: 0 0 5px; width: 120px;" class="fondo-morado">Nodo lista</li>
-                                        <li id="lista" style="margin: 0; width: 120px;" class="fondo-morado">Nodo lista</li>
-                                    </ul>
-
-                                    <div style="border-radius: 10px;width: 300px;" class="fondo-naranja">Nodo Elemento &lt;DIV&gt;</div>
-                                    <!-- comentario -->
-                                    Nodo Texto Last
-                                </div>
-
-                                Nodo texto hermano siguiente
-                                <span style="display: block; border-radius: 10px; color: black;width: 300px;" class="fondo-sky">Nodo Elemento hermano siguiente</span>
-
-                            </div>
-                        </div>
-                        <br>
-
-                        <code>
+                        <p>
                             <b class="verde">//Seleccionamos elementos</b><br>
                             <b class="azul">let</b> <b class="sky">nodo</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"elemento"</b>)</b> <br>
                             <b class="azul">let</b> <b class="sky">nodoLista</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"lista"</b>)</b> <br>
                             <b class="azul">let</b> <b class="sky">texto</b> = <b class="sky">nodo</b>.<b class="doger">firstChild</b>
-                        </code>
-                        <br><br>
+                        </p>
 
-                        <button class="btn-consola2" onclick="ejecutarPropiedadesDom('buscar-elementos')">Navegar Elementos</button><br><br>
-                        <button class="btn-consola2" onclick="ejecutarPropiedadesDom('buscar-nodos')">Navegar Nodos</button><br><br>
-
-                        <b class="sky">nodo</b> <b class="azul">instanceof</b> <b class="aqua">Node</b> <br>
-                        ${nodo instanceof Node} <br>
-                        <b class="sky">nodo</b> <b class="azul">instanceof</b> <b class="aqua">Element</b> <br>
-                        ${nodo instanceof Element}
+                        <p>
+                            <b class="sky">nodo</b> <b class="azul">instanceof</b> <b class="aqua">Node</b> <br>
+                            ${nodo instanceof Node} <br>
+                            <b class="sky">nodo</b> <b class="azul">instanceof</b> <b class="aqua">Element</b> <br>
+                            ${nodo instanceof Element}
+                        </p>
                     </div>
 
                     <div style="width: 700px;">
@@ -1215,31 +1282,6 @@
             </div>
 
         </div>
-
-        <!-- Proyecto lista de compras -->
-        <h3 class="letra-B">Proyecto Dom: Lista de compras</h3>
-        <div class="proyecto-listaDeCompras">
-            <button id="btn-modoClaroyoscuro">modo ☀️</button>
-            <div class="formulario">
-                <h6 class="letra-B">Lista de Compras</h6>
-                <form style="display: inline-block;">
-                    <input type="text" placeholder="Ingrese Producto">
-                    <button>Añadir</button>
-                </form>
-                <button id="btn-resetearProyectoListaDeCompras">Reset</button>
-
-                <ul style="padding: 0; margin-bottom: 10px;">
-                    <!-- <li>Lista de contenido
-                        <div>
-                            <span class="btn-delete">Borrar</span> <span class="btn-edit">Editar</span>
-                        </div>
-                    </li> -->
-                </ul>
-                <div id="confirmar-peticion" style="display: none;">Deseas eliminar este elemento? <span class="btn-delete-confirm">Confirmar</span></div>
-
-            </div>
-        </div>
-
     </section>
 
     <script src="./dom.js"></script>

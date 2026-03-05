@@ -6,6 +6,14 @@
     <title>Manipulacion del DOM</title>
     <link rel="stylesheet" href="../estilos.css">
     <link rel="stylesheet" href="./dom.css">
+    <style>
+        .notas-consola{
+            border: 1px solid gray; 
+            display: none; 
+            padding: 5px 10px 20px; 
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -17,6 +25,7 @@
             <button onclick="mostrarExplicacion('Proyectos-Dom')">Proyectos 📝</button>
             <ul id="Proyectos-Dom" style="display: none;">
                 <li><a href='proyectos/lista-de-compras/proyecto.html'>Lista de Compras</a></li>
+                <li><a href='proyectos/dom/index.html'>Dom</a></li>
                 <li><a href='proyectos/eventos/index.html'>Eventos</a></li>
             </ul>
         </div>
@@ -215,6 +224,9 @@
             <p>Por ejemplo, si la etiqueta tiene el atributo: &lt;<b class="azul">body</b> <b class="sky">id</b>=<b class="naranja">"page"</b>>, entonces el objeto DOM tiene la propiedad: <b class="azul">body</b>.<b class="sky">id</b>=<b class="naranja">"page"</b>. </p>
             <p>Las propiedades del DOM son atributos que permiten acceder, leer o modificar elementos, nodos y estructuras de una página web desde JavaScript. Estas propiedades son esenciales para manipular dinámicamente el contenido. <button class="btn-simple" onclick="mostrarExplicacion('tabla-propiedadesDom')">Ver Propiedades 👇</button></p>
 
+            <p><b class="doger"><code>nodeName</code></b> esta propiedad devuelve el nombre del nodo (la etiqueta en mayusculas). Se trata de una propiedad de solo lectura, por lo tanto no modifica el nodo, solo accede a el.</p>
+            <p><b class="doger"><code>nodeType</code></b> esta propiedad devuelve el tipo de nodo (numerico: 1= elemento, 2= texto, 3= comentario). Se trata de una propiedad de solo lectura, por lo tanto no modifica el nodo, solo accede a el.</p>
+
             <table id='tabla-propiedadesDom' style="display: none;">
                 <thead>
                     <tr>
@@ -408,7 +420,7 @@
                     </div>
                 </div>
 
-                <div class="control-consola btn-propiedades-busqueda">
+                <div class="control-consola btn-propiedades-busqueda" style="margin-top: 60px;">
                     <button>Navegar Elementos</button>
                     <button>Navegar Nodos</button>
                 </div>
@@ -443,8 +455,6 @@
         <h4 class="letra-B margen150">Manipulacion de elementos del DOM</h4>
         <p>Nuestra página está repleta de elementos HTML y es posible que queramos modificar uno de dichos elementos para cambiar su contenido de texto por otro. Ya sabemos localizar elementos del DOM, ahora lo que necesitamos es aprender una serie de propiedades para acceder al contenido de los elementos HTML.</p>
         <div class="seccion">
-            <p><b class="doger"><code>nodeName</code></b> esta propiedad devuelve el nombre del nodo (la etiqueta en mayusculas). Se trata de una propiedad de solo lectura, por lo tanto no modifica el nodo, solo accede a el.</p>
-            <p><b class="doger"><code>nodeType</code></b> esta propiedad devuelve el tipo de nodo (numerico: 1= elemento, 2= texto, 3= comentario). Se trata de una propiedad de solo lectura, por lo tanto no modifica el nodo, solo accede a el.</p>
 
             <div class="bloques-oscuros margen60"><!-- Manipular  texto -->
                 <h5 class="letra-B" style="margin: 0 0 70px;"><b>Manipular contenido de <span class="naranja">texto</span></b></h5>
@@ -453,8 +463,9 @@
                 <p><b class="sky"><code>outerText</code></b><br> funciona igual que innerText, teniendo en cuenta el display, de un elemento en concreto. Pero al reemplazar tambien reemplaza la etiqueta contenedora. Para cambiar el contenido usamos el operador de asignacion (=)</p>
             </div>
 
-            <div class="bloques-oscuros margen60"><!-- Manipular  HTML -->
-                <h5 class="letra-B" style="margin: 0 0 70px;"><b>Manipular contenido de <span class="sky">HTML</span></b></h5>
+            <!-- Manipular  HTML -->
+            <div class="bloques-oscuros margen60">
+                <h5 style="margin: 0 0 70px; text-align: center;"><b>Manipular contenido de <span class="sky">HTML</span></b></h5>
 
                 <p><code class="sky"><b>innerHTML</b></code><br>
                     nos permite obtener, reemplazar y añadir html a todo el contenido interno de un elemento. Reemplaza contenido por medio del operador de asignacion (=). Añade contenido por medio de la asignacion y suma (+=), este no es recomendable para añadir mucho contendio ya que reenderiza todo el elemento en cada insercion. Este contenido html se especifica como un string y al momento de inyectarse al DOM, los elementos se convierten a html.
@@ -477,61 +488,61 @@
 
                 <p><code><b class="golden">createElement()</b></code><br> es un metodo que permite crear elementos html usando el DOM, estos elementos son etiquetas en html. Funciona generando un nuevo nodo en el document, que luego podemos modificar, estilizar e insertar en la web. Devuelve la etiqueta que le pasemos por parametro, la cual podemos almacenar en una variable para su eventual manipulacion.</p>
 
-                <h6 class="letra-B margen100"><b>Insertar elementos</b></h6>
+                <h5 class="letra-B margen100"><b>Insertar elementos</b></h5>
                 <p><code><b class="golden">append()</b></code> Inserta uno o varios nodos o texto como últimos hijos</p>
                 <p><code><b class="golden">appendChild()</b></code> inserta un solo nodo como ultimo hijo de un elemento. Devuelve el nodo insertado.</p>
                 <p><code><b class="golden">prepend()</b></code> añade el elemento al inicio de su contenedor</p>
                 <p><code><b class="golden">before()</b></code> inserta el elemento antes de otro elemento existente</p>
                 <p><code><b class="golden">after()</b></code> inserta el elemento despues de otro existente</p>
 
-                <h6 class="letra-B margen100"><b>Eliminar elementos</b></h6>
+                <h5 class="letra-B margen100"><b>Eliminar elementos</b></h5>
                 <p><code><b class="golden">remove()</b></code> este metodo permite eliminar de forma directa un elemento, para eso debemos identificar el elemento y usar remove sobre el, y eliminaras el elemento del DOM. </p>
                 <p><code><b class="golden">removeChild()</b></code> este metodo permite eliminar elementos de forma mas especifica, para eso debemos aplicarlo al elemento padre que contiene el elemento hijo que queremos eliminar, pasamos por parametro el elemento hijo, y eliminaras el elemento del DOM. </p>
 
-                <h6 class="letra-B margen100"><b>Clonar elementos</b></h6>
+                <h5 class="letra-B margen100"><b>Clonar elementos</b></h5>
                 <p><code><b class="golden">cloneNode()</b></code> permite duplicar un nodo existente, manteniendo su estructura y contenido. Funciona seleccionando el elemento a clonar, luego empleamos el metodo cloneNode, almacenamos en una variable y podemos insertar en el DOM. CloneNode recibe un parametro boleano si es "true" copia los hijos del nodo, de ser false, no lo hace.</p>
 
-                <h6 class="letra-B margen100"><b>Reemplazar elementos</b></h6>
+                <h5 class="letra-B margen100"><b>Reemplazar elementos</b></h5>
                 <p><code><b class="golden">replaceWith()</b></code> permite sustituir un elemento selecionado por otro, o inlcuso varios, de forma directa. Funciona en elementos, nodos de texto y comentarios. Por parametro recibe el elemento que sustituira al otro.</p>
             </div>
 
+            <!-- html de ejemplo -->
+            <p class="margen150">Aqui tenemos un elemento HTML, con ciertos estilos de color llamativos, un titulo, parrafo y un span. Vamos a manipularlo con los metodos del DOM.</p>
+
+            <div class="ElementoDeManipulacion">
+                <h5>Titulo del elemento</h5>
+
+                <p class="parrafo">
+                    <b style=" text-transform: uppercase;">parrafo</b> que se puede manipular <br>
+                    <span class="fondo-morado">texto dentro de un span</span>
+                    <span style="display: none;">(texto oculto con display)</span>
+                    <span hidden>texto oculto con hidden</span>
+                </p>
+            </div>
+
             <!-- botones -->
-            <div style="height: 58px;">
-                <button onclick="ejecutarMetodosDeManipulacion('ver-contenidoDeTexto')" class="btn-cambiar-consola">Manipular texto</button>
-                <button onclick="ejecutarMetodosDeManipulacion('ver-contenido-HTML')" class="btn-cambiar-consola">Manipular HTML</button>
-                <button onclick="ejecutarMetodosDeManipulacion('crear-insertar')" class="btn-cambiar-consola">Crear, Insertar y Eliminar</button>
-                <button onclick="ejecutarMetodosDeManipulacion('clonar-reemplazar')" class="btn-cambiar-consola">Clonar, Reemplzar</button>
+            <div class="control-consola btn-metodos-manipulacion" style="margin-top: 60px;">
+                <button>Manipular texto</button>
+                <button>Manipular HTML</button>
+                <button>Crear, Insertar y Eliminar</button>
+                <button>Clonar, Reemplzar</button>
             </div>
             <!-- codigo  -->
-            <div class="codigo-consola" style="margin-top: 0; height: 750px;">
+            <div class="codigo-consola" style="height: 750px;">
                 <div>
-                    <code>
+                    <p>
                         <b class="azul">const</b> <b class="doger">elemento</b> = <b class="sky">document</b>.<b class="golden">getElementById(<b class="naranja">"elemento"</b>)</b> <br>
                         <b class="azul">const</b> <b class="doger">parrafo</b> = <b class="sky">document</b>.<b class="golden">querySelector(<b class="naranja">".parrafo"</b>)</b> <br><br>
-                    </code>
+                    </p>
 
-                    <code id="javascript-manipulaciondelDom"></code>
+                    <p id="codigo-manipulaciondelDom"></p>
 
-                    <p id="notas-manipulaciondelDom" style="border: 1px solid gray; display: none; padding: 5px 10px 20px; margin-top: 50px;"></p>
+                    <p id="notas-manipulaciondelDom" class="notas-consola"></p>
                 </div>
 
-                <div style="width: 520px;">
-
-                    <div class="ElementoDeManipulacion letra-B" style="padding: 5px; border-radius: 10px; background: #da9d47; margin-bottom: 30px;">
-                        <div style="font-size: 2rem; font-weight: bold;">Titulo del elemento</div>
-
-                        <p style="margin: 0;" class="parrafo fondo-azul">
-                            <b style=" text-transform: uppercase;">parrafo</b> que se puede manipular <br>
-                            <span class="fondo-morado">texto dentro de un span</span>
-                            <span style="display: none;">(texto oculto con display)</span>
-                            <span hidden>texto oculto con hidden</span>
-                        </p>
-                    </div>
-
-                    <code>
-                        <b id="consola-manipulaciondelDom-elemento" class="letra-B"></b>
-                        <b id="consola-manipulaciondelDom" class="letra-B"></b>
-                    </code>
+                <div>
+                    <b id="consola-manipulaciondelDom-elemento" class="letra-B"></b>
+                    <b id="consola-manipulaciondelDom" class="letra-B"></b>
                 </div>
             </div>
 

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buffers</title>
+    <link rel="stylesheet" href="../../estilos.css">
+    <style>
+        .codigo-node{font-size: 1.8rem; width: 60%;}
+        .codigo-node span{font-family: monospace; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <nav>
+        <button>
+            <a href="../modulos.html">Modulos</a>
+        </button>
+    </nav>
+
+    <!-- buffer -->
+    <section>
+        <h2>Buffers</h2>
+        <p>
+            En la programación, un buffer es un espacio en la memoria (RAM) destinado a almacenar temporalmente datos. Estos datos se encuentran en su forma más cruda y se expresan en bytes, en la consola, los datos se muestran en formato hexadecimal.
+            Pueden ser manipulados directamente en la memoria, En muchos casos, son más rápidos y eficientes que las operaciones tradicionales de lectura y escritura de archivos en disco, ya que eliminan la necesidad de hacer copias y conversiones innecesarias.
+        </p>
+
+        <h3 class="aqua margen100">Buffer</h3>
+        <p>En Node.js, un Buffer es una clase incorporada que representa una secuencia fija de bytes en memoria, usado para manejar datos binarios de forma eficiente. A diferencia de los arrays, un Buffer no cambia de tamaño una vez creado.</p>
+        <p><b class="letra-B">Porque existen los Buffers?</b> Node.js trabaja mucho con: archivos(fs), sockets TCP, streams, protocolos binarios, Para todo eso, necesitas manejar bytes directamente, no solo strings.  Node lo creó porque JavaScript originalmente no podía trabajar con binarios de manera nativa.</p>
+    
+        <table class="table-metodos margen100">
+            <caption><b class="golden">Metodos</b> principales</caption>
+            <thead>
+                <tr>
+                    <th>Método</th>
+                    <th>Parámetros</th>
+                    <th>Descripción breve</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>from()</td>
+                    <td>(string), (array), (buffer), (arrayBuffer)</td>
+                    <td>Crea un buffer a partir de un string, array, otro buffer o ArrayBuffer.</td>
+                </tr>
+
+                <tr>
+                    <td>alloc()</td>
+                    <td>(size[, fill])</td>
+                    <td>Crea un buffer inicializado en ceros.</td>
+                </tr>
+
+                <tr>
+                    <td>allocUnsafe()</td>
+                    <td>(size)</td>
+                    <td>Crea un buffer sin inicializar (más rápido, pero inseguro).</td>
+                </tr>
+
+                <tr>
+                    <td>byteLength()</td>
+                    <td>(string[, encoding])</td>
+                    <td>Devuelve el número de bytes que ocupa un string.</td>
+                </tr>
+
+                <tr>
+                    <td>toString()</td>
+                    <td>([encoding[, start[, end]]])</td>
+                    <td>Convierte el buffer a string.</td>
+                </tr>
+
+                <tr>
+                    <td>slice()</td>
+                    <td>([start[, end]])</td>
+                    <td>Devuelve una vista del buffer sin copiar memoria.</td>
+                </tr>
+
+                <tr>
+                    <td>write()</td>
+                    <td>(string[, offset[, length[, encoding]]])</td>
+                    <td>Escribe un string dentro del buffer.</td>
+                </tr>
+
+                <tr>
+                    <td>equals()</td>
+                    <td>(otherBuffer)</td>
+                    <td>Compara dos buffers.</td>
+                </tr>
+
+                <tr>
+                    <td>compare()</td>
+                    <td>(target[, targetStart[, targetEnd[, sourceStart[, sourceEnd]]]])</td>
+                    <td>Compara el orden lexicográfico entre buffers.</td>
+                </tr>
+
+                <tr>
+                    <td>concat()</td>
+                    <td>(list[, totalLength])</td>
+                    <td>Concatena múltiples buffers.</td>
+                </tr>
+
+                <tr>
+                    <td>includes()</td>
+                    <td>(value[, byteOffset[, encoding]])</td>
+                    <td>Verifica si el buffer contiene un valor.</td>
+                </tr>
+
+                <tr>
+                    <td>indexOf()</td>
+                    <td>(value[, byteOffset[, encoding]])</td>
+                    <td>Devuelve la posición de un valor dentro del buffer.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="bloques-oscuros codigo-node">
+            <p>
+                <b class="letra-B">Crear un buffer (espacios en memoria vacios)</b> <br>
+                <span class="azul">const</span> <span class="doger">buffer</span> = 
+                <span class="aqua">Buffer</span>.<span class="golden">alloc</span>(5) <br>
+                console.log(<span class="doger">buffer</span>)
+            </p>
+
+            <p>
+                <b class="letra-B">Crear un buffer (a partir de un string)</b> <br>
+
+                <span class="azul">const</span> <span class="doger">string</span> = 
+                <span class="aqua">Buffer</span>.<span class="golden">from</span>('Hola') <br>
+
+                <span class="azul">const</span> <span class="doger">array</span> = 
+                <span class="aqua">Buffer</span>.<span class="golden">from</span>([1,2,3,4]) <br>
+                console.log(<span class="doger">string</span>, <span class="doger">array</span>)
+            </p>
+
+            <p>
+                <b class="letra-B">Crear un abecedario</b> <br>
+
+                <span class="azul">let</span> <span class="sky">abc</span> = 
+                <span class="aqua">Buffer</span>.<span class="golden">alloc</span>(26) <br>
+
+                <span class="morado">for</span>(let i = 0; i &lt; 26; i++){ <br>
+                &emsp; <span class="sky">abc</span>[i] = i + 97  <span class="verde">//97 es el código ASCII de la letra 'a'</span> <br>
+                } <br>
+                console.log(<span class="sky">abc</span>) <br>
+                console.log(<span class="sky">abc</span>.<b class="golden">toString</b>())
+            </p>
+        </div>
+
+    </section>
+
+    <!-- streams -->
+    <section>
+        <h2>streams</h2>
+        <p>Un stream en Node.js es un objeto que permite leer o escribir datos de forma secuencial y eficiente, en vez de cargar todo el contenido en memoria de una sola vez. Los datos se procesan en pedazos (chunks), lo que hace a los streams ideales para archivos grandes, sockets, y cualquier operación de E/S que deba ser escalable.</p>
+
+        <h5>Tipos principales de streams</h5>
+        <ul>
+            <li>Streams de Lectura: se pueden leer datos desde la fuente (por ejemplo, fs.createReadStream).</li>
+            <li>Streams de Escritura: se pueden escribir datos hacia un destino (por ejemplo, fs.createWriteStream).</li>
+            <li>Streams de doble sentido: combina lectura y escritura (por ejemplo, sockets).</li>
+            <li>Transform: es un duplex que transforma los datos mientras pasan (por ejemplo, compresión, cifrado). Estos tipos están implementados en la API nativa de Node.js y se usan para componer tuberías (pipe) y procesar flujos de datos.</li>
+        </ul>
+
+        <p>Imagina tener un archivo enorme que deseas procesar poco a poco, en lugar de leer todo el archivo de una sola vez. Ahí es donde los streams de lectura entran en juego, permitiéndote gestionar fragmentos de información que llegan en forma de 'paquetes'.</p>
+
+    </section>
+</body>
+</html>

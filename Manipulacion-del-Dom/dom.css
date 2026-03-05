@@ -29,6 +29,24 @@
     justify-content: center;
 }
 
+/* contenedor de html para manipular */
+.ElementoDeManipulacion{
+    background: #da9d47;
+    color: white;
+    padding: 5px; 
+    border-radius: 10px; 
+    margin-bottom: 30px;
+}
+.ElementoDeManipulacion h5{
+    font-size: 2.5rem; 
+    margin-top: 0;
+}
+.ElementoDeManipulacion p{
+    background: var(--azul);
+    padding: 5px;
+    margin: 5px;
+}
+
 
 /*                PROYECTO DOM: LISTA DE COMPRAS */
 

@@ -331,10 +331,20 @@ function ejecutarPropiedadesDom(tipo){
 }ejecutarPropiedadesDom()
 
 
-//metodos y propiedades de manipulacion de elementos
+// METODOS Y PROPIEDADES DE MANIPULACION
+const botones_metodos_manipulacion = document.querySelectorAll('.btn-metodos-manipulacion button')
+botones_metodos_manipulacion.forEach((boton, index) => {
+    boton.addEventListener('click', () => {
+        if(index === 0) ejecutarMetodosDeManipulacion('ver-contenidoDeTexto')
+        else if(index === 1) ejecutarMetodosDeManipulacion('ver-contenido-HTML')
+        else if(index === 2) ejecutarMetodosDeManipulacion('crear-insertar')
+        else if(index === 3) ejecutarMetodosDeManipulacion('clonar-reemplazar')
+    })
+})
+
 function ejecutarMetodosDeManipulacion(tipo){
     const consola = document.getElementById("consola-manipulaciondelDom")
-    const consolaJavascript = document.getElementById("javascript-manipulaciondelDom")
+    const codigo = document.getElementById("codigo-manipulaciondelDom")
     const notas = document.getElementById("notas-manipulaciondelDom")
 
     const elemento = document.querySelector(".ElementoDeManipulacion")
@@ -342,9 +352,15 @@ function ejecutarMetodosDeManipulacion(tipo){
 
     //Codigo
     if(tipo == "ver-contenidoDeTexto"){
-        consolaJavascript.innerHTML = `
-        <b class="doger">parrafo</b>.<b class="sky">textContent</b> = <b class="naranja">"Texto Manipulado con textConten"</b>
-        <button class="btn-consola2" onclick="ejecutarMetodosDeManipulacion('textContent')">cambiar</button><br><br>
+        codigo.innerHTML = `
+        <p>
+            <b class="doger">parrafo</b>.<b class="sky">textContent</b> = <b class="naranja">"Texto Manipulado con textConten"</b>
+            <button 
+                class="btn-consola2" 
+                onclick="ejecutarMetodosDeManipulacion('textContent')"
+                >cambiar
+            </button>
+        </p>
 
         <b class="doger">parrafo</b>.<b class="sky">innerText</b> = <b class="naranja">"Texto Manipulado con innerText"</b>
         <button class="btn-consola2" onclick="ejecutarMetodosDeManipulacion('innerText')">cambiar</button><br><br>
@@ -366,7 +382,7 @@ function ejecutarMetodosDeManipulacion(tipo){
         `
     }
     else if(tipo == "ver-contenido-HTML"){
-        consolaJavascript.innerHTML = `
+        codigo.innerHTML = `
         <b class="letra-B">Reemplazar contenido HTML</b><br>
             <b class="doger">parrafo</b>.<b class="sky">innerHTML</b> = <b class="naranja">"Manipulado con &lt;b class="aqua">innerHTML&lt;/b>"</b>
             <button class="btn-consola2" onclick="ejecutarMetodosDeManipulacion('innerHTML')">cambiar</button>
@@ -400,7 +416,7 @@ function ejecutarMetodosDeManipulacion(tipo){
         `
     }
     else if(tipo == "crear-insertar"){
-        consolaJavascript.innerHTML = `
+        codigo.innerHTML = `
         <b class="letra-B">Crear elementos HTML y manipularlos</b><br>
             <b class="azul">const</b> <b class="doger">paragraph</b> = <b class="sky">document</b>.<b class="golden">createElement(</b><b class="naranja">"p"</b><b class="golden">)</b> <br>
             <b class="doger">paragraph</b>.<b class="sky">textContent</b> = <b class="naranja">"nuevo parrafo creado"</b>  <br><br>
@@ -436,7 +452,7 @@ function ejecutarMetodosDeManipulacion(tipo){
         consola.innerHTML = `${Array.from(parrafo.children).map(item => item.nodeName)}`
     }
     else if(tipo == "clonar-reemplazar"){
-        consolaJavascript.innerHTML = `
+        codigo.innerHTML = `
         <b class="letra-B">Clonar elementos</b><br>
             <b class="azul">const</b> <b class="doger">span</b> = <b class="doger">parrafo</b>.<b class="golden">querySelector(</b><b class="naranja">"span"</b><b class="golden">)</b> <br>
             <b class="azul">const</b> <b class="doger">clon</b> = <b class="doger">span</b>.<b class="golden">cloneNode(</b><b class="azul">true</b><b class="golden">)</b> <br>
@@ -560,7 +576,7 @@ function ejecutarMetodosDeManipulacion(tipo){
         titulo.replaceWith(span)
     }
 
-}ejecutarMetodosDeManipulacion()
+}ejecutarMetodosDeManipulacion('ver-contenidoDeTexto')
 
 //metodos y propiedades de manipulacion de atributos
 function ejecutarManipulacionDeAtributos(tipo){

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articulos Ficticios</title>
+    <link rel="stylesheet" href="../../../estilos.css">
+    <link rel="stylesheet" href="./proyecto.css">
+</head>
+<body>
+    <nav>
+        <button 
+            onclick="window.location.href='../../promesas.html'">Atras
+        </button>
+    </nav>
+
+    <section id="main-section" style="margin-bottom: 50px;">
+        <div>
+            <h4 style="text-align: center; margin-top: 0;">Solicitudes HTTP</h4>
+            <p>Aqui puedes obtener y enviar datos a través de solicitudes HTTP.</p>
+            <p>Al presionar <b class="azul">obtener</b>, se obtendrán los artículos ficticios, que tienen un titulo y un parrafo. Estos seran renderizados en el DOM, como targetas.</p>
+            <p>Al presionar <b class="verde">enviar</b>, se enviarán los datos a través de una solicitud POST. Estos los puedes ver en la consola.</p>
+        </div>
+
+        <div id="main">
+            <label for="titulo-post">titulo</label>
+            <input id="titulo-post"></input>
+
+            <label for="contenido-post" style="display: inline-block; margin-top: 30px;">Contenido</label>
+            <textarea id="contenido-post"></textarea>
+
+            <button 
+                onclick="ProyectoSolicitudesHTTP('enviar-post')" 
+                class="btn-POST-GET" 
+                style="background-color: rgb(80, 184, 80);">
+                Enviar (POST)
+            </button>
+
+            <button 
+                onclick="ProyectoSolicitudesHTTP('traer-post')" 
+                class="btn-POST-GET">
+                Obtener (GET)
+            </button>
+        </div>
+    </section>
+
+    <section style="margin-top: 50px;">
+        <div id="content-targets">
+            <!-- Aqui se van a mostrar los posts obtenidos a través de la solicitud GET -->
+        </div>
+
+        <!-- codigo -->
+        <div class="codigo-consola margen150">
+            <div>
+                <p>
+                    <b class="azul">function</b> <b class="golden">enviarPeticion(</b>
+                    <b class="sky">metodo</b>, <b class="sky">url</b>, <b class="sky">data</b><b class="golden">) {</b><br>
+                    &emsp; <b class="morado">return</b> <b class="golden">fetch</b><b class="morado">(</b><b class="sky">url</b>, <b class="azul">{</b><br>
+                    &emsp; &emsp; <b class="sky">method: metodo</b>,<br>
+                    &emsp; &emsp; <b class="sky">body: JSON</b>.<b class="golden">stringify(<b class="sky">data</b>)</b>, <br>
+                    &emsp; &emsp; <b class="sky">headers:</b> <b class="golden">{<b class="naranja">"Content-type": "application/json"</b>}</b>, <br>
+                    &emsp; <b class="azul">}</b><b class="morado">)</b>.<b class="golden">then</b><b class="morado">(</b><b class="sky">response</b> <b class="azul">=> {</b> <br>
+                    &emsp; &emsp; <b class="morado">return</b> <b class="sky">response</b>.<b class="golden">json()</b> <br>
+                    &emsp; <b class="azul">}</b><b class="morado">)</b> <br>
+                    <b class="golden">}</b>
+                </p>
+
+                <p>
+                    <b class="azul">async function</b> <b class="golden">traerPost() {</b><br>
+                    &emsp; <b class="azul">const</b> <b class="doger">response</b> = <b class="morado">await</b> <br>
+                    &emsp; <b class="golden">enviarPeticion</b><b class="azul">(</b><b class="naranja">"GET"</b>,<b class="naranja">"https://jsonplaceholder.typicode.com/posts"</b><b class="azul">)</b> <br>
+                    &emsp; <b>Aqui tomamos los datos en <b class="doger">response</b> para ponerlos en el DOM</b> <br>
+                    <b class="golden">}</b>
+                </p>
+            </div>
+
+            <div id="consola-Proyecto-HTTP"></div>
+        </div>
+    </section>
+
+    <script src="./index.js"></script>
+</body>
+</html>

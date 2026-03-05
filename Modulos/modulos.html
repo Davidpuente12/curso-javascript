@@ -11,10 +11,94 @@
         <button onclick="window.location.href='../Pagina.html'" >
             Home 🏠
         </button>
+        <button>
+            <a href="./buffers/buffers.html">Buffer</a>
+        </button>
     </nav>
 
+    <!-- Modulos en JavaScript -->
     <section>
-        <H2>Modulos Globales</H2>
+        <h2>Modulos</h2>
+        <p>Los módulos en JavaScript son unidades de código reutilizable que permiten dividir un programa en partes independientes, facilitando la organización, el mantenimiento y la reutilización del código.</p>
+
+        <h5 class="margen60">Tipos principales de módulos en JavaScript</h5>
+        <p>Existen 4 tipo de módulos en JavaScript: módulos locales, módulos globales, módulos de terceros y módulos integrados.</p>
+        <ul>
+            <li><strong class="letra-B">Módulos Locales:</strong> Son archivos JavaScript que se crean dentro de tu proyecto y se utilizan para organizar el código.</li>
+            <li><strong class="letra-B">Módulos Globales:</strong> Son objetos y funciones disponibles en todo el entorno de ejecución de JavaScript.</li>
+            <li><strong class="letra-B">Módulos de Terceros:</strong> Son paquetes de código desarrollados por terceros que puedes utilizar en tu aplicación.</li>
+            <li><strong class="letra-B">Módulos Integrados:</strong> Son módulos que vienen incluidos con el entorno de ejecución de JavaScript.</li>
+        </ul>
+    </section>
+
+    <!-- MODULOS LOCALES -->
+    <section>
+        <h3>Modulos Locales</h3>
+        <p>Un módulo local es un archivo de JavaScript que contiene código específico para una parte de tu aplicación. Estos módulos se crean para organizar el código, mejorar la legibilidad y facilitar el mantenimiento. Al dividir tu aplicación en módulos locales, puedes reutilizar código, evitar conflictos de nombres y mantener un código más limpio y estructurado.</p>
+        <p>Los módulos locales se crean como archivos JavaScript separados dentro de tu proyecto. Para utilizarlos, debes exportar las funciones, objetos o variables que deseas compartir con otros archivos, y luego importarlos en los archivos donde los necesites.</p>
+
+        <h5 class="margen100">Sistemas de módulos en JavaScript</h5>
+        <p>Existen varios sistemas de módulos en JavaScript, cada uno con sus características y usos específicos:</p>
+     
+        <table class="table-info" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Tipo de módulo</th>
+                    <th>Contexto de uso</th>
+                    <th>Características clave</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CommonJS (CJS)</td>
+                    <td>Node.js (servidor)</td>
+                    <td>
+                        - Usa <code>require()</code> y <code>module.exports</code><br>
+                        - Carga sincrónica<br>
+                        - Estándar de facto en Node.js antes de ESM
+                    </td>
+                </tr>
+                <tr>
+                    <td>AMD (Asynchronous Module Definition)</td>
+                    <td>Navegadores</td>
+                    <td>
+                        - Usa <code>define()</code><br>
+                        - Carga asíncrona<br>
+                        - Diseñado para evitar bloqueos en la carga de scripts
+                    </td>
+                </tr>
+                <tr>
+                    <td>UMD (Universal Module Definition)</td>
+                    <td>Compatibilidad</td>
+                    <td>
+                        - Combina CommonJS y AMD<br>
+                        - Funciona tanto en navegador como en servidor<br>
+                        - Útil para librerías distribuidas ampliamente
+                    </td>
+                </tr>
+                <tr>
+                    <td>ES Modules (ESM)</td>
+                    <td>Estándar moderno (desde ES6/2015)</td>
+                    <td>
+                        - Usa <code>import</code> y <code>export</code><br>
+                        - Soportado nativamente en navegadores y Node.js<br>
+                        - Carga asíncrona en navegador, eficiente y estándar
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Hoy en día, ESM es el estándar recomendado, ya que está soportado de forma nativa en navegadores modernos y en Node.js. CommonJS sigue siendo muy usado en proyectos Node.js antiguos o en librerías que no han migrado. AMD y UMD fueron soluciones transitorias para compatibilidad, pero hoy se usan menos.</p>
+        
+        <h5>Indicar el Tipo de módulo</h5>
+        <p>Para indicar el tipo de módulo en un archivo JavaScript, puedes usar la propiedad <code>type</code> en el archivo <code class="letra-B">package.json</code> o especificar el tipo directamente en el archivo, en la etiqueta &lt;<code class="azul">script</code>&gt; con la propiedad y valor <code class="sky">type</code>=<code class="naranja">"module"</code> .</p>
+        <p>Para CommonJS, no es necesario indicar el tipo de módulo, ya que es el sistema de módulos predeterminado en Node.js. Simplemente puedes usar <code class="golden">require()</code> para importar módulos y <code>module.exports</code> para exportar funcionalidades.</p>
+        <p>Para ESM, puedes usar <code class="morado">import</code> y <code class="morado">export</code> para gestionar las dependencias.</p>
+    </section>
+
+    <!-- MODULOS GLOBALES -->
+    <section>
+        <h3>Modulos Globales</h3>
         <p>
             El motor de JavaScript, aquel que compila tu archivo y lo convierte en código 
             que entiende el computador, al iniciar la compilación crea un objeto global que contiene
@@ -34,7 +118,7 @@
             disponibles en cada módulo.
         </p>
 
-        <h3 class="letra-B">Objeto <span class="sky">global</span></h3>
+        <h4 class="margen100">Objeto <span class="sky">global</span></h4>
         <p>
             El objeto global proporciona un ámbito compartido para variables y 
             funciones, similar al window object en los navegadores. Las variables o funciones 
@@ -234,12 +318,11 @@
             evitando tener que usar diferentes nombres según el entorno. globalThis 
             contiene el valor de this global, es decir, el objeto global del contexto actual.
         </p>
-
     </section>
 
     <!-- EXPORTACION E IMPORTACION DE MODULOS -->
     <section>
-        <h2>Exportar Modulos</h2>
+        <h3 class="morado">Exportar Modulos</h3>
         <p>Para que el código de JavaScript sea más ordenado, legible y mantenible; ES6 introduce una forma de manejar código en archivos de manera modular, de esta manera podemos desarrolar nuestro propio codigo en modulos. Esto involucra exportar funciones o variables de un archivo, e importarlas en otros archivos donde se necesite.</p>
         
         <h4>Modulos</h4>

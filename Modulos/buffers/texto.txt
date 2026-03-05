@@ -1,0 +1,5 @@
+Lorem ipsum es el texto que se usa habitualmente en diseño 
+gráfico en demostraciones de tipografías o de bocetos para 
+diseños para probar el arte visual antes de insertar el texto 
+final. Su uso en algunos editores de texto muy conocidos en 
+la actualidad ha dado al texto lorem ipsum nueva popularidad.

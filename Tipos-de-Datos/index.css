@@ -1,0 +1,71 @@
+/* Manipulacion de numeros */
+#btn-PropiedadesMath {
+  background-color: transparent;
+  color: white;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid white;
+  font-size: 1.2rem;
+}
+ul #propiedades-metodos {
+  margin: 50px auto;
+}
+
+.codigo-consola #numero1,
+.codigo-consola #numero2 {
+  width: 70px;
+  border: white solid 1px;
+  border-radius: 10px;
+  color: rgb(87, 176, 87);
+}
+/* Calculadora */
+#controles-calculadora {
+  background-color: rgb(23, 43, 63);
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+#controles-calculadora button,
+.btn-calcul {
+  width: 150px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: white;
+}
+#teclado {
+  padding: 5px;
+  background-color: #6d6767;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+#teclado div {
+  background-color: rgb(43, 43, 43);
+  width: 31%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2.5rem;
+  border-radius: 8px;
+}
+
+.btn-next-example {
+  background-color: transparent;
+  height: 50px;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin-top: 20px;
+  border-color: white;
+  border-radius: 10px;
+}

@@ -13,19 +13,10 @@ const temas = [
   "explicacion-map",
   "explicacion-forEach",
   "explicacion-filter",
-  "explicacion-reduce",
-  "explicacion-find",
   "explicacion-slice",
-  "explicacion-some",
-  "explicacion-join",
-  "explicacion-flat",
   //metodos mutables
   "explicacion-splice",
   "explicacion-sort",
-  //OBJETOS
-  "ver-mas-objeto",
-  "explicaciom-funcionConstructora",
-  "explicacion-clases",
   //Detalles
   "detalle-json",
   //DOM
@@ -242,3 +233,22 @@ function verificar(tipo) {
     crearUsuario.style.display = "none";
   }
 }
+
+function Student(nombre, edad, cursosAprovados) {
+  this.name = nombre;
+  this.age = edad;
+  this.cursosAprovados = cursosAprovados;
+}
+
+Student.prototype.aprobarCurso = function (nuevo) {
+  this.cursosAprovados.push(nuevo);
+};
+
+const david = new Student("David", 30, ["Curso HTML", "Curso CSS"]);
+const jorge = new Student("Jorge", 30, ["Curso HTML", "Curso CSS"]);
+
+david.aprobarCurso("Curso Java");
+jorge.aprobarCurso("Curso Rubi");
+
+console.log(david);
+console.log(jorge);

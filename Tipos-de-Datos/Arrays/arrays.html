@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../index.css" />
+    <style>
+        ul.space li{
+            margin: 20px 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+      <button onclick="window.location.href = '../../Pagina.html'">Home 🏠</button>
+      <button onclick="window.location.href = './arrays.html'">
+        <span class="azul">Arrays</span>
+      </button>
+    </nav>
+   
+    <section>
+        <h3 class="aqua">Arrays</h3>
+        <p>es una estructura de datos ordenada que permite almacenar multiples valores dentro de una variable, estos valores pueden ser cualquier tipo de dato, como otros arrays, funciones y objetos, y aunque los datos que contiene pueden ser distintos entre si, se recomienda que contengan un solo tipo de dato, debido al tipado debil de Javascript. Tambien vale la pena mencionar que los arrays son objetos.</p>
+
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="sky">variable</b> = <b class="golden">[</b><b class="naranja">strings</b>,
+                <b class="verde">numbers</b>, <b class="azul">boolean</b>,
+                <b class="golden">objetos{}</b><b class="golden">]</b>
+            </p>
+        </div>
+        
+        <p><b class="letra-B">Corchetes</b> <b class="golden">[]</b> abren un segmento en donde podemos escribir datos de cualquier tipo como un "array" (formacion), strings (cadenas), numeros, y objetos, son utiles porque permiten almacenar gran cantidad de informacion en un solo lugar.</p>
+        
+        <h4 class="margen100">Acceder a sus elementos</h4>
+        <p>
+            Los valores que contiene un array estan indexados por numeros empezando desde 0, 
+            esto permite acceder a sus valores mediante sus indices, Para acceder a los valores 
+            de un array, utilizamos la sintaxis <span class="sky">variable</span>
+            <span class="morado">[<span class="verde">indice</span>]</span>. 
+            si el indice esta fuera de rango devuelve undefined. <br><br>
+
+            Tambien es posible encontrar valores mediante el metodo <b class="golden">at()</b>
+            este recibe por argumento el indice del elemento y lo devuelve, la utilidad mas importante
+            es que recibe tambien indices negativos, algo que no se puede con las notaciones de 
+            corchetes, donde tendrias que obtener la longitud del array y restarle las unidades 
+            necesarias para encontrar elementos del final. 
+        </p>
+        
+        <p><b class="sky letra-big">length</b> es una propiedad que devuelve la longitud del arreglo, esto quiere decir que devuelve el numero de elementos que contiene. Tambien permite establecer el numero de elementos que puede tener un arreglo, esto se logra mediante la asignacion de un numero que sera la longitud maxima, haciendo que si hay elementos sobrantes se eliminen, de lo contrario se crean posiciones vacias (undefined).</p>
+
+        <h4 class="margen100">Clase <span class="aqua">Array</span></h4>
+        <p>La clase (funcion constructora) Array en JavaScript es un objeto global que sirve como plantilla para crear y manipular arreglos. Proporciona propiedades y métodos que permiten almacenar, acceder y transformar colecciones de datos de manera dinámica. Internamente, cada instancia de Array hereda métodos y propiedades de Array.prototype.</p>
+
+        <p><b class="aqua">Array</b>.<b class="golden">isArray(</b><b class="sky">array</b><b class="golden">)</b> sirve para comprobar si una variable contiene un tipo de dato array.</p>
+
+        <!-- botones -->
+        <div class="control-consola">
+            <button onclick="ejecutarArrays('longitudYcomprobar')">Longitud y comprobar</button>
+            <button onclick="ejecutarArrays('accederElementos')">Acceder a elementos</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            <div>
+                <code>
+                    <b>Sintaxis Antigua</b><br>
+                    <b class="azul">let </b> <b class="sky">frutas</b> = <b class="azul">new</b> <b class="aqua">Array</b><b class="golden">(</b><b class="naranja">'manzana', 'banano', 'uvas'</b><b class="golden">)</b>  <br>
+                    <b class="azul">let </b> <b class="sky">verduras</b> = <b class="aqua">Array</b><b class="golden">(</b><b class="naranja">'zanahoria', 'papa', 'yuca'</b><b class="golden">)</b>  <br>
+                    <b class="azul">let </b> <b class="sky">vacio</b> = <b class="aqua">Array</b><b class="golden">(</b><b class="verde">5</b><b class="golden">)</b> <b class="verde">⬅ array con indices vacios</b>
+                    <br><br>
+                    <b>Sintaxis Literal</b><br>
+                    <b class="azul">let </b> <b class="sky">colores</b> = <b class="golden">[</b><b class="naranja">'azul', 'amarillo', 'rojo', 'negro'</b><b class="golden">]</b> <br>
+                    <b class="azul">let </b> <b class="sky">multiple</b> = <b class="golden">[</b><b class="naranja">"auto"</b>,
+                    <b class="verde">12</b> , <b class="azul">true</b> , <b class="morado">{</b><b class="sky">telefono:</b>
+                    <b class="naranja">"Samsung"</b><b class="morado">}</b><b class="golden">]</b> <br>
+                    <b class="azul">let </b> <b class="sky">vacio2</b> = <b class="golden">[]</b> <b class="verde">⬅ array vacio</b>
+                </code>
+            </div>
+            <div>
+                <code>
+                    <b id="consola-array"></b>
+                </code>
+            </div>
+        </div>
+
+        <ul>
+            <li><span class="letra-B">Sintaxis Antigua:</span> <span class="azul">new</span> <span class="aqua">Array</span><span class="golden">()</span> || <span class="aqua">Array</span><span class="golden">()</span> verás este método en proyectos más antiguos. Permite crear indices vacios, esto sucede cuando establecemos un solo valor numerico en la lista, creara los indices vacios correspondientes a ese valor.</li>
+            <li><span class="letra-B">Sintaxis literal</span> Este es el método más utilizado. Consiste en usar corchetes <span class="golden">[]</span> para definir los elementos del array. No permite crear indices vacios como el anterior, pero ambos pueden estar vacios y llenarse con datos desde alguna funcion del programa.</li>
+        </ul>
+
+        <!-- metodos -->
+        <h4 class="margen100" style="text-align: center;">
+            <b class="golden">Metodos</b> de los arreglos
+        </h4>
+        <p> los metodos de los arrays se dividen en dos: (mutables e inmutables), la mutabilidad se refiere a la capacidad de un array para cambiar su estado o contenido despues de haber sido creado, por otro lado inmutabilidad asegura que una vez creado, el array no sea alterado. se logra creando un nuevo array en lugar de modificar el existente.</p>       
+        
+    </section>
+
+    <!-- mutables -->
+    <section class="bloques-oscuros">
+        <h5>Mutables (modifican el array)</h5>
+        <table>
+            <caption>Agregar y Eliminar elementos</caption>
+            <tr><th>Método</th><th>Descripción</th></tr>
+            <tr><td>push()</td><td>Agrega elementos al final</td></tr>
+            <tr><td>pop()</td><td>Elimina el último elemento</td></tr>
+            <tr><td>shift()</td><td>Elimina el primer elemento</td></tr>
+            <tr><td>unshift()</td><td>Agrega elementos al inicio</td></tr>
+            <tr><td>splice()</td><td>Agrega, elimina o reemplaza elementos</td></tr>
+            <tr><td>sort()</td><td>Ordena, a partir de valores unicode</td></tr>
+            <tr><td>toSpliced()</td><td>Versión inmutable de splice</td></tr>
+        </table>
+
+        <p class="margen60"><code class="golden letra-big">push()</code> (empujar) sirve para añadir nuevos elementos al final de un array, modificando directamente el original, los valores se definen dentro de los parentesis y se separan por comas si son mas de uno. Devuelve la nueva longitud</p>
+        <p><code class="golden letra-big">pop()</code> sirve para remover el ultimo elemento de un array y lo devuelve, modifica el original junto a su indice.</p>
+        <p><code class="golden letra-big">unshift()</code> añade items al inicio de la lista y devuelve la nueva longitud.</p>
+        <p><code class="golden letra-big">shift()</code> remueve el primer items al inicio de la lista, y lo devuelve.</p>
+        
+        <p class="margen60"><code class="golden letra-big">splice()</code> El método splice permite extraer o agregar uno o varios elementos del array original a partir del índice, Tambien puede reemplazar elementos especificados como argumento. Retorna un array con los elementos extraídos, si no se guarda en una variable, el Garbage Collection lo elimina. </p>
+        
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">splice(</b><b>indice, cantidad, items ...</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-splice')" class="fondo-aqua">Explicacion</button>
+        </div>
+
+        <div id="explicacion-splice" style="display: none;">
+            <h5 class="letra-B">Este metodo recibe tres parametros como argumento</h5>
+            <ul>
+                <li><b class="letra-B">indice</b> Necesario. Un número entero que especifica en qué posición agregar / quitar elementos. Use valores negativos para especificar la posición desde el final de la matriz.</li>
+                <li><b class="letra-B">cantidad</b> Opcional. La cantidad de elementos que se eliminarán. Si se establece en 0, no se eliminarán elementos.</li>
+                <li><b class="letra-B">Items</b> Opcional. Los nuevos elementos que se agregarán a la matriz</li>
+            </ul>
+        </div>
+        
+        <p><code class="golden letra-big">sort()</code> El método sort es mutable y consiste en ordenar un array a partir de los valores Unicode de los caracteres y este retorna un array con la misma referencia en memoria que el original.</p>
+        
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">sort(</b><b class="azul">function</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-sort')" class="fondo-aqua">Explicacion</button>
+        </div>
+
+        <div id="explicacion-sort" style="display: none;">
+            <h5 class="letra-B">Este metodo recibe un argumento</h5>
+            <p>Una función de comparación que compara cada elemento con otro. Por defecto, evalúa el valor Unicode del caracter. Esta recibe dos parametros</p>
+            <ul>
+                <li>El primer elemento a comparar.</li>
+                <li>El segundo elemento a comparar.</li>
+            </ul>
+        </div>
+
+        <!-- botones -->
+        <div class="control-consola">
+            <button onclick="ejecutarmutables()">push, pop, unshift, shift</button>
+            <button onclick="ejecutarmutables('splice')">splice</button>
+            <button onclick="ejecutarmutables('sort')">sort</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            <div id="codigo-mutable">
+                <b class="azul">const </b> <b class="doger">paises</b> = <b class="golden">[</b><b class="naranja">'venezuela', 'colombia', 'peru'</b><b class="golden">]</b>
+                <br><br>
+                <b>añadir valores al final</b>
+                <button class="btn-consola2" onclick="ejecutarmutables('push')">push</button><br>
+                <b class="doger">paises</b>.<b class="golden">push</b><b class="golden">(</b><b class="naranja">'usa', 'canada'</b><b class="golden">)</b>  <br><br>
+
+                <b>eliminar valores del final</b>
+                <button class="btn-consola2" onclick="ejecutarmutables('pop')">pop</button><br>
+                <b class="doger">paises</b>.<b class="golden">pop</b><b class="golden">()</b>  <br><br>
+
+                <b>añadir valores al comienzo</b>
+                <button class="btn-consola2" onclick="ejecutarmutables('unshift')">unshift</button><br>
+                <b class="doger">paises</b>.<b class="golden">unshift</b><b class="golden">(<b class="naranja">"mexico"</b>)</b>  <br><br>
+
+                <b>eliminar valores del comienzo</b>
+                <button class="btn-consola2" onclick="ejecutarmutables('shift')">shift</button><br>
+                <b class="doger">paises</b>.<b class="golden">shift</b><b class="golden">()</b> <br><br>
+            </div>
+
+            <div style="width: 800px;" id="consola-mutable"></div>
+        </div>
+
+        <ul>
+            <li><span class="doger">paises</span>.<span class="golden">push</span><span class="golden">(</span><span class="naranja">'usa', 'canada'</span><span class="golden">)</span> aqui push se aplica al array añadiendole al final de las lista dos valores nuevos.</li>
+            <li><span class="doger">paises</span>.<span class="golden">pop</span><span class="golden">()</span> remueve el ultimo valor: <span class="naranja">"canada"</span> .</li>
+            <li><span class="doger">paises</span>.<span class="golden">unshift</span><span class="golden">(</span><span class="naranja">'mexico'</span><span class="golden">)</span> se aplica al array para añadir <span class="naranja">mexico</span> al principio de la lista.</li>
+            <li><span class="doger">paises</span>.<span class="golden">shift</span><span class="golden">()</span> remueve el primer valor: <span class="naranja">"mexico"</span>.</li>
+        </ul>
+
+        <div class="notas">Para ver los valores que devuelven estos metodos debemos capturarlos en una variable.</div>
+    </section> 
+
+    <!-- inmutables -->
+    <section class="bloques-oscuros">
+        <h4>Metodos Inmutables</h4>
+        <p>Los métodos inmutables son funciones que, al aplicarse sobre un objeto, arreglo, cadena, o estructuras de datos, no modifican directamente el contenido original, sino que generan una copia transformada o un nuevo valor.</p>
+
+        <table>
+            <caption>Transformacion y copia</caption>
+            <tr><th>Método</th><th>Descripción</th></tr>
+            <tr><td>map()</td><td>Transforma cada elemento en un nuevo arreglo</td></tr>
+            <tr><td>flat()</td><td>Aplana sub-arreglos en un nivel</td></tr>
+            <tr><td>flatMap()</td><td>Combina map() y flat(1)</td></tr>
+            <tr><td>slice()</td><td>Devuelve una copia parcial</td></tr>
+            <tr><td>concat()</td><td>Une dos o más arreglos</td></tr>
+            <tr><td>copyWithin()</td><td>Copia elementos dentro del mismo arreglo</td></tr>
+        </table>
+
+        <!-- concat -->
+        <p class="margen100"><code class="golden letra-big">concat()</code> (concatenar) permite combinar arrays sin alterar el original, funciona aplicandolo sobre el array que queremos combinar y añadiendo los nuevos valores dentro de los parentesis, devuelve un nuevo array que no altera el original.</p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">concat(</b><b class="naranja">valores</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-concat')" class="fondo-aqua">Explicacion</button>
+        </div>
+        <div id="explicacion-concat" style="display: block;">
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p>
+                        <b class="azul">const </b> <b class="doger">ciudades</b> =
+                        <b class="golden">[</b><b class="naranja">'Merida', 'Caracas', 'Falcon'</b><b class="golden">]</b> <br>
+                        <b class="azul">const </b> <b class="doger">paises</b> =
+                        <b class="golden">[</b><b class="naranja">'vanezuela', 'colombia', 'peru'</b><b class="golden">]</b> <br><br>
+
+                        <b>concatenar nuevos strings</b><br>
+                        <b class="azul">let</b> <b class="sky">nuevo</b> =
+                        <b class="doger">ciudades</b>.<b class="golden">concat</b><b class="golden">(</b><b class="naranja">'Tachira', 'Margarita'</b><b class="golden">)</b> <br><br>
+
+                        <b>concatenar otro array</b><br>
+                        <b class="azul">let</b> <b class="sky">paisYciudad</b> =
+                        <b class="doger">ciudades</b>.<b class="golden">concat</b><b class="golden">(</b><b class="doger">paises</b><b class="golden">)</b>
+                    </p>
+                    
+                    <button onclick="ejecutarinmutables('concat')" class="btn-consola">Ejecutar </button>
+                </div>
+
+                <div id="consola-concat">
+                    
+                </div>
+            </div>
+
+            <ul>
+                <li><b class="doger">ciudades</b>.<b class="golden">concat</b> crea un nuevo array a partir del array "ciudades" y les añade "tachira y margarita", estos dos valores adicionales se situan al final del array.</li>
+            </ul>
+        </div>
+
+        <!-- map -->
+        <p><code class="golden letra-big">map()</code> sirve para <b class="letra-B">transformar</b> elementos de arrays. funciona iterarando sobre sus elementos con una funcion (callback), esta funcion se define dentro de sus parentesis, devuelve un nuevo array que debe almacenarse en una variable para poder manipular dicha informacion, esta contendra el valor de cada elemento. No modifica el array original.</p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">map(</b><b class="azul">function()</b>,
+                <b>thisArg</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-map')" class="fondo-aqua">Explicacion</button>
+        </div>
+        <div id="explicacion-map" style="display: none;">
+
+            <h5 class="letra-B">El metodo recibe dos Argumentos:</h5>
+            <p>La <span class="azul">funcion</span> que itera cada elemento del array (obligatorio), puede utilizar <b class="letra-B">tres parametros</b> opcionales que se definen en el orden del ejemplo, si solo se define uno, estaria en la primera posicion que representa "elemento". </p>
+            <ul>
+                <li style="background-color: rgb(18, 18, 18); padding: 5px; text-align: center; border-radius: 10px;"><span class="azul">function</span><span class="golden">(</span><span class="sky">elemento</span>, <span class="sky">indice</span>, <span class="sky">array</span><span class="golden">)</span></li>
+                <li><span class="sky">elemento</span> es la primera variable, que representa el valor del elemento actual iterado. Es decir, si es la primera iteración, será el primer elemento, y así sucesivamente.</li>
+                <li><span class="sky">indice</span> (opcional) es la segunda variable, que representa el indice del elemento iterado.</li>
+                <li><span class="sky">array</span> (opcional) es la tercera variable, que representa el array completo que está iterando.</li>
+            </ul>
+
+            <p>un <span class="golden">objeto</span> al que puede hacer referencia el contexto this en la funcion. Si se le omite sera undefined. Recuerde que this en arrow functions es el objeto global.</p>
+
+            <!-- codigo map en arrays -->
+            <div class="codigo-consola margen100">
+                <div class="bloques">
+                    <div>
+                        <code>
+                            <b class="azul">const</b> <b class="doger">multiplos</b> =
+                            <b class="morado">[</b><b class="verde">1</b>, <b class="verde">2</b>, <b class="verde">3</b>, <b class="verde">4</b>, <b class="verde">5</b><b class="morado">]</b>
+                        </code>
+                        <br>
+
+                        <p class="letra-B" style="font-weight: bold;">sintaxis 1. funcion anonima y uso de dos parametros:</p>
+                        <code>
+                            <b class="azul">let</b> <b class="sky">elevar1</b> =
+                            <b class="doger">multiplos</b>.<b class="golden">map(</b><b class="azul">function</b><b class="morado">(</b><b class="sky">numero</b>,
+                            <b class="sky">index</b><b class="morado">) {</b> <br>
+                            &emsp; <b class="morado">return</b>
+                            <b class="naranja">`indice: ${<b class="sky">index</b>}: ${<b class="sky">numero * numero</b>} </b> <br>
+                            <b class="morado">}</b><b class="golden">)</b>
+                        </code>
+                        <br><br>
+
+                        <p class="letra-B"><b>sintaxis 2. arrow function:</b></p>
+                        <code>
+                            <b class="azul">let</b> <b class="sky">elevar2</b> =
+                            <b class="doger">multiplos</b>.<b class="golden">map(</b><b class="sky">num</b>
+                            <b class="azul">=&gt;</b> <b class="sky">num</b> * <b class="sky">num</b><b class="golden">)</b>
+                        </code>
+
+                    </div>
+
+                    <button class="btn-consola" onclick="ejecutarinmutables('map')"><b>console.log</b> </button>
+                </div>
+
+                <div>
+                    <code>
+                        <b id="consola-map" class="verde"></b>
+                    </code>
+                </div>
+            </div>
+
+            <ul>
+                <li><span class="doger">multiplos</span>.<span class="golden">map</span> itera sobre cada valor del array "multiplos", los transforma, y devuelve un nuevo array.</li>
+                <li><span class="azul">funcion</span> esta se ejecuta sobre cada valor que representa "num", osea sobre cada valor del array mientras itera.</li>
+                <li><span class="sky">num</span> es la variable que representa cada valor del array en cada iteracion.</li>
+                <li><span class="sky">num</span> * <span class="sky">num</span> es es la operacion que realiza la funcion, el valor que representa num lo multiplica por el mismo, y asi con todos los valores de la lista.</li>
+            </ul>
+
+            <h5 class="margen100">Efectos secundarios</h5>
+            <p>
+                El método .map() en JavaScript no modifica el array original en condiciones normales: siempre devuelve un nuevo array con los resultados de aplicar la función de callback a cada elemento.
+                Sin embargo, hay casos concretos en los que sí puede parecer que modifica el array, y esto ocurre por efectos secundarios dentro del callback:
+            </p>
+            <ul class="space ">
+                <li>1. Cuando el callback altera directamente el array original</li>
+                <div class="sintaxis">
+                    arr.map((num, i, original) => original[i] = num * 10 );
+                </div>
+            
+                <li>2. Cuando los elementos son objetos y se mutan sus propiedades. Aunque map crea un nuevo array, los objetos referenciados son los mismos, así que sus propiedades cambian.</li>
+                <div class="sintaxis">
+                    arr.map(user => user.name = user.name.toUpperCase() );
+                </div>
+
+                <li>3. Cuando se usan métodos mutadores dentro del callback. Aquí el array original se ve afectado porque splice() lo modifica.</li>
+                <div class="sintaxis">
+                    arr.map((num, i, original) => original.splice(i, 1); );
+                </div>
+            </ul>
+
+            <h5 class="margen100"><span class="golden">map</span> con arrays de objetos</h5>
+            <p>aqui map devuelve un nuevo array con los datos obtenidos en el arreglo <span class="doger">clientes</span>. Esto es muy util cuando queremos obtener datos especificos y hacer algo con ellos, como transfromarlos en otros datos.</p>
+
+            <!-- botones -->
+            <div class="control-consola btn-map-enObjetos">
+                <button>Obtener elementos</button>
+                <button>Cambiar elementos</button>
+                <button>Añadir elementos</button>
+                <button>Crear nuevo array</button>
+            </div>
+            <!-- codigo map en objetos-->
+            <div class="codigo-consola" >
+
+                <div style="width: 50%;" id="codigo-mapEnObjetos">
+                    <p class="margenTop0">
+                        <b class="azul">let</b> <b class="doger">clientes</b> = <b class="golden">[</b><br>
+                        &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Andres"</b>, <b class="sky">producto:</b> <b class="naranja">"iphone"</b>, <b class="sky">precio:</b> <b class="verde">"1200$"</b><b class="morado">}</b>, <br>
+                        &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Camilo"</b>, <b class="sky">producto:</b> <b class="naranja">"audifonos"</b>, <b class="sky">precio:</b> <b class="verde">"120$"</b><b class="morado">}</b>, <br>
+                        &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"Rodrigo"</b>, <b class="sky">producto:</b> <b class="naranja">"cargador"</b>, <b class="sky">precio:</b> <b class="verde">"50$"</b><b class="morado">}</b>, <br>
+                        &emsp; <b class="morado">{</b><b class="sky">name:</b> <b class="naranja">"David"</b>, <b class="sky">producto:</b> <b class="naranja">"funda"</b>, <b class="sky">precio:</b> <b class="verde">"80$"</b><b class="morado">}</b> <br>
+                        <b class="golden">]</b>
+                    </p>
+                    
+                    <p>
+                        <b class="azul">let</b> <b class="sky">precios</b> =
+                        <b class="doger">clientes</b>.<b class="golden">map(</b><b class="sky">item</b>
+                        <b class="azul">=></b> <b class="sky">item</b>.<b class="sky">precio</b><b class="golden">)</b>
+                    </p>
+                
+                    <p>
+                        <b class="azul">let</b> <b class="sky">impuestos</b> =
+                        <b class="doger">clientes</b>.<b class="golden">map(</b><b class="sky">item</b>
+                        <b class="azul">=></b> <b class="sky">item</b>.<b class="sky">precio</b> * .<b class="verde">20</b><b class="golden">)</b>
+                    </p>
+                </div>
+
+                <div id="consola-mapEnObjetos" style="width: 50%;"></div>
+            </div>
+
+            <ul>
+                <li><code class="sky">precios</code> almacena el valor en cada iteracion, de la propiedad precio de los objetos.</li>
+                <li><code class="sky">impuestos</code> almacena el valor en cada iteracion, de la propiedad precio de los objetos, y los transforma multiplicandolos por .20</li>
+            </ul>
+
+            <p><b class="letra-B">Agregar elementos que modifican el</b> <b class="aqua">array</b> a veces requieres añadir una propiedad nueva o eliminar una que no es necesaria. Si necesitas transformar objetos dentro de un array, debes tener en cuenta que cada objeto tiene una referencia en memoria propia. Por lo que si transformas un objeto, también lo harás en el original como en el nuevo, aun cuando el método map es inmutable.</p>
+            <ul>
+                <li><code class="sky">modificarPrecio</code> aqui map obtiene la propiedad precio de cada objeto iterado y la transforma al asignarle un nuevo valor, como resultado se obtuvo un nuevo arreglo, pero tambien modifico el array original.</li>
+                <li><code class="sky">agregarTax</code>  aqui map declara una propiedad a cada objeto que itera, y le añade un valor, al no existir la propiedad dentro del objeto, no modifica alguna existente, sino mas bien crea una nueva que se añade al final del objeto, transformando asi los objetos del arreglo, y tambien devuelve su propio arreglo de cambios.</li>
+            </ul>
+
+            <p style="margin-top: 0;"><b class="letra-B">Agregar elementos que NO modifican el <b class="aqua">array</b> Original</b> para lograrlo debemos hacer uso de <b class="letra-B">spread operator</b> (operador de propagacion), que nos permite hacer una copia de cada objeto que itera y extenderlo.</p>
+            <ul><code class="sky">copiarYextender</code> aqui map recorre cada objeto y por medio de spread operator hace una copia del mismo objeto y le extiende la nueva propiedad con su valor, retornando un array transformado. De esta forma evitamos que el original se transforme, porque no usamos el operador de asignacion (=) sobre sus propiedades, sino el de copia.</ul>
+        </div>
+
+        <!-- foreach -->
+        <p><code class="golden letra-big">forEach()</code> itera sobre cada elemento de un array y ejecuta un funcion para cada uno de ellos, pero no crea un nuevo array, ni devuelve ningun resultado, simplemente ejecuta la funcion (callback) para cada uno de los elementos iterados.</p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">forEach(</b><b class="azul">function()</b>,
+                <b>thisArg</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-forEach')" class="fondo-aqua">Explicacion</button>
+        </div>
+        <div id="explicacion-forEach" style="display: none;" class="margen100 seccion">
+
+            <h4 class="letra-B">El metodo recibe dos Argumentos:</h4>
+            <p>La <span class="azul">funcion</span> que itera cada elemento del array (obligatorio), puede utilizar <b class="letra-B">tres parametros</b> opcionales que se definen en el orden del ejemplo, si solo se define uno, estaria en la primera posicion que representa "elemento". </p>
+            <ul>
+                <li style="background-color: rgb(18, 18, 18); padding: 5px; text-align: center; border-radius: 10px;"><span class="azul">function</span><span class="golden">(</span><span class="sky">elemento</span>, <span class="sky">indice</span>, <span class="sky">array</span><span class="golden">)</span></li>
+                <li><span class="sky">elemento</span> es la primera variable, que representa el valor del elemento actual iterado. Es decir, si es la primera iteración, será el primer elemento, y así sucesivamente.</li>
+                <li><span class="sky">indice</span> (opcional) es la segunda variable, que representa el indice del elemento iterado.</li>
+                <li><span class="sky">array</span> (opcional) es la tercera variable, que representa el array completo que está iterando.</li>
+            </ul>
+
+            <p>un <span class="golden">objeto</span> al que puede hacer referencia el contexto this en la funcion. Si se le omite sera undefined. Recuerde que this en arrow functions es el objeto global.</p>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <code>
+                        <b class="azul">const</b> <b class="doger">multiplos</b> =
+                        <b class="morado">[</b><b class="verde">1</b>, <b class="verde">2</b>, <b class="verde">3</b>, <b class="verde">4</b>, <b class="verde">5</b><b class="morado">]</b> <br>
+                        <b class="azul">let</b> <b class="sky">sumar</b> = <b class="verde">0</b><br><br>
+
+                        <b class="doger">multiplos</b>.<b class="golden">forEach(</b><b class="sky">num</b>
+                        <b class="azul">=&gt;</b> <b class="sky">suma</b> += <b class="sky">num</b><b class="golden">)</b> <br>
+                    </code>
+                    <br><br>
+
+                    <code>
+                        <b class="letra-B">sintaxis de funcion anonima y haciendo uso de todos los parametros:</b> <br><br>
+
+                        <b class="doger">multiplos</b>.<b class="golden">forEach(</b><b class="azul">function</b><b class="morado">(</b><b class="sky">numero</b>,
+                        <b class="sky">indice</b>, <b class="sky">array</b><b class="morado">) {</b> <br>
+                        <b class="sky">console</b>.<b class="golden">log</b><b class="azul">(</b> <br>
+                        <b class="naranja">`lista: ${<b class="sky">c</b>}; iteracion:${<b class="sky">b</b>}; numero: ${<b class="sky">a</b>} + ${<b class="sky">sumar</b>} es igual ${<b class="sky">sumar + a</b>}`</b>
+                        <b class="azul">)</b> <b class="morado">}</b> <b class="golden">)</b> <br>
+                    </code>
+                    <br>
+                    <button onclick="ejecutarinmutables('forEach')"><b>console.log</b> </button>
+
+
+                </div>
+                <div>
+                    <code>
+                        <b class="sky">sumar</b> <br>
+                        <b id="consola-forEach"></b> <br>
+                    </code>
+                </div>
+            </div>
+
+            <ul>
+                <li><span class="doger">multiplos</span>.<span class="golden">forEach</span> itera sobre cada valor del array "multiplos" aplicando una funcion en cada uno, pero no devuelve nada, solo afecta a la variable "suma".</li>
+                <li><span class="sky">num</span> es la variable que representa los valores de array en cada iteracion.</li>
+                <li><span class="azul">arow function</span> esta se ejecuta sobre cada valor que representa "num", osea sobre cada valor del array mientras itera.</li>
+                <li><span class="sky">suma</span> += <span class="sky">num</span> la variable externa "suma" es afectada por la funcion interna, ya que recibe y va sumando los valores que le va pasando "num".</li>
+            </ul>
+        </div>
+
+        <!-- filter -->
+        <p><code class="golden letra-big">filter()</code> (filtrar) crea un nuevo array a partir de los elementos originales filtrados madiante una funcion (callback) que indica la condicion a cumplir, Si la condición se cumple, retorna el elemento completo.</p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">filter(</b><b class="azul">function()</b>, <b>thisArg</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-filter')" class="fondo-aqua">Explicacion</button>
+        </div>
+        <div id="explicacion-filter" style="display: none;">
+            <h5 class="letra-B">El metodo recibe dos Argumentos:</h5>
+            <p>La <b class="azul">funcion</b> que itera y evalua cada elemento del array si cumple con la condicion especificada (obligatorio), puede utilizar <b class="letra-B">tres parametros</b> opcionales que se definen en el orden del ejemplo, si solo se define uno, estaria en la primera posicion que representa "elemento". </p>
+
+            <ul>
+                <li style="background-color: rgb(18, 18, 18); padding: 5px; text-align: center; border-radius: 10px;"><span class="azul">function</span><span class="golden">(</span><span class="sky">elemento</span>, <span class="sky">indice</span>, <span class="sky">array</span><span class="golden">)</span></li>
+                <li><span class="sky">elemento</span> es la primera variable, que representa el valor del elemento actual iterado. Es decir, si es la primera iteración, será el primer elemento, y así sucesivamente.</li>
+                <li><span class="sky">indice</span> (opcional) es la segunda variable, que representa el indice del elemento iterado.</li>
+                <li><span class="sky">array</span> (opcional) es la tercera variable, que representa el array completo que está iterando.</li>
+            </ul>
+
+            <p>un <span class="golden">objeto</span> al que puede hacer referencia el contexto this en la funcion. Si se le omite sera undefined. Recuerde que this en arrow functions es el objeto global.</p>
+
+            <!-- botones -->
+            <div class="control-consola botons-for-filter">
+                <button class="filtrar-numeros">Filtrar numeros</button>
+                <button class="filtrar-palabras">Filtrar palabras</button>
+                <button class="filtrar-objetos">Filtrar Objetos</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-filter">    
+                </div>
+                <div style="width: 580px;">
+                    <code>
+                        <b id="consola-filter"></b>
+                    </code>
+                </div>
+            </div>
+
+            <ul>
+                <li><span class="doger">multiplos</span>.<span class="golden">filter</span> itera sobre cada valor del array "multiplos" aplicando una funcion en cada uno, devolviendo un nuevo array con los que cumplan la condicion que establece la funcion.</li>
+                <li><span class="sky">num</span> es la variable que representa los valores de array en cada iteracion.</li>
+                <li><span class="azul">funcion</span> esta se ejecuta sobre cada valor que representa "num", osea sobre cada valor del array mientras itera.</li>
+                <li><span class="sky">num</span> % <span class="verde">2</span> == <span class="verde">0</span> El valor de num se compara con una operacion: si el residuo de dividirlo entre dos da 0, se filtra y pasa a un nuevo array que crea filter.</li>
+            </ul>
+        </div>
+
+        <!-- slice -->
+        <p><code class="golden letra-big">slice()</code> (porcion) permite extraer una porcion de un arreglo sin modificar el arreglo original, sino devolviendo uno nuevo, ideal para analizar subgrupos de datos. Funciona recibiendo uno o dos parametros, si es solo uno indica el indice desde donde se desea comenzar a extraer los elementos, si se especifica el segundo determina hasta donde se desea extraer.</p>
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">slice(</b>
+                <b class="verde">Primer indice</b>, <b class="verde">indice Final</b><b class="golden">)</b>
+            </p>
+            <button onclick="mostrarExplicacion('explicacion-slice')" class="fondo-aqua">Explicacion</button>
+        </div>
+        <div id="explicacion-slice" style="display: none;">
+            <div class="codigo-consola">
+                <div>
+                    <p>
+                        <b class="azul">const</b> <b class="doger">animales</b> =
+                        <b class="morado">[</b><b class="naranja">"Dog"</b>, <b class="naranja">"Cat"</b>, <b class="naranja">"Duck"</b>, <b class="naranja">"Elephant"</b>, <b class="naranja">"Mouse"</b>, <b class="naranja">"Camell"</b> <b class="morado">]</b> <br><br>
+
+                        <b class="azul">let</b> <b class="sky">extraer</b> =
+                        <b class="doger">animales</b>.<b class="golden">slice(</b><b class="verde">1</b>,
+                        <b class="verde">4</b><b class="golden">)</b> <br>
+
+                        <b class="azul">let</b> <b class="sky">ultimostres</b> =
+                        <b class="doger">animales</b>.<b class="golden">slice(</b><b class="verde">-3</b><b class="golden">)</b> <br>
+
+                        <br>
+                        <button onclick="ejecutarinmutables('slice')"> <b>console.log()</b> </button> <b class="golden">(<b class="sky">extraer</b>,<b class="sky">ultimostres</b>)</b>
+                    </p>
+                </div>
+                <div>
+                   
+                        <p>slice: <br>[<b id="consola-slice" class="naranja"></b>] </p> <br>
+                        <p><br>[<b id="consola-slice2" class="naranja"></b>] </p> <br>
+                    
+                </div>
+            </div>
+
+            <ul>
+                <li><span class="doger">animales</span>.<span class="golden">find</span> recibe dos parametros, estos representan el indice de inicio y final en un arreglo.</li>
+                <li><span class="verde">1</span> indica que desde el indice 1 en adelante devolvera un nuevo arreglo.</li>
+                <li><span class="verde">4</span> indica que hasta el indice 4 llegara ese nuevo arreglo.</li>
+                <li><span class="verde">-3</span> el negativo indica que el conteo comienza desde el final, osea devuelve los ultimos elementos de acuerdo al numero.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Metodos de iteracion y reduccion -->
+    <section class="bloques-oscuros">
+    
+        <table>
+            <caption>Iteracion y reduccion</caption>
+            <tr><th>Método</th><th>Descripción</th></tr>
+            <tr><td>forEach()</td><td>Ejecuta una función sobre cada elemento</td></tr>
+            <tr><td>filter()</td><td>Devuelve elementos que cumplen una condición</td></tr>
+            <tr><td>reduce()</td><td>Acumula valores en un único resultado</td></tr>
+            <tr><td>reduceRight()</td><td>Acumula valores de derecha a izquierda</td></tr>
+            <tr><td>every()</td><td>Comprueba si todos cumplen una condición</td></tr>
+            <tr><td>some()</td><td>Comprueba si al menos uno cumple</td></tr>
+        </table>
+
+        <!-- REDUCE   -->
+        <div>
+            <h4 class="golden monospace margen100">reduce()</h4> 
+            <p>"Reducir" llama a una funcion (callback) que reduce un array a un unico valor. funciona mediante un acumulador y valor inicial que acumula los elementos de un array. Util para sumar, transformar, agrupar o cualquier otra operación que necesite consolidar una colección de datos en un solo resultado. </p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">array</b>.<b class="golden">reduce(</b><b class="azul">function</b><b class="morado">(</b><b class="sky">acumulador</b>,
+                    <b class="sky">valorActual</b>, <b class="sky">index</b>, <b class="sky">array</b><b class="morado">)</b>,
+                    <b class="verde">valorInicial</b><b class="golden">)</b>
+                </p>
+            </div>
+
+            <h5 class="margen100">El metodo recibe dos Argumentos</h5>
+            <p>La <b class="azul">funcion</b> que itera y reduce cada elemento del array (obligatorio), puede utilizar <b class="letra-B">cuatro parametros</b> donde los dos primeros son los mas utilizados, los otros dos son opcionales, se definen en el orden del ejemplo, si solo se define uno, estaria en la primera posicion que representa "elemento". </p>
+
+            <ul>
+                <li><b class="sky">acumulador</b> esta variable guarda el valor que se va acumulando, sino se define en "valorInicial" inicia con el valor inicial del array.</li>
+                <li><b class="sky">valorActual</b> esta variable guarda el valor actual de array de acuerdo va iterando.</li>
+                <li><b class="sky">index</b> esta variable guarda la posicion actual del indice, su uso es opcional.</li>
+                <li><b class="sky">array</b> referencia al array original (opcional)</li>
+            </ul>
+
+            <p>El <b class="verde">valor inicial</b> del acumulador que utilizará como argumento la función. Si no se especifica, en primer elemento del array se usa como acumulador inicial y la iteracion empieza en el segundo elemento.</p>
+
+            <!-- botones -->
+            <div class="control-consola botons-for-reduce">
+                <button class="reducir-numeros">Reducir numeros</button>
+                <button class="reducir-palabras">Reducir strings</button>
+                <button class="Transformar-Reducir">Transformar y Reducir</button>
+                <button class="Reducir-rangos">Reducir rangos de numeros</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola" style="margin-top: 0;">
+                <div id="codigo-reduce">
+                </div>
+
+                <div id="consola-reduce">
+                </div>
+            </div>
+
+            <ul id="lista-reduce-uno">
+                <li><b class="golden">reduce</b> aqui llama al callback que recibe dos parametros principales:</li>
+                <ul>
+                    <li><span class="sky">acumulador</span> guarda el <span class="verde">valorInicial</span> que establecimos en 0, a partir de este valor comenzara a acumular.</li>
+                    <li><span class="sky">valorActual</span> guara el valor actual del array segun la iteracion, es decir en la primera vuelta guara el 1, en la segunda el 2, y asi susesivamente en toda la lista.</li>
+                </ul>
+                <li><b class="azul">arrowfunction</b> inicia la funcion sobre estos dos primeros valores que tienen las variables antes mencionadas, sumando el <span class="sky">acumulador</span> con el <span class="sky">valorActual</span> que corresponden a 0 + 1 en la primera iteracion, el resultado = 1 ahora lo guarda la variable <span class="sky">acumulador</span>, itera la segunda vuelta y ahora las variables corresponden a 1 + 2 y el resultado queda en <span class="sky">acumulador</span> en cada vuelta hasta el final y este sera el valor que retorna.</li>
+                <li>El <span class="sky">acumulador</span> funciona de manera similar a cuando tenemos que declarar una variable que acumula por fuera de un ciclo en cada iteracion: acumulador += numero.</li>
+                <button class="btn-next-example" onclick="mostrarExplicacion('explicacion-dos')">next example ▶️</button>
+            </ul>
+
+            <ul id="lista-reduce-dos" style="display: none;">
+                <li><span class="golden">reduce</span> recoje el arreglo "palabras" y acumula resultados en un objeto llamado "acumulador"</li>
+                <ul>
+                    <li><span class="morado">if (</span><span class="sky">acumulador</span><span class="golden">[<span class="sky">valorActual</span>]</span><span class="morado">){...}</span> </li>
+                    <li> Aqui se verfica si la palabra "valorActual" ya existe como clave en el objeto acumulador. Si existe, se incrementa su valor(conteo). Si no existe, se inicializa con 1.</li>
+                    <li><span class="morado">return</span> esto asegura que el objeto "acumulador" se pase a la siguiente iteracion.</li>
+                </ul>
+                <li><b class="morado">{}</b> El valor inicial es un objeto vacio que se ira llenando con las frecuencias.</li>
+                <button class="btn-next-example" onclick="mostrarExplicacion('explicacion-uno')">next example ▶️</button>
+            </ul>
+        </div>
+
+        <!-- SOME, EVERY -->
+        <div class="margen150">
+            <h4><code class="golden">some()</code> & <code class="golden">every()</code></h4>
+            <p><b class="golden">some()</b> (algun) El método some es inmutable y consiste retornar un valor boleano verdadero/falso dependiendo si existe al menos un elemento que cumpla la condición establecida en la función (callback).</p>
+            <p><b class="golden">every()</b> (todos) El método every es inmutable y consiste retornar un valor boleano verdadero/falso dependiendo si todos los elementos cumplen con la condición establecida en la función (callback).</p>
+
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">array</b>.<b class="golden">some(</b><b class="azul">function()</b>, <b>thisArg</b><b class="golden">)</b> <br>
+                    <b class="aqua">array</b>.<b class="golden">every(</b><b class="azul">function()</b>, <b>thisArg</b><b class="golden">)</b> 
+                </p>
+            </div>
+
+            <h5 class="letra-B">Los metodos <code class="golden">some</code> y <code class="golden">every</code> recibe dos Argumentos</h5>
+            <p>La <b class="azul">funcion</b> que itera y evalua cada elemento del array hasta que almenos uno cumpla con la condicion especificada (obligatorio), puede utilizar <b class="letra-B">tres parametros</b> opcionales que se definen en el orden del ejemplo, si solo se define uno, estaria en la primera posicion que representa "elemento". </p>
+
+            <ul>
+                <li style="background-color: rgb(18, 18, 18); padding: 5px; text-align: center; border-radius: 10px;"><code class="azul">function</code><code class="golden">(</code><code class="sky">elemento</code>, <code class="sky">indice</code>, <code class="sky">array</code><code class="golden">)</code></li>
+                <li><span class="sky">elemento</span> es la primera variable, que representa el valor del elemento actual iterado. Es decir, si es la primera iteración, será el primer elemento, y así sucesivamente.</li>
+                <li><span class="sky">indice</span> (opcional) es la segunda variable, que representa el indice del elemento iterado.</li>
+                <li><span class="sky">array</span> (opcional) es la tercera variable, que representa el array completo que está iterando.</li>
+            </ul>
+
+            <p>un <span class="golden">objeto</span> al que puede hacer referencia el contexto this en la funcion. Si se le omite sera undefined. Recuerde que this en arrow functions es el objeto global.</p>
+            
+            <!-- botones -->
+            <div class="control-consola">
+                <button class="btn-some">some</button>
+                <button class="btn-every">every</button>
+            </div>
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div id="codigo-some-every">
+                    <p>
+                        <b class="azul">const</b> <b class="doger">multiplos</b> = 
+                        <b class="morado">[</b><b class="verde">1</b>, <b class="verde">2</b>, <b class="verde">3</b>, <b class="verde">4</b>, <b class="verde">5</b>, <b class="verde">6</b>, <b class="verde">7</b>, <b class="verde">8</b>, <b class="verde">9</b>, <b class="verde">10</b><b class="morado">]</b> 
+                    </p>
+                    
+                    <p>
+                        <b>saber si hay numero par</b><br>
+                        <b class="azul">let</b> <b class="sky">respuesta1</b> =
+                        <b class="doger">multiplos</b>.<b class="golden">some(</b><b class="sky">num</b> 
+                        <b class="azul">=&gt;</b> <b class="sky">num</b> % <b class="verde">2</b> == <b class="verde">0</b><b class="golden">)</b> 
+                    </p>
+
+                    <b>//saber si hay numero impar</b><br>
+                    <b class="azul">let</b> <b class="sky">respuesta2</b> =
+                    <b class="doger">multiplos</b>.<b class="golden">some(</b><b class="azul">function</b><b class="morado">(<b class="sky">num</b>) {return</b> 
+                    <b class="sky">num</b> % <b class="verde">2</b> == <b class="verde">1</b><b class="morado">}</b><b class="golden">)</b> <br><br>
+
+                    <b>//saber si hay numero mayor a 5</b><br>
+                    <b class="azul">let</b> <b class="sky">respuesta3</b> <br>
+                    <b class="morado">for</b><b class="golden">(</b><b class="azul">let</b> <b class="sky">i</b> = <b class="verde">0</b> ; <b class="sky">i</b> &lt; <b class="doger">multiplos</b>.<b class="sky">length</b> ; <b class="sky">i</b> ++ <b class="golden">){</b> <br>
+                
+                    &emsp;&emsp;<b class="morado">if(</b><b class="doger">multiplos</b><b class="azul">[<b class="sky">i</b>]</b> > <b class="verde">5</b><b class="morado">) {</b><br>  
+                    &emsp; &emsp; <b class="sky">respuesta3</b> = <b class="azul">true</b> <br>
+                    <b class="golden">}</b>
+                </div>
+                <div  id="consola-some-every">     
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Metodos de Busqueda -->
+    <section class="bloques-oscuros">
+        <h4 style="margin-top: 50px;">Metodos de Busqueda</h4>
+        <table>
+            <tr><th>Método</th><th>Descripción</th></tr>
+            <tr><td>includes()</td><td>Verifica si un valor existe</td></tr>
+            <tr><td>indexOf()</td><td>Devuelve la posición de un elemento</td></tr>
+            <tr><td>lastIndexOf()</td><td>Devuelve la última posición de un elemento</td></tr>
+            <tr><td>find()</td><td>Devuelve el primer elemento que cumple una condición</td></tr>
+            <tr><td>findIndex()</td><td>Devuelve el índice del primer elemento que cumple</td></tr>
+            <tr><td>isArray()</td><td>Verifica si un objeto es un arreglo</td></tr>
+        </table>
+
+        <!-- INCLUDES -->
+        <div>
+            <h5 class="golden monospace margen100">includes()</h5>
+            <p>(incluye) El método includes determina si un array o string incluye un determinado elemento. Devuelve true o false, si existe o no respectivamente.</p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">array</b>.<b class="golden">includes(</b><b class="naranja">"elemento"</b>, <b class="verde">indice</b><b class="golden">)</b>
+                </p>
+            </div>
+
+            <p class="letra-B margen60"><b>El metodo recibe dos Argumentos:</b></p>
+            <ul style="margin-top: 0;">
+                <li>El elemento a comparar</li>
+                <li>El indice inicial desde donde comparar hasta el ultimo elemento.</li>
+            </ul>
+
+            <div class="codigo-consola">
+                <div>
+                    <p>
+                        <b class="azul">const</b> <b class="doger">palabra</b> = <b class="naranja">"Computadora"</b> <br>
+                        <b class="azul">const</b> <b class="doger">ciudades</b> = <b class="golden">[</b><b class="naranja">"Merida"</b>,<b class="naranja">"Caracas"</b>,<b class="naranja">"Falcon"</b><b class="golden">]</b> <br><br>
+                        
+                        <b>Encontrar palabra en array</b><br>
+                        <b class="azul">let</b> <b class="sky">respuesta1</b> =
+                        <b class="doger">ciudades</b>.<b class="golden">includes(<b class="naranja">"Falcon"</b>)</b> <br>
+                        <b class="azul">let</b> <b class="sky">respuestaIndice</b> =
+                        <b class="doger">ciudades</b>.<b class="golden">includes(</b><b class="naranja">"Caracas"</b>, <b class="verde">2</b><b class="golden">)</b> <br><br>
+
+                        <b>Encontrar letra en string</b><br>
+                        <b class="azul">let</b> <b class="sky">respuesta2</b> =
+                        <b class="doger">palabra</b>.<b class="golden">includes(</b><b class="naranja">"x"</b><b class="golden">)</b>
+                    </p>
+                </div>
+                <div id="consola-includes"></div>
+            </div>
+        </div>
+
+        <!-- FIND Y FINDINDEX -->
+        <div>
+            <h5 class="golden monospace margen100">find()</h5>
+            <p>"Encontrar" este método nos devuelve el primer elemento de un array que cumple con una condición especificada en una función que recibe como callback. caso contrario retornara undefined.</p>
+            
+            <h5 class="golden monospace">findIndex()</h5>
+            <p>"Encontrar indice" este método nos devuelve el indice del primer elemento de un array que cumpla con una condición especificada en una función que recibe como callback. caso contrario retornara -1.</p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">array</b>.<b class="golden">find(</b><b class="azul">function()</b>, <b>thisArg</b><b class="golden">)</b> <br>
+                    <b class="aqua">array</b>.<b class="golden">findIndex(</b><b class="azul">function()</b>, <b>thisArg</b><b class="golden">)</b>
+                </p>
+            </div>
+
+            <p class="letra-B"><b>Los metodos reciben dos Argumentos</b></p>
+            <p>La <b class="azul">funcion</b> que itera y evalua cada elemento del array hasta que encuentra uno que cumpla con la condicion especificada (obligatorio), puede utilizar <b class="letra-B">tres parametros</b> opcionales que se definen en el orden del ejemplo, si solo se define uno, estaria en la primera posicion que representa "elemento". </p>
+
+            <ul>
+                <li style="background-color: rgb(18, 18, 18); padding: 5px; text-align: center; border-radius: 10px;"><code class="azul">function</code><code class="golden">(</code><code class="sky">elemento</code>, <code class="sky">indice</code>, <code class="sky">array</code><code class="golden">)</code></li>
+                <li><span class="sky">elemento</span> es la primera variable, que representa el valor del elemento actual iterado. Es decir, si es la primera iteración, será el primer elemento, y así sucesivamente.</li>
+                <li><span class="sky">indice</span> (opcional) es la segunda variable, que representa el indice del elemento iterado.</li>
+                <li><span class="sky">array</span> (opcional) es la tercera variable, que representa el array completo que está iterando.</li>
+            </ul>
+
+            <p>un <span class="golden">objeto</span> al que puede hacer referencia el contexto this en la funcion. Si se le omite sera undefined. Recuerde que this en arrow functions es el objeto global.</p>
+
+
+            <!-- codigo -->
+            <div class="codigo-consola margen100">
+                <div>
+                    <p>
+                        <b class="azul">const</b> <b class="doger">multiplosDecinco</b> =
+                        <b class="morado">[</b><b class="verde">5</b>, <b class="verde">10</b>, <b class="verde">15</b>, <b class="verde">20</b>, <b class="verde">25</b><b class="morado">]</b> <br><br>
+
+                        <b class="azul">let</b> <b class="sky">encontrar</b> =
+                        <b class="doger">multiplosDecinco</b>.<b class="golden">find(</b><b class="sky">num</b>
+                        <b class="azul">=&gt;</b> <b class="sky">num</b> > <b class="verde">10</b><b class="golden">)</b> <br>
+
+                        <b class="azul">let</b> <b class="sky">encontrarIndice</b> =
+                        <b class="doger">multiplosDecinco</b>.<b class="golden">findIndex(</b><b class="sky">num</b>
+                        <b class="azul">=&gt;</b> <b class="sky">num</b> == <b class="verde">20</b><b class="golden">)</b> <br><br>
+
+                        <b>Funcion tradicional</b><br>
+                        <b class="azul">let</b> <b class="sky">respuesta</b> <br>
+                        <b class="morado">for</b><b class="golden">(</b><b class="azul">let</b> <b class="sky">i</b> = <b class="verde">0</b> ; <b class="sky">i</b> &lt; <b class="doger">multiplosDecinco</b>.<b class="sky">length</b> ; <b class="sky">i</b> ++ <b class="golden">){</b> <br>
+
+                        &emsp;&emsp;<b class="morado">if(</b><b class="doger">multiplosDecinco</b><b class="azul">[<b class="sky">i</b>]</b> > <b class="verde">12</b><b class="morado">) {</b><br>
+                        &emsp; &emsp; <b class="sky">respuesta</b> = <b class="doger">multiplosDecinco</b><b class="azul">[<b class="sky">i</b>]</b> <br>
+                        &emsp; &emsp; <b class="morado">break</b><br>
+                        <b class="golden">}</b><br><br>
+                    </p>
+                    <button onclick="ejecutarinmutables('find')" class="btn-consola">ejecutar</button>
+                </div>
+                <div id="consola-find"> 
+                </div>
+            </div>
+
+            <ul>
+                <li><span class="doger">multiplos</span>.<span class="golden">find</span> itera sobre cada valor del array "multiplos" aplicando una funcion en cada uno, devolviendo un valor que cumpla la condicion que establece la funcion.</li>
+                <li><span class="sky">num</span> es la variable que representa los valores de array en cada iteracion.</li>
+                <li><span class="azul">funcion</span> esta se ejecuta sobre cada valor que representa "num", osea sobre cada valor del array mientras itera, y establece una condicion, que de cumplirse retorna el primer valor que la cumplio.</li>
+                <li><span class="sky">num</span> > <span class="verde">10</span> en esta operacion si el valor de num actual es mayor a 10, lo retorna y termina la funcion.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Ordenamiento y presentacion -->
+    <section class="bloques-oscuros">
+        <table>
+            <caption>Ordenamiento y presentacion</caption>
+            <tr><th>Método</th><th>Descripción</th></tr>
+            <tr><td>sort()</td><td>Ordena los elementos</td></tr>
+            <tr><td>reverse()</td><td>Invierte el orden</td></tr>
+            <tr><td>join()</td><td>Convierte en string con separador</td></tr>
+            <tr><td>toString()</td><td>Convierte en string separado por comas</td></tr>
+        </table>
+
+        <!-- join -->
+        <div class="margen100">
+            <h4 class="golden monospace">join()</h4>
+            <p>(unirse) convierte todos los elementos de un arreglo en una sola cadena de texto, separados por el carácter que se especifique por argumento. Si no indicas un separador, usa una coma por defecto. Si un elemento es <code class="azul">undefined</code> o <code class="azul">null</code>, se convierte en una cadena vacia. Por otra parte el metodo <code class="golden">split</code> de los strings, toma una cadena y la convierte en un array.</p>
+            
+            <div class="codigo">
+                <p>Sintaxis</p>
+                <p>
+                    <b class="aqua">array</b>.<b class="golden">join(</b><b>separador</b><b class="golden">)</b><br>
+                    <b class="verde">//revertir</b>
+                    <b class="naranja">string</b>.<b class="golden">split(</b><b>separador</b><b class="golden">)</b>
+                </p>
+            </div>
+                
+            <p>
+                <b class="letra-B"><code class="golden">join</code> 
+                recibe un solo argumento:</b>
+                La separación de cada elemento del array al unirlos.
+            </p>
+    
+            <p class="letra-B"><b><code class="golden">split</code> recibe dos argumentos:</b></p>
+            <ul style="margin-top: 0;">
+                <li>El separador que especifica el conjunto de caracteres a separar en substrings.</li>
+                <li>El límite de elementos separados a retornar.</li>
+            </ul>
+
+            <!-- codigo -->
+            <div class="codigo-consola">
+                <div>
+                    <p>
+                        <!-- array -->
+                        <b class="azul">const</b> <b class="doger">animales</b> =
+                        <b class="morado">[</b><b class="naranja">"Dog"</b>, <b class="naranja">"Cat"</b>,
+                        <b class="naranja">"Duck"</b>, <b class="naranja">"Elephant"</b>,
+                        <b class="naranja">"Mouse"</b>, <b class="naranja">"Camell"</b><b class="morado">]</b> <br><br>
+
+                        <!-- metodo join -->
+                        <b class="azul">let</b> <b class="sky">separar</b> = <b class="doger">animales</b>.<b class="golden">join()</b><br>
+                        <b class="azul">let</b> <b class="sky">juntar</b> = <b class="doger">animales</b>.<b class="golden">join(<b class="naranja">""</b>)</b><br>
+                        <b class="azul">let</b> <b class="sky">espacios</b> = <b class="doger">animales</b>.<b class="golden">join(<b class="naranja">" "</b>)</b><br>
+                        <b class="azul">let</b> <b class="sky">rayas</b> = <b class="doger">animales</b>.<b class="golden">join(<b class="naranja">"-"</b>)</b><br>
+                        <b class="azul">let</b> <b class="sky">letras</b> = <b class="doger">animales</b>.<b class="golden">join(<b class="naranja">" x "</b>)</b><br><br>
+
+                        <!-- funcion tradicional -->
+                        <b>Funcion tradicional</b><br>
+                        <b class="azul">let</b> <b class="sky">resultado</b> = <b class="naranja">""</b> <br>
+                        <b class="morado">for</b>(<b class="azul">let</b> <b class="sky">i</b> = 0; <b class="sky">i</b> &lt; <b class="doger">animales</b>.<b class="sky">length</b>; <b class="sky">i</b> ++){ <br>
+                        &emsp; <b class="morado">if</b>(<b class="sky">i</b> == <b class="doger">animales</b>.<b class="sky">length</b> -1){ <br>
+                        &emsp; &emsp; <b class="sky">resultado</b> += <b class="doger">animales</b>[<b class="sky">i</b>] <br>
+                        &emsp;  }<b class="morado">else</b>{ <br>
+                        &emsp; &emsp; <b class="sky">resultado</b> += <b class="doger">animales</b>[<b class="sky">i</b>] + <b class="naranja">"-"</b> <br>
+                        &emsp; } <br>
+                        } <br><br>
+
+                        <!-- transformar -->
+                        <b>Revertir</b><br>
+                        <b class="azul">let</b> <b class="sky">Revertir</b> = <b class="sky">espacios</b>.<b class="golden">split(<b class="naranja">" "</b>)</b><br>
+                    </p>
+                    <button class="btn-consola" onclick="ejecutarinmutables('join')">Ejecutar</button>
+                </div>
+                <div>
+                    <code>
+                        <b id="consola-join"></b>
+                    </code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLAT Y FLATMAP -->
+    <section class="bloques-oscuros">
+        <h4 class="golden monospace">flat()</h4>
+        <p>El método flat es inmutable y consiste en retornar un array donde los sub-arrays han sido aplanados hasta una profundidad especificada. El aplanamiento consiste en transformar un array de arrays a una sola dimensión.</p>
+        
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">flat(</b><b>profundidad</b><b class="golden">)</b><br>
+            </p>
+        </div>
+
+        <p class="letra-B letra-big">El metodo <code class="golden">flat</code> recibe un argumento:</p>
+        <div>
+            <p>La profundidad del aplanamiento, por defecto, tiene un valor de 1. Si se desea aplanar todos los sub-arrays en una sola dimensión, utiliza el valor de <b class="azul">Infinity</b>.</p>
+        </div>
+
+        <!-- codigo -->
+        <div class="codigo-consola margen100">
+            <div>
+                <p>
+                    <!-- variables -->
+                    <b class="azul">const</b> <b class="doger">matriz</b> = <b class="golden">[</b> <b class="morado">[</b>1,2,3<b class="morado">]</b>,<b class="morado">[</b>4,<b class="azul">[</b>5,6<b class="azul">]</b><b class="morado">]</b>,<b class="morado">[</b>7,<b class="azul">[</b>8,<b class="golden">[</b>9<b class="golden">]</b><b class="azul">]</b><b class="morado">]</b> <b class="golden">]</b> <br><br>
+
+                    <!-- operaciones -->
+                    <b class="azul">const</b> <b class="doger">dimension1</b> = <b class="doger">matriz</b>.<b class="golden">flat()</b> <br>
+                    <b class="azul">const</b> <b class="doger">dimension2</b> = <b class="doger">matriz</b>.<b class="golden">flat(<b class="verde">2</b>)</b> <br>
+                    <b class="azul">const</b> <b class="doger">dimension3</b> = <b class="doger">matriz</b>.<b class="golden">flat(<b class="verde">3</b>)</b> <br><br>
+
+                    <!-- ciclo for -->
+                    <b>Aplanar con ciclo for (1 nivel)</b> <br>
+                    <b class="azul">const</b> <b class="doger">arrayfor</b> = <b class="golden">[]</b> <br>
+                    <b class="morado">for</b>(<b class="azul">let</b> i = 0; i &lt; <b class="doger">matriz</b>.<b class="sky">length</b>; i++){ <br>
+                    &emsp; <b class="azul">let</b> <b class="sky">array</b> = <b class="doger">matriz</b>[i] <br>
+                    &emsp; &emsp; <b class="morado">for</b>(<b class="azul">let</b> j = 0; j &lt; <b class="sky">array</b>.<b class="sky">length</b>; j++){ <br>
+                    &emsp; &emsp; &emsp; <b class="azul">let</b> <b class="sky">element</b> = <b class="sky">array</b>[j] <br>
+                    &emsp; &emsp; &emsp; <b class="doger">arrayfor</b>.<b class="golden">push</b>(<b class="sky">element</b>) <br>
+                    &emsp; &emsp; } <br>
+                    }
+                </p>
+
+                <p>
+                    <b>Aplanar con funcion (todos los niveles)</b> <br>
+                    <b class="azul">function</b> <b class="golden">aplanar</b>(<b class="sky">lista</b>){ <br>
+                    &emsp; <b class="azul">let</b> <b class="sky">newlist</b> = [] <br> 
+                    &emsp; <b class="morado">if</b>(<b class="azul">typeof</b> <b class="sky">lista</b> != <b class="naranja">"object"</b>) { <br>
+                    &emsp; &emsp; <b class="morado">return</b> [<b class="sky">lista</b>] <br>
+                    &emsp; } <br><br>
+
+                    &emsp; <b class="sky">lista</b>.<b class="golden">forEach</b>(<b class="sky">element</b> => { <br>
+                    &emsp; &emsp; <b class="sky">newlist</b> = <b class="sky">newlist</b>.<b class="golden">concat</b>(<b class="golden">aplanar</b>(<b class="sky">element</b>)) <br>
+                    &emsp; }) <br>
+                    &emsp; <b class="morado">return</b> <b class="sky">newlist</b> <br>
+                    }
+                </p>
+
+                <button onclick="ejecutarFlat('flat')" class="btn-consola">Ejecutar</button>
+            </div>
+
+            <div id="consola-flat"></div>
+        </div>
+
+        <!-- flatmap -->
+         <h4 class="golden monospace margen100">flatMap()</h4>
+         <p>El método flatMap combina dos operaciones: aplica una función de mapeo a cada elemento de un arreglo y luego aplana el resultado en un nuevo arreglo de una sola dimensión. Es equivalente a usar map() seguido de flat(1), pero más eficiente.</p>
+      
+         <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="aqua">array</b>.<b class="golden">flatMap(</b>
+                <b class="azul">function</b>(currentValue, index, array)
+                <b class="golden">)</b><br>
+            </p>
+        </div>
+
+        <!-- codigo -->
+         <div class="codigo-consola">
+            <div>
+                <p>
+                    <b class="azul">const</b> <b class="doger">posts</b> = [ <br>
+                    &emsp; { title: "Introducción a JavaScript", <b class="sky">tags</b>: ["JavaScript", "API"] }, <br>
+                    &emsp; { title: "CSS Grid", <b class="sky">tags</b>: ["CSS", "JavaScript"] }, <br>
+                    &emsp; { title: "APIs con Node.js", <b class="sky">tags</b>: ["API", "Node.js"] }, <br>
+                    ];
+                </p>
+                <p>
+                    <b>// 1. extraer todos los tags</b> <br>
+                    <b class="azul">const</b> <b class="doger">allTags</b> = 
+                    <b class="doger">posts</b>.<b class="golden">map</b>((post) => post.tags);
+                </p>
+                <p>
+                    <b>// 2. extraer todos los tags en un solo nivel</b> <br>
+                    <b class="azul">const</b> <b class="doger">allTagsFlat</b> = 
+                    <b class="doger">posts</b>.<b class="golden">flatMap</b>((post) => post.tags);
+                </p>
+                <p>
+                    <b>// 3. extraer los que no se repiten</b> <br>
+                    <b class="azul">const</b> <b class="doger">filterTags</b> = 
+                    <b class="doger">allTagsFlat</b>.<b class="golden">filter</b>((tag, index, array) => array.indexOf(tag) === index);
+                </p>
+            </div>
+            <div id="consola-flatMap"></div>
+         </div>
+    </section>
+
+    <!-- Desestructuracion de arrays y spread operator -->
+    <section>
+        <h3 class="letra-B">Desestructuracion de <span class="aqua">Arrays</span></h3>
+        <p>Se trata de desestructurar una estructura, que puede ser un array o un objeto. Consiste en extraer sus elementos y almacenarlos en variables individuales que deben tener nombres distintos, estos hacen referencia a las posiciones del array. Si queremos guardar posiciones especificas podemos hacerlo usando comas (,) que omiten posiciones hasta llegar al que queremos.</p>
+
+        <h5 class="letra-B">Spread Operator (...)</h5>
+        <p>El operador de extencion es una herramienta en javascript que expande elementos de un iterable (como un array, objetos, o incluso strings) en lugares donde se esperan multiples elementos. Sirve para copiar, combinar, añadir elementos, o incluso pasar parametros a funciones, cuando se aplica en strings los expande, haciendo una separacion de cada letra. Se representa mediante tres puntos: (...).</p>
+        <p>Los array se guardan en una referencia en memoria del computador, al crear una copia esta tendra la misma referencia que el original, debido a esto, si cambia algo en la copia, tambien cambia el original. La ventaja de spread operator para copiar arrays es que guarda la copia en otra referencia de memoria.</p>
+        <p>El operador de propagacion produce una copia en un solo nivel de profundidad, esto significa que si existen objetos o arreglos dentro del array a copiar, estos sub elementos seguiran teniendo la misma refencia en memoria en la copia y el original.</p>
+
+        <h5 class="letra-B">Parametro rest</h5>
+        <p>este parametro se usa para agrupar el residuo de elementos sobrantes que no se guardaron luego de realizar una desestructuracion o el residuo de argumentos que pasamos a una funcion, la sintaxis es (...) seguido de una variable que se suele llamar "resto", esta contendra los elementos sobrantes en un arreglo propio. El parametro simpre debera estar en la ultima posicion.</p>
+
+        <p><h6><code class="golden">estructuredCloned()</code></h6> sirve para hacer una copia profunda de un objeto o valor, incluyendo estructuras complejas como objetos anidados y arreglos, asi los cambios en el clon no afectan al original. Una copia superficial solo duplica las referencias de primer nivel. Si el objeto tiene propiedades que son otros objetos, esas referencias siguen apuntando al mismo lugar en memoria.</p>
+
+        <!-- botones -->
+        <div class="control-consola">
+            <button onclick="ejecutarSpread('desestructurar')">Desestructurar</button>
+            <button onclick="ejecutarSpread('spread-operator')">Spread operator</button>
+            <button onclick="ejecutarSpread('parametro-rest')">Parametro rest</button>
+            <button onclick="ejecutarSpread('estructuredCloned')">estructuredCloned()</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+            <div>
+                <code id="codigo-desestructurar">
+                </code>
+
+            </div>
+            <div style="width: 750px;">
+                <code>
+                    <b id="consola-spread"></b>
+                </code>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="../index.js"></script>
+    <script src="./arrays.js"></script>
+</body>
+</html>

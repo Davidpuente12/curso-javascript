@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch</title>
+    <link rel="stylesheet" href="../../estilos.css">
+    <style>
+        .nav-proyectos ul{
+            display: none; 
+        }
+        .nav-proyectos:hover ul {
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <nav>
+        <button 
+            onclick="window.location.href='../pagina.html'">Home 🏠
+        </button>
+        <button 
+            onclick="window.location.href='./Fetch/fetch.html'" class="golden">Fetch
+        </button>
+        <div class="nav-proyectos">
+            <button>Proyecto</button>
+            <ul>
+                <li><a href="./proyectos/post-aleatorios/articulos-ficticios.html">Post Aleatorios</a></li>
+                <li><a href="./proyectos/tienda-fake/index.html">Tienda Fake</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <h2 style="text-align: center;">Metodos de Peticion</h2>
+        
+        <p>Cuando hablamos de métodos de petición (o HTTP request methods), nos referimos a las acciones que un cliente (ej. tu navegador o una app) le pide a un servidor que realice sobre un recurso.  En respuesta, el servidor provee la información o realiza acciones solicitadas, lo que permite al cliente renderizar páginas, actualizar datos o recibir contenido nuevo. Los metodos de peticion son conocidos como los “verbos” del lenguaje HTTP, y cada uno tiene un propósito distinto.</p>
+        <p><b class="letra-B">HTTP</b> significa HyperText Transfer Protocol (Protocolo de Transferencia de Hipertexto). Es el lenguaje estándar que usan los navegadores (clientes) y los servidores para comunicarse e intercambiar información en la web. HTTPS es una versión más segura o una extensión de HTTP. En HTTPS, el navegador y el servidor establecen una conexión segura y cifrada antes de transferir datos.</p>
+        <ul>
+            <li>Permite que tu navegador pida páginas, imágenes, videos, etc. a un servidor.</li>
+            <li>Define cómo se hacen las peticiones (con métodos como GET, POST, PUT, DELETE).</li>
+            <li>Define cómo se envían las respuestas (con códigos de estado como 200 OK, 404 Not Found, 500 Error).</li>
+        </ul>
+
+        <h5 class="letra-B">Funcion de las URL en las solicitudes HTTP</h5>
+        <p>Cada vez que ingresamos una URL en un navegador, como "platzi.com", se inicia un proceso en el que se envía una solicitud HTTP al servidor correspondiente. Este mecanismo es el que permite al cliente obtener la información necesaria para mostrar al usuario la página solicitada. Si todo va bien, el servidor proporciona el contenido; si hay un problema, como un recurso que no se encuentra, devuelve un error 404.</p>
+
+        <h5 class="letra-B">Metodos/Verbos HTTP para peticiones</h5>
+        <p>Los verbos HTTP son esenciales para definir la acción que se desea realizar durante una interacción cliente-servidor. A continuación, exploramos los verbos más comunes:</p>
+        <ul>
+            <li><span class="naranja">GET</span> Se utiliza para obtener información que ya existe en el servidor sin realizar ningún cambio. Por ejemplo, al acceder a "platzi.com", se envía un GET para recibir y mostrar la página en el navegador.</li>
+            <li><span class="naranja">POST</span> Este verbo es empleado para enviar datos nuevos al servidor. Cuando publicamos una actualización en redes sociales, como en Facebook, se usa un POST para almacenar esa nueva información en la base de datos del usuario.</li>
+            <li><span class="naranja">PUT</span>  Se utiliza para actualizar un recurso existente, reemplazando su contenido por completo.</li>
+            <li><span class="naranja">PATCH</span> Se utiliza para actualizar un recurso existente, modificando solo los datos especificados.</li>
+            <li><span class="naranja">DELETE</span> Se emplea cuando deseamos eliminar un recurso del servidor. Puede ser la foto que subimos hace años y que ya no queremos conservar.</li>
+        </ul>
+
+        <!-- fetch -->
+        <h3 class="golden">fetch</h3>
+        <p>
+            Es una función global de JavaScript que permite realizar peticiones HTTP desde el navegador de forma asíncrona y basada en Promesas; esta información la podemos manejar y mostrar en el DOM. Mediante fetch podemos hacer pedidos a una API, que a menudo nos devuelve datos en formato JSON.
+            La Promesa representa un valor que podría estar disponible ahora, en el futuro, o nunca. Mientras la solicitud viaja por la red (tarda un tiempo), el resto de tu código JavaScript continúa ejecutándose.
+        </p>
+
+        <!-- sintaxis -->
+        <div class="codigo">
+            <p>Sintaxis</p>
+            <p>
+                <b class="golden">fetch(</b><b class="naranja">URL</b>, <b>opciones</b><b class="golden">{})</b><br>
+                &emsp; &emsp;.<b class="golden">then(</b><b class="sky">response</b> <b class="azul">=></b> <b>codigo para manejar respuesta</b><b class="golden">)</b><br>
+                &emsp; &emsp;.<b class="golden">catch(</b><b class="sky">error</b> <b class="azul">=></b> <b>codigo para manejar error</b><b class="golden">)</b>
+            </p>
+    
+        </div>
+
+        <ul>
+            <li><b class="golden">fetch()</b> realiza una peticion http y devolverá una <span class="aqua">promise</span> que será aceptada cuando reciba una respuesta y sólo será rechazada si hay un fallo de red o si por alguna razón no se pudo completar la petición.</li>
+
+            <h5>Argumentos que recibe por parametros:</h5>
+            
+            <li><span class="naranja">URL</span> en este argumento especificamos una cadena con la direccion del recurso del que queremos obtener datos.</li>
+            <li><span class="letra-B">opciones<b class="golden">{}</b></span> este parametro es opcional, recibe un objeto en donde podemos especificar algunas caracteristicas del fetch como:</li>
+            <ul style="margin-top: 0;">
+                <li><span class="sky">method</span> aqui se define el metodo HTTP de la peticion (como string y en mayusculas). Por defecto usa <span class="naranja">"GET"</span>, pero tambien podemos especificar los otros metodos: <span class="naranja">"POST"</span>, <span class="naranja">"PUT"</span> etc.<li>
+                <li><span class="sky">headers</span> cabeceras HTTP, metadata como tipo de contenido o autenticación. Por defecto, se define dentro de un objeto {}.</li>
+                <li><span class="sky">body</span> cuerpo de la petición HTTP. Datos enviados; usa JSON.stringify para cumplir el formato esperado. Puede ser de varios tipos: String, FormData, Blob, etc...</li>
+                <li><span class="sky">credentials</span> modo de credenciales. Por defecto, omit. Otras opciones: same-origin e include.</li>
+            </ul>
+        </ul>
+
+        <!-- metodos de fetch -->
+        <div class="margen150">
+            <h4>Metodos de <span class="golden">fetch</span></h4>
+
+            <p><code class="golden letra-big">then()</code> es un metodo que sirve para manejar las promesas. Recibe una <span class="azul">función callback</span> donde su parámetro <span class="sky">response</span> es el objeto de respuesta de la petición que hemos realizado, eso quiere decir que recibe la respuesta que nos llega del servidor web al momento de recibir nuestra petición. En su interior realizaremos la lógica que queramos hacer con la respuesta a nuestra petición.</p>
+            <div class="seccion">
+                <p><b class="sky">response</b> (variable) representa un objeto response nativo de Javascript que contiene los metadatos de la respuesta HTTP, Cuando usas fetch(url) en JavaScript, la promesa se resuelve con este objeto Response. Generalmente, el siguiente paso es llamar a un método como .json() sobre este objeto para extraer los datos que están dentro del body.
+                Podemos acceder a los valores del objeto response como lo hariamos con otros objetos.
+                <button onclick="mostrarExplicacion('tabla-response')" class="btn-simple">Datos response 👇</button></p>
+                
+                <table id="tabla-response" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Propiedad</th>
+                            <th>Valor</th>
+                            <th>Significado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>status</strong></td>
+                            <td>200</td>
+                            <td>El <strong>código de estado HTTP</strong>. 200 significa "OK" (éxito). La solicitud fue recibida, entendida y aceptada.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ok</strong></td>
+                            <td>true</td>
+                            <td>Un <strong>booleano</strong> que es `true` si el código de estado HTTP está en el rango 200-299 (lo que indica éxito). Es una manera rápida de verificar el éxito.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>url</strong></td>
+                            <td>'https://jsonplaceholder.typicode.com/posts/1'</td>
+                            <td>La <strong>URL final</strong> de donde se obtuvo la respuesta.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>type</strong></td>
+                            <td>'cors'</td>
+                            <td>Indica el tipo de respuesta. <strong>cors</strong> (Cross-Origin Resource Sharing) significa que el recurso se solicitó desde un dominio diferente al de tu aplicación (lo cual es normal para APIs externas).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>redirected</strong></td>
+                            <td>false</td>
+                            <td>Indica si la solicitud fue <strong>redirigida</strong> a una URL diferente antes de obtener la respuesta final.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>headers</strong></td>
+                            <td>Headers {}</td>
+                            <td>Un objeto que contiene todos los <strong>encabezados HTTP</strong> que el servidor envió con la respuesta (por ejemplo, `Content-Type`, `Date`, etc.).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>body</strong></td>
+                            <td>ReadableStream</td>
+                            <td>El <strong>contenido real</strong> (los datos JSON, el HTML, etc.) enviado por el servidor. Para acceder a los datos, necesitas llamar a un método como `response.json()` o `response.text()`, lo que consume este *stream*.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>bodyUsed</strong></td>
+                            <td>false</td>
+                            <td>Indica si el cuerpo (`body`) de la respuesta ya ha sido leído (consumido) por un método como `response.json()`.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="seccion">
+                El response incluye un status que describe el resultado del request.
+
+                <ul>
+                    <li>200: éxito.</li>
+                    <li></li>201: creado (se agregó correctamente un recurso).</li>
+                    <li>3xx: redirecciones.</li>
+                    <li>400: error del cliente (permisos o datos faltantes).</li>
+                    <li>401: no autenticado.</li>
+                    <li>404: recurso no encontrado.</li>
+                    <li>500: error interno del servidor.</li>
+                </ul>
+                Puedes inspeccionar el response en el navegador y validar si el producto de prueba se agregó haciendo un GET al endpoint y revisando los últimos elementos.
+            </div>
+
+            <p><code class="golden letra-big">catch</code> (atrapar) Se utiliza para manejar cualquier error en la cadena. Si la promesa falla, el catch nos proporciona la información necesaria para entender por qué no se resolvió.</p>
+        </div>
+
+        <!-- controls -->
+        <div class="control-consola">
+            <button onclick="ejecutarFetch('fetch-uno')">Fetch</button>
+            <button onclick="ejecutarFetch('fetch-dos')">Imprimir Datos</button>
+            <button onclick="ejecutarFetch('fetch-tres')">Response</button>
+        </div>
+        <!-- codigo -->
+        <div class="codigo-consola" style="margin-top: 0;">
+
+            <div id="code-fetch">
+                <p>
+                    <b class="golden">fetch(</b>
+                    <b class="naranja">"https://jsonplaceholder.typicode.com/posts/1"</b>
+                    <b class="golden">)</b><br>
+                    &emsp; &emsp;.<b class="golden">then(</b><b class="sky">response</b> <b class="azul">=></b> <b class="sky">response</b>.<b class="golden">json<b class="morado">()</b>)</b><br>
+                    &emsp; &emsp;.<b class="golden">then(</b><b class="sky">datos</b> <b class="azul">=></b> <b class="sky">console</b>.<b class="golden">log<b class="morado">(<b class="sky">datos</b>)</b>)</b><br><br>
+                </p>
+            </div>
+
+            <div>
+                <p id="consola-fetch" style="height: 300px"></p>
+                <div id="btn-nextpost"></div>
+            </div>
+        </div>
+        <p class="letra-B">Este código es una cadena de promesas que realiza una solicitud GET a una API de ejemplo que devuelve información ficticia.</p>
+
+        <ul><!-- Explicacion del codigo -->
+            <li><span class="golden">fetch()</span> recibe como argumento una URL y devuelve una <span class="aqua">Promise</span> que se resuelve con un objeto response.</li>
+            <li>.<span class="golden">then(<span class="sky">response</span>)</span> se encadena a la promesa que devuelve fetch y <span class="sky">response</span> es el objeto que representa la respuesta HTTP. Se ejecuta solamente cuando la solicitud de red ha terminado y la promesa se ha resuelto (es decir, el servidor a respondido)</li>
+            <li><span class="golden">json()</span> es un metodo clave de objeto <span class="sky">response</span>, este lee el cuerpo de la respuesta de forma asincrona (lee <span class="sky">response</span>.<span class="azul">body</span> ), convierte el cuerpo de la respuesta en un objeto javascript, y retorna una nueva <span class="aqua">Promise</span>, que se resuelve con otro objeto final (data).
+                <button onclick="mostrarExplicacion('detalle-json')" class="btn-simple" style="border: goldenrod 3px solid;">Detalles</button> </li>
+                <div id="detalle-json" style="display: none;" class=" notas">
+                    <p class="letra-B" style="text-align: center;"><b>¿Porque devuelve una promesa?</b></p>
+                    <p>El método <span class="sky">response</span>.<span class="golden">json()</span> devuelve una Promesa porque el proceso de leer el cuerpo (body) de la respuesta HTTP y convertirlo de una cadena de texto a un objeto JavaScript utilizable (JSON) es una operación asíncrona que toma tiempo. ⏳</p>
+                    <ul>
+                        <li><span class="letra-B">1. El Cuerpo es un "Stream" (Flujo de Datos)</span> <br><br>
+                            Cuando recibes una respuesta de red, el cuerpo de la respuesta (response.body) no es un simple objeto ya listo, sino un ReadableStream. Esto significa que los datos pueden llegar en partes a lo largo del tiempo, especialmente si el archivo es grande.
+                        </li>
+                        <li><span class="letra-B">2. Lectura y Conversión</span> <br><br>
+                            El método response.json() tiene que realizar dos tareas importantes:
+                            Leer todo el stream de datos hasta que el cuerpo esté completo.
+                            Analizar (parsear) la cadena de texto completa para convertirla en el objeto JavaScript (JSON) que necesitas.
+                        </li>
+                        <li><span class="letra-B">3. Evitar el Bloqueo del Hilo Principal</span> <br><br>
+                            Si estas operaciones (leer el stream y parsear) se ejecutaran de forma síncrona, el hilo principal de tu navegador (donde se ejecuta el JavaScript que maneja la interfaz de usuario) se bloquearía completamente. Esto haría que la página se congelara y no respondiera hasta que se completara el proceso.
+                            <br><br>Al devolver una Promesa, response.json() permite que la lectura y el parseo ocurran en segundo plano sin congelar la interfaz. La Promesa simplemente indica: "Te notificaré (a través del siguiente .then()) cuando el trabajo esté hecho y los datos estén listos."
+                            De esta forma, el flujo de fetch es completamente asíncrono: <br><br>
+                            fetch(url) → Devuelve una Promesa (por la solicitud de red). <br>
+                            response.json() → Devuelve una Promesa (por la lectura y conversión de datos).
+                        </li>
+                    </ul>
+
+
+
+                </div>
+            <li>.<span class="golden">then(<span class="sky">datos</span>)</span> este segundo then se encadena para esperar a que la Promesa devuelta por response.json() se resuelva: espera a que el cuerpo de la respuesta haya sido leido y convertido a un objeto Javascript(el paso anterior), <span class="sky">datos</span> es el objeto javascript que representa los datos JSON extraidos y lo muestra por consola.</li>
+        </ul>
+
+        <h5 class="margen100">Funcionamiento de una promesa en fetch</h5>
+        <p>Cuando ejecutas <b class="golden">fetch</b>(url), el navegador no detiene la ejecución para esperar la respuesta. En su lugar, te entrega inmediatamente un objeto promesa en estado <b class="letra-B">pending</b>. Eventualmente, esa promesa cambiará de estado: <b>Fulfilled</b>: la respuesta llegó correctamente. <b>Rejected</b>: ocurrió un fallo catastrófico de red, como pérdida de conexión o servidor caído.</p>
+        <p>Tu trabajo como desarrollador es escribir código que reaccione ante cualquiera de estos dos desenlaces. Aquí existe una trampa técnica que confunde a muchos. Fetch solo marca la promesa como rejected ante fallos de red. Si el servidor responde con un error 404, para Fetch eso es un éxito: la comunicación funcionó, el servidor simplemente respondió "no tengo eso".</p>
+        <p>Por esta razón, no puedes confiar ciegamente en que una promesa cumplida trae datos útiles. Es obligatorio verificar manualmente la propiedad <b class="sky">response.ok</b> . Si es false, debes lanzar un error tú mismo para detener el proceso.</p>
+    
+        <p class="margen60 letra-big letra-B"><span class="sky">response</span>.<span class="golden">json()</span> devuelve otra promesa</p>
+        <p>El cuerpo de la respuesta no llega como un objeto JavaScript listo para usar. Llega como un flujo de datos (stream) que debe ser leído y procesado. Cuando llamas a response.json(), obtienes otra promesa. Esto crea una cadena de dos pasos inevitables:</p>
+        <ul>
+            <li>Primero, esperas a que la red entregue la cabecera y el estado.</li>
+            <li>Segundo, esperas a que el navegador termine de leer y decodificar el cuerpo del mensaje.</li>
+        </ul>
+        <p>Si intentas acceder a los datos sin esperar esta segunda promesa, obtendrás un error. Es físicamente imposible leer un libro que todavía se está imprimiendo.</p>
+    
+        <p class="margen60 letra-B letra-big">Construir una funcion fetch robusta</p>
+        <ul>
+            <li>El bloque <b class="morado">try</b> envuelve toda la lógica para capturar errores de forma centralizada.</li>
+            <li>La verificación de <b class="sky">respuesta.ok</b> lanza manualmente el error si el servidor devuelve un 404 o cualquier código de fallo.</li>
+            <li>El bloque <b class="morado">catch</b> atrapa tanto errores de red como errores de parsing en un solo lugar.</li>
+        </ul>
+        <p>Sin esa verificación manual de response.ok, un 404 no saltará automáticamente al bloque catch. Este es el detalle más importante para escribir peticiones Fetch confiables.</p>
+    
+        <div class="codigo-consola margen60">
+            <div>
+                <p>
+                    <b class="azul">async function</b> <b class="golden">getUser</b>(id) { <br>
+                    &emsp; <b class="morado">try</b> { <br>
+                    &emsp; <b class="azul">const</b> <b class="doger">response</b> = <b class="morado">await</b> <b class="golden">fetch</b>( <br>
+                    &emsp; &emsp; `https://api.escuelajs.co/api/v1/users/${id}`, <br>
+                    &emsp; ); <br>
+                    &emsp; <b class="morado">if</b> (!<b class="doger">response.ok</b>) { <br>
+                    &emsp; &emsp; <b class="morado">throw</b> <b class="azul">new</b> <b class="aqua">Error</b>(`Error (${<b class="doger">response.status</b>})`); <br>
+                    &emsp; } <br><br>
+
+                    &emsp; <b class="azul">const</b> <b class="doger">datos</b> = <b class="morado">await</b> <b class="doger">response</b>.<b class="golden">json</b>(); <br>
+                    &emsp; <b class="morado">return</b> <b class="doger">datos</b>; <br>
+                    &emsp; } <br>
+                    &emsp; <b class="morado">catch</b> (error) { <br>
+                    &emsp; &emsp; <b class="morado">return</b> `error al cargar usuario: ${error.message}`; <br>
+                    &emsp; } <br>
+                    }
+                </p>
+
+                <div class="btn-ejecutar" onclick="ejecutarFetchRobusto('userValid')">
+                    <p>
+                        <b class="azul">const</b> usuario = <b class="morado">await</b> <b class="golden">getUser</b>(1);
+                    </p>
+                    <span>ejecutar</span>
+                </div>
+                
+                <div class="btn-ejecutar" onclick="ejecutarFetchRobusto('userInvalid')">
+                    <p>
+                        <b class="azul">const</b> usuario = <b class="morado">await</b> <b class="golden">getUser</b>(999);
+                    </p>
+                    <span>ejecutar</span>
+                </div>
+            </div>
+            <div id="consola-fetchRobusto"></div>
+        </div>
+    </section>
+
+    <script src="../../codigo.js"></script>
+    <script src="../promesas.js"></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formato JSON</title>
+  </head>
+  <body>
+    <!-- Formato JSON -->
+    <div>
+      <h2 class="letra-B">Formato <span class="sky">JSON</span></h2>
+      <p>
+        JSON (JavaScript Object Notation) es un formato de texto ligero para
+        representar datos estructurados, inspirado en la sintaxis de objetos de
+        JavaScript pero independiente del lenguaje. Se usa para guardar y
+        transmitir información entre aplicaciones (por ejemplo, cliente y
+        servidor) porque es fácil de leer para personas y máquinas.
+      </p>
+      <p>
+        JSON se convirtió en el estándar de facto para intercambio de datos en
+        la web porque es compacto, simple de parsear en la mayoría de los
+        lenguajes y encaja muy bien con las APIs y operaciones asíncronas (AJAX)
+        que evitan recargas completas de página.
+      </p>
+
+      <div class="codigo">
+        <p>Sintaxis</p>
+        <div>
+          <p>
+            <b>{</b><br />
+            &emsp;&emsp;<b class="naranja">"nombre"</b>:
+            <b class="naranja">"luis"</b>, <br />
+            &emsp;&emsp;<b class="naranja">"edad"</b>: <b class="verde">32</b>,
+            <br />
+            &emsp;&emsp;<b class="naranja">"compras"</b>: [<b class="naranja"
+              >"leche"</b
+            >,<b class="naranja">"pan"</b>], <br />
+            &emsp;&emsp;<b class="naranja">"activo"</b>:
+            <b class="azul">true</b>
+            <br />
+            <b>}</b>
+          </p>
+        </div>
+      </div>
+
+      <ul>
+        <li>
+          Un documento JSON es texto plano; la raíz puede ser un objeto { ... }
+          o un arreglo [ ... ].
+        </li>
+        <li>
+          las propiedades deben ser cadenas con comillas dobles, seguidas por
+          (:)
+        </li>
+        <li>
+          El valor que almacenan puede ser de estos tipos (cadena, número,
+          booleano, null, objeto o arreglo).
+        </li>
+        <li>
+          Las cadenas de texto deben llevar comillas dobles; no se permiten
+          comillas simples.
+        </li>
+      </ul>
+
+      <h5 class="letra-B margen100">
+        <span class="golden">Metodos</span> JSON
+      </h5>
+      <p>
+        En Javascript tenemos una serie de métodos que nos facilitan la tarea de
+        pasar de de Javascript a JSON y viceversa, pudiendo trabajar con
+        contenido de tipo (que contenga un JSON) y objetos Javascript según
+        interese.
+      </p>
+
+      <h6 style="margin-bottom: 0">
+        <code class="sky">JSON</code>.<code class="golden"
+          >parse(<b class="naranja">JSONstring</b>)</code
+        >
+      </h6>
+      <p>
+        permite pasar el contenido de texto de un JSON a un objeto, la accion de
+        convertir json a objeto javascript se le suele denominar
+        <b>parsear</b>. Es una accion que analiza un string que contiene un json
+        valido y devuelve un objeto javascript con dicha informacion
+        correctamente estructurada.
+      </p>
+
+      <h6 style="margin-bottom: 0">
+        <code class="sky">JSON</code>.<code class="golden"
+          >stringify(<b class="letra-B">Objeto</b>)</code
+        >
+      </h6>
+      <p>
+        realiza la operacion inversa, convertir un objeto javascript a json
+        (contenido de texto con el json en cuestion), tambien puede recibir dos
+        parametros mas: un array que actuara de filtro a la hora de generar el
+        objeto, en el especificamos los atributos del objeto que queremos traer.
+        Por ultimo el tercer parametro que indica el numero de espacios
+        (identacion) que quieres usar para crear el string.
+      </p>
+
+      <div class="codigo-consola">
+        <div>
+          <code>
+            <b class="azul">const</b> <b class="doger">json</b> =
+            <b class="naranja"
+              >'{"nombre": "luis", "apellido": "Puente" , "edad": 32}'</b
+            ><br /><br />
+
+            <b class="letra-B">Convertir JSON a Objeto</b><br />
+            <b class="azul">const</b> <b class="doger">parseado</b> =
+            <b class="sky">JSON</b>.<b class="golden"
+              >parse(<b class="doger">json</b>)</b
+            ><br /><br />
+
+            <b class="letra-B">Convertir objetos a JSON</b><br />
+            <b class="sky">JSON</b>.<b class="golden"
+              >stringify(<b class="doger">parseado</b>)</b
+            ><br />
+
+            <b class="sky">JSON</b>.<b class="golden">stringify(</b
+            ><b class="doger">parseado</b>, <b class="morado">[</b
+            ><b class="naranja">"nombre"</b>,<b class="naranja">"edad"</b
+            ><b class="morado">]</b><b class="golden">)</b> <br />
+
+            <b class="sky">JSON</b>.<b class="golden">stringify(</b
+            ><b class="doger">parseado</b>, <b class="azul">null</b>,
+            <b class="verde">1</b><b class="golden">)</b> <br /><br />
+
+            <b class="letra-B">Convertir JSON a JSON</b>
+            <b class="verde">//Obtienes una cadena dentro de otra cadena</b
+            ><br />
+            <b class="sky">JSON</b>.<b class="golden"
+              >stringify(<b class="doger">json</b>)</b
+            ><br />
+          </code>
+        </div>
+
+        <div id="consola-formatoJSON"></div>
+      </div>
+    </div>
+  </body>
+</html>

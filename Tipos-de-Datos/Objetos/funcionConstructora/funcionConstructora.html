@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funcion Constructora</title>
+    <link rel="stylesheet" href="../../../estilos.css" />
+  </head>
+  <body>
+    <nav>
+      <button onclick="window.location.href = '../objetos.html'">⬅</button>
+      <button
+        onclick="window.location.href = '../this.html'"
+        class="azul letra-big"
+      >
+        this
+      </button>
+    </nav>
+    <!-- FUNCION constructora -->
+    <section>
+      <h2 class="azul" style="text-align: center">Funcion constructora</h2>
+      <p>
+        una función constructora es una forma de crear múltiples objetos con
+        estructura similar sin necesidad de duplicar código. Funciona como una
+        plantilla, que tiene una estructura y comportamiento. La función
+        constructora tiene ciertas caracteristicas:
+      </p>
+
+      <ul>
+        <li>
+          <span class="letra-B">Estructura como una función regular:</span>
+          Aunque tiene nombre específico, la estructura es similar a una función
+          regular, pasando los datos necesarios como parámetros.
+        </li>
+        <li>
+          <b class="aqua">Nombre</b> Iniciamos el nombre de la función
+          constructora con la primera letra en mayúscula para indicar que esta
+          función se utilizará para crear objetos, y que se debe invocar con
+          "new".
+        </li>
+        <li>
+          <b class="sky">parametros</b> una o mas variables que definen los
+          datos (valores) necesarios para construir la instancia.
+        </li>
+        <li>
+          <b class="azul">this</b> es una palabra clave especial que hace
+          referencia al contexto de ejecución actual. Dicho de otra forma,
+          señala quién está ejecutando el código en ese momento. Su valor
+          depende de cómo y dónde se invoca una función, no de dónde está
+          escrita.
+        </li>
+        <li>
+          <b class="azul">new</b> invoca la funcion constructora, y crea un
+          objeto vacio que sera la nueva instancia y esta recibira los
+          argumentos que pasara a las propiedades del "this". Finalmente
+          devuelve el objeto, que podemos guardar en una variable.
+        </li>
+      </ul>
+
+      <div class="codigo">
+        <p>Sintaxis</p>
+        <div>
+          <p>
+            <b class="azul">function</b> <b class="aqua">Nombre</b
+            ><b class="golden">(</b><b class="sky">parametros</b
+            ><b class="golden">) {</b> <br />
+
+            &emsp;&emsp;<b class="azul">this</b>.<b class="sky">propiedad</b> =
+            <b class="sky">parametros</b><br />
+            <b class="golden">}</b><br /><br />
+
+            <b class="azul">new</b> <b class="aqua">Nombre</b
+            ><b class="golden">(</b><b class="naranja">argumentos</b
+            ><b class="golden">)</b>
+          </p>
+        </div>
+      </div>
+
+      <!-- codigo -->
+      <div class="codigo-consola">
+        <div>
+          <p>
+            <b class="azul">function</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="sky">nombre</b>,
+            <b class="sky">edad</b><b class="golden">) {</b> <br />
+
+            &emsp; <b class="azul">this</b>.<b class="sky">nombre</b> =
+            <b class="sky">nombre</b><br />
+            &emsp;&emsp;<b class="azul">this</b>.<b class="sky">edad</b> =
+            <b class="sky">edad</b><br />
+
+            &emsp; <b class="azul">this</b>.<b class="golden">saludar</b> =
+            <b class="azul">function</b><b class="morado">() {</b>
+            <br />
+            &emsp; &emsp;<b class="morado">return</b>
+            <b class="naranja">`Soy</b> <b class="azul">${this</b>.<b
+              class="sky"
+              >nombre</b
+            ><b class="azul">}</b> <b class="naranja">tengo</b>
+            <b class="azul">${this</b>.<b class="sky">edad</b
+            ><b class="azul">}</b> <br />
+            &emsp; <b class="morado">}</b> <br />
+            <b class="golden">}</b>
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">persona1</b> =
+            <b class="azul">new</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="naranja">"Luis"</b>,
+            <b class="verde">30</b><b class="golden">)</b><br />
+
+            <b class="azul">const</b> <b class="doger">persona2</b> =
+            <b class="azul">new</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="naranja">"Sharon"</b>,
+            <b class="verde">31</b><b class="golden">)</b><br />
+
+            <b class="azul">const</b> <b class="doger">persona3</b> =
+            <b class="azul">new</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="naranja">"Adriana"</b>,
+            <b class="verde">28</b><b class="golden">)</b>
+          </p>
+
+          <button onclick="ejecutarFuncionConstructora()" class="btn-consola">
+            <b>console.log</b>
+          </button>
+        </div>
+
+        <div id="consola-funcionConstructora"></div>
+      </div>
+
+      <ul class="margen60">
+        <li>
+          <b class="letra-B">Estructura:</b> <b class="azul">function</b>
+          <b class="aqua">Persona</b> tiene la estructura parecida a una funcion
+          regular, pero la primera letra del nombre de la funcion debe ser
+          mayuscula, recibe parametros que utilizara para la construccion de la
+          nueva instancia.
+        </li>
+        <li>
+          <b class="azul">this</b>.<b class="sky">nombre</b> y
+          <b class="azul">this</b>.<b class="sky">edad</b> crean las propiedades
+          "nombre y edad" que seran utilizados en todas las instancias, estos
+          reciben sus valores desde los parametros.
+        </li>
+      </ul>
+
+      <ul class="margen60">
+        <li>
+          <b class="letra-B">Llamado de funcion:</b> <b class="azul">new</b>
+          <b class="aqua">Persona</b> invoca la funcion, y crea un objeto vacio
+          con las propiedades del this. Como devuelve un valor, podemos
+          guardarlo en una variable para luego manipular ese objeto.
+        </li>
+        <li>
+          <b class="golden">(</b><b class="naranja">"Luis"</b>,
+          <b class="verde">30</b><b class="golden">)</b> y manda estos
+          argumentos que corresponden en orden a los parametros que recibe la
+          funcion, y son los valores que tomaran las propiedades.
+        </li>
+      </ul>
+
+      <ul class="margen60">
+        <li><b class="letra-B">Añadir propiedades y metodos</b></li>
+        <li>
+          Inidividual: para añadir una propiedad a una instancia particular sin
+          afectar a las demas, simplemente accedemos al objeto y añadimos la
+          nueva propiedad: (objeto.propiedadnueva = valor)
+        </li>
+        <li>
+          Generales: para agregar propiedades a todas las instancias:
+          (funcion-constructora.<span class="sky">prototype</span>.propiedad y
+          valor).
+        </li>
+        <li>
+          <b class="sky">prototype</b> es una propiedad que tienen todas las
+          funciones, el prototipo es el objeto que sera usado por todas las
+          instancias creadas por "new". Con el podemos agregar propiedades y
+          metodos a todas las instancias,
+          <span class="letra-B"
+            >pero no seran parte del objeto, sino del "prototype" de la
+            funcion</span
+          >.
+        </li>
+        <li>
+          <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
+            class="sky"
+            >pais</b
+          >
+          y <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
+            class="golden"
+            >saludar</b
+          >
+          no son visibles en el objeto, pero existen en la propiedad prototype
+          de la funcion, cuando accedemos a propiedades o metodos de una
+          instancia, Javascript busca primero en el objeto directamente, si no
+          esta, busca en el "prototype", y los usa en las instancias.
+        </li>
+      </ul>
+
+      <h3>Prototype</h3>
+      <p>
+        En JavaScript, todos los objetos tienen un prototipo, que es un objeto
+        del cual heredan propiedades y métodos. Este prototipo puede
+        personalizarse mediante la creación de funciones constructoras que
+        actúan como moldes para crear múltiples instancias con las mismas
+        propiedades y métodos.
+      </p>
+
+      <ul>
+        <li>
+          <b>Definición:</b> Cada función constructora en JavaScript tiene una
+          propiedad llamada <code>prototype</code>.
+        </li>
+        <li>
+          <b>Función:</b> Permite que los objetos creados con
+          <code>new</code> hereden métodos y propiedades definidos en ese
+          <code>prototype</code>.
+        </li>
+        <li>
+          <b>Cadena de prototipos:</b> Si un objeto no tiene una propiedad
+          solicitada, el motor busca en su prototipo y sigue la cadena hasta
+          <code>Object.prototype</code>.
+        </li>
+      </ul>
+
+      <!-- codigo -->
+      <div class="codigo-consola margen100">
+        <div>
+          <p>
+            <b class="azul">function</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="sky">nombre</b>,
+            <b class="sky">edad</b><b class="golden">) {</b> <br />
+
+            &emsp;&emsp;<b class="azul">this</b>.<b class="sky">nombre</b> =
+            <b class="sky">nombre</b><br />
+            &emsp;&emsp;<b class="azul">this</b>.<b class="sky">edad</b> =
+            <b class="sky">edad</b><br />
+            <b class="golden">}</b>
+          </p>
+
+          <p>
+            <b>añadir propiedad y metodo al "prototype":</b>
+            <br />
+            <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
+              class="sky"
+              >pais</b
+            >
+            = <b class="naranja">"Venezuela"</b>
+          </p>
+
+          <p>
+            <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
+              class="golden"
+              >saludar</b
+            >
+            = <b class="azul">function</b><b class="morado">() {</b>
+            <br />
+            &emsp;&emsp;<b class="morado">return</b> <b class="naranja">`Soy</b>
+            <b class="azul">${this</b>.<b class="sky">nombre</b
+            ><b class="azul">}</b> <b class="naranja">tengo</b>
+            <b class="azul">${this</b>.<b class="sky">edad</b
+            ><b class="azul">}</b> <b class="naranja">y soy de</b>
+            <b class="azul">${this</b>.<b class="sky">pais</b
+            ><b class="azul">}</b> <br />
+            <b class="morado">}</b>
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">persona1</b> =
+            <b class="azul">new</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="naranja">"Luis"</b>,
+            <b class="verde">30</b><b class="golden">)</b><br />
+
+            <b class="azul">const</b> <b class="doger">persona2</b> =
+            <b class="azul">new</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="naranja">"Sharon"</b>,
+            <b class="verde">31</b><b class="golden">)</b><br />
+
+            <b class="azul">const</b> <b class="doger">persona3</b> =
+            <b class="azul">new</b> <b class="aqua">Persona</b
+            ><b class="golden">(</b><b class="naranja">"Adriana"</b>,
+            <b class="verde">28</b><b class="golden">)</b>
+          </p>
+
+          <button onclick="ejecutarFncCnstraConPrototype()" class="btn-consola">
+            <b>console.log</b>
+          </button>
+        </div>
+
+        <div id="consola-prototype"></div>
+      </div>
+
+      <p class="margen60">
+        Al enviar el metodo <b class="golden">saludar</b> al
+        <b class="letra-B">prototype</b> cada instancia creada tiene acceso a
+        este, ya que lo heredan de manera 'global'. En cambio si definimos el
+        metodo directamente dentro de el constructor este se copiara en cada
+        instancia, lo cual es ineficiente en consumo de memoria.
+      </p>
+    </section>
+
+    <script src="./funcionConstructora.js"></script>
+  </body>
+</html>

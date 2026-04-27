@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trabajar con Fechas en JavaScript</title>
+    <link rel="stylesheet" href="../estilos.css" />
+    <link rel="stylesheet" href="./fechas.css" />
+    <style>
+      hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div>
+        <button onclick="window.location.href = '../Pagina.html'">
+          Home 🏠
+        </button>
+      </div>
+    </nav>
+
+    <section>
+      <h2>Creación de Fechas</h2>
+      <p>
+        En muchas ocasiones necesitaremos guardar o trabajar con fechas en
+        nuestros programas. Una fecha tiene datos mixtos: día, mes y año, pero
+        también puede ser más precisa y tener hora, minutos y/o segundos.
+        Además, la hora puede estar en varios y múltiples formatos.
+      </p>
+      <p>
+        JavaScript proporciona el objeto <strong>Date</strong> para manejar
+        fechas y horas. Con él se pueden crear, manipular y formatear valores
+        temporales.
+      </p>
+
+      <h3>Objeto <span class="aqua">Date</span></h3>
+      <p>
+        El objeto Date es nativo de JavaScript y representa un instante
+        específico en el tiempo, medido en milisegundos desde el 1 de enero de
+        1970 (UTC). Su función principal es permitir la creación, manipulación y
+        formato de fechas y horas dentro de aplicaciones web.
+      </p>
+      <p>
+        Lo primero, vamos a ver los constructores para saber como podemos
+        construir una variable de tipo Date:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Constructor</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>new Date()</td>
+            <td>Obtiene la fecha del momento actual.</td>
+          </tr>
+          <tr>
+            <td>new Date(str)</td>
+            <td>
+              Convierte el texto con formato YYYY/MM/DD HH:MM:SS a una fecha.
+            </td>
+          </tr>
+          <tr>
+            <td>new Date(numero)</td>
+            <td>
+              Convierte el número (en formato Tiempo UNIX) a una fecha UTC.
+            </td>
+          </tr>
+          <tr>
+            <td>new Date(y, m, d, h, min, s, ms)</td>
+            <td>Crea una fecha UTC a partir de componentes numéricos.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- codigo -->
+      <div class="codigo-consola">
+        <div>
+          <p>
+            // Obtenemos la fecha actual <br />
+            <b class="azul">const</b> <b class="sky">currentDate</b> =
+            <b class="azul">new</b>
+            <b class="aqua">Date</b>();
+          </p>
+
+          <p>
+            // Obtenemos la fecha 30 de Enero de 2018, a las 23h 30m 14seg
+            <br />
+            <b class="azul">const</b> <b class="sky">date</b> =
+            <b class="azul">new</b>
+            <b class="aqua">Date</b>("2018/01/30 23:30:14");
+          </p>
+
+          <p>
+            // Obtenemos la fecha a partir de un timestamp o Tiempo UNIX <br />
+            <b class="azul">const</b> <b class="sky">timestamp</b> =
+            <b class="azul">new</b>
+            <b class="aqua">Date</b>(872817240000);
+          </p>
+
+          <p>
+            // Creamos una fecha pasando cada uno de sus componentes numéricos*
+            <br />
+            <b class="azul">const</b> <b class="sky">createDate</b> =
+            <b class="azul">new</b>
+            <b class="aqua">Date</b>(2018, 0, 30, 23, 30, 14, 0);
+          </p>
+        </div>
+
+        <div id="consola-fechas"></div>
+      </div>
+
+      <div class="notas">
+        <p>
+          En los componentes numericos, los parametros y (año) y m (mes) son
+          obligatorios, el resto son parámetros opcionales. El parametro mes se
+          calcula desde el 0 para enero, 1 febrero y asi sucesivamente.
+        </p>
+      </div>
+
+      <hr />
+
+      <h4 class="margen100">
+        <span class="golden">Métodos</span> para dias, meses y años
+      </h4>
+
+      <table class="table-metodos">
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>getDay()</code></td>
+            <td>Obtiene el día de la semana (0-6, domingo=0)</td>
+          </tr>
+          <tr>
+            <td>getFullYear()</td>
+            <td>Obtiene el año (ej. 2026)</td>
+          </tr>
+          <tr>
+            <td><code>getMonth()</code></td>
+            <td>Obtiene el mes (0-11)</td>
+          </tr>
+          <tr>
+            <td><code>getDate()</code></td>
+            <td>Obtiene el día del mes (1-31)</td>
+          </tr>
+
+          <tr>
+            <td><code>getHours()</code></td>
+            <td>Obtiene la hora, en formato militar (0-23)</td>
+          </tr>
+          <tr>
+            <td><code>getMinutes()</code></td>
+            <td>Obtiene los minutos (0-59)</td>
+          </tr>
+          <tr>
+            <td><code>getSeconds()</code></td>
+            <td>Obtiene los segundos (0-59)</td>
+          </tr>
+          <tr>
+            <td><code>getMilliseconds()</code></td>
+            <td>Obtiene los milisegundos</td>
+          </tr>
+          <tr>
+            <td>getTime()</td>
+            <td>
+              Devuelve el UNIX Timestamp: segundos transcurridos desde 1/1/1970.
+            </td>
+          </tr>
+          <tr>
+            <td><code>getTimezoneOffset()()</code></td>
+            <td>
+              Diferencia horaria (en min) de la hora local respecto a UTC.
+            </td>
+          </tr>
+          <tr>
+            <td><code>toLocaleDateString()</code></td>
+            <td>Devuelve la fecha en formato local</td>
+          </tr>
+          <tr>
+            <td><code>toLocaleTimeString()</code></td>
+            <td>Devuelve la hora en formato local</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Debido que Javascript no tiene forma de devolver, por ejemplo, el día de
+        la semana o el mes en formato de texto. Podemos hacerlo de forma muy
+        sencilla utilizando un array:
+      </p>
+
+      <div class="codigo-consola">
+        <div>
+          <p>
+            <b class="azul">const</b> <b class="doger">date</b> =
+            <b class="azul">new</b> <b class="aqua">Date</b>();
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">meses</b> = ["Enero",
+            "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre",]
+          </p>
+          <div class="btn-ejecutar" id="btn-getMonth">
+            <p>
+              <b class="doger">meses</b>[<b class="doger">date</b>.<b
+                class="golden"
+                >getMonth()</b
+              >]
+            </p>
+            <span>Ejecutar</span>
+          </div>
+        </div>
+        <div id="consola-metodos-date"></div>
+      </div>
+
+      <h4 class="margen100"><span class="golden">Métodos</span> para fechas</h4>
+      <div class="sintaxis">
+        <b>Formato por defecto:</b>
+        <b>Fri Aug 24 2018 00:23:31 GMT+0100</b>
+      </div>
+
+      <table class="table-metodos">
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Descripción</th>
+            <th>Ejemplo de salida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>toDateString()</td>
+            <td>Devuelve formato sólo de fecha.</td>
+            <td>Fri Aug 24 2018</td>
+          </tr>
+          <tr>
+            <td>toLocaleDateString()</td>
+            <td>Formato regional actual de fecha.</td>
+            <td>24/8/2018</td>
+          </tr>
+          <tr>
+            <td>toTimeString()</td>
+            <td>Devuelve formato sólo de hora.</td>
+            <td>00:23:24 GMT+0100 ...</td>
+          </tr>
+          <tr>
+            <td>toLocaleTimeString()</td>
+            <td>Formato regional actual de hora.</td>
+            <td>0:26:37</td>
+          </tr>
+          <tr>
+            <td>toISOString()</td>
+            <td>Devuelve la fecha en formato ISO 8601.</td>
+            <td>2018-08-23T23:27:29.380Z</td>
+          </tr>
+          <tr>
+            <td>toJSON()</td>
+            <td>Igual que ISO, pero compatible con JSON.</td>
+            <td>2018-08-23T23:27:29.380Z</td>
+          </tr>
+          <tr>
+            <td>toUTCString()</td>
+            <td>Devuelve la fecha utilizando UTC.</td>
+            <td>Thu, 23 Aug 2018 23:27:29 GMT</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- codigo -->
+      <div class="codigo-consola">
+        <div style="width: 50%">
+          <p>
+            <b class="azul">const</b> <b class="doger">date</b> =
+            <b class="azul">new</b> <b class="aqua">Date</b>();
+          </p>
+        </div>
+        <div id="consola-metodos-date-completed" style="width: 50%"></div>
+      </div>
+
+      <hr />
+
+      <h4>Operaciones con Fechas</h4>
+
+      <div class="codigo-consola">
+        <div>
+          <p>
+            <b class="azul">const</b> <b class="doger">inicio</b> =
+            <b class="azul">new</b>
+            <b class="aqua">Date</b>(2026, 2, 1);
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">fin</b> =
+            <b class="azul">new</b> <b class="aqua">Date</b>(2026, 2, 31);
+          </p>
+          <p>
+            <b class="azul">const</b> <b class="doger">diferencia</b> =
+            <b class="doger">fin</b> - <b class="doger">inicio</b>;
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">dias</b> =
+            <b class="doger">diferencia</b> / (1000 * 60 * 60 * 24);
+          </p>
+        </div>
+        <div id="consola-date-operation"></div>
+      </div>
+
+      <h4>Buenas Prácticas</h4>
+
+      <ul>
+        <li>
+          Usar <strong>toLocaleDateString</strong> y
+          <strong>toLocaleTimeString</strong> para formatos amigables.
+        </li>
+        <li>
+          Recordar que los meses empiezan en <strong>0 (enero)</strong> y
+          terminan en <strong>11 (diciembre)</strong>.
+        </li>
+        <li>
+          Para cálculos complejos, considerar librerías como
+          <strong>Moment.js</strong> o <strong>date-fns</strong>.
+        </li>
+        <li>
+          Siempre validar que las fechas sean válidas para evitar errores en
+          cálculos.
+        </li>
+        <li>
+          Evitar modificar directamente los valores internos del objeto Date;
+          usar métodos específicos para cambios.
+        </li>
+        <li>
+          Tener en cuenta las zonas horarias y posibles cambios por horario de
+          verano.
+        </li>
+      </ul>
+
+      <hr />
+      <h4>Librerias para fechas</h4>
+      <p>
+        En muchos casos, el objeto <span class="aqua">Date</span> de Javascript
+        puede quedarse corto para el usuario, para mayor comodidad al trabajar
+        con fechas y un mayor control. Existen múltiples librerías alternativas
+        para trabajarlas, citamos algunas de ellas:
+      </p>
+      <ul>
+        <li>Day.js</li>
+        <li>Tempo</li>
+        <li>date-fns</li>
+        <li>luxon</li>
+      </ul>
+    </section>
+
+    <section id="section-proyect">
+      <div class="content-proyect-fechas">
+        <p>
+          <span id="day-week"></span>
+        </p>
+        <p>
+          <span id="day-month"></span>
+          <span id="month"></span>
+          <span id="year"></span>
+        </p>
+      </div>
+    </section>
+
+    <script src="fechas.js"></script>
+  </body>
+</html>

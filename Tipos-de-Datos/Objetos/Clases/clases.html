@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clases</title>
+    <link rel="stylesheet" href="../../../estilos.css" />
+  </head>
+  <body>
+    <nav>
+      <button onclick="window.location.href = '../objetos.html'">⬅</button>
+      <button
+        onclick="window.location.href = './this.html'"
+        class="azul letra-big"
+      >
+        this
+      </button>
+      <button
+        onclick="
+          window.location.href =
+            './funcionConstructora/funcionConstructora.html'
+        "
+        class="azul"
+      >
+        Funciones Constructoras
+      </button>
+    </nav>
+
+    <!-- Clases -->
+    <section>
+      <h2 class="azul">Clases</h2>
+      <p>
+        Una clase es la forma moderna y clara de definir objetos y manejar
+        herencia, introducida en ES6. Aunque internamente sigue usando el
+        sistema de prototipos, la sintaxis de class ofrece un “azúcar
+        sintáctico” que facilita la programación orientada a objetos.
+      </p>
+      <p>
+        Esta sintaxis es diferente a las funciones constructoras, se escribe con
+        la palabra clave 'class' seguida del nombre, y el bloque que contiene un
+        contructor de la clase. Class tambien permite crear 'plantillas' un
+        modelo que define como crear propiedades (estado) y metodos
+        (comportamiento).
+      </p>
+
+      <!-- sintaxis -->
+      <div class="codigo">
+        <p>Sintaxis</p>
+
+        <div>
+          <p>
+            <b>Declaracion</b><br />
+            <b class="azul">class</b> <b class="aqua">Nombre</b
+            ><b class="golden">{</b> <br />
+            &emsp;&emsp;<b class="azul">constructor</b><b class="morado">(</b
+            ><b class="sky">parametros</b><b class="morado">) {</b> <br />
+
+            &emsp;&emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky"
+              >propiedad</b
+            >
+            = <b class="sky">parametros</b><br />
+            &emsp;&emsp;<b class="morado">}</b><br />
+
+            &emsp; <b class="golden">metodo</b><b class="morado">() {}</b>
+            <br />
+            &emsp; <b class="azul">static</b> <b class="golden">metodo</b
+            ><b class="morado">() {}</b>
+            <br />
+            <b class="golden">}</b><br /><br />
+
+            <b>Instancia</b><br />
+            <b class="azul">new</b> <b class="aqua">Nombre</b
+            ><b class="golden">(</b><b class="naranja">argumentos</b
+            ><b class="golden">)</b>
+          </p>
+        </div>
+      </div>
+
+      <ul>
+        <li>
+          <b class="azul letra-segoe">class</b> define un plano o plantilla para
+          crear objetos a partir de ahi. Facilita la estructura ya que permite
+          separar claramente las propiedades y los metodos.
+        </li>
+        <li>
+          <b class="aqua">Nombre</b> indica el nombre de la clase, que por
+          convencion, inicia con <span class="letra-B">mayuscula</span>.
+        </li>
+        <li>
+          <b class="golden">llaves{}</b> definen el cuerpo de la clase, en donde
+          se encuentra el metodo constructor y los metodos que definamos.
+        </li>
+        <li>
+          <b class="azul">constructor</b> es un metodo especial que se ejecuta
+          al crear una nueva instancia de la clase, se usa para inicializar
+          propiedades.
+        </li>
+        <li>
+          <b class="azul">this</b> se refiere al objeto actual, asi se asignan
+          valores a las propiedades del objeto.
+        </li>
+        <li>
+          <b class="golden">Metodos</b> se definen dentro del prototype de la
+          clase, pueden acceder al this, osea al contexto de la clase, para usar
+          sus propiedades y valores. Se comparten entre todos los objetos
+          creados.
+        </li>
+        <li>
+          <b class="azul">static</b> <b class="golden">metodo</b> los metodos
+          con la palabra clase 'static' pertenecen a la clase en si, no a las
+          instancias.
+        </li>
+        <li>
+          <b class="azul">new</b> es la palabra clave para crear las intancias
+          de la clase y con sus valores, esta retorna un objeto con las
+          propiedades del this.
+        </li>
+      </ul>
+
+      <table>
+        <caption>
+          Caracteristicas clave
+        </caption>
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Azúcar sintáctico</td>
+            <td>
+              No cambia el modelo de herencia de JavaScript, solo lo hace más
+              legible.
+            </td>
+          </tr>
+          <tr>
+            <td>Métodos de instancia</td>
+            <td>
+              Definidos dentro de la clase, se comparten entre todas las
+              instancias creadas.
+            </td>
+          </tr>
+          <tr>
+            <td>Métodos estáticos (<code>static</code>)</td>
+            <td>Pertenecen a la clase en sí, no a los objetos instanciados.</td>
+          </tr>
+          <tr>
+            <td>Herencia (<code>extends</code>)</td>
+            <td>
+              Permite crear jerarquías de clases fácilmente y reutilizar código.
+            </td>
+          </tr>
+          <tr>
+            <td>Encapsulación</td>
+            <td>
+              Con <code>#propiedad</code> se pueden definir campos privados
+              (introducido en ES2022).
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- botones -->
+      <div class="control-consola">
+        <button
+          onclick="ejecutarClases('Declaracion-instancias')"
+          class="btn-cambiar-consola"
+        >
+          Declarar clases e instancias
+        </button>
+
+        <button
+          onclick="ejecutarClases('ConstruirArray')"
+          class="btn-cambiar-consola"
+        >
+          Construir un array
+        </button>
+        <button
+          onclick="ejecutarClases('ConstruirArray2')"
+          class="btn-cambiar-consola"
+        >
+          Construir un array 2
+        </button>
+      </div>
+      <!-- codigo -->
+      <div class="codigo-consola">
+        <div id="codigo-clases"></div>
+
+        <div id="consola-class"></div>
+      </div>
+
+      <div id="notas-clases" class="notas" style="display: none"></div>
+
+      <h5 class="margen100">
+        Creacion del prototipo con <b class="azul">constructor</b>
+      </h5>
+      <li>
+        En Javascript un prototipo es un objeto del cual otros objetos heredan
+        propiedades y metodos, los generan las funciones y clases constructoras
+        al crearlas, que se usa como un molde para crear instancias de objetos.
+      </li>
+
+      <h5>Creacion de la instacia con <b class="azul">new</b></h5>
+      <li>
+        cuando nesecitas crear una instacia de un objeto a partir de un clase
+        constructora, usamos (new + nombreClase(valores)) primero new hereda las
+        propiedades y metodos del prototipo creado y luego con los valores
+        especificados, se llena ese "molde" con datos que requiereas. new
+        devolvera un objeto, que es la nueva instacia, y podemos guardarla en
+        una variable para su manipulacion.
+      </li>
+    </section>
+
+    <!-- Abstracción -->
+    <section>
+      <h3>Abstracción</h3>
+      <p>
+        La abstracción consiste en extraer los datos y comportamientos de un
+        objeto para crear un molde o clase que luego permita generar instancias
+        concretas de dicho objeto. En el contexto de JavaScript, esta técnica se
+        traduce en crear prototipos a partir de los cuales se pueden instanciar
+        diferentes objetos con características y comportamientos similares.
+      </p>
+      <p>
+        En JavaScript, la abstracción se aplica cuando se crean clases o
+        prototipos para encapsular propiedades y métodos comunes a un grupo de
+        objetos. En lugar de utilizar objetos literales y duplicar código al
+        crear cada instancia de objeto, la abstracción permite definir una
+        estructura base que se puede reutilizar fácilmente. Por ejemplo, si
+        tenemos un grupo de estudiantes que comparten atributos y métodos
+        comunes, como nombre, edad, y un método para estudiar, se puede crear
+        una clase Estudiante.
+      </p>
+    </section>
+
+    <!-- Encapsulacion -->
+    <section>
+      <h3>Encapsulacion</h3>
+      <p>
+        En programación orientada a objetos es el principio que consiste en
+        ocultar los detalles internos de un objeto y controlar el acceso a sus
+        datos. Se busca que las propiedades y métodos internos estén protegidos,
+        exponiendo solo lo necesario a través de la interfaz.
+      </p>
+
+      <ul>
+        <li>
+          <b>Ocultar implementación:</b> Los detalles internos de cómo funciona
+          un objeto no son accesibles directamente.
+        </li>
+        <li>
+          <b>Control de acceso:</b> Se usan mecanismos como getters, setters o
+          campos privados (#propiedad) para decidir qué datos pueden leerse o
+          modificarse.
+        </li>
+        <li>
+          <b>Interfaz pública:</b> El objeto expone solo los métodos y
+          propiedades que el programador necesita usar, manteniendo el resto
+          protegido.
+        </li>
+      </ul>
+
+      <!-- getters y setters -->
+      <h4 class="margen100">
+        Metodos <span class="golden">get</span> y
+        <span class="golden">set</span>
+      </h4>
+      <p>
+        tambien conocidos como getters y setters son dos metodos especiales de
+        las clases que permiten controlar como se accede y se modifica una
+        propiedad dentro de una clase o objeto de forma segura: obtener (get), y
+        asignar (set). En otras palabras son propiedades de acceso que ejecutan
+        una funcion, y deben tener un nomber propio que sera el usado para su
+        invocacion.
+      </p>
+
+      <h5>Getter <span class="azul">get</span></h5>
+      <p>
+        Método que se ejecuta cuando se accede a una propiedad. Sirve para leer
+        valores, pero puede incluir lógica adicional (por ejemplo, calcular un
+        valor dinámico). Permite retornar un valor transformado o calculado en
+        lugar del valor almacenado, lo que es útil para mantener la
+        encapsulación y controlar el acceso a los datos internos de una clase.
+      </p>
+
+      <h5>Setter <span class="azul">set</span></h5>
+      <p>
+        Método que se ejecuta cuando se asigna un valor a una propiedad, no
+        retornan un valor, solo asignan el valor a la propiedad, pero con la
+        posibilidad de incluir lógica adicional, como validaciones o
+        transformaciones, antes de asignarlo a la propiedad interna.
+      </p>
+
+      <h4 class="margen100">Campos privados</h4>
+      <p>
+        Los campos privados son propiedades que solo pueden ser accedidas desde
+        dentro de la clase, lo que permite ocultar detalles internos y controlar
+        el acceso a los datos. En JavaScript, se definen usando el prefijo
+        <code class="sky letra-big">#</code> antes del nombre de la propiedad.
+        Esto garantiza que la propiedad no pueda ser accedida ni modificada
+        directamente desde fuera de la clase.
+      </p>
+
+      <table class="margen100">
+        <thead>
+          <tr>
+            <th>Aspecto</th>
+            <th>Getter</th>
+            <th>Setter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Función principal</td>
+            <td>Leer/obtener el valor</td>
+            <td>Asignar/modificar el valor</td>
+          </tr>
+          <tr>
+            <td>Sintaxis</td>
+            <td><code>get propiedad()</code></td>
+            <td><code>set propiedad(valor)</code></td>
+          </tr>
+          <tr>
+            <td>Uso</td>
+            <td><code>obj.prop</code></td>
+            <td><code>obj.prop = valor</code></td>
+          </tr>
+          <tr>
+            <td>Aplicaciones</td>
+            <td>Transformar o calcular valores</td>
+            <td>Validar o controlar asignaciones</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- codigo -->
+      <div class="control-consola margen150">
+        <button class="Getter_y_Setter">Getter y Setter</button>
+        <button class="Campos_privados">Campos privados</button>
+      </div>
+
+      <div class="codigo-consola">
+        <div id="codigo-getterSetter">
+          <p>
+            <b class="azul">class</b> <b class="aqua">User</b>
+            <b class="golden">{</b> <br />
+
+            &emsp;&emsp;<b class="azul">constructor</b><b class="morado">(</b
+            ><b class="sky">name</b>, <b class="sky">age</b
+            ><b class="morado">) {</b> <br />
+            &emsp;&emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky"
+              >name</b
+            >
+            = <b class="sky">name</b><br />
+            &emsp;&emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky"
+              >age</b
+            >
+            = <b class="sky">age</b><br />
+            &emsp;&emsp;<b class="morado">}</b><br />
+
+            &emsp;&emsp;<b class="azul">get</b> <b class="sky">userAge</b
+            ><b class="morado">() {</b> <br />
+            &emsp; &emsp; <b class="morado">return</b> Mayor de edad:
+            <b class="azul">this</b>.<b class="sky">age</b>
+            <br />
+            &emsp;&emsp;<b class="morado">}</b><br />
+
+            &emsp; <b class="azul">set</b> <b class="sky">userAge</b
+            ><b class="morado">(<b class="sky">age</b>) {</b> <br />
+            &emsp; &emsp; <b class="morado">if</b> (age > 18)
+            <b class="azul">this</b>.<b class="sky">age</b> =
+            <b class="sky">age</b> <br />
+            &emsp;&emsp;<b class="morado">}</b><br />
+
+            <b class="golden">}</b><br /><br />
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">David</b> =
+            <b class="azul">new</b> <b class="aqua">User</b
+            ><b class="golden">(</b><b class="naranja">"David"</b>,<b
+              class="verde"
+              >30</b
+            ><b class="golden">)</b><br />
+          </p>
+        </div>
+
+        <div id="consola-getterSetter"></div>
+      </div>
+
+      <p class="margen60">
+        En este ejemplo, la clase User tiene un getter llamado userAge que
+        permite acceder a la propiedad age de forma controlada, y un setter que
+        valida que solo se asignen edades mayores a 18. Esto es un ejemplo de
+        cómo la encapsulación protege los datos internos de una clase y controla
+        su acceso mediante métodos específicos.
+      </p>
+
+      <ul>
+        <li><b class="letra-B">Acceso a propiedades</b></li>
+        <li>David.age → acceso crudo, sin lógica.</li>
+        <li>
+          <b class="doger">David</b>.<b class="sky">userAge</b>
+          → acceso controlado, pasa por el getter, lo que te da la oportunidad
+          de modificar el comportamiento (ejemplo: devolver "Mayor de edad" si
+          age >= 18).
+        </li>
+      </ul>
+
+      <ul>
+        <li><b class="letra-B">Modificación de propiedades</b></li>
+        <li>David.age = 25 → asignación cruda, sin lógica.</li>
+        <li>
+          <b class="doger">David</b>.<b class="sky">userAge</b> = 25 →
+          asignación controlada, pasa por el setter, lo que te da la oportunidad
+          de modificar el comportamiento (ejemplo: validar que la edad sea mayor
+          a 18).
+        </li>
+      </ul>
+    </section>
+
+    <!-- Herencia -->
+    <section>
+      <h3>Herencia</h3>
+
+      <p class="">
+        Es la capacidad que tienen las instancias y otras clases de tomar
+        propiedades o metodos (heredarlas) del prototipo de otra funcion. Esto
+        ocurre naturalmente cuando invocamos new para crear una nueva instacia,
+        pero si necesitamos que otra clase que no sea una instacia herede
+        propiedades y metodos de otra, necesitaremos otra sintaxis y palabras
+        clave:
+      </p>
+
+      <h4 class="azul">extends</h4>
+      <p>
+        Se usa en clases para crear una herencia entre una clase hija y una
+        clase padre. Es decir, permite que una clase herede propiedades y
+        métodos de otra, lo que significa que hereda el construtor. Otra
+        capacidad es que puede sobreescribir sus metodos con su propia version.
+      </p>
+
+      <h4 class="azul">super</h4>
+      <p>
+        Se usa dentro de una clase hija (clase que extiende de otra), para
+        acceder a el constructor de la clase padre, o a los metodos. Funciona
+        escribiendo las propiedades o metodos entre parentesis que se quieren
+        heredar: super(propiedad,propiedad) , super.metodo(). Aunque si una
+        clase extiende otra, hereda todos los metodos publicos de la clase padre
+        automaticamente, podemos usar super para llamar metodos especificos.
+      </p>
+      <p>
+        En caso no heredemos una propiedad (argumento), este asumirá un valor de
+        undefined. Al heredad propiedades con super(), debemos mantener el orden
+        de los argumentos declarados y caso quisiéramos ignorar alguno, le
+        asignamos undefined.
+      </p>
+
+      <!-- codigo -->
+      <div class="codigo-consola margen100">
+        <div>
+          <p>
+            <b class="azul">class</b> <b class="aqua">Perro</b>
+            <b class="azul">extends</b> <b class="aqua">Animal</b
+            ><b class="golden">{</b> <br />
+
+            &emsp;&emsp;<b class="azul">constructor</b><b class="morado">(</b
+            ><b class="sky">tipo</b>, <b class="sky">nombre</b>,
+            <b class="sky">raza</b><b class="morado">) {</b> <br />
+            &emsp;&emsp;&emsp;&emsp;<b class="azul">super</b
+            ><b class="golden">(</b><b class="sky">tipo</b>,
+            <b class="sky">nombre</b><b class="golden">)</b><br />
+            &emsp;&emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky"
+              >raza</b
+            >
+            = <b class="sky">raza</b><br />
+            &emsp;&emsp;<b class="morado">}</b><br />
+
+            &emsp;&emsp;<b class="golden">mensaje</b><b class="morado">() {</b>
+            <br />
+
+            &emsp;&emsp;&emsp;&emsp;<b class="morado">return</b>
+            <b class="naranja">'Mi perro se llama</b>
+            <b class="azul">$ {this</b>.<b class="sky">nombre</b
+            ><b class="azul">}</b> <b class="naranja">, es un</b>
+            <b class="azul">$ {this</b>.<b class="sky">raza</b
+            ><b class="azul">}</b> <b class="azul">$ {this</b>.<b class="sky"
+              >tamaño</b
+            ><b class="azul">}</b><b class="naranja">'</b> <br />
+
+            &emsp;&emsp;<b class="morado">}</b><br />
+            <b class="golden">}</b>
+          </p>
+
+          <p>
+            <b class="azul">const</b> <b class="doger">perro1</b> =
+            <b class="azul">new</b> <b class="aqua">Perro</b
+            ><b class="golden">(</b><b class="naranja">"perro"</b>,<b
+              class="naranja"
+              >"Firulais"</b
+            >,<b class="naranja">"Golden"</b><b class="golden">)</b>
+          </p>
+
+          <p>
+            <b>añadir propiedad al objeto:</b><br />
+            <b class="doger">perro1</b>.<b class="sky">color</b> =
+            <b class="naranja">"marron"</b>
+          </p>
+
+          <p>
+            <b>añadir propiedad al prototipo:</b><br />
+            <b class="aqua">Perro</b>.<b class="sky">prototype</b>.<b
+              class="sky"
+              >tamaño</b
+            >
+            = <b class="naranja">"grande"</b><br />
+            <b class="aqua">Perro</b>.<b class="sky">prototype</b>.<b
+              class="golden"
+              >personalidad</b
+            >
+            = <b class="azul">"function"</b>(){ <br />
+            &emsp; <b class="morado">return</b> <b class="azul">$ {this</b>.<b
+              class="sky"
+              >nombre</b
+            ><b class="azul">}</b><b class="naranja">'</b>
+            <b class="naranja">es muy alegre y le gusta correr y jugar con</b>
+            <b class="azul">$ {</b><b class="doger">animal1</b>.<b class="sky"
+              >nombre</b
+            ><b class="azul">}</b><b class="naranja">'</b> <br />
+            }
+          </p>
+        </div>
+
+        <div id="consola-herencia"></div>
+      </div>
+
+      <div class="notas">
+        <b>Explicacion:</b><br />
+        <b class="doger">perro1</b> crea una instacia de la plantilla
+        <span class="aqua">Perro</span> que asu vez extendera propiedades de la
+        plantilla <span class="aqua">Animal</span> por medio de
+        <span class="azul">super</span> que accede a su constructor y trae las
+        propiedades: <span class="sky">tipo</span> y
+        <span class="sky">nombre</span>, despues tiene su propia propiedad:
+        <span class="sky">raza</span> y metodo, y recibe dos propiedades
+        adicionales y otro metodo.
+        <ul>
+          <li>
+            <span class="sky">color</span> esta instacia añade su propia
+            propiedad de color para usar en su mensaje. Va directo al objeto.
+          </li>
+          <li>
+            <span class="sky">tamaño</span> al prototipo mandamos la propiedad
+            tamaño especifica para esta clase tambien.
+          </li>
+          <li>
+            <span class="golden">personalidad</span> un metodo que agregamos al
+            prototipo de nuestra clase y toma la propiedad nombre de su
+            extencion y toma otra de un objeto ya creado
+            <span class="doger">animal1</span>.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Polimorfismo -->
+    <section>
+      <h3>Polimorfismo</h3>
+      <p>
+        Es la capacidad de un objeto de tomar muchas formas, es decir, que una
+        misma función o método pueda comportarse de diferentes maneras según el
+        contexto. En JavaScript, esto se logra a través de la herencia y la
+        sobreescritura de métodos en las clases.
+      </p>
+      <p>
+        Por ejemplo, si tenemos una clase Animal con un método hacerSonido(), y
+        luego creamos clases específicas como Perro y Gato que extienden de
+        Animal, cada una puede implementar su propia versión de hacerSonido()
+        para producir un sonido diferente (ladrido para el perro, maullido para
+        el gato). Esto permite que el mismo método haga cosas diferentes
+        dependiendo del tipo de objeto que lo esté utilizando, lo que es una
+        manifestación clara del polimorfismo.
+      </p>
+
+      <div class="codigo-consola margen100">
+        <div id="codigo-polimorfismo"></div>
+        <div id="consola-polimorfismo"></div>
+      </div>
+    </section>
+
+    <!-- Metodos y Atributos Estaticos -->
+    <section>
+      <h3>Metodos y Atributos Estaticos</h3>
+      <p class="margen60">
+        Los métodos estáticos en JavaScript son herramientas de clase, no de
+        instancia. Se usan para lógica compartida, utilidades y patrones de
+        diseño como fábricas o contadores. No requieren instanciación y se
+        acceden directamente a través de la clase, lo que los hace ideales para
+        funciones que no dependen del estado de un objeto específico. Son
+        fundamentales para organizar el código y promover la reutilización.
+      </p>
+
+      <h3 class="azul monospace">static</h3>
+      <p>
+        La palabra clave <code class="azul letra-big">static</code> se utiliza
+        para definir métodos estáticos dentro de una clase en JavaScript. Estos
+        métodos no requieren una instancia de la clase para ser llamados, ya que
+        pertenecen a la clase en sí misma. Se acceden directamente a través del
+        nombre de la clase, lo que los hace ideales para funciones que no
+        dependen del estado de un objeto específico. Los métodos estáticos son
+        útiles para organizar el código y promover la reutilización,
+        especialmente para funciones de utilidad o lógica compartida entre todas
+        las instancias de la clase.
+      </p>
+
+      <div class="codigo-consola margen100">
+        <div id="codigo-metodosEstaticos"></div>
+        <div id="consola-metodosEstaticos"></div>
+      </div>
+    </section>
+
+    <script src="./clases.js"></script>
+  </body>
+</html>

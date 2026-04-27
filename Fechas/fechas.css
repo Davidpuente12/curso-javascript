@@ -1,0 +1,32 @@
+#section-proyect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-proyect-fechas {
+  background-color: rgb(3, 18, 63);
+  width: 30%;
+  height: 200px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.content-proyect-fechas p {
+  margin: 0;
+}
+
+#day-week {
+  font-size: 1.8rem;
+}
+#day-month {
+  font-size: 4rem;
+}
+#day-month::after {
+  content: "/";
+  font-size: 3.5rem;
+  padding: 5px;
+}

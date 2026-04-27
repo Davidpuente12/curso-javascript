@@ -1,20 +1,20 @@
 //FUNCIONES
-function ejecutarFunciones(tipo){ 
-    const consola = document.getElementById("consola-function") 
-    const codigo = document.getElementById("codigo-function")
-    
-    if(tipo == 'funcion-tradicional'){
-        //un parametro
-        function saludar(nombre) {
-            return "Hola " + nombre + "👋 Bienvenido/a"
-        }
+function ejecutarFunciones(tipo) {
+  const consola = document.getElementById("consola-function");
+  const codigo = document.getElementById("codigo-function");
 
-        //dos parametro
-        function saludar2(nombre,apellido) {
-            return `Hola ${nombre} ${apellido} 👋 Bienvenido/a`
-        }
+  if (tipo == "funcion-tradicional") {
+    //un parametro
+    function saludar(nombre) {
+      return "Hola " + nombre + "👋 Bienvenido/a";
+    }
 
-        codigo.innerHTML = `
+    //dos parametro
+    function saludar2(nombre, apellido) {
+      return `Hola ${nombre} ${apellido} 👋 Bienvenido/a`;
+    }
+
+    codigo.innerHTML = `
         <b>Un parametro</b><br>
             <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>
             <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'Hola'</b> + <b class="sky">nombre</b> + <b class="naranja">"👋 Bienvenido"</b>
@@ -30,9 +30,9 @@ function ejecutarFunciones(tipo){
             <b class="golden">$(</b><b class="sky">apellido</b><b class="golden">)</b>
             <b class="naranja">👋 Bienvenido'</b> 
             <br><b class="golden">}</b>
-        `
+        `;
 
-        consola.innerHTML = `
+    consola.innerHTML = `
         <b class="verde">//Un parametro</b><br>
         <b class="golden">saludar</b><b class="morado">(</b><b class="naranja">"David"</b><b class="morado">)</b>  
         ${saludar("David")}<br>
@@ -50,42 +50,38 @@ function ejecutarFunciones(tipo){
 
         <b class="verde">//Pasar un parametro especifico</b><br>
         <b class="golden">saludar2</b><b class="morado">(</b><b class="azul">undefined</b>, <b class="naranja">"Gamez"</b><b class="morado">)</b> <br>
-        ${saludar2(undefined,"Gamez")}<br>
-        ` 
-    }
+        ${saludar2(undefined, "Gamez")}<br>
+        `;
+  } else if (tipo == "expresionDeFuncion") {
+    const saludo = function (nombre) {
+      return "Hola " + nombre;
+    };
 
-    else if(tipo == 'expresionDeFuncion'){
-        const saludo = function (nombre){
-            return "Hola " + nombre
-        }
-
-        codigo.innerHTML = `
+    codigo.innerHTML = `
         <p style="margin-top:0">
             <b class="azul">const</b> <b class="golden">saludo</b> = <b class="azul">function</b> <b class="golden">(</b><b class="sky">nombre</b><b class="golden">) {</b>
             <br>&emsp;&emsp;<b class="morado">return</b> <b class="naranja">'Hola'</b> + <b class="sky">nombre</b> 
             <br><b class="golden">}</b>
             <br><br>
         </p>
-        `
-        consola.innerHTML = `
+        `;
+    consola.innerHTML = `
         <b class="golden">saludar(<b class="naranja">"Luis"</b>)</b>
         ${saludo("Luis")}<br>
-        `
+        `;
+  } else if (tipo == "parametros-pordefecto") {
+    function newuser(name, age, country) {
+      let nombre = name || "Luis";
+      let edad = age || 30;
+      let pais = country || "Venezuela";
+      return `${nombre} ${edad} ${pais}`;
     }
 
-    else if(tipo == 'parametros-pordefecto'){
-        function newuser(name,age,country){
-            let nombre = name || "Luis"
-            let edad = age || 30
-            let pais = country || "Venezuela"
-            return `${nombre} ${edad} ${pais}` 
-        }
+    function newAdmin(name = "Santiago", age = 50, country = "Londres") {
+      return `${name} ${age} ${country}`;
+    }
 
-        function newAdmin(name= "Santiago", age= 50, country= "Londres"){
-            return `${name} ${age} ${country}` 
-        }
-
-        codigo.innerHTML = `
+    codigo.innerHTML = `
         <b class="verde">//opcion 1</b><br>
             <b class="azul">function</b> <b class="golden">newuser(</b><b class="sky">name</b> ,
             <b class="sky">age</b> ,
@@ -113,23 +109,23 @@ function ejecutarFunciones(tipo){
             <b class="golden">$(</b><b class="sky">country</b><b class="golden">)</b>
             <b class="naranja">'</b> 
             <br><b class="golden">}</b>
-        `
-        
-        consola.innerHTML = `
+        `;
+
+    consola.innerHTML = `
         <b class="verde">//Ninguno por defecto</b><br>
             <b class="golden">newuser</b><b class="morado">(</b><b class="naranja">"David"</b>,
             <b class="verde">32</b>, <b class="naranja">"Colombia"</b><b class="morado">)</b>  
-            ${newuser("David",32,"Colombia")}<br>
+            ${newuser("David", 32, "Colombia")}<br>
 
             <b class="golden">newAdmin</b><b class="morado">(</b><b class="naranja">"Jorge"</b> ,
             <b class="verde">42</b> , <b class="naranja">"Chile"</b><b class="morado">)</b>  
-            ${newAdmin("Jorge",42,"Chile")}<br><br>
+            ${newAdmin("Jorge", 42, "Chile")}<br><br>
 
 
         <b class="verde">//Dos por defecto</b><br>
             <b class="golden">newuser</b><b class="morado">(</b><b class="azul">undefined</b>,
             <b class="verde">55</b><b class="morado">)</b>  
-            ${newuser(undefined,55)}<br>
+            ${newuser(undefined, 55)}<br>
 
             <b class="golden">newAdmin</b><b class="morado">(</b><b class="naranja">"Carlos"</b><b class="morado">)</b>  
             ${newAdmin("Carlos")}<br><br>
@@ -141,25 +137,24 @@ function ejecutarFunciones(tipo){
 
             <b class="golden">newAdmin</b><b class="morado">()</b> 
             ${newAdmin()}<br>
-        `    
+        `;
+  } else if (tipo == "retornar-objetos") {
+    function userName(firstname, lastname, age) {
+      return {
+        firstname,
+        lastname,
+        age,
+      };
     }
-    else if(tipo == 'retornar-objetos'){
-        function userName(firstname, lastname, age){
-            return {
-                firstname,
-                lastname,
-                age
-            }
-        }
 
-        consola.innerHTML = `
+    consola.innerHTML = `
         <p class='margen0'>
             <b class='golden'>userName</b>('Luis', 'Puente', 30) <br><br>
-            ${JSON.stringify(userName('Luis','Puente',30),null,2)}
+            ${JSON.stringify(userName("Luis", "Puente", 30), null, 2)}
         </p>
-        `
+        `;
 
-        codigo.innerHTML = `
+    codigo.innerHTML = `
         <p class="margen0">
             <b class="azul">function</b> <b class="golden">userName</b>(
             <b class="sky">firstname</b>, <b class="sky">lastname</b>, <b class="sky">age</b> ){
@@ -174,19 +169,18 @@ function ejecutarFunciones(tipo){
             </div>
             }
         </p>
-        `
-    }
-
+        `;
+  }
 }
 
 //CALLBACKS
 function ejecutarCallback(tipo) {
-    const consola = document.getElementById("consola-callback")
-    const codigo = document.getElementById("codigo-callback")
+  const consola = document.getElementById("consola-callback");
+  const codigo = document.getElementById("codigo-callback");
 
-    // callback
-    if(tipo == "callback"){
-        codigo.innerHTML = `
+  // callback
+  if (tipo == "callback") {
+    codigo.innerHTML = `
         <p class="margen0">
             <b>funcion que se pasa como callback</b><br>
             <b class="azul">function</b> <b class="golden">saludar(</b><b class="sky">nombre</b><b class="golden">) {</b>  <br>
@@ -203,59 +197,59 @@ function ejecutarCallback(tipo) {
             <b class="verde">//aqui se llama el callback</b><br>
             <b class="golden">}</b>
         </p>
-        `
+        `;
 
-        function procesarUsuario(callback) {
-            const nombre = "Luis";
-            callback(nombre); 
-        }
+    function procesarUsuario(callback) {
+      const nombre = "Luis";
+      callback(nombre);
+    }
 
-        function saludar(nombre) {
-            consola.innerHTML = `
+    function saludar(nombre) {
+      consola.innerHTML = `
             <b class="golden">procesarUsuario</b><b class="morado">(<b class="golden">saludar</b>)</b> <br>
             Hola ${nombre}
-            `
-        }
-        
-        procesarUsuario(saludar)
+            `;
     }
-    
-    // callback hell
-    if(tipo == "CallbackHell"){
-        consola.innerHTML = ""
 
-        function saludar(nombre,callback){
-            consola.innerHTML += `<p>Hola ${nombre}</p>`
-            callback()
-        }
-        function instruccionUno(callback){
-            consola.innerHTML += `<p>Ve a la app store</p>`
-            callback()
-        }
-        function instruccionDos(callback){
-            consola.innerHTML += "<p>Compra unos airpods</p>"
-            callback()
-        }
-        function instruccionTres(callback){
-            consola.innerHTML += "<p>Traelos a mi casa</p>"
-            callback()
-        }
-        function despedir(nombre){
-            consola.innerHTML += `<p>Adios ${nombre}</p>`
-        }
+    procesarUsuario(saludar);
+  }
 
-        saludar("David",function(){
-            instruccionUno(function(){
-                instruccionDos(function(){
-                    instruccionTres(function(){
-                        despedir("david")
-                    })
-                })
-            })
-        })
+  // callback hell
+  if (tipo == "CallbackHell") {
+    consola.innerHTML = "";
 
-        // codigo
-        codigo.innerHTML = `
+    function saludar(nombre, callback) {
+      consola.innerHTML += `<p>Hola ${nombre}</p>`;
+      callback();
+    }
+    function instruccionUno(callback) {
+      consola.innerHTML += `<p>Ve a la app store</p>`;
+      callback();
+    }
+    function instruccionDos(callback) {
+      consola.innerHTML += "<p>Compra unos airpods</p>";
+      callback();
+    }
+    function instruccionTres(callback) {
+      consola.innerHTML += "<p>Traelos a mi casa</p>";
+      callback();
+    }
+    function despedir(nombre) {
+      consola.innerHTML += `<p>Adios ${nombre}</p>`;
+    }
+
+    saludar("David", function () {
+      instruccionUno(function () {
+        instruccionDos(function () {
+          instruccionTres(function () {
+            despedir("david");
+          });
+        });
+      });
+    });
+
+    // codigo
+    codigo.innerHTML = `
         <div class="margen0">
             <b class="azul">function</b> <b class="golden">saludar</b>
             (<b class="sky">nombre</b>,<b class="sky">callback</b>){ 
@@ -318,12 +312,12 @@ function ejecutarCallback(tipo) {
             
             })
         </div>
-        `
-    }
+        `;
+  }
 
-    //Callback Hell Recursivo
-    if(tipo == "CallbackHellRecursivo"){
-        codigo.innerHTML = `
+  //Callback Hell Recursivo
+  if (tipo == "CallbackHellRecursivo") {
+    codigo.innerHTML = `
         <div>
             <b class="azul">function</b> <b class="golden">saludar</b>
             (<b class="sky">nombre</b>,<b class="sky">callback</b>){ 
@@ -374,68 +368,66 @@ function ejecutarCallback(tipo) {
             </div>
             })
         </div>
-        `
+        `;
 
-        function saludar(nombre,callback){
-            consola.innerHTML = `<p>Hola ${nombre}</p>`
-            callback(nombre)
-        }
-        function hablar(callback){
-            consola.innerHTML += `<p>bla bla bla</p>`
-            callback()
-        }
-        function adios(nombre){
-            consola.innerHTML += `<p>Adios ${nombre}</p>`
-        }
-        //recursividad
-        function conversacion(veces,nombre){
-            if(veces > 0){
-                hablar(function(){
-                    conversacion(--veces,nombre)
-                })
-            }else{
-                adios(nombre)
-            }
-        }
-
-        saludar("David",function(nombre){
-            conversacion(3,nombre)
-        })
-
+    function saludar(nombre, callback) {
+      consola.innerHTML = `<p>Hola ${nombre}</p>`;
+      callback(nombre);
     }
+    function hablar(callback) {
+      consola.innerHTML += `<p>bla bla bla</p>`;
+      callback();
+    }
+    function adios(nombre) {
+      consola.innerHTML += `<p>Adios ${nombre}</p>`;
+    }
+    //recursividad
+    function conversacion(veces, nombre) {
+      if (veces > 0) {
+        hablar(function () {
+          conversacion(--veces, nombre);
+        });
+      } else {
+        adios(nombre);
+      }
+    }
+
+    saludar("David", function (nombre) {
+      conversacion(3, nombre);
+    });
+  }
 }
 
 //CLOSURE
-const codigoClosure = document.getElementById('codigo-closure')
-const consolaClosure = document.getElementById("consola-closure")
-const botonClosure = document.querySelectorAll('.btn-closure button')
+const codigoClosure = document.getElementById("codigo-closure");
+const consolaClosure = document.getElementById("consola-closure");
+const botonClosure = document.querySelectorAll(".btn-closure button");
 
 botonClosure.forEach((btn, index) => {
-    btn.addEventListener('click',() => {
-        if(index == 0){
-            closure()
-        } else if(index == 1){
-            closure2()
-        }
-    })
-})
-
-function closure(){
-    function saludo(){
-        
-        let mensaje = "Bienvenido/a"
-        let numero = 0
-
-        function imprimir(nombre){
-            numero++
-            return `${mensaje} ${nombre}  <span class="verde">${numero}<span> <br>`
-        }
-        return imprimir
+  btn.addEventListener("click", () => {
+    if (index == 0) {
+      closure();
+    } else if (index == 1) {
+      closure2();
     }
-    
-    const users = saludo()
+  });
+});
 
-    consolaClosure.innerHTML = `
+function closure() {
+  function saludo() {
+    let mensaje = "Bienvenido/a";
+    let numero = 0;
+
+    function imprimir(nombre) {
+      numero++;
+      return `${mensaje} ${nombre}  <span class="verde">${numero}<span> <br>`;
+    }
+    return imprimir;
+  }
+
+  const users = saludo();
+
+  consolaClosure.innerHTML = `
         <p class='margen0'>
             ${users("Luis")}
         </p>
@@ -447,9 +439,9 @@ function closure(){
         <p>
             ${users("Adriana")}
         </p>
-    `
+    `;
 
-    codigoClosure.innerHTML = `
+  codigoClosure.innerHTML = `
     <p class="margenTop0">
         <b class="azul">function</b> <b class="golden">saludo(</b><b class="golden">) {</b>  <br>
         &emsp;&emsp;<b class="azul">let</b> <b class="sky">mensaje</b> = <b class="naranja">"Hola Bienvenido/a"</b> <b class="verde">// ambito lexico</b> <br>
@@ -476,40 +468,38 @@ function closure(){
         <b class="golden">users(<b class="naranja">"Sharon"</b>)</b> <br>
         <b class="golden">users(<b class="naranja">"Adriana"</b>)</b> 
     </p>
-    `
-    
+    `;
 }
 
-function closure2(){
+function closure2() {
+  function cuentaBancaria(numero) {
+    let saldo = numero;
 
-    function cuentaBancaria(numero){
-        let saldo = numero
+    return {
+      depositar(cantidad) {
+        saldo += cantidad;
+        return `Deposito ${cantidad}. Saldo actual: ${saldo}.`;
+      },
 
-        return {
-            depositar(cantidad){
-                saldo += cantidad;
-                return `Deposito ${cantidad}. Saldo actual: ${saldo}.`
-            },
-
-            retirar(cantidad) {
-                if(cantidad > saldo){
-                    return 'Fondos insuficientes'
-                }
-
-                saldo -= cantidad
-                return `Retirado ${cantidad}. Saldo actual: ${saldo}.`
-            },
-
-            consultarSaldo(){
-                return `Saldo ${saldo}`
-            }
+      retirar(cantidad) {
+        if (cantidad > saldo) {
+          return "Fondos insuficientes";
         }
-    }
 
-    // instancia
-    const miCuenta = cuentaBancaria(1000)
+        saldo -= cantidad;
+        return `Retirado ${cantidad}. Saldo actual: ${saldo}.`;
+      },
 
-    consolaClosure.innerHTML = `
+      consultarSaldo() {
+        return `Saldo ${saldo}`;
+      },
+    };
+  }
+
+  // instancia
+  const miCuenta = cuentaBancaria(1000);
+
+  consolaClosure.innerHTML = `
     <p>
         <b class="golden">cuentaBancaria</b>() <br>
         ${JSON.stringify(cuentaBancaria())} 
@@ -520,15 +510,15 @@ function closure2(){
     </p>
     <p>
         <b class="doger">miCuenta</b>.<b class="golden">depositar</b>(1000) <br>
-        ${miCuenta.depositar(1000) }
+        ${miCuenta.depositar(1000)}
     </p>
     <p>
         <b class="doger">miCuenta</b>.<b class="golden">retirar</b>(500) <br>
-        ${ miCuenta.retirar(500) }
+        ${miCuenta.retirar(500)}
     </p>
-    `
+    `;
 
-    codigoClosure.innerHTML = `
+  codigoClosure.innerHTML = `
     <p class="margen0">
         <b class="azul">function</b> <b class="golden">cuentaBancaria</b>(<b class="sky">numero</b>){
         <div class="margenIz">
@@ -569,78 +559,75 @@ function closure2(){
         <b class="azul">const</b> <b class="doger">miCuenta</b> = 
         <b class="golden">cuentaBancaria</b>(1000) 
     </p>
-    `
+    `;
 }
 
-
 //METODOS EN OBJETOS
-function ejecutarMetodo(){
+function ejecutarMetodo() {
+  const persona = {
+    nombre: "Sharon",
+    apellido: "Gamez",
+    edad: 31,
+    saludar: function () {
+      return `Hola soy ${this.nombre} ${this.apellido} y tengo ${this.edad} años`;
+    },
+  };
 
-    const persona = {
-        nombre: "Sharon",
-        apellido: "Gamez",
-        edad: 31,
-        saludar: function () {
-            return `Hola soy ${this.nombre} ${this.apellido} y tengo ${this.edad} años`
-        }
-    };
-
-    const consola = document.getElementById("consola-metodo")
-    consola.innerHTML = `
+  const consola = document.getElementById("consola-metodo");
+  consola.innerHTML = `
     <b class="doger">persona</b>.<b class="golden">saludar</b><b class="morado">()</b> <br>
     ${persona.saludar()}
-    `
-}ejecutarMetodo()
+    `;
+}
+ejecutarMetodo();
 
 //Metodos en Clases
-function ejecutarMetodoDeClase(){
-
-    class Persona {
-        constructor(nombre,hobbie) {
-            this.nombre = nombre;
-            this.hobbie = hobbie
-        }
-
-        saludar() {
-            return `Hola, soy ${this.nombre}`
-        }
-
-        instrumento() {
-            return `y toco la ${this.hobbie}`
-        }
+function ejecutarMetodoDeClase() {
+  class Persona {
+    constructor(nombre, hobbie) {
+      this.nombre = nombre;
+      this.hobbie = hobbie;
     }
 
-    const ana = new Persona("David","guitarra");
+    saludar() {
+      return `Hola, soy ${this.nombre}`;
+    }
 
-    const consola = document.getElementById("consola-metodo-clase")
-    consola.textContent = ana.saludar() + " " + ana.instrumento()
+    instrumento() {
+      return `y toco la ${this.hobbie}`;
+    }
+  }
+
+  const ana = new Persona("David", "guitarra");
+
+  const consola = document.getElementById("consola-metodo-clase");
+  consola.textContent = ana.saludar() + " " + ana.instrumento();
 }
 
 //Generadores
-function ejecutarGeneradores(tipo){
-    const consola = document.getElementById("consola-generadores")
-    //bloques
-    const bloque1 = document.getElementById("codigo-generador1")
-    const bloque2 = document.getElementById("codigo-generador2")
-    const bloque3 = document.getElementById("codigo-generador3")
+function ejecutarGeneradores(tipo) {
+  const consola = document.getElementById("consola-generadores");
+  //bloques
+  const bloque1 = document.getElementById("codigo-generador1");
+  const bloque2 = document.getElementById("codigo-generador2");
+  const bloque3 = document.getElementById("codigo-generador3");
 
-    if(tipo == "Declaracion"){
-        bloque1.style.display = "block"
-        bloque2.style.display = "none"
-        bloque3.style.display = "none"
+  if (tipo == "Declaracion") {
+    bloque1.style.display = "block";
+    bloque2.style.display = "none";
+    bloque3.style.display = "none";
 
+    function* generador() {
+      yield 10;
+      yield 20;
+      yield 30;
+    }
 
-        function* generador(){
-            yield 10  
-            yield 20  
-            yield 30 
-        }
+    //crear el generador
+    const valores = generador();
+    const valoresiterados = [...generador()];
 
-        //crear el generador
-        const valores = generador()
-        const valoresiterados = [...generador()]
-
-        consola.innerHTML = `
+    consola.innerHTML = `
         <b class="doger">valores</b> ${valores} = ${JSON.stringify(valores)} <br>
             <b class="doger">valoresiterados</b> ${JSON.stringify(valoresiterados)} <br><br>
 
@@ -651,24 +638,29 @@ function ejecutarGeneradores(tipo){
         <b class="verde">//ver propiedades</b><br>
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">done</b> ${valores.next().done} <br>
-        `
+        `;
+  } else if (tipo == "iterar-valores") {
+    bloque1.style.display = "none";
+    bloque2.style.display = "block";
+    bloque3.style.display = "none";
+
+    function* generador(array) {
+      for (let value of array) {
+        yield value;
+      }
     }
-    else if(tipo == "iterar-valores"){
-        bloque1.style.display = "none"
-        bloque2.style.display = "block"
-        bloque3.style.display = "none"
 
+    //crear el generador
+    const valores = generador([
+      "Luis",
+      "David",
+      "Sharon",
+      "Carmen",
+      "Jireh",
+      "Adriana",
+    ]);
 
-        function* generador(array){
-            for(let value of array){
-                yield value
-            }
-        }
-
-        //crear el generador
-        const valores = generador(["Luis","David","Sharon","Carmen","Jireh","Adriana"])
-
-        consola.innerHTML = `
+    consola.innerHTML = `
         <b class="verde">//ver propiedades</b><br>
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
@@ -677,65 +669,61 @@ function ejecutarGeneradores(tipo){
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
         <b class="doger">valores</b>.<b class="golden">next()</b>.<b class="sky">value</b> ${valores.next().value} <br>
-        `
-    }
-    else if(tipo == "Generar-valores"){
-        bloque1.style.display = "none"
-        bloque2.style.display = "none"
-        bloque3.style.display = "block"
+        `;
+  } else if (tipo == "Generar-valores") {
+    bloque1.style.display = "none";
+    bloque2.style.display = "none";
+    bloque3.style.display = "block";
 
-        function* obtenerId(){
-            while(true){
-                yield Math.random().toString(36).substring(5).toUpperCase()
-            }
-        }
-        const codigos = obtenerId()
-        
-        consola.innerHTML = `
-        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
-        ${codigos.next().value}<br>
-        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
-        ${codigos.next().value}<br>
-        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
-        ${codigos.next().value}<br>
-        `
+    function* obtenerId() {
+      while (true) {
+        yield Math.random().toString(36).substring(5).toUpperCase();
+      }
     }
-    
-}ejecutarGeneradores()
-
-//Arrow Function
-function ejecutarArrowFunction(){
-    const consola = document.getElementById("consola-Arrowfunction")
-
-    // funcion tradicional
-    const saludar = function(nombre){
-        return "Hola " + nombre
-    }
-    // arrow function
-    const suma = (num1,num2) => {
-        return num1 + num2
-    }
-    // arrow function con retorno implicito
-    const resta = (num1,num2) => num1 - num2
-    const multiplicar = numero => numero * 5
-    const numero = () => 45
-    // multilinea implicito
-    const multilinea = (num1,num2) => (
-        num1 * num2 + 45
-    )
+    const codigos = obtenerId();
 
     consola.innerHTML = `
+        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
+        ${codigos.next().value}<br>
+        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
+        ${codigos.next().value}<br>
+        <b class="doger">codigos</b>.<b class="golden">next()</b>.<b class="sky">value</b> <br>
+        ${codigos.next().value}<br>
+        `;
+  }
+}
+
+//Arrow Function
+function ejecutarArrowFunction() {
+  const consola = document.getElementById("consola-Arrowfunction");
+
+  // funcion tradicional
+  const saludar = function (nombre) {
+    return "Hola " + nombre;
+  };
+  // arrow function
+  const suma = (num1, num2) => {
+    return num1 + num2;
+  };
+  // arrow function con retorno implicito
+  const resta = (num1, num2) => num1 - num2;
+  const multiplicar = (numero) => numero * 5;
+  const numero = () => 45;
+  // multilinea implicito
+  const multilinea = (num1, num2) => num1 * num2 + 45;
+
+  consola.innerHTML = `
     <b class="verde">//funcion tradicional</b><br>
     <b class="golden">saludar</b><b class="morado">(</b><b class="naranja">"David"</b><b class="morado">)</b> <br>
     ${saludar("David")}<br><br>
 
     <b class="verde">//Arrow Function</b><br>
     <b class="golden">suma</b><b class="morado">(</b><b class="verde">5,7</b><b class="morado">)</b> 
-    ${suma(5,7)}<br><br>
+    ${suma(5, 7)}<br><br>
 
     <b class="verde">//Arrow Function(retorno implicito)</b><br>
     <b class="golden">resta</b><b class="morado">(</b><b class="verde">12,4</b><b class="morado">)</b> 
-    ${resta(12,4)}<br>
+    ${resta(12, 4)}<br>
 
     <b class="golden">multiplicar</b><b class="morado">(</b><b class="verde">5</b><b class="morado">)</b> 
     ${multiplicar(5)}<br>
@@ -744,8 +732,72 @@ function ejecutarArrowFunction(){
     ${numero()}<br>
 
     <b class="golden">multilinea</b><b class="morado">(</b><b class="verde">5</b><b class="morado">)</b> 
-    ${multilinea(5,3)}<br>
-    `
+    ${multilinea(5, 3)}<br>
+    `;
+}
 
-}ejecutarArrowFunction()
+// Recursion
+function ejecutarRecursion() {
+  const consola = document.getElementById("consola-Recursividad");
 
+  function factorial(num) {
+    if (num === 0) {
+      return 1;
+    }
+    return num * factorial(num - 1);
+  }
+
+  consola.innerHTML = `
+    <p>
+        <b class="golden">factorial</b><b class="morado">(</b><b class="verde">5</b><b class="morado">)</b> <br>
+        ${factorial(5)}
+    </p>
+    `;
+}
+
+// Patron RORO
+function ejecutarRORO() {
+  const consola = document.getElementById("consola-patronRORO");
+
+  function crearUsuario({ nombre, edad, pais, twiter, facebook } = {}) {
+    return {
+      nombre,
+      edad,
+      pais,
+      socialMedia: {
+        twiter,
+        facebook,
+      },
+    };
+  }
+
+  consola.innerHTML = `
+    <p>
+        <b class="golden">crearUsuario</b><b class="morado">(</b><b class="azul">{</b> <br>
+        &emsp; <b class="sky">nombre</b>: <b class="naranja">"Luis"</b>,  <br>
+        &emsp; <b class="sky">edad</b>: <b class="verde">30</b>, <br>
+        &emsp; <b class="sky">pais</b>: <b class="naranja">"Venezuela"</b>, <br>
+        &emsp; <b class="sky">twiter</b>: <b class="naranja">"@luis"</b>, <br>
+        &emsp; <b class="sky">facebook</b>: <b class="naranja">"luis.fb"</b> <br>
+        <b class="azul">}</b><b class="morado">)</b> <br> <br> 
+
+        ${JSON.stringify(
+          crearUsuario({
+            nombre: "Luis",
+            edad: 30,
+            pais: "Venezuela",
+            twiter: "@luis",
+            facebook: "luis.fb",
+          }),
+        )}
+    </p>
+    `;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  ejecutarMetodo();
+  ejecutarMetodoDeClase();
+  ejecutarArrowFunction();
+  ejecutarRecursion();
+  ejecutarRORO();
+});

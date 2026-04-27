@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../estilos.css" />
+  </head>
+  <body>
+    <nav>
+      <button onclick="window.location.href = '../../Pagina.html'">
+        Home 🏠
+      </button>
+      <button
+        onclick="window.location.href = './this.html'"
+        class="azul letra-big"
+      >
+        this
+      </button>
+    </nav>
+
+    <section>
+      <h2>This</h2>
+      <p>
+        <b class="azul letra-big">this</b> es una palabra clave especial que
+        hace referencia al contexto de ejecución actual. Dicho de otra forma,
+        señala quién está ejecutando el código en ese momento. Su valor depende
+        de cómo y dónde se invoca una función, no de dónde está escrita.
+      </p>
+
+      <ul>
+        <li>
+          dentro de un método de un objeto, <b class="letra-B">this</b> se
+          refiere al objeto que contiene el método.
+        </li>
+        <li>
+          En una función global, <b class="letra-B">this</b> se refiere al
+          objeto global (window en navegadores, global en Node.js).
+        </li>
+        <li>
+          En funciones regulares, <b class="letra-B">this</b> puede ser
+          undefined en modo estricto o referirse al objeto global en modo no
+          estricto.
+        </li>
+        <li>
+          En funciones flecha, <b class="letra-B">this</b> hereda el valor de
+          <b class="letra-B">this</b> del contexto de ejecución donde se definió
+          la función.
+        </li>
+        <li>
+          En clases: dentro de los métodos, this apunta a la instancia de la
+          clase.
+        </li>
+      </ul>
+
+      <p>
+        En resumen, <b class="azul">this</b> es una referencia dinámica que
+        cambia según el contexto de ejecución, lo que lo hace fundamental para
+        entender cómo funcionan los objetos y las funciones en JavaScript.
+      </p>
+
+      <div class="bloques-oscuros">
+        <p>
+          <b class="letra-B">// Global </b> <br />
+          console.log(this); // En navegador: Window
+        </p>
+        <p>
+          <b class="letra-B">// En un objeto</b> <br />
+          <b class="azul">const</b> <b class="doger">persona</b> = { <br />
+          &emsp; <b class="sky">nombre</b>: "Luis", <br />
+          &emsp; <b class="golden">saludar</b>() { <br />
+          &emsp; &emsp; console.log("Hola, soy " + this.nombre); <br />
+          &emsp; } <br />
+          }; <br />
+          <b class="doger">persona</b>.<b class="golden">saludar</b>(); // Hola,
+          soy Luis
+        </p>
+        <p>
+          <b class="letra-B">// Función normal</b> <br />
+          <b class="azul">function</b> <b class="golden">mostrar</b>() { <br />
+          &emsp; console.log(this); <br />
+          } <br />
+          <b class="golden">mostrar</b>(); // undefined en modo estricto, objeto
+          global en no estricto
+        </p>
+        <p>
+          <b class="letra-B">// Función flecha</b> <br />
+          <b class="azul">const</b> <b class="golden">flecha</b> = () => {
+          <br />
+          &emsp; console.log(this); <br />
+          }; <br />
+          <b class="golden">flecha</b>(); // Hereda el this del contexto donde
+          se definió
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

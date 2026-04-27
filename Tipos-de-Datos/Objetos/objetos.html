@@ -6,16 +6,44 @@
     <title>Objetos en Javascript</title>
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../index.css" />
+    <style>
+      code {
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
     <nav>
       <button onclick="window.location.href = '../../Pagina.html'">
         Home 🏠
       </button>
+      <button
+        onclick="window.location.href = './this.html'"
+        class="azul letra-big"
+      >
+        this
+      </button>
+      <button
+        onclick="
+          window.location.href =
+            './funcionConstructora/funcionConstructora.html'
+        "
+        class="azul"
+      >
+        Funciones Constructoras
+      </button>
+
+      <button
+        onclick="window.location.href = './Clases/clases.html'"
+        class="azul"
+      >
+        Clases
+      </button>
     </nav>
 
+    <!-- OBJETOS -->
     <section>
-      <h3 class="golden">Objetos</h3>
+      <h2 class="golden">Objetos</h2>
       <p>
         Los objetos en JavaScript son estructuras de datos que permiten
         almacenar información de manera más compleja que los arreglos o cadenas.
@@ -30,19 +58,21 @@
         estructurar informacion de forma organizada.
       </p>
 
-      <code class="codigo">
+      <div class="codigo">
         <p>Sintaxis</p>
-        <p>
-          <b class="azul">let </b> <b class="sky">carro</b> =
-          <b class="golden">{</b> <br />
-          &emsp;&emsp;<b class="sky">propiedad</b> :
-          <b class="naranja">"valor"</b> , <br />
-          &emsp;&emsp;<b class="golden">metodo</b> : <b class="azul">function</b
-          ><b class="morado">() {}</b><br />
-          <b class="golden">}</b>
-        </p>
-        <button class="fondo-golden">Ver mas</button>
-      </code>
+
+        <div>
+          <p>
+            <b class="azul">let </b> <b class="sky">carro</b> =
+            <b class="golden">{</b> <br />
+            &emsp;&emsp;<b class="sky">propiedad</b> :
+            <b class="naranja">"valor"</b> , <br />
+            &emsp;&emsp;<b class="golden">metodo</b> :
+            <b class="azul">function</b><b class="morado">() {}</b><br />
+            <b class="golden">}</b>
+          </p>
+        </div>
+      </div>
 
       <ul>
         <li>
@@ -52,8 +82,8 @@
         </li>
         <li>
           <b class="sky">Propiedad</b> las propiedades son como una variable
-          dentro del objeto, que pueden contener cualquier tipo de dato, estos
-          son los valores. Cada propiedad representa un atributo del objeto.
+          dentro del objeto, que pueden contener cualquier tipo de dato. Cada
+          propiedad representa un atributo del objeto.
         </li>
         <li>
           <b class="naranja">Valor</b> cualquier tipo de dato asociado a la
@@ -66,10 +96,10 @@
         </li>
       </ul>
 
-      <!-- acceder a sus valores -->
+      <!-- Obtener / Añadir / Eliminar -->
       <div class="bloques-oscuros">
-        <h4>Acceder a los valores</h4>
-        <p>
+        <h5>Obtener elementos</h5>
+        <p class="margen60">
           para acceder a los valores dentro de las propiedades tenemos dos
           fomas, una es a traves de la notacion de punto: (objeto.propiedad) ,
           (objeto.metodo). Y la otra forma es a travez de la notacion con
@@ -78,73 +108,117 @@
 
         <ul>
           <li>
-            <b class="doger">objeto</b>.<b class="sky">propiedad</b> muestra el
-            valor de la propiedad directamente. (util para obtener nombres
-            simples).
+            <code class="doger">objeto</code>.<code class="sky">propiedad</code>
+            muestra el valor de la propiedad directamente. (util para obtener
+            nombres simples).
           </li>
           <li>
-            <b class="doger">objeto</b
-            ><b class="golden">[<b class="naranja">"propiedad"</b>]</b> muestra
-            el valor de la propiedad, permite encontrar keys con nombres no
-            validos para la notacion con punto, como: (nombres-con-guiones). Es
-            mejor practica usarla cuando la key que se quiere obtener viene
+            <code class="doger">objeto</code
+            ><code class="golden"
+              >[<code class="naranja">"propiedad"</code>]</code
+            >
+            muestra el valor de la propiedad, permite encontrar keys con nombres
+            no validos para la notacion con punto, como: (nombres-con-guiones).
+            Es mejor practica usarla cuando la key que se quiere obtener viene
             desde una variable externa.
           </li>
           <li>
-            <b class="doger">objeto</b>.<b class="golden">metodo</b> muestra el
-            metodo, osea la funcion completa. para ejecutar funciones que estan
-            dentro de objetos, la llamamos mediante parentesis ().
-          </li>
-        </ul>
-
-        <h5 class="golden">Metodo <code class="aqua">Object</code></h5>
-        <p>
-          La clase Object tiene métodos que devuelven un array de las claves,
-          valores o pares clave-valor de las propiedades propias y enumerables
-          del objeto.
-        </p>
-        <ul>
-          <li>
-            <code class="aqua">Object</code>.<code class="golden"
-              >keys(<code class="letra-B">objeto</code>)</code
-            >
-            Devuelve un array con los nombres (claves) de las propiedades
-            propias y enumerables.
-          </li>
-
-          <li>
-            <code class="aqua">Object</code>.<code class="golden"
-              >values(<code class="letra-B">objeto</code>)</code
-            >
-            Devuelve un array con los valores de las propiedades propias y
-            enumerables.
-          </li>
-
-          <li>
-            <code class="aqua">Object</code>.<code class="golden"
-              >entries(<code class="letra-B">objeto</code>)</code
-            >
-            Devuelve un array de arrays [clave, valor] (pares clave-valor).
-          </li>
-
-          <li>
-            <code class="aqua">Object</code>.<code class="golden"
-              >fromEntries(<code class="letra-B">array</code>)</code
-            >
-            Este metodo devuelve un objeto a partir de un array donde sus
-            elementos son las entries en forma ["propiedad", "valor"]. Se
-            considera la operación inversa de Object.entries.
-          </li>
-
-          <li>
-            <code class="aqua">Object</code>.<code class="golden"
-              >assign(<code class="letra-B">{}</code>)</code
-            >
+            <code class="doger">objeto</code>.<code class="golden">metodo</code>
+            muestra el metodo, osea la funcion completa. para ejecutar funciones
+            que estan dentro de objetos, la llamamos mediante parentesis ().
           </li>
         </ul>
       </div>
 
-      <h5>Objetos anidados</h5>
+      <div class="bloques-oscuros">
+        <h5>Añadir propiedades o metodos</h5>
+        <p class="margen60">
+          Al igual que asignamos valores a las variables, en los objetos se hace
+          mediante el operador de asignacion: (objeto.propiedadnueva = valor) .
+          primero se escribe el objeto y seguido del punto el nuevo atributo o
+          metodo del mismo. Si la propiedad no existe, se crea con el valor
+          especificado, si ya existe, se actualiza con el nuevo valor.
+        </p>
+        <p>
+          Para añadir un nuevo método, se asigna una función a una nueva
+          propiedad del objeto. Esto permite que el objeto tenga nuevas
+          capacidades o comportamientos definidos por esa función.
+        </p>
+
+        <div class="sintaxis margen60">
+          <b class="doger">objeto</b>.<b class="sky">propiedad</b> =
+          <b class="verde">valor</b> || <b class="doger">objeto</b>.<b
+            class="golden"
+            >metodo</b
+          >
+          =
+          <b class="azul">function</b>
+        </div>
+      </div>
+
+      <div class="bloques-oscuros">
+        <h5>Eliminar propiedades o metodos</h5>
+        <p class="margen60">
+          <code class="azul letra-big">delete</code> es un operador que sirve
+          para eliminar propiedades o métodos de un objeto. Devuelve true si la
+          operacion fue exitosa, aunque no siempre significa que la propiedad
+          desaparecio (hay casos especiales).
+        </p>
+        <div class="sintaxis">
+          <b class="azul">delete</b> <b class="doger">objeto</b>.<b class="sky"
+            >propiedad</b
+          >/<b class="golden">metodo</b>
+        </div>
+      </div>
+
+      <!-- metodos  -->
+      <div class="bloques-oscuros">
+        <h4>Metodos de los <span class="golden">Objetos</span></h4>
+        <p>
+          Los métodos de los objetos son funciones internas que están asociadas
+          directamente a un objeto y que permiten interactuar, manipular o
+          consultar sus propiedades y comportamientos.
+        </p>
+        <p>
+          En otras palabras, son operaciones que un objeto puede ejecutar sobre
+          sí mismo o sobre sus datos, como verificar si tiene una propiedad,
+          obtener sus claves, copiarlo, congelarlo, etc.
+        </p>
+
+        <p class="margen60">
+          <code class="golden letra-big">hasOwnProperty</code>
+          es una función propia de los objetos en JavaScript que sirve para
+          verificar si un objeto tiene una propiedad específica como propiedad
+          directa, es decir, que no fue heredada de su prototipo.
+        </p>
+        <div class="sintaxis">
+          <b class="doger">objeto</b>.<b class="golden">hasOwnProperty</b>(<b
+            class="sky"
+            >propiedad</b
+          >)
+        </div>
+      </div>
+
+      <!-- botones -->
+      <div class="control-consola">
+        <button onclick="ejecutarObjeto('objeto')">
+          Acceder a los valores
+        </button>
+        <button onclick="ejecutarObjeto('Seccion-añadir-propiedad')">
+          Añadir / Eliminar
+        </button>
+        <button onclick="ejecutarObjeto('Property-Shorthand')">
+          Property Shorthand
+        </button>
+      </div>
+      <!-- codigo -->
+      <div class="codigo-consola">
+        <div id="codigo-objetos"></div>
+
+        <div id="consola-objeto"></div>
+      </div>
+
+      <h5 class="margen100">Objetos anidados</h5>
       <li>
         entre los tipos de datos que puede contener un objeto, incluye la
         anidacion de otros objetos, que se convierten en una propiedad mas del
@@ -156,47 +230,33 @@
         anidado.
       </li>
 
-      <h5>Añadir propiedades o metodos</h5>
-      <li>
-        al igual que asignamos valores a las variables, en los objetos se hace
-        mediante el operador de asignacion: (objeto.propiedadnueva = valor) .
-        <b class="doger">automovil</b>.<b class="sky">año</b> =
-        <b class="verde">2022</b> primero se escribe el objeto y seguido del
-        punto el nuevo atributo del mismo. <b class="doger">automovil</b>.<b
-          class="golden"
-          >metodo</b
-        >
-        = <b class="azul">function</b> primero se escribe el objeto y seguido
-        del punto el nuevo metodo del mismo.
-      </li>
-
-      <h5>Borrar propiedades o metodos</h5>
-      <li>
-        <b class="azul letra-big">delete</b> es un operador que sirve para
-        eliminar propiedades o métodos de un objeto, <b class="azul">delete</b>
-        <b class="doger">objeto</b>.<b class="sky">propiedad</b>/<b
-          class="golden"
-          >metodo</b
-        >. Devuelve true si la operacion fue exitosa, aunque no siempre
-        significa que la propiedad desaparecio (hay casos especiales).
-      </li>
-
-      <h5>Objetos Literales</h5>
+      <h5 class="margen60">Objetos Literales</h5>
       <p>
         Es la forma directa de crear un objeto usando llaves {} para agrupar
         pares clave-valor. Es la manera más común de definir objetos sin
-        necesidad de usar clases o funciones constructoras. consiste en crear
-        objetos a partir de variables que ya estan definidas por fuera, esto
-        evita la necesidad de repetir variables internas que guarden valores
-        externos, sino que javascript creara la propiedad a partir del nombre de
-        la variable con su respectivo valor.
-      </p>
-      <p>
-        Los objetos literales en JavaScript son mutables: puedes añadir o
-        actualizar en cualquier momento.
+        necesidad de usar clases o funciones constructoras. Los objetos
+        literales en JavaScript son mutables: puedes añadir o actualizar en
+        cualquier momento. Son ideales para representar datos estructurados de
+        forma rápida y sencilla, como configuraciones, respuestas de APIs o
+        cualquier entidad que no requiera métodos complejos.
       </p>
 
-      <h5>Optional Chaining</h5>
+      <h5 class="margen60">Property Shorthand (abreviatura)</h5>
+      <p>
+        consiste en crear objetos a partir de variables que ya estan definidas
+        por fuera, esto evita la necesidad de repetir variables internas que
+        guarden valores externos, sino que javascript creara la propiedad a
+        partir del nombre de la variable con su respectivo valor.
+      </p>
+      <p>
+        Tambien se puede usar esta abreviatura para enviar objetos como
+        argumentos a funciones, en este caso se debe esperar un objeto con las
+        propiedades que se quieren obtener, y al enviar el objeto como
+        argumento, se puede usar la abreviatura para no repetir cada propiedad
+        del objeto.
+      </p>
+
+      <h5 class="margen60">Optional Chaining</h5>
       <p>
         Cuando intentas acceder a propiedades de un objeto que no existen,
         JavaScript te retornará undefined. Al acceder a una propiedad más
@@ -212,7 +272,7 @@
       </p>
 
       <!-- Desestructuracion de objetos -->
-      <h4 class="letra-B">
+      <h4 class="margen150">
         Desestructuracion de <span class="golden">Objetos</span>
       </h4>
       <p>
@@ -224,574 +284,291 @@
         esta manera se obtienen directamente.
       </p>
 
-      <!-- botones -->
-      <div class="control-consola">
-        <button onclick="ejecutarObjeto('objeto')">
-          Acceder a los valores
-        </button>
-        <button onclick="ejecutarObjeto('añadir-propiedad')">
-          Añadir / Eliminar propiedades
-        </button>
-        <button onclick="ejecutarObjeto('desestructurar')">
-          Desestructurar
-        </button>
-        <button onclick="ejecutarObjeto('objetos-literales')">
-          Objetos Literales
-        </button>
-      </div>
       <!-- codigo -->
-      <div class="codigo-consola" style="margin-top: 0">
-        <div id="codigo-objetos"></div>
+      <div class="codigo-consola margen60">
+        <div>
+          <b class="azul">const</b> <b class="doger">automovil</b> =
+          <b class="golden">{</b> <br />
+          &emsp;&emsp;<b class="sky">marca:</b> <b class="naranja">"Toyota"</b>,
+          <br />
+          &emsp;&emsp;<b class="sky">modelo:</b>
+          <b class="naranja">"Corolla"</b>, <br />
+          &emsp;&emsp;<b class="sky">direccion:</b> <b class="morado">{</b
+          ><b class="sky">calle:</b> <b class="verde">200</b>,
+          <b class="sky">carrera:</b> <b class="verde">22</b
+          ><b class="morado">}</b>, <br />
+          <b class="golden">}</b><br /><br />
 
-        <div id="consola-objeto" style="width: 700px"></div>
-      </div>
+          <b>Desestrucrurar</b><br />
+          <b class="azul">const</b> <b class="golden">{</b
+          ><b class="sky">marca</b>, <b class="sky">modelo</b>,
+          <b class="sky">direccion</b>:<b class="morado">{</b
+          ><b class="sky">calle</b>, <b class="sky">carrera</b
+          ><b class="morado">}</b><b class="golden">}</b> =
+          <b class="doger">automovil</b> <br /><br />
 
-      <div>
-        <!-- funcion constructora -->
-        <h4 class="azul">Funcion constructora</h4>
-        <p>
-          una función constructora es una forma de crear múltiples objetos con
-          estructura similar sin necesidad de duplicar código. Funciona como una
-          plantilla, que tiene una estructura y comportamiento. La función
-          constructora tiene ciertas caracteristicas:
-        </p>
-        <ul>
-          <li>
-            <span class="letra-B">Estructura como una función regular:</span>
-            Aunque tiene nombre específico, la estructura es similar a una
-            función regular, pasando los datos necesarios como parámetros.
-          </li>
-          <li>
-            <b class="aqua">Nombre</b> Iniciamos el nombre de la función
-            constructora con la primera letra en mayúscula para indicar que esta
-            función se utilizará para crear objetos, y que se debe invocar con
-            "new".
-          </li>
-          <li>
-            <b class="sky">parametros</b> una o mas variables que definen los
-            datos (valores) necesarios para construir la instancia.
-          </li>
-          <li>
-            <b class="azul">this</b> se usa para asignar propiedades especificas
-            del nuevo objeto.
-          </li>
-          <li>
-            <b class="azul">new</b> invoca la funcion constructora, y crea un
-            objeto vacio que sera la nueva instancia y esta recibira los
-            argumentos que pasara a las propiedades del "this". Finalmente
-            devuelve el objeto, que podemos guardar en una variable.
-          </li>
-        </ul>
+          <b>cambiar nombres</b><br />
+          <b class="azul">const</b> <b class="golden">{</b
+          ><b class="sky">marca</b>: <b class="sky">brand</b
+          ><b class="golden">}</b> = <b class="doger">automovil</b> <br /><br />
 
-        <code class="codigo">
-          <p>Sintaxis</p>
-          <p>
-            <b class="azul">function</b> <b class="aqua">Nombre</b
-            ><b class="golden">(</b><b class="sky">parametros</b
-            ><b class="golden">) {</b> <br />
+          <b>enviar a funcion</b><br />
+          <b class="azul">function</b> <b class="golden">auto(</b
+          ><b class="morado">{</b><b class="sky">marca</b>,
+          <b class="sky">modelo</b>, <b class="sky">direccion</b
+          ><b class="morado">}</b><b class="golden">) {</b>
 
-            &emsp;&emsp;<b class="azul">this</b>.<b class="sky">propiedad</b> =
-            <b class="sky">parametros</b><br />
-            <b class="golden">}</b><br /><br />
-
-            <b class="azul">new</b> <b class="aqua">Nombre</b
-            ><b class="golden">(</b><b class="naranja">argumentos</b
-            ><b class="golden">)</b>
-          </p>
-          <button
-            class="fondo-golden"
-            onclick="mostrarExplicacion('explicaciom-funcionConstructora')"
-          >
-            Explicacion
-          </button>
-        </code>
-
-        <div style="display: none" id="explicaciom-funcionConstructora">
-          <div class="codigo-consola">
-            <div>
-              <code>
-                <b class="azul">function</b> <b class="aqua">Persona</b
-                ><b class="golden">(</b><b class="sky">nombre</b>,
-                <b class="sky">edad</b><b class="golden">) {</b> <br />
-
-                &emsp;&emsp;<b class="azul">this</b>.<b class="sky">nombre</b> =
-                <b class="sky">nombre</b><br />
-                &emsp;&emsp;<b class="azul">this</b>.<b class="sky">edad</b> =
-                <b class="sky">edad</b><br />
-                <b class="golden">}</b><br /><br />
-
-                <b class="azul">const</b> <b class="doger">persona1</b> =
-                <b class="azul">new</b> <b class="aqua">Persona</b
-                ><b class="golden">(</b><b class="naranja">"Luis"</b>,
-                <b class="verde">30</b><b class="golden">)</b><br />
-
-                <b class="azul">const</b> <b class="doger">persona2</b> =
-                <b class="azul">new</b> <b class="aqua">Persona</b
-                ><b class="golden">(</b><b class="naranja">"Sharon"</b>,
-                <b class="verde">31</b><b class="golden">)</b><br />
-
-                <b class="azul">const</b> <b class="doger">persona3</b> =
-                <b class="azul">new</b> <b class="aqua">Persona</b
-                ><b class="golden">(</b><b class="naranja">"Adriana"</b>,
-                <b class="verde">28</b><b class="golden">)</b><br /><br />
-
-                <b>añadir propiedad individual:</b> <br />
-                <b class="doger">persona1</b>.<b class="sky">ciudad</b> =
-                <b class="naranja">"Merida"</b> <br /><br />
-                <b>añadir propiedad y metodo al "prototype":</b> <br />
-                <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
-                  class="sky"
-                  >pais</b
-                >
-                = <b class="naranja">"Venezuela"</b> <br />
-                <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
-                  class="golden"
-                  >saludar</b
-                >
-                = <b class="azul">function</b><b class="morado">() {</b>
-                <br />
-                &emsp;&emsp;<b class="morado">return</b>
-                <b class="naranja">`Soy</b> <b class="azul">${this</b>.<b
-                  class="sky"
-                  >nombre</b
-                ><b class="azul">}</b> <b class="naranja">tengo</b>
-                <b class="azul">${this</b>.<b class="sky">edad</b
-                ><b class="azul">}</b> <b class="naranja">y soy de</b>
-                <b class="azul">${this</b>.<b class="sky">pais</b
-                ><b class="azul">}</b> <br />
-                <b class="morado">}</b> <br />
-
-                <button onclick="ejecutarFuncionConstructora()">
-                  <b>console.log</b>
-                </button>
-              </code>
-            </div>
-
-            <div>
-              <code>
-                <p>
-                  <b class="doger">persona1</b> + <b class="golden">saludar()</b
-                  ><br />
-                  <b id="consola-funcionConstructora"></b><br /><br />
-
-                  <b class="doger">persona2</b> + <b class="golden">saludar()</b
-                  ><br />
-                  <b id="consola-funcionConstructora2"></b><br /><br />
-
-                  <b class="doger">persona3</b> + <b class="golden">saludar()</b
-                  ><br />
-                  <b id="consola-funcionConstructora3"></b><br /><br />
-                </p>
-              </code>
-            </div>
-          </div>
-
-          <ul>
-            <li><b class="letra-B">Estructura</b></li>
-            <li>
-              <b class="azul">function</b> <b class="aqua">Persona</b> tiene la
-              estructura parecida a una funcion regular, pero la primera letra
-              del nombre de la funcion debe ser mayuscula, recibe parametros que
-              utilizara para la construccion de la nueva instancia.
-            </li>
-            <li>
-              <b class="azul">this</b>.<b class="sky">nombre</b> y
-              <b class="azul">this</b>.<b class="sky">edad</b> crean las
-              propiedades "nombre y edad" que seran utilizados en todas las
-              instancias, estos reciben sus valores desde los parametros.
-            </li>
-          </ul>
-          <ul>
-            <li><b class="letra-B">Llamado de funcion</b></li>
-            <li>
-              <b class="azul">new</b> <b class="aqua">Persona</b> invoca la
-              funcion, y crea un objeto vacio con las propiedades del this. Como
-              devuelve un valor, podemos guardarlo en una variable para luego
-              manipular ese objeto.
-            </li>
-            <li>
-              <b class="golden">(</b><b class="naranja">"Luis"</b>,
-              <b class="verde">30</b><b class="golden">)</b> y manda estos
-              argumentos que corresponden en orden a los parametros que recibe
-              la funcion, y son los valores que tomaran las propiedades.
-            </li>
-          </ul>
-          <ul>
-            <li><b class="letra-B">Añadir propiedades y metodos</b></li>
-            <li>
-              Inidividual: para añadir una propiedad a una instancia particular
-              sin afectar a las demas, simplemente accedemos al objeto y
-              añadimos la nueva propiedad: (objeto.propiedadnueva = valor)
-            </li>
-            <li>
-              Generales: para agregar propiedades a todas las instancias:
-              (funcion-constructora.<span class="sky">prototype</span>.propiedad
-              y valor).
-            </li>
-            <li>
-              <b class="sky">prototype</b> es una propiedad que tienen todas las
-              funciones, el prototipo es el objeto que sera usado por todas las
-              instancias creadas por "new". Con el podemos agregar propiedades y
-              metodos a todas las instancias,
-              <span class="letra-B"
-                >pero no seran parte del objeto, sino del "prototype" de la
-                funcion</span
-              >.
-            </li>
-            <li>
-              <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
-                class="sky"
-                >pais</b
-              >
-              y <b class="aqua">Persona</b>.<b class="sky">prototype</b>.<b
-                class="golden"
-                >saludar</b
-              >
-              no son visibles en el objeto, pero existen en la propiedad
-              prototype de la funcion, cuando accedemos a propiedades o metodos
-              de una instancia, Javascript busca primero en el objeto
-              directamente, si no esta, busca en el "prototype", y los usa en
-              las instancias.
-            </li>
-          </ul>
+          <br />&emsp;&emsp;<b class="morado">return</b>
+          <b class="naranja">'</b> <b class="golden">$(</b
+          ><b class="sky">marca</b><b class="golden">)</b>
+          <b class="golden">$(</b><b class="sky">modelo</b
+          ><b class="golden">)</b> <b class="golden">$(</b
+          ><b class="sky">direccion</b>.<b class="sky">calle</b
+          ><b class="golden">)</b>
+          <b class="naranja">'</b>
+          <br /><b class="golden">}</b>
         </div>
+        <div id="consola-desestructuracion"></div>
       </div>
+    </section>
 
-      <!-- Clases -->
-      <div>
-        <h4 class="azul">Clases</h4>
-        <p>
-          ofrecen una sintaxis diferente a las funciones constructoras, lo que
-          quiere decir que tambien permiten crear una plantilla que sera el
-          molde para crear multiples instancias de un objeto. Esta nueva forma
-          se le llama "sugar syntax" porque resulta mas intuitiva y familiar
-          debido a su parecido con el lenguaje de programacion Java.
-        </p>
+    <!-- función constructora object -->
+    <section>
+      <h3>Función constructora <span class="aqua">Object</span></h3>
+      <p class="margen60">
+        Es una función constructora global en JavaScript. Es la base de la
+        mayoría de los objetos en JavaScript, ya que todos los objetos creados
+        (literales, instancias de clases, arrays, funciones, etc.) heredan
+        directamente o indirectamente de
+        <b class="letra-B">Object.prototype</b>. Proporciona métodos estáticos y
+        propiedades que permiten manipular y trabajar con objetos de manera
+        eficiente.
+      </p>
 
-        <code class="codigo">
-          <p>Sintaxis</p>
-          <p>
-            <b>Declaracion</b><br />
-            <b class="azul">class</b> <b class="aqua">Nombre</b
-            ><b class="golden">{</b> <br />
-            &emsp;&emsp;<b class="azul">constructor</b><b class="morado">(</b
-            ><b class="sky">parametros</b><b class="morado">) {</b> <br />
+      <ul>
+        <li>
+          Como <b class="letra-B">función constructora</b>, permite crear nuevos
+          objetos.
+        </li>
+        <li>
+          Como <b class="letra-B">objeto global</b>, ofrece métodos estáticos
+          para manipular y controlar objetos.
+        </li>
+      </ul>
 
-            &emsp;&emsp;&emsp;&emsp;<b class="azul">this</b>.<b class="sky"
-              >propiedad</b
+      <h4 class="margen100">Metodos Estaticos</h4>
+      <p>
+        Los métodos estáticos en JavaScript son herramientas de clase, no de
+        instancia. Se usan para lógica compartida, utilidades y patrones de
+        diseño como fábricas o contadores. No requieren instanciación y se
+        acceden directamente a través de la clase, lo que los hace ideales para
+        funciones que no dependen del estado de un objeto específico. Son
+        fundamentales para organizar el código y promover la reutilización.
+      </p>
+
+      <table>
+        <tr>
+          <th>Métodos estáticos</th>
+          <th>Descripción</th>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="golden"
+              >keys(<code class="letra-B">objeto</code>)</code
             >
-            = <b class="sky">parametros</b><br />
-            &emsp;&emsp;<b class="morado">}</b><br />
+          </td>
+          <td>
+            Devuelve un array con los nombres (claves) de las propiedades
+            propias y enumerables.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="golden"
+              >values(<code class="letra-B">objeto</code>)</code
+            >
+          </td>
+          <td>
+            Devuelve un array con los valores de las propiedades propias y
+            enumerables.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="golden"
+              >entries(<code class="letra-B">objeto</code>)</code
+            >
+          </td>
+          <td>
+            Devuelve un array de arrays [clave, valor] (pares clave-valor).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="golden"
+              >fromEntries(<code class="letra-B">array</code>)</code
+            >
+          </td>
+          <td>
+            Devuelve un objeto a partir de un array donde sus elementos son las
+            entries en forma ["propiedad", "valor"]. Se considera la operación
+            inversa de Object.entries.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="golden"
+              >assign(<code class="letra-B">{}</code>)</code
+            >
+          </td>
+          <td>Asigna propiedades de uno o más objetos a otro objeto.</td>
+        </tr>
+      </table>
 
-            &emsp;&emsp;<b class="golden">metodo</b><b class="morado">() {}</b>
+      <h4 class="margen100">Metodos de prototype</h4>
+      <p>
+        Los métodos de prototype son funciones que pueden ser utilizadas por
+        todas las instancias de un objeto creado a partir de una función
+        constructora. Estos métodos se definen en el objeto prototype de la
+        función constructora, lo que permite que todas las instancias compartan
+        el mismo código para esos métodos, en lugar de tener una copia de la
+        función en cada instancia.
+      </p>
+      <p>
+        Esto es especialmente útil para ahorrar memoria y mejorar el
+        rendimiento, ya que las instancias pueden acceder a los métodos a través
+        de la cadena de prototipos. Además, los métodos de prototype permiten la
+        herencia, lo que significa que las instancias pueden heredar métodos de
+        su función constructora y de cualquier función constructora en la cadena
+        de prototipos.
+      </p>
+
+      <table>
+        <tr>
+          <th>Métodos de prototype</th>
+          <th>Descripción</th>
+        </tr>
+        <tr>
+          <td><code class="golden">hasOwnProperty</code>(prop)</td>
+          <td>
+            Verifica si el objeto tiene una propiedad específica como propiedad
+            directa, es decir, que no fue heredada de su prototipo.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="golden">isPrototypeOf</code>(prop)</td>
+          <td>
+            Verifica si un objeto es parte de la cadena de prototipos de otro
+            objeto.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="golden">propertyIsEnumerable</code>(prop)</td>
+          <td>
+            Verifica si una propiedad es enumerable, es decir, si se puede
+            iterar sobre ella con un bucle for...in.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="golden">toString()</code>
+          </td>
+          <td>
+            Devuelve una cadena que representa al objeto. Es comúnmente
+            sobrescrito para proporcionar una representación personalizada del
+            objeto.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="golden">valueOf()</code>
+          </td>
+          <td>
+            Devuelve el valor primitivo del objeto. Al igual que toString, a
+            menudo se sobrescribe para proporcionar un valor personalizado.
+          </td>
+        </tr>
+      </table>
+
+      <!-- codigo -->
+      <div class="control-consola margen100">
+        <button id="constructor">Constructor</button>
+        <button id="metodos-estaticos">Metodos Estáticos</button>
+        <button id="metodos-prototype">Metodos de Prototype</button>
+      </div>
+      <div class="codigo-consola">
+        <div id="codigo-Object">
+          <p>
+            <b class="azul">const</b> <b class="doger">usuario</b> =
+            <b class="azul">new</b> <b class="aqua">Object</b>(); <br />
             <br />
-            <b class="golden">}</b><br /><br />
-
-            <b>Instancia</b><br />
-            <b class="azul">new</b> <b class="aqua">Nombre</b
-            ><b class="golden">(</b><b class="naranja">argumentos</b
-            ><b class="golden">)</b>
-          </p>
-          <button
-            class="fondo-golden"
-            onclick="mostrarExplicacion('explicacion-clases')"
-          >
-            Explicacion
-          </button>
-        </code>
-
-        <div id="explicacion-clases" style="display: block">
-          <ul>
-            <li>
-              <b class="azul">class</b> define un plano o plantilla para crear
-              objetos a partir de ahi. Facilita la estructura ya que permite
-              separar claramente las propiedades y los metodos.
-            </li>
-            <li>
-              <b class="aqua">Nombre</b> indica el nombre de la clase, que por
-              convencion, inicia con <span class="letra-B">mayuscula</span>.
-            </li>
-            <li>
-              <b class="golden">llaves{}</b> definen el cuerpo de la clase, en
-              donde se encuentra el metodo constructor y los metodos que
-              definamos.
-            </li>
-            <li>
-              <b class="azul">constructor</b> es un metodo especial que se
-              ejecuta al crear una nueva instancia de la clase, se usa para
-              inicializar propiedades.
-            </li>
-            <li>
-              <b class="azul">this</b> se refiere al objeto actual, asi se
-              asignan valores a las propiedades del objeto.
-            </li>
-            <li>
-              <b class="golden">Metodos</b> se definen como funciones dentro de
-              la clase, no necesitan la palabra "function", pueden acceder al
-              this, osea al contexto de la clase, para usar sus propiedades y
-              valores.
-            </li>
-            <li>
-              <b class="azul">new</b> es la palabra clave para crear las
-              intancias de la clase y con sus valores, esta retorna un objeto
-              con las propiedades del this.
-            </li>
-          </ul>
-
-          <h6 class="letra-B">
-            Creacion del prototipo con <b class="azul">constructor</b>
-          </h6>
-          <li>
-            En Javascript un prototipo es un objeto del cual otros objetos
-            heredan propiedades y metodos, los generan las funciones y clases
-            constructoras al crearlas, que se usa como un molde para crear
-            instancias de objetos.
-          </li>
-
-          <h6 class="letra-B">
-            Creacion de la instacia con <b class="azul">new</b>
-          </h6>
-          <li>
-            cuando nesecitas crear una instacia de un objeto a partir de un
-            clase constructora, usamos (new + nombreClase(valores)) primero new
-            hereda las propiedades y metodos del prototipo creado y luego con
-            los valores especificados, se llena ese "molde" con datos que
-            requiereas. new devolvera un objeto, que es la nueva instacia, y
-            podemos guardarla en una variable para su manipulacion.
-          </li>
-
-          <h6 class="letra-B">
-            Herencias con <b class="azul">extends</b> y
-            <b class="azul">super</b>
-          </h6>
-          <li>
-            es la capacidad que tienen las instancias y otras clases de tomar
-            propiedades o metodos (heredarlas) del prototipo de otra funcion.
-            Esto ocurre naturalmente cuando invocamos new para crear una nueva
-            instacia, pero si necesitamos que otra clase que no sea una instacia
-            herede propiedades y metodos de otra, necesitaremos otra sintaxis y
-            palabras clave:
-          </li>
-
-          <p>
-            <b class="azul letra-big">extends</b> se usa en clases para crear
-            una herencia entre una clase hija y una clase padre. Es decir,
-            permite que una clase herede propiedades y métodos de otra, lo que
-            significa que hereda el construtor. Otra capacidad es que puede
-            sobreescribir sus metodos con su propia version.
-          </p>
-          <p>
-            <b class="azul letra-big">super</b> se usa dentro de una clase hija
-            (clase que extiende de otra), para acceder a el constructor de la
-            clase padre, o a los metodos. Funciona escribiendo las propiedades o
-            metodos entre parentesis que se quieren heredar:
-            super(propiedad,propiedad) , super.metodo(). Aunque si una clase
-            extiende otra, hereda todos los metodos publicos de la clase padre
-            automaticamente, podemos usar super para llamar metodos especificos.
-          </p>
-          <li>
-            En caso no heredemos una propiedad (argumento), este asumirá un
-            valor de undefined. Al heredad propiedades con super(), debemos
-            mantener el orden de los argumentos declarados y caso quisiéramos
-            ignorar alguno, le asignamos undefined.
-          </li>
-
-          <h5 class="letra-B">
-            Metodos <span class="golden">get</span> y
-            <span class="golden">set</span>
-          </h5>
-          <p>
-            tambien conocidos como getters y setters son dos metodos de las
-            clases que permiten obtener (get), y asignar (set), valores de las
-            propiedades de una clase de forma segura. En otras palabras son
-            propiedades de acceso que ejecutan una funcion, y deben tener un
-            nomber propio que sera el usado para su invocacion.
-          </p>
-
-          <!-- botones -->
-          <div style="height: 58px; margin: 100px 0 0">
-            <button
-              onclick="ejecutarClases('Declaracion-instancias')"
-              class="btn-cambiar-consola"
-            >
-              Declarar clases e instancias
-            </button>
-            <button
-              onclick="ejecutarClases('herencia')"
-              class="btn-cambiar-consola"
-            >
-              Herencia de clases
-            </button>
-            <button
-              onclick="ejecutarClases('getYset')"
-              class="btn-cambiar-consola"
-            >
-              Get y Set
-            </button>
-            <button
-              onclick="ejecutarClases('ConstruirArray')"
-              class="btn-cambiar-consola"
-            >
-              Construir un array
-            </button>
-            <button
-              onclick="ejecutarClases('ConstruirArray2')"
-              class="btn-cambiar-consola"
-            >
-              Construir un array 2
-            </button>
-          </div>
-          <!-- codigo -->
-          <div class="codigo-consola" style="margin-top: 0">
-            <div>
-              <code id="codigo-clases"> </code>
-            </div>
-
-            <div style="width: 750px">
-              <code>
-                <b id="consola-class"></b>
-              </code>
-            </div>
-          </div>
-          <div id="notas-clases" class="notas" style="display: none"></div>
-        </div>
-      </div>
-
-      <!-- Formato JSON -->
-      <div>
-        <h4 class="letra-B">Formato <span class="sky">JSON</span></h4>
-        <p>
-          JSON (JavaScript Object Notation) es un formato de texto ligero para
-          representar datos estructurados, inspirado en la sintaxis de objetos
-          de JavaScript pero independiente del lenguaje. Se usa para guardar y
-          transmitir información entre aplicaciones (por ejemplo, cliente y
-          servidor) porque es fácil de leer para personas y máquinas.
-        </p>
-        <p>
-          JSON se convirtió en el estándar de facto para intercambio de datos en
-          la web porque es compacto, simple de parsear en la mayoría de los
-          lenguajes y encaja muy bien con las APIs y operaciones asíncronas
-          (AJAX) que evitan recargas completas de página.
-        </p>
-
-        <code class="codigo">
-          <p>Sintaxis</p>
-          <p>
-            <b>{</b><br />
-            &emsp;&emsp;<b class="naranja">"nombre"</b>:
-            <b class="naranja">"luis"</b>, <br />
-            &emsp;&emsp;<b class="naranja">"edad"</b>: <b class="verde">32</b>,
+            <b class="doger">usuario</b>.<b class="sky">nombre</b> = "David";
             <br />
-            &emsp;&emsp;<b class="naranja">"compras"</b>: [<b class="naranja"
-              >"leche"</b
-            >,<b class="naranja">"pan"</b>], <br />
-            &emsp;&emsp;<b class="naranja">"activo"</b>:
-            <b class="azul">true</b> <br />
-            <b>}</b>
+            <b class="doger">usuario</b>.<b class="sky">apellido</b> = "Puente";
+            <br />
+            <b class="doger">usuario</b>.<b class="sky">edad</b> = 30; <br />
+            <b class="doger">usuario</b>.<b class="sky">hobbies</b> =
+            ["programar", "jugar", "correr"]; <br />
+            <b class="doger">usuario</b>.<b class="golden">saludar</b> =
+            function () { <br />
+            &emsp; <b class="morado">return</b> `Hola, mi
+            <b class="sky">nombre</b> es ${<b class="azul">this</b>.<b
+              class="sky"
+              >nombre</b
+            >} ${<b class="azul">this</b>.<b class="sky">apellido</b>}.`; <br />
+            };
           </p>
-          <p></p>
-        </code>
-
-        <ul>
-          <li>
-            Un documento JSON es texto plano; la raíz puede ser un objeto { ...
-            } o un arreglo [ ... ].
-          </li>
-          <li>
-            las propiedades deben ser cadenas con comillas dobles, seguidas por
-            (:)
-          </li>
-          <li>
-            El valor que almacenan puede ser de estos tipos (cadena, número,
-            booleano, null, objeto o arreglo).
-          </li>
-          <li>
-            Las cadenas de texto deben llevar comillas dobles; no se permiten
-            comillas simples.
-          </li>
-        </ul>
-
-        <h5 class="letra-B margen100">
-          <span class="golden">Metodos</span> JSON
-        </h5>
-        <p>
-          En Javascript tenemos una serie de métodos que nos facilitan la tarea
-          de pasar de de Javascript a JSON y viceversa, pudiendo trabajar con
-          contenido de tipo (que contenga un JSON) y objetos Javascript según
-          interese.
-        </p>
-
-        <h6 style="margin-bottom: 0">
-          <code class="sky">JSON</code>.<code class="golden"
-            >parse(<b class="naranja">JSONstring</b>)</code
-          >
-        </h6>
-        <p>
-          permite pasar el contenido de texto de un JSON a un objeto, la accion
-          de convertir json a objeto javascript se le suele denominar
-          <b>parsear</b>. Es una accion que analiza un string que contiene un
-          json valido y devuelve un objeto javascript con dicha informacion
-          correctamente estructurada.
-        </p>
-
-        <h6 style="margin-bottom: 0">
-          <code class="sky">JSON</code>.<code class="golden"
-            >stringify(<b class="letra-B">Objeto</b>)</code
-          >
-        </h6>
-        <p>
-          realiza la operacion inversa, convertir un objeto javascript a json
-          (contenido de texto con el json en cuestion), tambien puede recibir
-          dos parametros mas: un array que actuara de filtro a la hora de
-          generar el objeto, en el especificamos los atributos del objeto que
-          queremos traer. Por ultimo el tercer parametro que indica el numero de
-          espacios (identacion) que quieres usar para crear el string.
-        </p>
-
-        <div class="codigo-consola">
-          <div>
-            <code>
-              <b class="azul">const</b> <b class="doger">json</b> =
-              <b class="naranja"
-                >'{"nombre": "luis", "apellido": "Puente" , "edad": 32}'</b
-              ><br /><br />
-
-              <b class="letra-B">Convertir JSON a Objeto</b><br />
-              <b class="azul">const</b> <b class="doger">parseado</b> =
-              <b class="sky">JSON</b>.<b class="golden"
-                >parse(<b class="doger">json</b>)</b
-              ><br /><br />
-
-              <b class="letra-B">Convertir objetos a JSON</b><br />
-              <b class="sky">JSON</b>.<b class="golden"
-                >stringify(<b class="doger">parseado</b>)</b
-              ><br />
-
-              <b class="sky">JSON</b>.<b class="golden">stringify(</b
-              ><b class="doger">parseado</b>, <b class="morado">[</b
-              ><b class="naranja">"nombre"</b>,<b class="naranja">"edad"</b
-              ><b class="morado">]</b><b class="golden">)</b> <br />
-
-              <b class="sky">JSON</b>.<b class="golden">stringify(</b
-              ><b class="doger">parseado</b>, <b class="azul">null</b>,
-              <b class="verde">1</b><b class="golden">)</b> <br /><br />
-
-              <b class="letra-B">Convertir JSON a JSON</b>
-              <b class="verde">//Obtienes una cadena dentro de otra cadena</b
-              ><br />
-              <b class="sky">JSON</b>.<b class="golden"
-                >stringify(<b class="doger">json</b>)</b
-              ><br />
-            </code>
-          </div>
-
-          <div>
-            <code>
-              <b id="consola-formatoJSON"></b>
-            </code>
-          </div>
         </div>
+
+        <div id="consola-Object"></div>
       </div>
+
+      <table class="margen150">
+        <tr>
+          <th>Propiedades</th>
+          <th>Descripción</th>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="sky">prototype</code>
+          </td>
+          <td>
+            Es un objeto que se utiliza como plantilla para crear nuevos
+            objetos. Contiene métodos y propiedades que son heredados por los
+            objetos creados a partir de él.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="sky"
+              >constructor</code
+            >
+          </td>
+          <td>
+            Es una referencia a la función constructora que creó el objeto. Por
+            defecto, apunta a la función Object, pero puede ser modificado.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="sky">length</code>
+          </td>
+          <td>
+            Es una propiedad que indica el número de argumentos esperados por la
+            función constructora Object. En este caso, su valor es 1, ya que
+            espera un solo argumento (el objeto a crear).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="aqua">Object</code>.<code class="sky">name</code>
+          </td>
+          <td>
+            Es una propiedad que contiene el nombre de la función constructora.
+            En este caso, su valor es "Object".
+          </td>
+        </tr>
+      </table>
     </section>
 
     <script src="./objetos.js"></script>

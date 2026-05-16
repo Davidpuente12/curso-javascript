@@ -1,0 +1,20 @@
+{
+  "name": "curso-javascript",
+  "version": "1.0.0",
+  "main": "codigo.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davidpuente12/curso-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Davidpuente12/curso-javascript/issues"
+  },
+  "homepage": "https://github.com/Davidpuente12/curso-javascript#readme",
+  "description": "Pagina de aprendizaje para Javascript"
+}
